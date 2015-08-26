@@ -32,9 +32,14 @@ class LocalDataHandler {
     }
     
     /// Overwrites all data in a specified file
-    class func setData(data: [String: AnyObject], inFile fileName: String) -> Bool {
+    class func setData(data: [String: AnyObject]?, inFile fileName: String) -> Bool {
         let plistPath = self.pathToFileInDocumentsDirectory(fileName)
-        return (data as NSDictionary).writeToFile(plistPath, atomically: true)
+        
+        if data == nil {
+            return NSFileManager.defaultManager().removeItemAtPath(plistPath, error: nil)
+        }
+        
+        return (data! as NSDictionary).writeToFile(plistPath, atomically: true)
     }
     
     
