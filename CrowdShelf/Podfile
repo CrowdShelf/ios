@@ -1,0 +1,15 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '7.0'
+use_frameworks!
+
+pod 'MTBBarcodeScanner', '~> 1.6.1'
+pod 'SwiftyJSON', '~> 2.2.1'
+
+target 'CrowdShelf' do
+
+end
+
+target 'CrowdShelfTests' do
+	
+end
+
