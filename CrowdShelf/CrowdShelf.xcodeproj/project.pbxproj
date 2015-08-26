@@ -13,6 +13,7 @@
 		3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF901B8DC29B00E39CC9 /* Images.xcassets */; };
 		3953BF941B8DC29B00E39CC9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */; };
 		3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */; };
+		3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		3953BF991B8DC29B00E39CC9 /* CrowdShelfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdShelfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF9E1B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdShelfTests.swift; sourceTree = "<group>"; };
+		3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDataHandler.swift; path = Handlers/LocalDataHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,8 @@
 		3953BF861B8DC29B00E39CC9 /* CrowdShelf */ = {
 			isa = PBXGroup;
 			children = (
+				3953BFAA1B8E224000E39CC9 /* Handlers */,
+				3953BFA91B8E223300E39CC9 /* ViewControllers */,
 				3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */,
 				3953BF8B1B8DC29B00E39CC9 /* ViewController.swift */,
 				3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */,
@@ -110,6 +114,21 @@
 				3953BF9E1B8DC29B00E39CC9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3953BFA91B8E223300E39CC9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3953BFAA1B8E224000E39CC9 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */,
+			);
+			name = Handlers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +233,7 @@
 			files = (
 				3953BF8C1B8DC29B00E39CC9 /* ViewController.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
+				3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
