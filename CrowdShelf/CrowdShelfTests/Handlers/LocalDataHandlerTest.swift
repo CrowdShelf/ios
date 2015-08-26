@@ -37,6 +37,7 @@ class LocalDataHandlerTest: XCTestCase {
     func testDataIsAddedToExistingFile() {
         let addedKey = "addedKey"
         assert(LocalDataHandler.setObject(404, forKey: addedKey, inFile: self.existingFile), "Failed to set value for key")
+        assert(LocalDataHandler.getObjectForKey(addedKey, fromFile: self.existingFile) != nil, "Failed to retrieve value for added key in existing file")
     }
     
     func testValuetIsReturnedForKeyInFile() {
