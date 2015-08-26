@@ -1,0 +1,6 @@
+framework module Pods_CrowdShelf {
+  umbrella header "Pods-CrowdShelf-umbrella.h"
+
+  export *
+  module * { export * }
+}

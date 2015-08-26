@@ -1,0 +1,6 @@
+framework module MTBBarcodeScanner {
+  umbrella header "Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h"
+
+  export *
+  module * { export * }
+}

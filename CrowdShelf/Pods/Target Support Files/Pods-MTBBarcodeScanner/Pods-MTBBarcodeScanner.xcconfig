@@ -1,0 +1,1 @@
+PODS_MTBBARCODESCANNER_OTHER_LDFLAGS = -framework "AVFoundation" -framework "QuartzCore"

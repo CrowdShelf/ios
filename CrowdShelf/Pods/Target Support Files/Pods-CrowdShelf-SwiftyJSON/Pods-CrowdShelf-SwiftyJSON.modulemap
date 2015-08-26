@@ -1,0 +1,6 @@
+framework module SwiftyJSON {
+  umbrella header "Pods-CrowdShelf-SwiftyJSON-umbrella.h"
+
+  export *
+  module * { export * }
+}
