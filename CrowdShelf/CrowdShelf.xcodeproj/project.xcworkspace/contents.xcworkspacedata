@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:CrowdSheld.xcodeproj">
+      location = "self:CrowdShelf.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,6 +1,6 @@
 //
-//  CrowdSheldTests.swift
-//  CrowdSheldTests
+//  CrowdShelfTests.swift
+//  CrowdShelfTests
 //
 //  Created by Øyvind Grimnes on 26/08/15.
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class CrowdSheldTests: XCTestCase {
+class CrowdShelfTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

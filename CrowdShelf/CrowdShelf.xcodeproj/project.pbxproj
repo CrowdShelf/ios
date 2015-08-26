@@ -7,46 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		397F4B781B8DC1A7004A72BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397F4B771B8DC1A7004A72BF /* AppDelegate.swift */; };
-		397F4B7A1B8DC1A7004A72BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397F4B791B8DC1A7004A72BF /* ViewController.swift */; };
-		397F4B7D1B8DC1A7004A72BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397F4B7B1B8DC1A7004A72BF /* Main.storyboard */; };
-		397F4B7F1B8DC1A7004A72BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 397F4B7E1B8DC1A7004A72BF /* Images.xcassets */; };
-		397F4B821B8DC1A7004A72BF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 397F4B801B8DC1A7004A72BF /* LaunchScreen.xib */; };
-		397F4B8E1B8DC1A7004A72BF /* CrowdSheldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397F4B8D1B8DC1A7004A72BF /* CrowdSheldTests.swift */; };
+		3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
+		3953BF8C1B8DC29B00E39CC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF8B1B8DC29B00E39CC9 /* ViewController.swift */; };
+		3953BF8F1B8DC29B00E39CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */; };
+		3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF901B8DC29B00E39CC9 /* Images.xcassets */; };
+		3953BF941B8DC29B00E39CC9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */; };
+		3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		397F4B881B8DC1A7004A72BF /* PBXContainerItemProxy */ = {
+		3953BF9A1B8DC29B00E39CC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 397F4B6A1B8DC1A7004A72BF /* Project object */;
+			containerPortal = 3953BF7C1B8DC29B00E39CC9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 397F4B711B8DC1A7004A72BF;
-			remoteInfo = CrowdSheld;
+			remoteGlobalIDString = 3953BF831B8DC29B00E39CC9;
+			remoteInfo = CrowdShelf;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		397F4B721B8DC1A7004A72BF /* CrowdSheld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdSheld.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		397F4B761B8DC1A7004A72BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		397F4B771B8DC1A7004A72BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		397F4B791B8DC1A7004A72BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		397F4B7C1B8DC1A7004A72BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		397F4B7E1B8DC1A7004A72BF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		397F4B811B8DC1A7004A72BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		397F4B871B8DC1A7004A72BF /* CrowdSheldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdSheldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		397F4B8C1B8DC1A7004A72BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		397F4B8D1B8DC1A7004A72BF /* CrowdSheldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdSheldTests.swift; sourceTree = "<group>"; };
+		3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3953BF881B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3953BF8B1B8DC29B00E39CC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3953BF8E1B8DC29B00E39CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3953BF901B8DC29B00E39CC9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3953BF931B8DC29B00E39CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		3953BF991B8DC29B00E39CC9 /* CrowdShelfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdShelfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3953BF9E1B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdShelfTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		397F4B6F1B8DC1A7004A72BF /* Frameworks */ = {
+		3953BF811B8DC29B00E39CC9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		397F4B841B8DC1A7004A72BF /* Frameworks */ = {
+		3953BF961B8DC29B00E39CC9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -56,58 +56,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		397F4B691B8DC1A7004A72BF = {
+		3953BF7B1B8DC29B00E39CC9 = {
 			isa = PBXGroup;
 			children = (
-				397F4B741B8DC1A7004A72BF /* CrowdSheld */,
-				397F4B8A1B8DC1A7004A72BF /* CrowdSheldTests */,
-				397F4B731B8DC1A7004A72BF /* Products */,
+				3953BF861B8DC29B00E39CC9 /* CrowdShelf */,
+				3953BF9C1B8DC29B00E39CC9 /* CrowdShelfTests */,
+				3953BF851B8DC29B00E39CC9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		397F4B731B8DC1A7004A72BF /* Products */ = {
+		3953BF851B8DC29B00E39CC9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				397F4B721B8DC1A7004A72BF /* CrowdSheld.app */,
-				397F4B871B8DC1A7004A72BF /* CrowdSheldTests.xctest */,
+				3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */,
+				3953BF991B8DC29B00E39CC9 /* CrowdShelfTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		397F4B741B8DC1A7004A72BF /* CrowdSheld */ = {
+		3953BF861B8DC29B00E39CC9 /* CrowdShelf */ = {
 			isa = PBXGroup;
 			children = (
-				397F4B771B8DC1A7004A72BF /* AppDelegate.swift */,
-				397F4B791B8DC1A7004A72BF /* ViewController.swift */,
-				397F4B7B1B8DC1A7004A72BF /* Main.storyboard */,
-				397F4B7E1B8DC1A7004A72BF /* Images.xcassets */,
-				397F4B801B8DC1A7004A72BF /* LaunchScreen.xib */,
-				397F4B751B8DC1A7004A72BF /* Supporting Files */,
+				3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */,
+				3953BF8B1B8DC29B00E39CC9 /* ViewController.swift */,
+				3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */,
+				3953BF901B8DC29B00E39CC9 /* Images.xcassets */,
+				3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */,
+				3953BF871B8DC29B00E39CC9 /* Supporting Files */,
 			);
-			path = CrowdSheld;
+			path = CrowdShelf;
 			sourceTree = "<group>";
 		};
-		397F4B751B8DC1A7004A72BF /* Supporting Files */ = {
+		3953BF871B8DC29B00E39CC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				397F4B761B8DC1A7004A72BF /* Info.plist */,
+				3953BF881B8DC29B00E39CC9 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		397F4B8A1B8DC1A7004A72BF /* CrowdSheldTests */ = {
+		3953BF9C1B8DC29B00E39CC9 /* CrowdShelfTests */ = {
 			isa = PBXGroup;
 			children = (
-				397F4B8D1B8DC1A7004A72BF /* CrowdSheldTests.swift */,
-				397F4B8B1B8DC1A7004A72BF /* Supporting Files */,
+				3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */,
+				3953BF9D1B8DC29B00E39CC9 /* Supporting Files */,
 			);
-			path = CrowdSheldTests;
+			path = CrowdShelfTests;
 			sourceTree = "<group>";
 		};
-		397F4B8B1B8DC1A7004A72BF /* Supporting Files */ = {
+		3953BF9D1B8DC29B00E39CC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				397F4B8C1B8DC1A7004A72BF /* Info.plist */,
+				3953BF9E1B8DC29B00E39CC9 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -115,60 +115,60 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		397F4B711B8DC1A7004A72BF /* CrowdSheld */ = {
+		3953BF831B8DC29B00E39CC9 /* CrowdShelf */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 397F4B911B8DC1A7004A72BF /* Build configuration list for PBXNativeTarget "CrowdSheld" */;
+			buildConfigurationList = 3953BFA31B8DC29B00E39CC9 /* Build configuration list for PBXNativeTarget "CrowdShelf" */;
 			buildPhases = (
-				397F4B6E1B8DC1A7004A72BF /* Sources */,
-				397F4B6F1B8DC1A7004A72BF /* Frameworks */,
-				397F4B701B8DC1A7004A72BF /* Resources */,
+				3953BF801B8DC29B00E39CC9 /* Sources */,
+				3953BF811B8DC29B00E39CC9 /* Frameworks */,
+				3953BF821B8DC29B00E39CC9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CrowdSheld;
-			productName = CrowdSheld;
-			productReference = 397F4B721B8DC1A7004A72BF /* CrowdSheld.app */;
+			name = CrowdShelf;
+			productName = CrowdShelf;
+			productReference = 3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */;
 			productType = "com.apple.product-type.application";
 		};
-		397F4B861B8DC1A7004A72BF /* CrowdSheldTests */ = {
+		3953BF981B8DC29B00E39CC9 /* CrowdShelfTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 397F4B941B8DC1A7004A72BF /* Build configuration list for PBXNativeTarget "CrowdSheldTests" */;
+			buildConfigurationList = 3953BFA61B8DC29B00E39CC9 /* Build configuration list for PBXNativeTarget "CrowdShelfTests" */;
 			buildPhases = (
-				397F4B831B8DC1A7004A72BF /* Sources */,
-				397F4B841B8DC1A7004A72BF /* Frameworks */,
-				397F4B851B8DC1A7004A72BF /* Resources */,
+				3953BF951B8DC29B00E39CC9 /* Sources */,
+				3953BF961B8DC29B00E39CC9 /* Frameworks */,
+				3953BF971B8DC29B00E39CC9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				397F4B891B8DC1A7004A72BF /* PBXTargetDependency */,
+				3953BF9B1B8DC29B00E39CC9 /* PBXTargetDependency */,
 			);
-			name = CrowdSheldTests;
-			productName = CrowdSheldTests;
-			productReference = 397F4B871B8DC1A7004A72BF /* CrowdSheldTests.xctest */;
+			name = CrowdShelfTests;
+			productName = CrowdShelfTests;
+			productReference = 3953BF991B8DC29B00E39CC9 /* CrowdShelfTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		397F4B6A1B8DC1A7004A72BF /* Project object */ = {
+		3953BF7C1B8DC29B00E39CC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Øyvind Grimnes";
 				TargetAttributes = {
-					397F4B711B8DC1A7004A72BF = {
+					3953BF831B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
 					};
-					397F4B861B8DC1A7004A72BF = {
+					3953BF981B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 397F4B711B8DC1A7004A72BF;
+						TestTargetID = 3953BF831B8DC29B00E39CC9;
 					};
 				};
 			};
-			buildConfigurationList = 397F4B6D1B8DC1A7004A72BF /* Build configuration list for PBXProject "CrowdSheld" */;
+			buildConfigurationList = 3953BF7F1B8DC29B00E39CC9 /* Build configuration list for PBXProject "CrowdShelf" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -176,29 +176,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 397F4B691B8DC1A7004A72BF;
-			productRefGroup = 397F4B731B8DC1A7004A72BF /* Products */;
+			mainGroup = 3953BF7B1B8DC29B00E39CC9;
+			productRefGroup = 3953BF851B8DC29B00E39CC9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				397F4B711B8DC1A7004A72BF /* CrowdSheld */,
-				397F4B861B8DC1A7004A72BF /* CrowdSheldTests */,
+				3953BF831B8DC29B00E39CC9 /* CrowdShelf */,
+				3953BF981B8DC29B00E39CC9 /* CrowdShelfTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		397F4B701B8DC1A7004A72BF /* Resources */ = {
+		3953BF821B8DC29B00E39CC9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				397F4B7D1B8DC1A7004A72BF /* Main.storyboard in Resources */,
-				397F4B821B8DC1A7004A72BF /* LaunchScreen.xib in Resources */,
-				397F4B7F1B8DC1A7004A72BF /* Images.xcassets in Resources */,
+				3953BF8F1B8DC29B00E39CC9 /* Main.storyboard in Resources */,
+				3953BF941B8DC29B00E39CC9 /* LaunchScreen.xib in Resources */,
+				3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		397F4B851B8DC1A7004A72BF /* Resources */ = {
+		3953BF971B8DC29B00E39CC9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,46 +208,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		397F4B6E1B8DC1A7004A72BF /* Sources */ = {
+		3953BF801B8DC29B00E39CC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				397F4B7A1B8DC1A7004A72BF /* ViewController.swift in Sources */,
-				397F4B781B8DC1A7004A72BF /* AppDelegate.swift in Sources */,
+				3953BF8C1B8DC29B00E39CC9 /* ViewController.swift in Sources */,
+				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		397F4B831B8DC1A7004A72BF /* Sources */ = {
+		3953BF951B8DC29B00E39CC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				397F4B8E1B8DC1A7004A72BF /* CrowdSheldTests.swift in Sources */,
+				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		397F4B891B8DC1A7004A72BF /* PBXTargetDependency */ = {
+		3953BF9B1B8DC29B00E39CC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 397F4B711B8DC1A7004A72BF /* CrowdSheld */;
-			targetProxy = 397F4B881B8DC1A7004A72BF /* PBXContainerItemProxy */;
+			target = 3953BF831B8DC29B00E39CC9 /* CrowdShelf */;
+			targetProxy = 3953BF9A1B8DC29B00E39CC9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		397F4B7B1B8DC1A7004A72BF /* Main.storyboard */ = {
+		3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				397F4B7C1B8DC1A7004A72BF /* Base */,
+				3953BF8E1B8DC29B00E39CC9 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		397F4B801B8DC1A7004A72BF /* LaunchScreen.xib */ = {
+		3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				397F4B811B8DC1A7004A72BF /* Base */,
+				3953BF931B8DC29B00E39CC9 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		397F4B8F1B8DC1A7004A72BF /* Debug */ = {
+		3953BFA11B8DC29B00E39CC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -299,7 +299,7 @@
 			};
 			name = Debug;
 		};
-		397F4B901B8DC1A7004A72BF /* Release */ = {
+		3953BFA21B8DC29B00E39CC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -336,27 +336,27 @@
 			};
 			name = Release;
 		};
-		397F4B921B8DC1A7004A72BF /* Debug */ = {
+		3953BFA41B8DC29B00E39CC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = CrowdSheld/Info.plist;
+				INFOPLIST_FILE = CrowdShelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		397F4B931B8DC1A7004A72BF /* Release */ = {
+		3953BFA51B8DC29B00E39CC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = CrowdSheld/Info.plist;
+				INFOPLIST_FILE = CrowdShelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
-		397F4B951B8DC1A7004A72BF /* Debug */ = {
+		3953BFA71B8DC29B00E39CC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -368,14 +368,14 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = CrowdSheldTests/Info.plist;
+				INFOPLIST_FILE = CrowdShelfTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdSheld.app/CrowdSheld";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdShelf.app/CrowdShelf";
 			};
 			name = Debug;
 		};
-		397F4B961B8DC1A7004A72BF /* Release */ = {
+		3953BFA81B8DC29B00E39CC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -383,42 +383,42 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = CrowdSheldTests/Info.plist;
+				INFOPLIST_FILE = CrowdShelfTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdSheld.app/CrowdSheld";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdShelf.app/CrowdShelf";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		397F4B6D1B8DC1A7004A72BF /* Build configuration list for PBXProject "CrowdSheld" */ = {
+		3953BF7F1B8DC29B00E39CC9 /* Build configuration list for PBXProject "CrowdShelf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				397F4B8F1B8DC1A7004A72BF /* Debug */,
-				397F4B901B8DC1A7004A72BF /* Release */,
+				3953BFA11B8DC29B00E39CC9 /* Debug */,
+				3953BFA21B8DC29B00E39CC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		397F4B911B8DC1A7004A72BF /* Build configuration list for PBXNativeTarget "CrowdSheld" */ = {
+		3953BFA31B8DC29B00E39CC9 /* Build configuration list for PBXNativeTarget "CrowdShelf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				397F4B921B8DC1A7004A72BF /* Debug */,
-				397F4B931B8DC1A7004A72BF /* Release */,
+				3953BFA41B8DC29B00E39CC9 /* Debug */,
+				3953BFA51B8DC29B00E39CC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		397F4B941B8DC1A7004A72BF /* Build configuration list for PBXNativeTarget "CrowdSheldTests" */ = {
+		3953BFA61B8DC29B00E39CC9 /* Build configuration list for PBXNativeTarget "CrowdShelfTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				397F4B951B8DC1A7004A72BF /* Debug */,
-				397F4B961B8DC1A7004A72BF /* Release */,
+				3953BFA71B8DC29B00E39CC9 /* Debug */,
+				3953BFA81B8DC29B00E39CC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 397F4B6A1B8DC1A7004A72BF /* Project object */;
+	rootObject = 3953BF7C1B8DC29B00E39CC9 /* Project object */;
 }

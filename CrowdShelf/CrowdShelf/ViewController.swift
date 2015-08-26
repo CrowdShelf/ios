@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  CrowdSheld
+//  CrowdShelf
 //
 //  Created by Øyvind Grimnes on 26/08/15.
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
