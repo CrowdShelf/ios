@@ -1,5 +1,5 @@
 //
-//  LocalDataHandlerTest.swift
+//  CSLocalDataHandlerTest.swift
 //  CrowdShelf
 //
 //  Created by Øyvind Grimnes on 26/08/15.
@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-class LocalDataHandlerTest: XCTestCase {
+class CSLocalDataHandlerTest: XCTestCase {
 
     let existingFile : String = "existingFile"
     let newFile : String = "newFile"
@@ -17,8 +17,8 @@ class LocalDataHandlerTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        LocalDataHandler.setData(["testKey": "testValue"], inFile: self.existingFile)
-        LocalDataHandler.setData(nil, inFile: self.newFile)
+        CSLocalDataHandler.setData(["testKey": "testValue"], inFile: self.existingFile)
+        CSLocalDataHandler.setData(nil, inFile: self.newFile)
     }
     
     override func tearDown() {
@@ -27,38 +27,38 @@ class LocalDataHandlerTest: XCTestCase {
     
     func testDataIsAddedToNewFile() {
         let addedKey = "addedKey"
-        XCTAssert(LocalDataHandler.setObject(404, forKey: addedKey, inFile: self.newFile), "Failed to set value for key")
-        XCTAssertNotNil(LocalDataHandler.getObjectForKey(addedKey, fromFile: self.newFile), "Failed to retrieve value for added key in new file")
+        XCTAssert(CSLocalDataHandler.setObject(404, forKey: addedKey, inFile: self.newFile), "Failed to set value for key")
+        XCTAssertNotNil(CSLocalDataHandler.getObjectForKey(addedKey, fromFile: self.newFile), "Failed to retrieve value for added key in new file")
     }
     
     func testDataIsAddedToExistingFile() {
         let addedKey = "addedKey"
-        XCTAssert(LocalDataHandler.setObject(404, forKey: addedKey, inFile: self.existingFile), "Failed to set value for key")
-        XCTAssertNotNil(LocalDataHandler.getObjectForKey(addedKey, fromFile: self.existingFile), "Failed to retrieve value for added key in existing file")
+        XCTAssert(CSLocalDataHandler.setObject(404, forKey: addedKey, inFile: self.existingFile), "Failed to set value for key")
+        XCTAssertNotNil(CSLocalDataHandler.getObjectForKey(addedKey, fromFile: self.existingFile), "Failed to retrieve value for added key in existing file")
     }
     
     func testValuetIsReturnedForKeyInFile() {
-        XCTAssertNotNil(LocalDataHandler.getObjectForKey("testKey", fromFile: self.existingFile), "Failed to retrieve value for key")
+        XCTAssertNotNil(CSLocalDataHandler.getObjectForKey("testKey", fromFile: self.existingFile), "Failed to retrieve value for key")
     }
     
     func testDataIsReturnedFile() {
-        let keyValueData = LocalDataHandler.getDataFromFile(self.existingFile)
+        let keyValueData = CSLocalDataHandler.getDataFromFile(self.existingFile)
         XCTAssertEqual(keyValueData.count, 1, "Failed to retrieve data from file. Count was \(keyValueData.count). Should have been 1")
         XCTAssertNotNil(keyValueData["testKey"], "Failed to retrieve data from file. Value for key was nil")
     }
     
     func testEmptyDictionaryIsReturnedForNonExistentFile() {
-        let keyValueData = LocalDataHandler.getDataFromFile("nonExistentFile")
+        let keyValueData = CSLocalDataHandler.getDataFromFile("nonExistentFile")
         XCTAssertEqual(keyValueData.count, 0, "Dictionary for non-existent file was not empty")
     }
     
     func testNilReturnedForKeyInNonExistentFile() {
-        let value: AnyObject? = LocalDataHandler.getObjectForKey("key", fromFile: "nonExistentFile")
+        let value: AnyObject? = CSLocalDataHandler.getObjectForKey("key", fromFile: "nonExistentFile")
         XCTAssertNil(value, "Value for key in non-existent file was not nil")
     }
     
     func testNilReturnedForNonExistentKeyInFile() {
-        let value: AnyObject? = LocalDataHandler.getObjectForKey("key", fromFile: self.existingFile)
+        let value: AnyObject? = CSLocalDataHandler.getObjectForKey("key", fromFile: self.existingFile)
         XCTAssertNil(value, "Value for non-existent key in file was not nil")
     }
 }

@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController, UIPageViewControllerDataSource {
     
     var contentViewControllers : [UIViewController] = []
-    var currentContentViewIndex : Int = 1
     
     var pageViewController : UIPageViewController?
     
@@ -20,17 +19,11 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
-        let shelfVC = storyBoard.instantiateViewControllerWithIdentifier("ShelfViewController") as! UIViewController
-        self.contentViewControllers.append(shelfVC)
-        
         let scannerVC = storyBoard.instantiateViewControllerWithIdentifier("ScannerViewController") as! CSScannerViewController
         self.contentViewControllers.append(scannerVC)
         
-        let crowdsVC = storyBoard.instantiateViewControllerWithIdentifier("ShelfViewController") as! UIViewController
-        self.contentViewControllers.append(crowdsVC)
-        
         self.initializePageViewController()
-        self.pageViewController?.setViewControllers([self.contentViewControllers[self.currentContentViewIndex]], direction: .Forward, animated: false, completion: nil)
+        self.pageViewController?.setViewControllers([self.contentViewControllers[0]], direction: .Forward, animated: false, completion: nil)
     }
 
     /// Instantiates a new page view controller adds it as a child view controller
