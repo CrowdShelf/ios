@@ -8,16 +8,71 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UIPageViewControllerDataSource {
+    
+    var contentViewControllers : [UIViewController] = []
+    var currentContentViewIndex : Int = 1
+    
+    var pageViewController : UIPageViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let shelfVC = storyBoard.instantiateViewControllerWithIdentifier("ShelfViewController") as! UIViewController
+        self.contentViewControllers.append(shelfVC)
+        
+        let scannerVC = storyBoard.instantiateViewControllerWithIdentifier("ScannerViewController") as! CSScannerViewController
+        self.contentViewControllers.append(scannerVC)
+        
+        let crowdsVC = storyBoard.instantiateViewControllerWithIdentifier("ShelfViewController") as! UIViewController
+        self.contentViewControllers.append(crowdsVC)
+        
+        self.initializePageViewController()
+        self.pageViewController?.setViewControllers([self.contentViewControllers[self.currentContentViewIndex]], direction: .Forward, animated: false, completion: nil)
     }
 
+    /// Instantiates a new page view controller adds it as a child view controller
+    private func initializePageViewController() {
+        self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        self.addChildViewController(self.pageViewController!)
+        self.view.addSubview(self.pageViewController!.view)
+        
+        self.pageViewController?.didMoveToParentViewController(self)
+        self.pageViewController?.view.didMoveToSuperview()
+        
+        self.pageViewController?.dataSource = self
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+//    MARK: - Page View Controller Data Source
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        let currentIndex = find(self.contentViewControllers, viewController)!
+        
+        if currentIndex >= self.contentViewControllers.endIndex-1 {
+            return nil
+        }
+        
+
+        return self.contentViewControllers[currentIndex+1]
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        let currentIndex = find(self.contentViewControllers, viewController)!
+        
+        if currentIndex <= 0 {
+            return nil
+        }
+        
+        
+        return self.contentViewControllers[currentIndex-1]
     }
 
 

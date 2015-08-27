@@ -13,9 +13,10 @@
 		3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF901B8DC29B00E39CC9 /* Images.xcassets */; };
 		3953BF941B8DC29B00E39CC9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */; };
 		3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */; };
-		3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */; };
+		3953BFAC1B8E230300E39CC9 /* CSLocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* CSLocalDataHandler.swift */; };
 		395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1B1B8E61150012A465 /* LocalDataHandlerTest.swift */; };
-		395EDD1E1B8E61DE0012A465 /* LocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */; };
+		395EDD1E1B8E61DE0012A465 /* CSLocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* CSLocalDataHandler.swift */; };
+		395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */; };
 		73707C01149EEF77BFBD0267 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD76C7589353231F11064D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -41,8 +42,9 @@
 		3953BF991B8DC29B00E39CC9 /* CrowdShelfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdShelfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF9E1B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdShelfTests.swift; sourceTree = "<group>"; };
-		3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDataHandler.swift; path = Handlers/LocalDataHandler.swift; sourceTree = "<group>"; };
+		3953BFAB1B8E230300E39CC9 /* CSLocalDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSLocalDataHandler.swift; path = Handlers/CSLocalDataHandler.swift; sourceTree = "<group>"; };
 		395EDD1B1B8E61150012A465 /* LocalDataHandlerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDataHandlerTest.swift; path = Handlers/LocalDataHandlerTest.swift; sourceTree = "<group>"; };
+		395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSScannerViewController.swift; path = ViewControllers/CSScannerViewController.swift; sourceTree = "<group>"; };
 		41DD76C7589353231F11064D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E135A9CE28D13E7D82D9BE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 		3953BFA91B8E223300E39CC9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -137,7 +140,7 @@
 		3953BFAA1B8E224000E39CC9 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */,
+				3953BFAB1B8E230300E39CC9 /* CSLocalDataHandler.swift */,
 			);
 			name = Handlers;
 			sourceTree = "<group>";
@@ -320,7 +323,8 @@
 			files = (
 				3953BF8C1B8DC29B00E39CC9 /* ViewController.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
-				3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */,
+				3953BFAC1B8E230300E39CC9 /* CSLocalDataHandler.swift in Sources */,
+				395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +334,7 @@
 			files = (
 				395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
-				395EDD1E1B8E61DE0012A465 /* LocalDataHandler.swift in Sources */,
+				395EDD1E1B8E61DE0012A465 /* CSLocalDataHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
