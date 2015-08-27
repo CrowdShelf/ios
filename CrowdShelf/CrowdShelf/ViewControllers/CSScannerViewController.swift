@@ -23,7 +23,6 @@ class CSScannerViewController: UIViewController {
         self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
         // Do any additional setup after loading the view, typically from a nib.
         
-        
 //        TODO: Support scanning multiple, unique barcodes at the same time.
 //        Future feature for adding multiple books?
         MTBBarcodeScanner.requestCameraPermissionWithSuccess { (success) -> Void in

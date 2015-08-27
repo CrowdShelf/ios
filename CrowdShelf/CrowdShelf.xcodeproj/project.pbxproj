@@ -17,6 +17,8 @@
 		395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1B1B8E61150012A465 /* LocalDataHandlerTest.swift */; };
 		395EDD1E1B8E61DE0012A465 /* CSLocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* CSLocalDataHandler.swift */; };
 		395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */; };
+		395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD221B8F55AE0012A465 /* CSBook.swift */; };
+		395EDD251B8F56BC0012A465 /* CSCrowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD241B8F56BC0012A465 /* CSCrowd.swift */; };
 		73707C01149EEF77BFBD0267 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD76C7589353231F11064D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		3953BFAB1B8E230300E39CC9 /* CSLocalDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSLocalDataHandler.swift; path = Handlers/CSLocalDataHandler.swift; sourceTree = "<group>"; };
 		395EDD1B1B8E61150012A465 /* LocalDataHandlerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDataHandlerTest.swift; path = Handlers/LocalDataHandlerTest.swift; sourceTree = "<group>"; };
 		395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSScannerViewController.swift; path = ViewControllers/CSScannerViewController.swift; sourceTree = "<group>"; };
+		395EDD221B8F55AE0012A465 /* CSBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBook.swift; path = Models/CSBook.swift; sourceTree = "<group>"; };
+		395EDD241B8F56BC0012A465 /* CSCrowd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowd.swift; path = Models/CSCrowd.swift; sourceTree = "<group>"; };
 		41DD76C7589353231F11064D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E135A9CE28D13E7D82D9BE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +95,7 @@
 		3953BF861B8DC29B00E39CC9 /* CrowdShelf */ = {
 			isa = PBXGroup;
 			children = (
+				395EDD211B8F55650012A465 /* Models */,
 				3953BFAA1B8E224000E39CC9 /* Handlers */,
 				3953BFA91B8E223300E39CC9 /* ViewControllers */,
 				3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */,
@@ -151,6 +156,15 @@
 				395EDD1B1B8E61150012A465 /* LocalDataHandlerTest.swift */,
 			);
 			name = Handlers;
+			sourceTree = "<group>";
+		};
+		395EDD211B8F55650012A465 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				395EDD221B8F55AE0012A465 /* CSBook.swift */,
+				395EDD241B8F56BC0012A465 /* CSCrowd.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		4CA4BDD76803AE4B70C87B74 /* Frameworks */ = {
@@ -324,6 +338,8 @@
 				3953BF8C1B8DC29B00E39CC9 /* ViewController.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
 				3953BFAC1B8E230300E39CC9 /* CSLocalDataHandler.swift in Sources */,
+				395EDD251B8F56BC0012A465 /* CSCrowd.swift in Sources */,
+				395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */,
 				395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
