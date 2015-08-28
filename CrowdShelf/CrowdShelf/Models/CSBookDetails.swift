@@ -23,7 +23,11 @@ class CSBookDetails: CSBaseModel {
         self.description = json["description"].stringValue
         self.publisher = json["publisher"].stringValue
         self.title = json["title"].stringValue
-        self.authors = json["authors"].arrayObject as! [String]
+        if let authors = json["authors"].arrayObject as? [String] {
+            self.authors = authors
+        } else {
+            self.authors = []
+        }
         self.numberOfRatings = json["ratingsCount"].intValue
         self.numberOfPages = json["pageCount"].intValue
         self.averageRating = json["averageRating"].floatValue
