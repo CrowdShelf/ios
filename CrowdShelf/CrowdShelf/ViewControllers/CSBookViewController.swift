@@ -26,6 +26,12 @@ class CSBookViewController: UIViewController {
     var book : CSBook? {
         didSet {
             self.updateView()
+            CSDataHandler.detailsForBook(book!.isbn, withCompletionHandler: { (details) -> Void in
+                self.book?.details = details
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.updateView()
+                })
+            })
         }
     }
     
@@ -33,15 +39,6 @@ class CSBookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Test data
-        self.book = CSBook(isbn: "9780470643853")
-        CSDataHandler.detailsForBook(book!.isbn, withCompletionHandler: { (details) -> Void in
-            self.book?.details = details
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.updateView()
-            })
-        })
         
         self.updateView()
     }
@@ -53,7 +50,10 @@ class CSBookViewController: UIViewController {
         
         if self.book?.details?.thumbnailURL != nil {
 //            TODO: Load image async
-            self.coverImageView?.image = UIImage(data: NSData(contentsOfURL: self.book!.details!.thumbnailURL)!)
+            let imageData = NSData(contentsOfURL: self.book!.details!.thumbnailURL)
+            if imageData != nil {
+                self.coverImageView?.image = UIImage(data: imageData!)
+            }
         }
         
         self.titleLabel?.text = self.book?.details?.title

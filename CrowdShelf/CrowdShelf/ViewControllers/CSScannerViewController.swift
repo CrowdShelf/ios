@@ -19,10 +19,11 @@ class CSScannerViewController: UIViewController {
     
     var scannedCodes = Set<String>()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
+        self.scannedCodes = Set<String>()
         
 //        TODO: Support scanning multiple, unique barcodes at the same time.
 //        Future feature for adding multiple books?
@@ -31,8 +32,8 @@ class CSScannerViewController: UIViewController {
                 self.scanner?.startScanningWithResultBlock({ (codes) -> Void in
                     if let code = codes.first as? AVMetadataMachineReadableCodeObject {
                         if !self.scannedCodes.contains(code.stringValue) {
-                            UIAlertView(title: "Code scanned", message: code.stringValue, delegate: nil, cancelButtonTitle: "OK").show()
                             self.scannedCodes.insert(code.stringValue)
+                            self.performSegueWithIdentifier("ShowBook", sender: code.stringValue)
                         }
                     }
                 })
@@ -43,6 +44,16 @@ class CSScannerViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+//    MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowBook" {
+            let bookVC = segue.destinationViewController as! CSBookViewController
+            bookVC.book = CSBook(isbn: sender as! String)
+        }
     }
     
     

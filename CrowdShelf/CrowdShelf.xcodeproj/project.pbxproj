@@ -31,6 +31,7 @@
 		39C2F5AB1B906D5600529AA9 /* CSDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5921B90527200529AA9 /* CSDataHandler.swift */; };
 		39C2F5AC1B906D5A00529AA9 /* CSScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */; };
 		39C2F5AE1B906D8D00529AA9 /* CSBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */; };
+		39C2F5B01B907EC000529AA9 /* CSBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */; };
 		3C56024ED257E757C4D16FE2 /* Pods_CrowdShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9662742CB4EA45A56D43C7 /* Pods_CrowdShelf.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		73707C01149EEF77BFBD0267 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD76C7589353231F11064D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		94AA12EADE7D640FCBFAC49E /* Pods_CrowdShelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2799C75DF698F09ECCA8FD /* Pods_CrowdShelfTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -122,6 +123,7 @@
 		3953BF861B8DC29B00E39CC9 /* CrowdShelf */ = {
 			isa = PBXGroup;
 			children = (
+				39C2F5B11B90A27D00529AA9 /* CollectionViewCells */,
 				39C2F5AF1B907AF200529AA9 /* Views */,
 				395EDD211B8F55650012A465 /* Models */,
 				3953BFAA1B8E224000E39CC9 /* Handlers */,
@@ -205,6 +207,13 @@
 			children = (
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		39C2F5B11B90A27D00529AA9 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		4CA4BDD76803AE4B70C87B74 /* Frameworks */ = {
@@ -454,6 +463,7 @@
 				39C2F5A81B906D4300529AA9 /* CSBaseModel.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
 				39C2F5AA1B906D4300529AA9 /* CSBookDetails.swift in Sources */,
+				39C2F5B01B907EC000529AA9 /* CSBookViewController.swift in Sources */,
 				395EDD1E1B8E61DE0012A465 /* CSLocalDataHandler.swift in Sources */,
 				39C2F5A71B906D4300529AA9 /* CSCrowd.swift in Sources */,
 				39C2F5AC1B906D5A00529AA9 /* CSScannerViewController.swift in Sources */,
