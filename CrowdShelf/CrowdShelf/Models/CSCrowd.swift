@@ -11,7 +11,7 @@ import SwiftyJSON
 
 // TODO: Default array should contain the local user
 
-class CSCrowd {
+class CSCrowd: CSBaseModel {
     var name : String
     let creator: String
     var members : [String]
@@ -32,9 +32,21 @@ class CSCrowd {
     }
     
     /// Populate with data from a JSON object. Useful when communicating with the backend
-    convenience init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init(name:     json["name"].stringValue,
                   creator:  json["creator"].stringValue,
                   members:  json["members"].arrayObject as? [String])
+    }
+    
+    
+    
+    
+    
+    override func toDictionary() -> [String : AnyObject] {
+        return [
+            "name": self.name,
+            "creator": self.creator,
+            "members": self.members
+        ]
     }
 }

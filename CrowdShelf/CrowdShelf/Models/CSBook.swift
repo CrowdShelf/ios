@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class CSBook {
+class CSBook: CSBaseModel {
     
     let isbn : String
     let owner : String
@@ -17,6 +17,7 @@ class CSBook {
     var rentedTo : String?
     var numberOfCopies: Int
     
+    var details : CSBookDetails?
     
     /// The bare-bones workhorse of the book initalizers
     init(isbn: String, owner: String, avaliableForRent: Bool, rentedTo: String?, numberOfCopies: Int) {
@@ -46,11 +47,27 @@ class CSBook {
     }
     
     /// Populate with data from a JSON object. Useful when communicating with the backend
-    convenience init(json: JSON) {
+    convenience required init(json: JSON) {
         self.init(isbn:             json["isbn"].stringValue,
                   owner:            json["owner"].stringValue,
                   avaliableForRent: json["avaliableForRent"].boolValue,
                   rentedTo:         json["rentedTo"].string,
                   numberOfCopies:   json["numberOfCopies"].intValue)
+    }
+    
+    
+    override func toDictionary() -> [String : AnyObject] {
+        var dictionary : [String: AnyObject] = [
+            "isbn": self.isbn,
+            "owner": self.owner,
+            "avaliableForRent": self.avaliableForRent,
+            "numberOfCopies": self.numberOfCopies
+        ]
+        
+        if self.rentedTo != nil {
+            dictionary["rentedTo"] = self.rentedTo!
+        }
+        
+        return dictionary
     }
 }
