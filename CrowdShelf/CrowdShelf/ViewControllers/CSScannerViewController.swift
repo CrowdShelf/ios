@@ -17,11 +17,12 @@ class CSScannerViewController: UIViewController {
     
     var scanner : MTBBarcodeScanner?
     
+    var scannedCodes = Set<String>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
-        // Do any additional setup after loading the view, typically from a nib.
         
 //        TODO: Support scanning multiple, unique barcodes at the same time.
 //        Future feature for adding multiple books?
@@ -29,8 +30,10 @@ class CSScannerViewController: UIViewController {
             if success {
                 self.scanner?.startScanningWithResultBlock({ (codes) -> Void in
                     if let code = codes.first as? AVMetadataMachineReadableCodeObject {
-                        UIAlertView(title: "Code scanned", message: code.stringValue, delegate: nil, cancelButtonTitle: "OK").show()
-                        self.scanner?.stopScanning()
+                        if !self.scannedCodes.contains(code.stringValue) {
+                            UIAlertView(title: "Code scanned", message: code.stringValue, delegate: nil, cancelButtonTitle: "OK").show()
+                            self.scannedCodes.insert(code.stringValue)
+                        }
                     }
                 })
             }
