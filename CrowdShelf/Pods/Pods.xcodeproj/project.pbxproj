@@ -7,646 +7,432 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01084DF37468E8DCD3553E56 /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3533DF568D5DBB17E47E59FF /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m */; };
-		0410B4CB33A57FDAAED0C21E /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77894D0DAC1BF8E6540729 /* SwiftyJSON.swift */; };
-		05DD613C1915C2ABCD742B2B /* MTBBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA93AFAEAA67D7C286F493 /* MTBBarcodeScanner.m */; };
-		0765440A1FF6771D2729DBE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		144713BDB0FA916AAF0C411F /* Pods-CrowdShelfTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 793E7F3F2E85474CCFAF147E /* Pods-CrowdShelfTests-dummy.m */; };
-		1DFF339E1F2F08AEE7782EE0 /* Pods-CrowdShelf-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CF85C88BC26A9BDFD8F2C6DC /* Pods-CrowdShelf-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1F2259AA287E9F66F51D3C4C /* MTBBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA93AFAEAA67D7C286F493 /* MTBBarcodeScanner.m */; };
-		223CDC7C75DF2BEA18919287 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7763D901711298838278E447 /* QuartzCore.framework */; };
-		25456407187B63CCADFE6B28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7763D901711298838278E447 /* QuartzCore.framework */; };
-		2FD7520D4839825BB549CF45 /* Pods-CrowdShelfTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 466DD1AE60311B5FBC87D2EE /* Pods-CrowdShelfTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		321114CE464ADF309737D701 /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 171F8024FCF1F9176F40433B /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m */; };
-		34D6D397CC5281916549C328 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7179E67393D73C0CBBF22800 /* Pods-dummy.m */; };
-		3C3F9CAE8B595167ED894649 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7763D901711298838278E447 /* QuartzCore.framework */; };
-		4536EB141550BFC2C86334E0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 403F11456FD8C1EEECEA2FA1 /* AVFoundation.framework */; };
-		48B04D657D74AAA3E819E0C7 /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DEEAEF68C12D928D71D62FBA /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4B7C8366B9B094E28602096F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		4E7770E1AAEFBEDD8FFEE25F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77894D0DAC1BF8E6540729 /* SwiftyJSON.swift */; };
-		53D597524DC4792F24F1B612 /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DAEF994EDE22DA1F41294D72 /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B23E5A9C12824A46860CE8F /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 088270228F6854017147BC54 /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5E56B6009B7315C684CF179A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		607C26ABB3D08D15E31366A5 /* Pods-MTBBarcodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 770FC7D323C8F9F327377816 /* Pods-MTBBarcodeScanner-dummy.m */; };
-		6081635B986D4631C0186689 /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0154055E272A0F526F7BF23D /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6C0B3E7156599C6332F2EBFA /* Pods-CrowdShelf-SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 301487A6CF393E19B37737A4 /* Pods-CrowdShelf-SwiftyJSON-dummy.m */; };
-		6DCF9A765B2EF2D4B83A272C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		6DF1BF8C758A0986AB69953E /* MTBBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 69A50850B5A46AEA76F3520A /* MTBBarcodeScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		723DD6AAE9E29A2DDAA59239 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77894D0DAC1BF8E6540729 /* SwiftyJSON.swift */; };
-		783A11244DECC6E4A5DCD426 /* Pods-CrowdShelf-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F62B4E698A319A33D954B9F7 /* Pods-CrowdShelf-dummy.m */; };
-		7976A8C0936BEF35DAE53B8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		79B0A37A0E51322A654FF06D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		7CA6B01242201450E8C51599 /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBCE5D104CC567363DB8D60 /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m */; };
-		90447629457A62DF3A3FDEF8 /* Pods-SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F03A79720F8E722615A13 /* Pods-SwiftyJSON-dummy.m */; };
-		992A053AF54F7B6A976748FF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 403F11456FD8C1EEECEA2FA1 /* AVFoundation.framework */; };
-		A4D8CC8885AE9E9A61B106FA /* Pods-SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 651D46986490D44431EED53A /* Pods-SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B27919B66588818011AB4337 /* MTBBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA93AFAEAA67D7C286F493 /* MTBBarcodeScanner.m */; };
-		BFFFB4557C846BDE66B70758 /* MTBBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 69A50850B5A46AEA76F3520A /* MTBBarcodeScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C19BE69652AFD9F93FD12088 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 403F11456FD8C1EEECEA2FA1 /* AVFoundation.framework */; };
-		C2309686ADF7997673528BCC /* Pods-MTBBarcodeScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D3BE0BD7B46CC68B4FDC92CD /* Pods-MTBBarcodeScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EBBB1FD32F7201584A68DDC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		EE7FBA60E3E6FEDDA1E22CD6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		FA8CA3A345063B88470C1785 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C4BD2A2F19BE27D036FA99 /* Foundation.framework */; };
-		FBF8361F4D2BD4678096A651 /* Pods-CrowdShelf-SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D031235A7D128BCAC4943DD /* Pods-CrowdShelf-SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FCCF12EEFFD93E4ECBAD10B8 /* MTBBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 69A50850B5A46AEA76F3520A /* MTBBarcodeScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		023C8221CCBD637241FD5EF8 /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FD965297EA3668E65BBD3C06 /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m */; };
+		15642ED26E516B6BB8ECCA63 /* MTBBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F7C4AA8490CBA9ADB041AB /* MTBBarcodeScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CCC13713C2566C755F97D83 /* Pods-CrowdShelfTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC65B082D9DA2662C706469 /* Pods-CrowdShelfTests-dummy.m */; };
+		1CF14FD6E0C45C587CEA1887 /* Pods-CrowdShelf-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10235C001C5208B31AFC8840 /* Pods-CrowdShelf-dummy.m */; };
+		2845ADF4872FC30D26717FC7 /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95DB515C2E6E73E7472EFCDA /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28AA267304818BEA2AFA55CE /* MTBBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF62A47F2015DE5AFDC73F /* MTBBarcodeScanner.m */; };
+		2C38F68767281ED4E8F60E47 /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B651DEF5D27990608554AF2 /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m */; };
+		30192CDA7A8DD69CA8520FA4 /* Pods-CrowdShelf-SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A43EE332F5E8B8D89C575D /* Pods-CrowdShelf-SwiftyJSON-dummy.m */; };
+		3A70BB5ED75F9C7B5F3FB86E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF7DE54C4B4963A735E7E8A2 /* AVFoundation.framework */; };
+		42AA208A57029DAD8E673F01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7EF405D8FC57C364CAC30F /* Foundation.framework */; };
+		42AFA3C79685B93C59770529 /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C050E324BF91DC11AD9C87C /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m */; };
+		4BC0949AC8A9A151D36649EC /* MTBBarcodeScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F7C4AA8490CBA9ADB041AB /* MTBBarcodeScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E0F5C113CFE81B9DB4A2743 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDBFDB165893BC6F91414E6 /* SwiftyJSON.swift */; };
+		6EA1C965EC5188644B18871D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F89CDA140EDD5CFA67FC4B8 /* QuartzCore.framework */; };
+		79198CB99B9AEA021040615A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDBFDB165893BC6F91414E6 /* SwiftyJSON.swift */; };
+		7D0215B425893299A46F827E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7EF405D8FC57C364CAC30F /* Foundation.framework */; };
+		7D25A38A5CC3390CF6DEC1E9 /* Pods-CrowdShelf-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 03AE56697845CFC98AADAC13 /* Pods-CrowdShelf-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D51C3485410FE24FA3D92A9 /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BC5ADD34EBA4CAEB1B33B5A5 /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97A9D69625999B5400107740 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF7DE54C4B4963A735E7E8A2 /* AVFoundation.framework */; };
+		B9C6DA775020C65E483ACEAC /* Pods-CrowdShelfTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E2BC346098528CA4D7515BE /* Pods-CrowdShelfTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB91597C096D36A8E4C264B7 /* MTBBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF62A47F2015DE5AFDC73F /* MTBBarcodeScanner.m */; };
+		C6C1231CD9404B772C3E829D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7EF405D8FC57C364CAC30F /* Foundation.framework */; };
+		CD44E3CB3FE07ACE8B101CFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7EF405D8FC57C364CAC30F /* Foundation.framework */; };
+		CD61353E1A7B4E099430FB40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7EF405D8FC57C364CAC30F /* Foundation.framework */; };
+		D8D0B0894E506B3CD0E33119 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F89CDA140EDD5CFA67FC4B8 /* QuartzCore.framework */; };
+		DC6BD0DBFA5A839048DA98A5 /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 45493C6EE7EC0E43DD04DAA0 /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DDC896F78EBD0C3A86386732 /* Pods-CrowdShelf-SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 01FDA83081C836E7674A51C6 /* Pods-CrowdShelf-SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E049BAF8EB7BD4DDEAC5B969 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7EF405D8FC57C364CAC30F /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0FBECBF6B23A942941D13C4D /* PBXContainerItemProxy */ = {
+		655F49E89CEAA62C0D734A37 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3083995CEE25D4A545DD0980 /* Project object */;
+			containerPortal = C63987F21EBDAE57A559BDC9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CEDECAFA47EE1E09DA07871A;
-			remoteInfo = "Pods-CrowdShelfTests-MTBBarcodeScanner";
-		};
-		3C5007D0B5746EF251426ECD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3083995CEE25D4A545DD0980 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 75DC93E429DB955793F767B0;
+			remoteGlobalIDString = C0E5FE06519E5AE0CC9C80C2;
 			remoteInfo = "Pods-CrowdShelfTests-SwiftyJSON";
 		};
-		702F2EC782A36E484DD4989F /* PBXContainerItemProxy */ = {
+		A9D4D547A70642AE6A17C725 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3083995CEE25D4A545DD0980 /* Project object */;
+			containerPortal = C63987F21EBDAE57A559BDC9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D17105BF92EB63AA982DF959;
-			remoteInfo = "Pods-MTBBarcodeScanner";
-		};
-		926812FC818CBC8F45599100 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3083995CEE25D4A545DD0980 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6CAB762D55BC13D8BCAAE6E8;
-			remoteInfo = "Pods-CrowdShelf-MTBBarcodeScanner";
-		};
-		C62924CF2471A297C2E1D4ED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3083995CEE25D4A545DD0980 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 98E03E01C816D8410B48AC2D;
-			remoteInfo = "Pods-SwiftyJSON";
-		};
-		CA1AA12460122F1ED58BCABE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3083995CEE25D4A545DD0980 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E03ADE75C0DDE5032DDF4696;
+			remoteGlobalIDString = BB35993163AF5950C608329E;
 			remoteInfo = "Pods-CrowdShelf-SwiftyJSON";
+		};
+		C4B372A087885D9980A7E247 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C63987F21EBDAE57A559BDC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11CAAAF429C8B03BF73C9346;
+			remoteInfo = "Pods-CrowdShelfTests-MTBBarcodeScanner";
+		};
+		E37A37398760F10640B4FD70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C63987F21EBDAE57A559BDC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2A80C145DC5E2831C4A56FB;
+			remoteInfo = "Pods-CrowdShelf-MTBBarcodeScanner";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		002E9F9C6579B7AD4D28DE78 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
-		0154055E272A0F526F7BF23D /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CrowdShelfTests-SwiftyJSON-umbrella.h"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		04C99AA5681A211D4D2FDD36 /* Pods-CrowdShelfTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CrowdShelfTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		088270228F6854017147BC54 /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h"; sourceTree = "<group>"; };
-		16C4BD2A2F19BE27D036FA99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		171F8024FCF1F9176F40433B /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CrowdShelf-MTBBarcodeScanner-dummy.m"; sourceTree = "<group>"; };
-		1724157A8169C5418CA23AC5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Info.plist"; sourceTree = "<group>"; };
-		19F81B23ABA7C54937CC04EF /* Pods-CrowdShelfTests-SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CrowdShelfTests-SwiftyJSON-prefix.pch"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
-		1F01E31F05C69F1003CFECE2 /* Pods-CrowdShelf-SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
-		2323C7F3BBBE3EB2B7C165F4 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		23AC4114D1F5220EE53347DD /* Pods-MTBBarcodeScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-MTBBarcodeScanner.modulemap"; path = "../Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner.modulemap"; sourceTree = "<group>"; };
-		25C9674A10422F23BA636CCF /* Pods-CrowdShelfTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CrowdShelfTests.modulemap"; sourceTree = "<group>"; };
-		269DD6F9FB1FBA554DA92E3D /* Pods-CrowdShelf-MTBBarcodeScanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf-MTBBarcodeScanner.xcconfig"; sourceTree = "<group>"; };
-		26E122823E53FD4583A92049 /* Pods-CrowdShelfTests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelfTests-environment.h"; sourceTree = "<group>"; };
-		294C4C308CB54678242BB5C6 /* Pods-CrowdShelfTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CrowdShelfTests-frameworks.sh"; sourceTree = "<group>"; };
-		2EA0B10CC803473F2B848FB3 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		2F9C05AD3DBE88CD9996C7FD /* Pods-SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-SwiftyJSON-prefix.pch"; path = "../Pods-SwiftyJSON/Pods-SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
-		2FBB9403BCA98A31F27B4EE1 /* Pods-CrowdShelfTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CrowdShelfTests-resources.sh"; sourceTree = "<group>"; };
-		301487A6CF393E19B37737A4 /* Pods-CrowdShelf-SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CrowdShelf-SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
-		3533DF568D5DBB17E47E59FF /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-CrowdShelfTests-SwiftyJSON-dummy.m"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
-		38780EB2202D5891D262F2A5 /* Pods-MTBBarcodeScanner-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTBBarcodeScanner-Private.xcconfig"; path = "../Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner-Private.xcconfig"; sourceTree = "<group>"; };
-		38D6E69D3FAC697AA280573C /* Pods_CrowdShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A5EF0D3E20191950260EC92 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3CF711ED861651BDFFC69DE1 /* MTBBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MTBBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D0D8A714BD4A9078BAE5609 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-CrowdShelfTests-SwiftyJSON/Info.plist"; sourceTree = "<group>"; };
-		3E0F03A79720F8E722615A13 /* Pods-SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-SwiftyJSON-dummy.m"; path = "../Pods-SwiftyJSON/Pods-SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
-		403F11456FD8C1EEECEA2FA1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		4109452A54967F25BC5AB635 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		466DD1AE60311B5FBC87D2EE /* Pods-CrowdShelfTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelfTests-umbrella.h"; sourceTree = "<group>"; };
-		4A9D7D6ABBB39E88F3A4BE95 /* Pods-CrowdShelf-SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CrowdShelf-SwiftyJSON.modulemap"; sourceTree = "<group>"; };
-		516F1F9C070E5DD227CD4A75 /* Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig"; sourceTree = "<group>"; };
-		554BB3F34FBEE240AD0548C1 /* Pods_CrowdShelfTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelfTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		55B1F8698CC15A9B9625DB2A /* Pods-SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSON.xcconfig"; path = "../Pods-SwiftyJSON/Pods-SwiftyJSON.xcconfig"; sourceTree = "<group>"; };
-		59F2C234BC8D81AC1D8C2B83 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F2621827DAE258DBCF7898A /* MTBBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MTBBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		608FFC662D72A8592F08B42C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		623C1E757002940AAAF05931 /* Pods-CrowdShelf-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-environment.h"; sourceTree = "<group>"; };
-		651D46986490D44431EED53A /* Pods-SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-SwiftyJSON-umbrella.h"; path = "../Pods-SwiftyJSON/Pods-SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		69A50850B5A46AEA76F3520A /* MTBBarcodeScanner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MTBBarcodeScanner.h; path = Classes/ios/Scanners/MTBBarcodeScanner.h; sourceTree = "<group>"; };
-		6B39762D8D80A11749057046 /* Pods-CrowdShelf-SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf-SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
-		6D031235A7D128BCAC4943DD /* Pods-CrowdShelf-SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		7075114B2A42E603B9E0B41C /* Pods-CrowdShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf.release.xcconfig"; sourceTree = "<group>"; };
-		70BD923830780CECE968B4E2 /* Pods-MTBBarcodeScanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTBBarcodeScanner.xcconfig"; path = "../Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner.xcconfig"; sourceTree = "<group>"; };
-		7179E67393D73C0CBBF22800 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		71B1402098E95E5EC888AA17 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		770FC7D323C8F9F327377816 /* Pods-MTBBarcodeScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-MTBBarcodeScanner-dummy.m"; path = "../Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner-dummy.m"; sourceTree = "<group>"; };
-		7763D901711298838278E447 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		792ED27FA8683516BBDC3FB5 /* Pods-CrowdShelfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelfTests.release.xcconfig"; sourceTree = "<group>"; };
-		793E7F3F2E85474CCFAF147E /* Pods-CrowdShelfTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CrowdShelfTests-dummy.m"; sourceTree = "<group>"; };
-		7CC7CD296FB24C5841B86EEB /* Pods-CrowdShelfTests-MTBBarcodeScanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests-MTBBarcodeScanner.xcconfig"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner.xcconfig"; sourceTree = "<group>"; };
-		7DFA9F25D720FAC8900BEBAE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7F31F4822B9A40EE90AEBE84 /* Pods-CrowdShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf.debug.xcconfig"; sourceTree = "<group>"; };
-		7FAB796D2355398488D243EA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		892E8D374FC186A5EF35D545 /* Pods-MTBBarcodeScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-MTBBarcodeScanner-prefix.pch"; path = "../Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner-prefix.pch"; sourceTree = "<group>"; };
-		8B422B5E93256B79E73B2E9A /* Pods-CrowdShelf-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CrowdShelf-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8C92F1D58F7981D2B041A4EC /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
-		8D5C5105D8B82416B4DB1BCB /* Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch"; sourceTree = "<group>"; };
-		90C46DD6CCEDE1DB34946E23 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		9615D43A38AD6B3F15CDE9E0 /* Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
-		9822DC0F18998868D54FC8BA /* Pods-CrowdShelf-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CrowdShelf-acknowledgements.plist"; sourceTree = "<group>"; };
-		9836BF0317093ED25D23D585 /* Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch"; sourceTree = "<group>"; };
-		9CAA93AFAEAA67D7C286F493 /* MTBBarcodeScanner.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MTBBarcodeScanner.m; path = Classes/ios/Scanners/MTBBarcodeScanner.m; sourceTree = "<group>"; };
-		9ED2F688341E17BD5C21955D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A172483BBFDE3C686612CD8C /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A331763DDB1FD74ED69068FD /* Pods-CrowdShelf-SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf-SwiftyJSON.xcconfig"; sourceTree = "<group>"; };
-		A427C1CC4134184F79BC8E20 /* Pods-CrowdShelfTests-SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests-SwiftyJSON.xcconfig"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON.xcconfig"; sourceTree = "<group>"; };
-		A4F87AE424C977043A161C49 /* Pods-CrowdShelf-MTBBarcodeScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CrowdShelf-MTBBarcodeScanner.modulemap"; sourceTree = "<group>"; };
-		B095EC6BDD3F4AC6F66D15CD /* Pods-SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSON-Private.xcconfig"; path = "../Pods-SwiftyJSON/Pods-SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
-		B46626559DD21F29F0FB6DDE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B46CF760FA98089F001B9258 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
-		BE5BCF2CC2B57F685BF4681E /* Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig"; sourceTree = "<group>"; };
-		C968ED1F4C83ABD02E2FDC51 /* Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap"; sourceTree = "<group>"; };
-		CA77894D0DAC1BF8E6540729 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
-		CF85C88BC26A9BDFD8F2C6DC /* Pods-CrowdShelf-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-umbrella.h"; sourceTree = "<group>"; };
-		D3BE0BD7B46CC68B4FDC92CD /* Pods-MTBBarcodeScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-MTBBarcodeScanner-umbrella.h"; path = "../Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner-umbrella.h"; sourceTree = "<group>"; };
-		D71B583FA795367FBE94D8B2 /* Pods-CrowdShelf-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CrowdShelf-resources.sh"; sourceTree = "<group>"; };
-		DAB729D6FA2E50A343B23F4D /* Pods-CrowdShelf.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CrowdShelf.modulemap"; sourceTree = "<group>"; };
-		DAEF994EDE22DA1F41294D72 /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h"; sourceTree = "<group>"; };
-		DEEAEF68C12D928D71D62FBA /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
-		DEED474ABC253237F8F33E02 /* Pods-CrowdShelfTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CrowdShelfTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		DF4649F81CC738486FBF28EB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		DF4685E9C9FCEEF9C695BF13 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		DFBCE5D104CC567363DB8D60 /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m"; sourceTree = "<group>"; };
-		E86C00ACCE255F99E1A3CF08 /* Pods-CrowdShelf-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CrowdShelf-frameworks.sh"; sourceTree = "<group>"; };
-		E917CB08AD9E8921B4DF99D2 /* Pods-SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-SwiftyJSON.modulemap"; path = "../Pods-SwiftyJSON/Pods-SwiftyJSON.modulemap"; sourceTree = "<group>"; };
-		EA3A2F569FF305701FDC509A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-MTBBarcodeScanner/Info.plist"; sourceTree = "<group>"; };
-		F2E2B102F94E56AF5E236BBB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-SwiftyJSON/Info.plist"; sourceTree = "<group>"; };
-		F62B4E698A319A33D954B9F7 /* Pods-CrowdShelf-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CrowdShelf-dummy.m"; sourceTree = "<group>"; };
-		F7FCADC665B292FAAB5C3FD7 /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
-		FC47F398AEFE990DEB6677D8 /* Pods-CrowdShelfTests-SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-CrowdShelfTests-SwiftyJSON.modulemap"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON.modulemap"; sourceTree = "<group>"; };
-		FDC821EFA8D1CD88C66BE545 /* MTBBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MTBBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		01FDA83081C836E7674A51C6 /* Pods-CrowdShelf-SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
+		03AE56697845CFC98AADAC13 /* Pods-CrowdShelf-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-umbrella.h"; sourceTree = "<group>"; };
+		0836244F0C8B3D02122D841D /* Pods-CrowdShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf.debug.xcconfig"; sourceTree = "<group>"; };
+		0D0F2122534A813F67E1B29B /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10235C001C5208B31AFC8840 /* Pods-CrowdShelf-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CrowdShelf-dummy.m"; sourceTree = "<group>"; };
+		11F7C4AA8490CBA9ADB041AB /* MTBBarcodeScanner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MTBBarcodeScanner.h; path = Classes/ios/Scanners/MTBBarcodeScanner.h; sourceTree = "<group>"; };
+		1556EAA817360C7E3C577381 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16F2EC52A0F8F4964EE9F5A0 /* MTBBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MTBBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C7B7B19A90B323F71CA71AB /* Pods-CrowdShelf-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CrowdShelf-resources.sh"; sourceTree = "<group>"; };
+		1F89CDA140EDD5CFA67FC4B8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		25F2ED6664C864C9AE808299 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C050E324BF91DC11AD9C87C /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m"; sourceTree = "<group>"; };
+		336810A0FC63B75801E5BDA1 /* Pods-CrowdShelf-MTBBarcodeScanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf-MTBBarcodeScanner.xcconfig"; sourceTree = "<group>"; };
+		354E8A47AA4D6EACEE5F12F2 /* Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch"; sourceTree = "<group>"; };
+		41DEE264DB26BED7097BC1FB /* Pods-CrowdShelfTests-SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests-SwiftyJSON.xcconfig"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON.xcconfig"; sourceTree = "<group>"; };
+		45493C6EE7EC0E43DD04DAA0 /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CrowdShelfTests-SwiftyJSON-umbrella.h"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
+		45782E0FC491FFA8327D1649 /* Pods-CrowdShelf-SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf-SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
+		53D7D2C5FCC1867AAA6A300D /* Pods-CrowdShelf-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CrowdShelf-frameworks.sh"; sourceTree = "<group>"; };
+		5661A899F60420BD5A6A3644 /* Pods-CrowdShelf-MTBBarcodeScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CrowdShelf-MTBBarcodeScanner.modulemap"; sourceTree = "<group>"; };
+		586E77C46ED63545E8904C06 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5F352B480C842BA732EA9861 /* Pods-CrowdShelfTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CrowdShelfTests-resources.sh"; sourceTree = "<group>"; };
+		6137FCFA77B6065E0696FB95 /* Pods-CrowdShelf.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CrowdShelf.modulemap"; sourceTree = "<group>"; };
+		640EC498ABA33AAC2141F713 /* Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch"; sourceTree = "<group>"; };
+		6B651DEF5D27990608554AF2 /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-CrowdShelfTests-SwiftyJSON-dummy.m"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
+		6DDF196D7541BC83E4563BF3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Info.plist"; sourceTree = "<group>"; };
+		74D73BEAC8985698A3D536C7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7994B9BD8DDC3FACE2D1147A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E2BC346098528CA4D7515BE /* Pods-CrowdShelfTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelfTests-umbrella.h"; sourceTree = "<group>"; };
+		86642738E0E637DB7D28BA52 /* Pods-CrowdShelf-SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf-SwiftyJSON.xcconfig"; sourceTree = "<group>"; };
+		89A43EE332F5E8B8D89C575D /* Pods-CrowdShelf-SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CrowdShelf-SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
+		8BB5F36290B85E40C5AE1BFB /* Pods-CrowdShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf.release.xcconfig"; sourceTree = "<group>"; };
+		8C4E7D3D146722CEAD5A53B3 /* Pods-CrowdShelfTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CrowdShelfTests-frameworks.sh"; sourceTree = "<group>"; };
+		8CDB742D16F3056B2DE8C81B /* Pods-CrowdShelfTests-SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-CrowdShelfTests-SwiftyJSON.modulemap"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON.modulemap"; sourceTree = "<group>"; };
+		945275BC2DF4DC2DEC9461F5 /* Pods-CrowdShelfTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CrowdShelfTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		95DB515C2E6E73E7472EFCDA /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h"; sourceTree = "<group>"; };
+		95E4D77C2ACFCAD1A14CDC0E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-CrowdShelfTests-SwiftyJSON/Info.plist"; sourceTree = "<group>"; };
+		98FAE15A3817BE2B71CAF896 /* Pods_CrowdShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C7EF405D8FC57C364CAC30F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A381893F3268862714A16593 /* Pods-CrowdShelfTests-MTBBarcodeScanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests-MTBBarcodeScanner.xcconfig"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner.xcconfig"; sourceTree = "<group>"; };
+		A4FF62A47F2015DE5AFDC73F /* MTBBarcodeScanner.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MTBBarcodeScanner.m; path = Classes/ios/Scanners/MTBBarcodeScanner.m; sourceTree = "<group>"; };
+		A513FD5568A372BE872E1F10 /* Pods-CrowdShelf-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CrowdShelf-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A5420D3591167B538E188FBD /* Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap"; sourceTree = "<group>"; };
+		A9990C9BD40BAF901B4383D4 /* Pods-CrowdShelfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelfTests.release.xcconfig"; sourceTree = "<group>"; };
+		AD1FF2A7F2E32DF56F60AEF7 /* Pods-CrowdShelf-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CrowdShelf-acknowledgements.plist"; sourceTree = "<group>"; };
+		AF7DE54C4B4963A735E7E8A2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		B0F19068B00595337221B8DD /* Pods_CrowdShelfTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelfTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B34FE925C22F564E2ADE3C1B /* MTBBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MTBBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAEFE5D5D229AE6BB11DC479 /* Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig"; path = "../Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig"; sourceTree = "<group>"; };
+		BBDBFDB165893BC6F91414E6 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
+		BBFF538D5AF979BAF04EC492 /* Pods-CrowdShelfTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CrowdShelfTests.modulemap"; sourceTree = "<group>"; };
+		BC5ADD34EBA4CAEB1B33B5A5 /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h"; sourceTree = "<group>"; };
+		C307CE09A14771C87F5E6EBD /* Pods-CrowdShelfTests-SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-CrowdShelfTests-SwiftyJSON-prefix.pch"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		C6C4A2727E5DCDB0F5568C18 /* Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig"; sourceTree = "<group>"; };
+		CBC65B082D9DA2662C706469 /* Pods-CrowdShelfTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CrowdShelfTests-dummy.m"; sourceTree = "<group>"; };
+		D0C7960C7741135AE290A519 /* Pods-CrowdShelf-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-environment.h"; sourceTree = "<group>"; };
+		D4F201F13F8590C0C5D293F5 /* Pods-CrowdShelf-SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CrowdShelf-SwiftyJSON.modulemap"; sourceTree = "<group>"; };
+		E45C1002A53A3E19FDE5F1B5 /* Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig"; path = "../Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
+		E8214F94F9EF37AAD2E8A2DC /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E89894F92F19F453C6D33028 /* Pods-CrowdShelfTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CrowdShelfTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E8DC0303F4DAF3BA217CFB78 /* Pods-CrowdShelf-SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelf-SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		F309008178DBA70C79D5DC25 /* Pods-CrowdShelfTests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CrowdShelfTests-environment.h"; sourceTree = "<group>"; };
+		F9D0BB5871D1BBF1FA993A5C /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD965297EA3668E65BBD3C06 /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CrowdShelf-MTBBarcodeScanner-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2B518FB5F9EE30A29EA1C325 /* Frameworks */ = {
+		0F0E6919A521303033A4A3B4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBBB1FD32F7201584A68DDC4 /* Foundation.framework in Frameworks */,
+				7D0215B425893299A46F827E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3FEA909FD5E087A51715887E /* Frameworks */ = {
+		4885E49A7B3687564977C1BD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0765440A1FF6771D2729DBE6 /* Foundation.framework in Frameworks */,
+				42AA208A57029DAD8E673F01 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4E87C6B584DDC5DE41549C72 /* Frameworks */ = {
+		56E00FAF686100CBDCE04578 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4536EB141550BFC2C86334E0 /* AVFoundation.framework in Frameworks */,
-				79B0A37A0E51322A654FF06D /* Foundation.framework in Frameworks */,
-				25456407187B63CCADFE6B28 /* QuartzCore.framework in Frameworks */,
+				CD61353E1A7B4E099430FB40 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7F35A4F5C4DC8F89ADF4DCC1 /* Frameworks */ = {
+		6CFD253BBC73806BBF0FBFEB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DCF9A765B2EF2D4B83A272C /* Foundation.framework in Frameworks */,
+				97A9D69625999B5400107740 /* AVFoundation.framework in Frameworks */,
+				C6C1231CD9404B772C3E829D /* Foundation.framework in Frameworks */,
+				6EA1C965EC5188644B18871D /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7EC4EC5142155758F7CED10 /* Frameworks */ = {
+		B40EF4E3D02E729B55A751F0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E56B6009B7315C684CF179A /* Foundation.framework in Frameworks */,
+				E049BAF8EB7BD4DDEAC5B969 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AB14D59CB1B8AFCFF7FC0679 /* Frameworks */ = {
+		C8A2B4D6B3363CA246C8C225 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C19BE69652AFD9F93FD12088 /* AVFoundation.framework in Frameworks */,
-				4B7C8366B9B094E28602096F /* Foundation.framework in Frameworks */,
-				223CDC7C75DF2BEA18919287 /* QuartzCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA04DD4A264CBAF26D5A538A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				992A053AF54F7B6A976748FF /* AVFoundation.framework in Frameworks */,
-				EE7FBA60E3E6FEDDA1E22CD6 /* Foundation.framework in Frameworks */,
-				3C3F9CAE8B595167ED894649 /* QuartzCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F24F97C4893D1E20240ED6A1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FA8CA3A345063B88470C1785 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F94E0E012EC9B1ED2F58B661 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7976A8C0936BEF35DAE53B8F /* Foundation.framework in Frameworks */,
+				3A70BB5ED75F9C7B5F3FB86E /* AVFoundation.framework in Frameworks */,
+				CD44E3CB3FE07ACE8B101CFF /* Foundation.framework in Frameworks */,
+				D8D0B0894E506B3CD0E33119 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		073C6585F38438EB8BC85588 /* Support Files */ = {
+		4B5C5704E96472B21ECC3CBE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3D0D8A714BD4A9078BAE5609 /* Info.plist */,
-				F2E2B102F94E56AF5E236BBB /* Info.plist */,
-				9ED2F688341E17BD5C21955D /* Info.plist */,
-				4A9D7D6ABBB39E88F3A4BE95 /* Pods-CrowdShelf-SwiftyJSON.modulemap */,
-				A331763DDB1FD74ED69068FD /* Pods-CrowdShelf-SwiftyJSON.xcconfig */,
-				6B39762D8D80A11749057046 /* Pods-CrowdShelf-SwiftyJSON-Private.xcconfig */,
-				301487A6CF393E19B37737A4 /* Pods-CrowdShelf-SwiftyJSON-dummy.m */,
-				1F01E31F05C69F1003CFECE2 /* Pods-CrowdShelf-SwiftyJSON-prefix.pch */,
-				6D031235A7D128BCAC4943DD /* Pods-CrowdShelf-SwiftyJSON-umbrella.h */,
-				FC47F398AEFE990DEB6677D8 /* Pods-CrowdShelfTests-SwiftyJSON.modulemap */,
-				A427C1CC4134184F79BC8E20 /* Pods-CrowdShelfTests-SwiftyJSON.xcconfig */,
-				9615D43A38AD6B3F15CDE9E0 /* Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig */,
-				3533DF568D5DBB17E47E59FF /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m */,
-				19F81B23ABA7C54937CC04EF /* Pods-CrowdShelfTests-SwiftyJSON-prefix.pch */,
-				0154055E272A0F526F7BF23D /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h */,
-				E917CB08AD9E8921B4DF99D2 /* Pods-SwiftyJSON.modulemap */,
-				55B1F8698CC15A9B9625DB2A /* Pods-SwiftyJSON.xcconfig */,
-				B095EC6BDD3F4AC6F66D15CD /* Pods-SwiftyJSON-Private.xcconfig */,
-				3E0F03A79720F8E722615A13 /* Pods-SwiftyJSON-dummy.m */,
-				2F9C05AD3DBE88CD9996C7FD /* Pods-SwiftyJSON-prefix.pch */,
-				651D46986490D44431EED53A /* Pods-SwiftyJSON-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-CrowdShelf-SwiftyJSON";
-			sourceTree = "<group>";
-		};
-		1C0166056F1C5299AD72B5F1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5F2621827DAE258DBCF7898A /* MTBBarcodeScanner.framework */,
-				FDC821EFA8D1CD88C66BE545 /* MTBBarcodeScanner.framework */,
-				3CF711ED861651BDFFC69DE1 /* MTBBarcodeScanner.framework */,
-				4109452A54967F25BC5AB635 /* Pods.framework */,
-				38D6E69D3FAC697AA280573C /* Pods_CrowdShelf.framework */,
-				554BB3F34FBEE240AD0548C1 /* Pods_CrowdShelfTests.framework */,
-				71B1402098E95E5EC888AA17 /* SwiftyJSON.framework */,
-				59F2C234BC8D81AC1D8C2B83 /* SwiftyJSON.framework */,
-				A172483BBFDE3C686612CD8C /* SwiftyJSON.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		1D5BB7687EA8B7B5F8A4717A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B46626559DD21F29F0FB6DDE /* Info.plist */,
-				8C92F1D58F7981D2B041A4EC /* Pods.modulemap */,
-				2323C7F3BBBE3EB2B7C165F4 /* Pods-acknowledgements.markdown */,
-				DF4685E9C9FCEEF9C695BF13 /* Pods-acknowledgements.plist */,
-				7179E67393D73C0CBBF22800 /* Pods-dummy.m */,
-				F7FCADC665B292FAAB5C3FD7 /* Pods-environment.h */,
-				002E9F9C6579B7AD4D28DE78 /* Pods-frameworks.sh */,
-				90C46DD6CCEDE1DB34946E23 /* Pods-resources.sh */,
-				DEEAEF68C12D928D71D62FBA /* Pods-umbrella.h */,
-				608FFC662D72A8592F08B42C /* Pods.debug.xcconfig */,
-				DF4649F81CC738486FBF28EB /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			path = "Target Support Files/Pods";
-			sourceTree = "<group>";
-		};
-		363D85FFAE26D00D68A78B95 = {
-			isa = PBXGroup;
-			children = (
-				2EA0B10CC803473F2B848FB3 /* Podfile */,
-				AFAD4F26E577BC105473FE37 /* Frameworks */,
-				6E5608405A73895781E2ADF6 /* Pods */,
-				1C0166056F1C5299AD72B5F1 /* Products */,
-				DE00DB0BE433DB466D58714F /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		3B32FDCDA776469F1989949D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				1724157A8169C5418CA23AC5 /* Info.plist */,
-				EA3A2F569FF305701FDC509A /* Info.plist */,
-				7FAB796D2355398488D243EA /* Info.plist */,
-				A4F87AE424C977043A161C49 /* Pods-CrowdShelf-MTBBarcodeScanner.modulemap */,
-				269DD6F9FB1FBA554DA92E3D /* Pods-CrowdShelf-MTBBarcodeScanner.xcconfig */,
-				BE5BCF2CC2B57F685BF4681E /* Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig */,
-				171F8024FCF1F9176F40433B /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m */,
-				9836BF0317093ED25D23D585 /* Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch */,
-				088270228F6854017147BC54 /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h */,
-				C968ED1F4C83ABD02E2FDC51 /* Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap */,
-				7CC7CD296FB24C5841B86EEB /* Pods-CrowdShelfTests-MTBBarcodeScanner.xcconfig */,
-				516F1F9C070E5DD227CD4A75 /* Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig */,
-				DFBCE5D104CC567363DB8D60 /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m */,
-				8D5C5105D8B82416B4DB1BCB /* Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch */,
-				DAEF994EDE22DA1F41294D72 /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h */,
-				23AC4114D1F5220EE53347DD /* Pods-MTBBarcodeScanner.modulemap */,
-				70BD923830780CECE968B4E2 /* Pods-MTBBarcodeScanner.xcconfig */,
-				38780EB2202D5891D262F2A5 /* Pods-MTBBarcodeScanner-Private.xcconfig */,
-				770FC7D323C8F9F327377816 /* Pods-MTBBarcodeScanner-dummy.m */,
-				892E8D374FC186A5EF35D545 /* Pods-MTBBarcodeScanner-prefix.pch */,
-				D3BE0BD7B46CC68B4FDC92CD /* Pods-MTBBarcodeScanner-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner";
-			sourceTree = "<group>";
-		};
-		484E024ED5A5E7A7DE9A0F75 /* MTBBarcodeScanner */ = {
-			isa = PBXGroup;
-			children = (
-				69A50850B5A46AEA76F3520A /* MTBBarcodeScanner.h */,
-				9CAA93AFAEAA67D7C286F493 /* MTBBarcodeScanner.m */,
-				3B32FDCDA776469F1989949D /* Support Files */,
-			);
-			path = MTBBarcodeScanner;
-			sourceTree = "<group>";
-		};
-		6E5608405A73895781E2ADF6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				484E024ED5A5E7A7DE9A0F75 /* MTBBarcodeScanner */,
-				D4EF305634798FED2B7EA4AD /* SwiftyJSON */,
+				8A7126CC902847E79FA06932 /* MTBBarcodeScanner */,
+				8DB4D8FD4CBA8765ADE3C604 /* SwiftyJSON */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		AFAD4F26E577BC105473FE37 /* Frameworks */ = {
+		5DA67F2B8B5D064C38958276 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DDEC6A8929DF3BBF7FD34827 /* iOS */,
+				A8EBB96742DBCB5AF40636E3 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D1CA53F467A14B526B8A3834 /* Pods-CrowdShelf */ = {
+		6327E826FCD142609CFB0CCA /* Pods-CrowdShelfTests */ = {
 			isa = PBXGroup;
 			children = (
-				3A5EF0D3E20191950260EC92 /* Info.plist */,
-				DAB729D6FA2E50A343B23F4D /* Pods-CrowdShelf.modulemap */,
-				8B422B5E93256B79E73B2E9A /* Pods-CrowdShelf-acknowledgements.markdown */,
-				9822DC0F18998868D54FC8BA /* Pods-CrowdShelf-acknowledgements.plist */,
-				F62B4E698A319A33D954B9F7 /* Pods-CrowdShelf-dummy.m */,
-				623C1E757002940AAAF05931 /* Pods-CrowdShelf-environment.h */,
-				E86C00ACCE255F99E1A3CF08 /* Pods-CrowdShelf-frameworks.sh */,
-				D71B583FA795367FBE94D8B2 /* Pods-CrowdShelf-resources.sh */,
-				CF85C88BC26A9BDFD8F2C6DC /* Pods-CrowdShelf-umbrella.h */,
-				7F31F4822B9A40EE90AEBE84 /* Pods-CrowdShelf.debug.xcconfig */,
-				7075114B2A42E603B9E0B41C /* Pods-CrowdShelf.release.xcconfig */,
-			);
-			name = "Pods-CrowdShelf";
-			path = "Target Support Files/Pods-CrowdShelf";
-			sourceTree = "<group>";
-		};
-		D4EF305634798FED2B7EA4AD /* SwiftyJSON */ = {
-			isa = PBXGroup;
-			children = (
-				CA77894D0DAC1BF8E6540729 /* SwiftyJSON.swift */,
-				073C6585F38438EB8BC85588 /* Support Files */,
-			);
-			path = SwiftyJSON;
-			sourceTree = "<group>";
-		};
-		DDEC6A8929DF3BBF7FD34827 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				403F11456FD8C1EEECEA2FA1 /* AVFoundation.framework */,
-				16C4BD2A2F19BE27D036FA99 /* Foundation.framework */,
-				7763D901711298838278E447 /* QuartzCore.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		DE00DB0BE433DB466D58714F /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				1D5BB7687EA8B7B5F8A4717A /* Pods */,
-				D1CA53F467A14B526B8A3834 /* Pods-CrowdShelf */,
-				E43CD54ED9AF5139DDF93C15 /* Pods-CrowdShelfTests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		E43CD54ED9AF5139DDF93C15 /* Pods-CrowdShelfTests */ = {
-			isa = PBXGroup;
-			children = (
-				7DFA9F25D720FAC8900BEBAE /* Info.plist */,
-				25C9674A10422F23BA636CCF /* Pods-CrowdShelfTests.modulemap */,
-				04C99AA5681A211D4D2FDD36 /* Pods-CrowdShelfTests-acknowledgements.markdown */,
-				DEED474ABC253237F8F33E02 /* Pods-CrowdShelfTests-acknowledgements.plist */,
-				793E7F3F2E85474CCFAF147E /* Pods-CrowdShelfTests-dummy.m */,
-				26E122823E53FD4583A92049 /* Pods-CrowdShelfTests-environment.h */,
-				294C4C308CB54678242BB5C6 /* Pods-CrowdShelfTests-frameworks.sh */,
-				2FBB9403BCA98A31F27B4EE1 /* Pods-CrowdShelfTests-resources.sh */,
-				466DD1AE60311B5FBC87D2EE /* Pods-CrowdShelfTests-umbrella.h */,
-				B46CF760FA98089F001B9258 /* Pods-CrowdShelfTests.debug.xcconfig */,
-				792ED27FA8683516BBDC3FB5 /* Pods-CrowdShelfTests.release.xcconfig */,
+				7994B9BD8DDC3FACE2D1147A /* Info.plist */,
+				BBFF538D5AF979BAF04EC492 /* Pods-CrowdShelfTests.modulemap */,
+				E89894F92F19F453C6D33028 /* Pods-CrowdShelfTests-acknowledgements.markdown */,
+				945275BC2DF4DC2DEC9461F5 /* Pods-CrowdShelfTests-acknowledgements.plist */,
+				CBC65B082D9DA2662C706469 /* Pods-CrowdShelfTests-dummy.m */,
+				F309008178DBA70C79D5DC25 /* Pods-CrowdShelfTests-environment.h */,
+				8C4E7D3D146722CEAD5A53B3 /* Pods-CrowdShelfTests-frameworks.sh */,
+				5F352B480C842BA732EA9861 /* Pods-CrowdShelfTests-resources.sh */,
+				7E2BC346098528CA4D7515BE /* Pods-CrowdShelfTests-umbrella.h */,
+				E8214F94F9EF37AAD2E8A2DC /* Pods-CrowdShelfTests.debug.xcconfig */,
+				A9990C9BD40BAF901B4383D4 /* Pods-CrowdShelfTests.release.xcconfig */,
 			);
 			name = "Pods-CrowdShelfTests";
 			path = "Target Support Files/Pods-CrowdShelfTests";
 			sourceTree = "<group>";
 		};
+		694830B640A5576C335CCA42 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				74D73BEAC8985698A3D536C7 /* Info.plist */,
+				95E4D77C2ACFCAD1A14CDC0E /* Info.plist */,
+				D4F201F13F8590C0C5D293F5 /* Pods-CrowdShelf-SwiftyJSON.modulemap */,
+				86642738E0E637DB7D28BA52 /* Pods-CrowdShelf-SwiftyJSON.xcconfig */,
+				45782E0FC491FFA8327D1649 /* Pods-CrowdShelf-SwiftyJSON-Private.xcconfig */,
+				89A43EE332F5E8B8D89C575D /* Pods-CrowdShelf-SwiftyJSON-dummy.m */,
+				E8DC0303F4DAF3BA217CFB78 /* Pods-CrowdShelf-SwiftyJSON-prefix.pch */,
+				01FDA83081C836E7674A51C6 /* Pods-CrowdShelf-SwiftyJSON-umbrella.h */,
+				8CDB742D16F3056B2DE8C81B /* Pods-CrowdShelfTests-SwiftyJSON.modulemap */,
+				41DEE264DB26BED7097BC1FB /* Pods-CrowdShelfTests-SwiftyJSON.xcconfig */,
+				E45C1002A53A3E19FDE5F1B5 /* Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig */,
+				6B651DEF5D27990608554AF2 /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m */,
+				C307CE09A14771C87F5E6EBD /* Pods-CrowdShelfTests-SwiftyJSON-prefix.pch */,
+				45493C6EE7EC0E43DD04DAA0 /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-CrowdShelf-SwiftyJSON";
+			sourceTree = "<group>";
+		};
+		6CE893055797903A954D9130 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E7703BD5809ED7718531E3A3 /* Pods-CrowdShelf */,
+				6327E826FCD142609CFB0CCA /* Pods-CrowdShelfTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		8A7126CC902847E79FA06932 /* MTBBarcodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				11F7C4AA8490CBA9ADB041AB /* MTBBarcodeScanner.h */,
+				A4FF62A47F2015DE5AFDC73F /* MTBBarcodeScanner.m */,
+				BC3EE8D4CBC1D847CF87227D /* Support Files */,
+			);
+			path = MTBBarcodeScanner;
+			sourceTree = "<group>";
+		};
+		8DB4D8FD4CBA8765ADE3C604 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				BBDBFDB165893BC6F91414E6 /* SwiftyJSON.swift */,
+				694830B640A5576C335CCA42 /* Support Files */,
+			);
+			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		9EB3FF3EA69A3998E9B68F32 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B34FE925C22F564E2ADE3C1B /* MTBBarcodeScanner.framework */,
+				16F2EC52A0F8F4964EE9F5A0 /* MTBBarcodeScanner.framework */,
+				98FAE15A3817BE2B71CAF896 /* Pods_CrowdShelf.framework */,
+				B0F19068B00595337221B8DD /* Pods_CrowdShelfTests.framework */,
+				0D0F2122534A813F67E1B29B /* SwiftyJSON.framework */,
+				F9D0BB5871D1BBF1FA993A5C /* SwiftyJSON.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A8EBB96742DBCB5AF40636E3 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				AF7DE54C4B4963A735E7E8A2 /* AVFoundation.framework */,
+				9C7EF405D8FC57C364CAC30F /* Foundation.framework */,
+				1F89CDA140EDD5CFA67FC4B8 /* QuartzCore.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		BC3EE8D4CBC1D847CF87227D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				25F2ED6664C864C9AE808299 /* Info.plist */,
+				6DDF196D7541BC83E4563BF3 /* Info.plist */,
+				5661A899F60420BD5A6A3644 /* Pods-CrowdShelf-MTBBarcodeScanner.modulemap */,
+				336810A0FC63B75801E5BDA1 /* Pods-CrowdShelf-MTBBarcodeScanner.xcconfig */,
+				C6C4A2727E5DCDB0F5568C18 /* Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig */,
+				FD965297EA3668E65BBD3C06 /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m */,
+				354E8A47AA4D6EACEE5F12F2 /* Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch */,
+				BC5ADD34EBA4CAEB1B33B5A5 /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h */,
+				A5420D3591167B538E188FBD /* Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap */,
+				A381893F3268862714A16593 /* Pods-CrowdShelfTests-MTBBarcodeScanner.xcconfig */,
+				BAEFE5D5D229AE6BB11DC479 /* Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig */,
+				2C050E324BF91DC11AD9C87C /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m */,
+				640EC498ABA33AAC2141F713 /* Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch */,
+				95DB515C2E6E73E7472EFCDA /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner";
+			sourceTree = "<group>";
+		};
+		DA6B14C5E1267BE7FD9CB570 = {
+			isa = PBXGroup;
+			children = (
+				586E77C46ED63545E8904C06 /* Podfile */,
+				5DA67F2B8B5D064C38958276 /* Frameworks */,
+				4B5C5704E96472B21ECC3CBE /* Pods */,
+				9EB3FF3EA69A3998E9B68F32 /* Products */,
+				6CE893055797903A954D9130 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		E7703BD5809ED7718531E3A3 /* Pods-CrowdShelf */ = {
+			isa = PBXGroup;
+			children = (
+				1556EAA817360C7E3C577381 /* Info.plist */,
+				6137FCFA77B6065E0696FB95 /* Pods-CrowdShelf.modulemap */,
+				A513FD5568A372BE872E1F10 /* Pods-CrowdShelf-acknowledgements.markdown */,
+				AD1FF2A7F2E32DF56F60AEF7 /* Pods-CrowdShelf-acknowledgements.plist */,
+				10235C001C5208B31AFC8840 /* Pods-CrowdShelf-dummy.m */,
+				D0C7960C7741135AE290A519 /* Pods-CrowdShelf-environment.h */,
+				53D7D2C5FCC1867AAA6A300D /* Pods-CrowdShelf-frameworks.sh */,
+				1C7B7B19A90B323F71CA71AB /* Pods-CrowdShelf-resources.sh */,
+				03AE56697845CFC98AADAC13 /* Pods-CrowdShelf-umbrella.h */,
+				0836244F0C8B3D02122D841D /* Pods-CrowdShelf.debug.xcconfig */,
+				8BB5F36290B85E40C5AE1BFB /* Pods-CrowdShelf.release.xcconfig */,
+			);
+			name = "Pods-CrowdShelf";
+			path = "Target Support Files/Pods-CrowdShelf";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1126F6EFE33453FF7DD2C0D8 /* Headers */ = {
+		58B327965455135CC0B683BE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBF8361F4D2BD4678096A651 /* Pods-CrowdShelf-SwiftyJSON-umbrella.h in Headers */,
+				4BC0949AC8A9A151D36649EC /* MTBBarcodeScanner.h in Headers */,
+				8D51C3485410FE24FA3D92A9 /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2741160E5B90D5C404E41690 /* Headers */ = {
+		5FC5403392DEE62D23410006 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFFFB4557C846BDE66B70758 /* MTBBarcodeScanner.h in Headers */,
-				5B23E5A9C12824A46860CE8F /* Pods-CrowdShelf-MTBBarcodeScanner-umbrella.h in Headers */,
+				7D25A38A5CC3390CF6DEC1E9 /* Pods-CrowdShelf-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3E7BBEA4310F09C1FAA3830C /* Headers */ = {
+		675A612624F9A7AEFACE2E07 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4D8CC8885AE9E9A61B106FA /* Pods-SwiftyJSON-umbrella.h in Headers */,
+				B9C6DA775020C65E483ACEAC /* Pods-CrowdShelfTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58305EB345B367843F43DB2C /* Headers */ = {
+		6A981B3EE7646D2B2ECCF491 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DF1BF8C758A0986AB69953E /* MTBBarcodeScanner.h in Headers */,
-				53D597524DC4792F24F1B612 /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h in Headers */,
+				DC6BD0DBFA5A839048DA98A5 /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84DE5127784D4B85BF699B6E /* Headers */ = {
+		AC2C1D8D211839934320ADF1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FD7520D4839825BB549CF45 /* Pods-CrowdShelfTests-umbrella.h in Headers */,
+				DDC896F78EBD0C3A86386732 /* Pods-CrowdShelf-SwiftyJSON-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8FF0C5A052B953D35BF8AC03 /* Headers */ = {
+		EB0C4928ADD94B9FD491E717 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6081635B986D4631C0186689 /* Pods-CrowdShelfTests-SwiftyJSON-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A0D1C2D0B0004BC6A08EFF73 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48B04D657D74AAA3E819E0C7 /* Pods-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7BB28448C9121BD8725B160 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1DFF339E1F2F08AEE7782EE0 /* Pods-CrowdShelf-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DDF5EC5AFDCE310539075660 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FCCF12EEFFD93E4ECBAD10B8 /* MTBBarcodeScanner.h in Headers */,
-				C2309686ADF7997673528BCC /* Pods-MTBBarcodeScanner-umbrella.h in Headers */,
+				15642ED26E516B6BB8ECCA63 /* MTBBarcodeScanner.h in Headers */,
+				2845ADF4872FC30D26717FC7 /* Pods-CrowdShelfTests-MTBBarcodeScanner-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		23689E3B54385FBB1F197C03 /* Pods-CrowdShelf */ = {
+		00BF47150F320E5ED9B10229 /* Pods-CrowdShelf */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7684F5A83DA883813789688 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf" */;
+			buildConfigurationList = ABA6F6F0543AB61B8D970B06 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf" */;
 			buildPhases = (
-				91AB25605C8F6475AF2CE95C /* Sources */,
-				2B518FB5F9EE30A29EA1C325 /* Frameworks */,
-				C7BB28448C9121BD8725B160 /* Headers */,
+				6BC6395B4F479A5316C9B924 /* Sources */,
+				B40EF4E3D02E729B55A751F0 /* Frameworks */,
+				5FC5403392DEE62D23410006 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				514F457ACD17BBC86296CC9B /* PBXTargetDependency */,
-				E3A457D98AA08859DBEC9618 /* PBXTargetDependency */,
+				A35389EA5187079ECE850664 /* PBXTargetDependency */,
+				8092D8616A2ED1C2D42F6CE6 /* PBXTargetDependency */,
 			);
 			name = "Pods-CrowdShelf";
 			productName = "Pods-CrowdShelf";
-			productReference = 38D6E69D3FAC697AA280573C /* Pods_CrowdShelf.framework */;
+			productReference = 98FAE15A3817BE2B71CAF896 /* Pods_CrowdShelf.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		6CAB762D55BC13D8BCAAE6E8 /* Pods-CrowdShelf-MTBBarcodeScanner */ = {
+		11CAAAF429C8B03BF73C9346 /* Pods-CrowdShelfTests-MTBBarcodeScanner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 755F290D44E6869812AF2AC9 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf-MTBBarcodeScanner" */;
+			buildConfigurationList = B28B2ED53C2D0E6A01754794 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests-MTBBarcodeScanner" */;
 			buildPhases = (
-				CB8E911A8166919D0B92FBFF /* Sources */,
-				AB14D59CB1B8AFCFF7FC0679 /* Frameworks */,
-				2741160E5B90D5C404E41690 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-CrowdShelf-MTBBarcodeScanner";
-			productName = "Pods-CrowdShelf-MTBBarcodeScanner";
-			productReference = 5F2621827DAE258DBCF7898A /* MTBBarcodeScanner.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		75DC93E429DB955793F767B0 /* Pods-CrowdShelfTests-SwiftyJSON */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EBE78A4BC37FB1381401D503 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests-SwiftyJSON" */;
-			buildPhases = (
-				F303F38DA84D9862061EA1FA /* Sources */,
-				F94E0E012EC9B1ED2F58B661 /* Frameworks */,
-				8FF0C5A052B953D35BF8AC03 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-CrowdShelfTests-SwiftyJSON";
-			productName = "Pods-CrowdShelfTests-SwiftyJSON";
-			productReference = A172483BBFDE3C686612CD8C /* SwiftyJSON.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		98E03E01C816D8410B48AC2D /* Pods-SwiftyJSON */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 133C8A44F72F4AD8C9C9C543 /* Build configuration list for PBXNativeTarget "Pods-SwiftyJSON" */;
-			buildPhases = (
-				B62966815E64F0A5353EB1F0 /* Sources */,
-				F24F97C4893D1E20240ED6A1 /* Frameworks */,
-				3E7BBEA4310F09C1FAA3830C /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-SwiftyJSON";
-			productName = "Pods-SwiftyJSON";
-			productReference = 59F2C234BC8D81AC1D8C2B83 /* SwiftyJSON.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		ACD4A903249C3255376B2D35 /* Pods */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A35651089FE277EC2B05B471 /* Build configuration list for PBXNativeTarget "Pods" */;
-			buildPhases = (
-				264BF71A62FE916EA7C097FB /* Sources */,
-				7F35A4F5C4DC8F89ADF4DCC1 /* Frameworks */,
-				A0D1C2D0B0004BC6A08EFF73 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				059E5ED8E5049931A2F58DED /* PBXTargetDependency */,
-				AC48B6153A9A3F8348436601 /* PBXTargetDependency */,
-			);
-			name = Pods;
-			productName = Pods;
-			productReference = 4109452A54967F25BC5AB635 /* Pods.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		CEDECAFA47EE1E09DA07871A /* Pods-CrowdShelfTests-MTBBarcodeScanner */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 665727544D75E8CB82E4A453 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests-MTBBarcodeScanner" */;
-			buildPhases = (
-				F920E14AA3066A94E29CD957 /* Sources */,
-				4E87C6B584DDC5DE41549C72 /* Frameworks */,
-				58305EB345B367843F43DB2C /* Headers */,
+				A9DCCFB99BEAE63D2EB00141 /* Sources */,
+				6CFD253BBC73806BBF0FBFEB /* Frameworks */,
+				EB0C4928ADD94B9FD491E717 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -654,33 +440,33 @@
 			);
 			name = "Pods-CrowdShelfTests-MTBBarcodeScanner";
 			productName = "Pods-CrowdShelfTests-MTBBarcodeScanner";
-			productReference = FDC821EFA8D1CD88C66BE545 /* MTBBarcodeScanner.framework */;
+			productReference = 16F2EC52A0F8F4964EE9F5A0 /* MTBBarcodeScanner.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D17105BF92EB63AA982DF959 /* Pods-MTBBarcodeScanner */ = {
+		A2A80C145DC5E2831C4A56FB /* Pods-CrowdShelf-MTBBarcodeScanner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97D659473485A1D518DF940A /* Build configuration list for PBXNativeTarget "Pods-MTBBarcodeScanner" */;
+			buildConfigurationList = BD8553C44B720C057F1E21B8 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf-MTBBarcodeScanner" */;
 			buildPhases = (
-				071A7F7BF885318C2529CAF0 /* Sources */,
-				DA04DD4A264CBAF26D5A538A /* Frameworks */,
-				DDF5EC5AFDCE310539075660 /* Headers */,
+				F6724EB19927FBAD67EA78CC /* Sources */,
+				C8A2B4D6B3363CA246C8C225 /* Frameworks */,
+				58B327965455135CC0B683BE /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-MTBBarcodeScanner";
-			productName = "Pods-MTBBarcodeScanner";
-			productReference = 3CF711ED861651BDFFC69DE1 /* MTBBarcodeScanner.framework */;
+			name = "Pods-CrowdShelf-MTBBarcodeScanner";
+			productName = "Pods-CrowdShelf-MTBBarcodeScanner";
+			productReference = B34FE925C22F564E2ADE3C1B /* MTBBarcodeScanner.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E03ADE75C0DDE5032DDF4696 /* Pods-CrowdShelf-SwiftyJSON */ = {
+		BB35993163AF5950C608329E /* Pods-CrowdShelf-SwiftyJSON */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C06753D91E56957EC1E72F4 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf-SwiftyJSON" */;
+			buildConfigurationList = 2CFFE312BF8E33D64F412A74 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf-SwiftyJSON" */;
 			buildPhases = (
-				1D986D4159AA38B360C9F64E /* Sources */,
-				A7EC4EC5142155758F7CED10 /* Frameworks */,
-				1126F6EFE33453FF7DD2C0D8 /* Headers */,
+				E81827E33E77A34EB31AC6EC /* Sources */,
+				56E00FAF686100CBDCE04578 /* Frameworks */,
+				AC2C1D8D211839934320ADF1 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -688,240 +474,161 @@
 			);
 			name = "Pods-CrowdShelf-SwiftyJSON";
 			productName = "Pods-CrowdShelf-SwiftyJSON";
-			productReference = 71B1402098E95E5EC888AA17 /* SwiftyJSON.framework */;
+			productReference = 0D0F2122534A813F67E1B29B /* SwiftyJSON.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F67BDB408CE399AAF1BF4028 /* Pods-CrowdShelfTests */ = {
+		C0E5FE06519E5AE0CC9C80C2 /* Pods-CrowdShelfTests-SwiftyJSON */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C8C415CC05CF6F13BE78056B /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests" */;
+			buildConfigurationList = BE6F71E252FEB9963DDC5DEA /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests-SwiftyJSON" */;
 			buildPhases = (
-				592EED62F8CEF29DA1848799 /* Sources */,
-				3FEA909FD5E087A51715887E /* Frameworks */,
-				84DE5127784D4B85BF699B6E /* Headers */,
+				EBCCD08FA8B89FE563BBD059 /* Sources */,
+				0F0E6919A521303033A4A3B4 /* Frameworks */,
+				6A981B3EE7646D2B2ECCF491 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4FFB1F419C5591A6AF429594 /* PBXTargetDependency */,
-				52F1AAC5F6540DB2959287A8 /* PBXTargetDependency */,
+			);
+			name = "Pods-CrowdShelfTests-SwiftyJSON";
+			productName = "Pods-CrowdShelfTests-SwiftyJSON";
+			productReference = F9D0BB5871D1BBF1FA993A5C /* SwiftyJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EC374A1E6F86F7F4844E3E9A /* Pods-CrowdShelfTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9D3CB2849EC0142795291D7 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests" */;
+			buildPhases = (
+				78AFDF2E710846737AAEBC17 /* Sources */,
+				4885E49A7B3687564977C1BD /* Frameworks */,
+				675A612624F9A7AEFACE2E07 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56CD75446759B3FCAB4BA597 /* PBXTargetDependency */,
+				8883F52628BB4E03F4DE2ABD /* PBXTargetDependency */,
 			);
 			name = "Pods-CrowdShelfTests";
 			productName = "Pods-CrowdShelfTests";
-			productReference = 554BB3F34FBEE240AD0548C1 /* Pods_CrowdShelfTests.framework */;
+			productReference = B0F19068B00595337221B8DD /* Pods_CrowdShelfTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3083995CEE25D4A545DD0980 /* Project object */ = {
+		C63987F21EBDAE57A559BDC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0640;
 			};
-			buildConfigurationList = D7C16DEF0D284855B0CFA0B1 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = F36E2BC25DF3D910600A1255 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 363D85FFAE26D00D68A78B95;
-			productRefGroup = 1C0166056F1C5299AD72B5F1 /* Products */;
+			mainGroup = DA6B14C5E1267BE7FD9CB570;
+			productRefGroup = 9EB3FF3EA69A3998E9B68F32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ACD4A903249C3255376B2D35 /* Pods */,
-				23689E3B54385FBB1F197C03 /* Pods-CrowdShelf */,
-				6CAB762D55BC13D8BCAAE6E8 /* Pods-CrowdShelf-MTBBarcodeScanner */,
-				E03ADE75C0DDE5032DDF4696 /* Pods-CrowdShelf-SwiftyJSON */,
-				F67BDB408CE399AAF1BF4028 /* Pods-CrowdShelfTests */,
-				CEDECAFA47EE1E09DA07871A /* Pods-CrowdShelfTests-MTBBarcodeScanner */,
-				75DC93E429DB955793F767B0 /* Pods-CrowdShelfTests-SwiftyJSON */,
-				D17105BF92EB63AA982DF959 /* Pods-MTBBarcodeScanner */,
-				98E03E01C816D8410B48AC2D /* Pods-SwiftyJSON */,
+				00BF47150F320E5ED9B10229 /* Pods-CrowdShelf */,
+				A2A80C145DC5E2831C4A56FB /* Pods-CrowdShelf-MTBBarcodeScanner */,
+				BB35993163AF5950C608329E /* Pods-CrowdShelf-SwiftyJSON */,
+				EC374A1E6F86F7F4844E3E9A /* Pods-CrowdShelfTests */,
+				11CAAAF429C8B03BF73C9346 /* Pods-CrowdShelfTests-MTBBarcodeScanner */,
+				C0E5FE06519E5AE0CC9C80C2 /* Pods-CrowdShelfTests-SwiftyJSON */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		071A7F7BF885318C2529CAF0 /* Sources */ = {
+		6BC6395B4F479A5316C9B924 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05DD613C1915C2ABCD742B2B /* MTBBarcodeScanner.m in Sources */,
-				607C26ABB3D08D15E31366A5 /* Pods-MTBBarcodeScanner-dummy.m in Sources */,
+				1CF14FD6E0C45C587CEA1887 /* Pods-CrowdShelf-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D986D4159AA38B360C9F64E /* Sources */ = {
+		78AFDF2E710846737AAEBC17 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C0B3E7156599C6332F2EBFA /* Pods-CrowdShelf-SwiftyJSON-dummy.m in Sources */,
-				0410B4CB33A57FDAAED0C21E /* SwiftyJSON.swift in Sources */,
+				1CCC13713C2566C755F97D83 /* Pods-CrowdShelfTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		264BF71A62FE916EA7C097FB /* Sources */ = {
+		A9DCCFB99BEAE63D2EB00141 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34D6D397CC5281916549C328 /* Pods-dummy.m in Sources */,
+				28AA267304818BEA2AFA55CE /* MTBBarcodeScanner.m in Sources */,
+				42AFA3C79685B93C59770529 /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		592EED62F8CEF29DA1848799 /* Sources */ = {
+		E81827E33E77A34EB31AC6EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				144713BDB0FA916AAF0C411F /* Pods-CrowdShelfTests-dummy.m in Sources */,
+				30192CDA7A8DD69CA8520FA4 /* Pods-CrowdShelf-SwiftyJSON-dummy.m in Sources */,
+				79198CB99B9AEA021040615A /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		91AB25605C8F6475AF2CE95C /* Sources */ = {
+		EBCCD08FA8B89FE563BBD059 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				783A11244DECC6E4A5DCD426 /* Pods-CrowdShelf-dummy.m in Sources */,
+				2C38F68767281ED4E8F60E47 /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m in Sources */,
+				5E0F5C113CFE81B9DB4A2743 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B62966815E64F0A5353EB1F0 /* Sources */ = {
+		F6724EB19927FBAD67EA78CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90447629457A62DF3A3FDEF8 /* Pods-SwiftyJSON-dummy.m in Sources */,
-				723DD6AAE9E29A2DDAA59239 /* SwiftyJSON.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CB8E911A8166919D0B92FBFF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1F2259AA287E9F66F51D3C4C /* MTBBarcodeScanner.m in Sources */,
-				321114CE464ADF309737D701 /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F303F38DA84D9862061EA1FA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				01084DF37468E8DCD3553E56 /* Pods-CrowdShelfTests-SwiftyJSON-dummy.m in Sources */,
-				4E7770E1AAEFBEDD8FFEE25F /* SwiftyJSON.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F920E14AA3066A94E29CD957 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B27919B66588818011AB4337 /* MTBBarcodeScanner.m in Sources */,
-				7CA6B01242201450E8C51599 /* Pods-CrowdShelfTests-MTBBarcodeScanner-dummy.m in Sources */,
+				BB91597C096D36A8E4C264B7 /* MTBBarcodeScanner.m in Sources */,
+				023C8221CCBD637241FD5EF8 /* Pods-CrowdShelf-MTBBarcodeScanner-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		059E5ED8E5049931A2F58DED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-MTBBarcodeScanner";
-			target = D17105BF92EB63AA982DF959 /* Pods-MTBBarcodeScanner */;
-			targetProxy = 702F2EC782A36E484DD4989F /* PBXContainerItemProxy */;
-		};
-		4FFB1F419C5591A6AF429594 /* PBXTargetDependency */ = {
+		56CD75446759B3FCAB4BA597 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-CrowdShelfTests-MTBBarcodeScanner";
-			target = CEDECAFA47EE1E09DA07871A /* Pods-CrowdShelfTests-MTBBarcodeScanner */;
-			targetProxy = 0FBECBF6B23A942941D13C4D /* PBXContainerItemProxy */;
+			target = 11CAAAF429C8B03BF73C9346 /* Pods-CrowdShelfTests-MTBBarcodeScanner */;
+			targetProxy = C4B372A087885D9980A7E247 /* PBXContainerItemProxy */;
 		};
-		514F457ACD17BBC86296CC9B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-CrowdShelf-MTBBarcodeScanner";
-			target = 6CAB762D55BC13D8BCAAE6E8 /* Pods-CrowdShelf-MTBBarcodeScanner */;
-			targetProxy = 926812FC818CBC8F45599100 /* PBXContainerItemProxy */;
-		};
-		52F1AAC5F6540DB2959287A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-CrowdShelfTests-SwiftyJSON";
-			target = 75DC93E429DB955793F767B0 /* Pods-CrowdShelfTests-SwiftyJSON */;
-			targetProxy = 3C5007D0B5746EF251426ECD /* PBXContainerItemProxy */;
-		};
-		AC48B6153A9A3F8348436601 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-SwiftyJSON";
-			target = 98E03E01C816D8410B48AC2D /* Pods-SwiftyJSON */;
-			targetProxy = C62924CF2471A297C2E1D4ED /* PBXContainerItemProxy */;
-		};
-		E3A457D98AA08859DBEC9618 /* PBXTargetDependency */ = {
+		8092D8616A2ED1C2D42F6CE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-CrowdShelf-SwiftyJSON";
-			target = E03ADE75C0DDE5032DDF4696 /* Pods-CrowdShelf-SwiftyJSON */;
-			targetProxy = CA1AA12460122F1ED58BCABE /* PBXContainerItemProxy */;
+			target = BB35993163AF5950C608329E /* Pods-CrowdShelf-SwiftyJSON */;
+			targetProxy = A9D4D547A70642AE6A17C725 /* PBXContainerItemProxy */;
+		};
+		8883F52628BB4E03F4DE2ABD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-CrowdShelfTests-SwiftyJSON";
+			target = C0E5FE06519E5AE0CC9C80C2 /* Pods-CrowdShelfTests-SwiftyJSON */;
+			targetProxy = 655F49E89CEAA62C0D734A37 /* PBXContainerItemProxy */;
+		};
+		A35389EA5187079ECE850664 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-CrowdShelf-MTBBarcodeScanner";
+			target = A2A80C145DC5E2831C4A56FB /* Pods-CrowdShelf-MTBBarcodeScanner */;
+			targetProxy = E37A37398760F10640B4FD70 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1FD34CFD39F0DAA505D0544B /* Release */ = {
+		002103443711874461CEBD32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38780EB2202D5891D262F2A5 /* Pods-MTBBarcodeScanner-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-MTBBarcodeScanner/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MTBBarcodeScanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		2ACA82D55D927D120845F08D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B39762D8D80A11749057046 /* Pods-CrowdShelf-SwiftyJSON-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelf-SwiftyJSON/Pods-CrowdShelf-SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelf-SwiftyJSON/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf-SwiftyJSON/Pods-CrowdShelf-SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SwiftyJSON;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3EDB799FFCE7FC2442B0E509 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9615D43A38AD6B3F15CDE9E0 /* Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig */;
+			baseConfigurationReference = E45C1002A53A3E19FDE5F1B5 /* Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -936,8 +643,90 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		34BCB2A6DE81F4FE463325FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6C4A2727E5DCDB0F5568C18 /* Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Pods-CrowdShelf-MTBBarcodeScanner.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MTBBarcodeScanner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4115E857747A08B32AF939D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAEFE5D5D229AE6BB11DC479 /* Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MTBBarcodeScanner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5D6A0845BBCED1619398941E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6C4A2727E5DCDB0F5568C18 /* Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Pods-CrowdShelf-MTBBarcodeScanner.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MTBBarcodeScanner;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -946,69 +735,9 @@
 			};
 			name = Release;
 		};
-		45B4890032CC53553FC75F34 /* Debug */ = {
+		5E35EC137C9368ED48ACBB30 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 608FFC662D72A8592F08B42C /* Pods.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		46D40AAA66463350C04CC225 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F31F4822B9A40EE90AEBE84 /* Pods-CrowdShelf.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelf/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_CrowdShelf;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		620E82E90A66DAAE450219F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 792ED27FA8683516BBDC3FB5 /* Pods-CrowdShelfTests.release.xcconfig */;
+			baseConfigurationReference = E8214F94F9EF37AAD2E8A2DC /* Pods-CrowdShelfTests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1022,38 +751,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods_CrowdShelfTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		630082954DD3503D66CC0CBF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B095EC6BDD3F4AC6F66D15CD /* Pods-SwiftyJSON-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-SwiftyJSON/Pods-SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-SwiftyJSON/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-SwiftyJSON/Pods-SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SwiftyJSON;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1063,97 +765,9 @@
 			};
 			name = Debug;
 		};
-		6AB8AB35C6006E32ED6BBB55 /* Release */ = {
+		6A28C8769DC885AA6DDB7541 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE5BCF2CC2B57F685BF4681E /* Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Pods-CrowdShelf-MTBBarcodeScanner.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MTBBarcodeScanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		6CE9D19A80CB29CB28FC8559 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		84DE59406C35E72B0F479089 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE5BCF2CC2B57F685BF4681E /* Pods-CrowdShelf-MTBBarcodeScanner-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Pods-CrowdShelf-MTBBarcodeScanner-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf-MTBBarcodeScanner/Pods-CrowdShelf-MTBBarcodeScanner.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = MTBBarcodeScanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		934AE7F9F2EAD05F9C368037 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7075114B2A42E603B9E0B41C /* Pods-CrowdShelf.release.xcconfig */;
+			baseConfigurationReference = 0836244F0C8B3D02122D841D /* Pods-CrowdShelf.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1167,74 +781,21 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods_CrowdShelf;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		96DD22F21CD328692E209597 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B095EC6BDD3F4AC6F66D15CD /* Pods-SwiftyJSON-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-SwiftyJSON/Pods-SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-SwiftyJSON/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-SwiftyJSON/Pods-SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SwiftyJSON;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		9879767A011E9AE16BA5AF61 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38780EB2202D5891D262F2A5 /* Pods-MTBBarcodeScanner-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-MTBBarcodeScanner/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-MTBBarcodeScanner/Pods-MTBBarcodeScanner.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = MTBBarcodeScanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		B8675AD658B9888948409F70 /* Debug */ = {
+		76BB1B6D5FACE9658CD41516 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1273,92 +834,9 @@
 			};
 			name = Debug;
 		};
-		C49399197B09B6664675986C /* Release */ = {
+		830F8521269D57FC1127730A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF4649F81CC738486FBF28EB /* Pods.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C4BF2AC8D3853AB7E95348AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 516F1F9C070E5DD227CD4A75 /* Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MTBBarcodeScanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C567C60508C608CCB4434868 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 516F1F9C070E5DD227CD4A75 /* Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = MTBBarcodeScanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D14C813163B13D30CBA16825 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B46CF760FA98089F001B9258 /* Pods-CrowdShelfTests.debug.xcconfig */;
+			baseConfigurationReference = A9990C9BD40BAF901B4383D4 /* Pods-CrowdShelfTests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1372,11 +850,65 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods_CrowdShelfTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8B3FB6A9DAAFA815020216C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAEFE5D5D229AE6BB11DC479 /* Pods-CrowdShelfTests-MTBBarcodeScanner-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests-MTBBarcodeScanner/Pods-CrowdShelfTests-MTBBarcodeScanner.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MTBBarcodeScanner;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		971FFB2F576D0E17DBA2FB38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45782E0FC491FFA8327D1649 /* Pods-CrowdShelf-SwiftyJSON-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelf-SwiftyJSON/Pods-CrowdShelf-SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelf-SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf-SwiftyJSON/Pods-CrowdShelf-SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftyJSON;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1386,9 +918,99 @@
 			};
 			name = Debug;
 		};
-		DC3AF7C879A68D84FCA583D0 /* Release */ = {
+		9C9A53D85371324B1AA9639B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B39762D8D80A11749057046 /* Pods-CrowdShelf-SwiftyJSON-Private.xcconfig */;
+			baseConfigurationReference = 8BB5F36290B85E40C5AE1BFB /* Pods-CrowdShelf.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelf/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_CrowdShelf;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A7C26FCBEE976CEA27C3F0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E45C1002A53A3E19FDE5F1B5 /* Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelfTests-SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B4C2AA1A5658ED351B6EEDA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF4E699A6DB8C8B26BD092AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45782E0FC491FFA8327D1649 /* Pods-CrowdShelf-SwiftyJSON-Private.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1413,128 +1035,73 @@
 			};
 			name = Release;
 		};
-		ED7779A808898CE24066D035 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9615D43A38AD6B3F15CDE9E0 /* Pods-CrowdShelfTests-SwiftyJSON-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-CrowdShelfTests-SwiftyJSON/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-CrowdShelfTests-SwiftyJSON/Pods-CrowdShelfTests-SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SwiftyJSON;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		133C8A44F72F4AD8C9C9C543 /* Build configuration list for PBXNativeTarget "Pods-SwiftyJSON" */ = {
+		2CFFE312BF8E33D64F412A74 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf-SwiftyJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				630082954DD3503D66CC0CBF /* Debug */,
-				96DD22F21CD328692E209597 /* Release */,
+				971FFB2F576D0E17DBA2FB38 /* Debug */,
+				BF4E699A6DB8C8B26BD092AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C06753D91E56957EC1E72F4 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf-SwiftyJSON" */ = {
+		ABA6F6F0543AB61B8D970B06 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2ACA82D55D927D120845F08D /* Debug */,
-				DC3AF7C879A68D84FCA583D0 /* Release */,
+				6A28C8769DC885AA6DDB7541 /* Debug */,
+				9C9A53D85371324B1AA9639B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		665727544D75E8CB82E4A453 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests-MTBBarcodeScanner" */ = {
+		B28B2ED53C2D0E6A01754794 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests-MTBBarcodeScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C567C60508C608CCB4434868 /* Debug */,
-				C4BF2AC8D3853AB7E95348AA /* Release */,
+				4115E857747A08B32AF939D8 /* Debug */,
+				8B3FB6A9DAAFA815020216C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		755F290D44E6869812AF2AC9 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf-MTBBarcodeScanner" */ = {
+		B9D3CB2849EC0142795291D7 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84DE59406C35E72B0F479089 /* Debug */,
-				6AB8AB35C6006E32ED6BBB55 /* Release */,
+				5E35EC137C9368ED48ACBB30 /* Debug */,
+				830F8521269D57FC1127730A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		97D659473485A1D518DF940A /* Build configuration list for PBXNativeTarget "Pods-MTBBarcodeScanner" */ = {
+		BD8553C44B720C057F1E21B8 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf-MTBBarcodeScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9879767A011E9AE16BA5AF61 /* Debug */,
-				1FD34CFD39F0DAA505D0544B /* Release */,
+				34BCB2A6DE81F4FE463325FB /* Debug */,
+				5D6A0845BBCED1619398941E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A35651089FE277EC2B05B471 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		BE6F71E252FEB9963DDC5DEA /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests-SwiftyJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				45B4890032CC53553FC75F34 /* Debug */,
-				C49399197B09B6664675986C /* Release */,
+				002103443711874461CEBD32 /* Debug */,
+				A7C26FCBEE976CEA27C3F0CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C8C415CC05CF6F13BE78056B /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests" */ = {
+		F36E2BC25DF3D910600A1255 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D14C813163B13D30CBA16825 /* Debug */,
-				620E82E90A66DAAE450219F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D7C16DEF0D284855B0CFA0B1 /* Build configuration list for PBXProject "Pods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B8675AD658B9888948409F70 /* Debug */,
-				6CE9D19A80CB29CB28FC8559 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E7684F5A83DA883813789688 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelf" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46D40AAA66463350C04CC225 /* Debug */,
-				934AE7F9F2EAD05F9C368037 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EBE78A4BC37FB1381401D503 /* Build configuration list for PBXNativeTarget "Pods-CrowdShelfTests-SwiftyJSON" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ED7779A808898CE24066D035 /* Debug */,
-				3EDB799FFCE7FC2442B0E509 /* Release */,
+				76BB1B6D5FACE9658CD41516 /* Debug */,
+				B4C2AA1A5658ED351B6EEDA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3083995CEE25D4A545DD0980 /* Project object */;
+	rootObject = C63987F21EBDAE57A559BDC9 /* Project object */;
 }

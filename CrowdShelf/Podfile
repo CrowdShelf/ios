@@ -2,14 +2,13 @@
 # platform :ios, '7.0'
 use_frameworks!
 
-pod 'MTBBarcodeScanner', '~> 1.6.1'
-pod 'SwiftyJSON', '~> 2.2.1'
-
 target 'CrowdShelf' do
-
+	pod 'MTBBarcodeScanner', '~> 1.6.1'
+	pod 'SwiftyJSON', '~> 2.2.1'
 end
 
 target 'CrowdShelfTests' do
-	
-end
+	pod 'MTBBarcodeScanner', '~> 1.6.1'
+	pod 'SwiftyJSON', '~> 2.2.1'
+end	
 
