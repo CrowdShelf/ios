@@ -32,6 +32,9 @@
 		39C2F5AC1B906D5A00529AA9 /* CSScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */; };
 		39C2F5AE1B906D8D00529AA9 /* CSBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */; };
 		39C2F5B01B907EC000529AA9 /* CSBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */; };
+		39C2F5B31B90A2EE00529AA9 /* CSBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */; };
+		39C2F5B51B90A40A00529AA9 /* CSShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */; };
+		39E1966F1B91C0050002B4D3 /* CSTransparentToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E1966E1B91C0050002B4D3 /* CSTransparentToolbar.swift */; };
 		3C56024ED257E757C4D16FE2 /* Pods_CrowdShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9662742CB4EA45A56D43C7 /* Pods_CrowdShelf.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		73707C01149EEF77BFBD0267 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD76C7589353231F11064D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		94AA12EADE7D640FCBFAC49E /* Pods_CrowdShelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2799C75DF698F09ECCA8FD /* Pods_CrowdShelfTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -70,6 +73,9 @@
 		39C2F5891B8FA40D00529AA9 /* CSBookDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookDetails.swift; path = Models/CSBookDetails.swift; sourceTree = "<group>"; };
 		39C2F5921B90527200529AA9 /* CSDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSDataHandler.swift; path = Handlers/CSDataHandler.swift; sourceTree = "<group>"; };
 		39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookViewController.swift; path = ViewControllers/CSBookViewController.swift; sourceTree = "<group>"; };
+		39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookCollectionViewCell.swift; path = CollectionViewCell/CSBookCollectionViewCell.swift; sourceTree = "<group>"; };
+		39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSShelfViewController.swift; path = ViewControllers/CSShelfViewController.swift; sourceTree = "<group>"; };
+		39E1966E1B91C0050002B4D3 /* CSTransparentToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTransparentToolbar.swift; path = Views/CSTransparentToolbar.swift; sourceTree = "<group>"; };
 		3D9662742CB4EA45A56D43C7 /* Pods_CrowdShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DD76C7589353231F11064D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E135A9CE28D13E7D82D9BE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 			children = (
 				39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */,
 				395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */,
+				39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -205,6 +212,7 @@
 		39C2F5AF1B907AF200529AA9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				39E1966E1B91C0050002B4D3 /* CSTransparentToolbar.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 		39C2F5B11B90A27D00529AA9 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */,
 			);
 			name = CollectionViewCells;
 			sourceTree = "<group>";
@@ -438,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E1966F1B91C0050002B4D3 /* CSTransparentToolbar.swift in Sources */,
 				3953BF8C1B8DC29B00E39CC9 /* ViewController.swift in Sources */,
 				39C2F5861B8F9AB800529AA9 /* CSBaseModel.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
@@ -446,7 +456,9 @@
 				3953BFAC1B8E230300E39CC9 /* CSLocalDataHandler.swift in Sources */,
 				39C2F5881B8FA0CE00529AA9 /* CSUser.swift in Sources */,
 				39C2F5AE1B906D8D00529AA9 /* CSBookViewController.swift in Sources */,
+				39C2F5B51B90A40A00529AA9 /* CSShelfViewController.swift in Sources */,
 				395EDD251B8F56BC0012A465 /* CSCrowd.swift in Sources */,
+				39C2F5B31B90A2EE00529AA9 /* CSBookCollectionViewCell.swift in Sources */,
 				395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */,
 				395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */,
 			);

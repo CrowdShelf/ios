@@ -17,6 +17,7 @@ struct LocalDataFile {
     static let User = "user"
     static let Crowd = "crowd"
     static let Shelf = "shelf"
+    static let BookDetails = "bookDetails"
 }
 
 /// A class reponsible for managing a local key-value storage.
@@ -29,9 +30,14 @@ class CSLocalDataHandler {
 //    MARK: - Setters
     
     /// Change the value for the provided key in a specified file
-    class func setObject(object : AnyObject, forKey key: String, inFile fileName: String) -> Bool {
+    class func setObject(object : AnyObject?, forKey key: String, inFile fileName: String) -> Bool {
         var data = CSLocalDataHandler.getDataFromFile(fileName)
-        data[key] = object
+        
+        if object != nil {
+            data[key] = object
+        } else {
+            data.removeValueForKey(key)
+        }
         
         return self.setData(data, inFile: fileName)
     }
@@ -122,6 +128,36 @@ class CSLocalDataHandler {
         }
     }
     
+//    MARK: - Crowds
+    
+    class func crowds() -> [CSCrowd] {
+        return map(self.getDataFromFile(LocalDataFile.Crowd).values) {
+            CSCrowd(json: JSON($0 as! [String: AnyObject]))
+        }
+    }
+    
+    class func setCrowd(crowd: CSCrowd) -> Bool {
+        return self.setObject(crowd.toDictionary(), forKey: crowd.name, inFile: LocalDataFile.Crowd)
+    }
+    
+    class func removeCrowd(crowd: CSCrowd) -> Bool {
+        return self.setObject(nil, forKey: crowd.name, inFile: LocalDataFile.Crowd)
+    }
+    
+//    MARK: - Book Details
+    
+    class func detailsForBook(isbn: String) -> CSBookDetails? {
+        let detailsDictionary = self.getObjectForKey(isbn, fromFile: LocalDataFile.BookDetails) as? [String: AnyObject]
+        return detailsDictionary != nil ? CSBookDetails(json: JSON(detailsDictionary!)) : nil
+    }
+    
+    class func setDetails(details: CSBookDetails, forBook isbn: String) -> Bool {
+        return self.setObject(details.toDictionary(), forKey: isbn, inFile: LocalDataFile.BookDetails)
+    }
+    
+    class func removeDetailsForBook(isbn: String) -> Bool {
+        return self.setObject(nil, forKey: isbn, inFile: LocalDataFile.BookDetails)
+    }
     
     
 //    MARK: - Helpers

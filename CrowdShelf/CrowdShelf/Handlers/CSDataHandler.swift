@@ -13,10 +13,17 @@ class CSDataHandler {
     
 //    TODO: Support multiple items
 //    TODO: Support multiple providers
-    /// Retrieves information from googles REST API
+    /// Retrieves information about a book from Google's REST API
     class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookDetails?) -> Void)) {
-        let URL = NSURL(string: "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)")
         
+        var bookDetails : CSBookDetails? = CSLocalDataHandler.detailsForBook(isbn)
+
+        if bookDetails != nil {
+            return completionHandler(bookDetails)
+        }
+        
+        
+        let URL = NSURL(string: "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)")
         if URL == nil {
             return completionHandler(nil)
         }
@@ -27,9 +34,27 @@ class CSDataHandler {
         self.sendRequest(request, withCompletionHandler: { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
+            } else if json!["totalItems"].intValue == 0 {
+                println("No items returned for isbn: \(isbn)")
+                return completionHandler(nil)
+            } else if json!["items"][0]["volumeInfo"].error != nil {
+                println(json!["items"][0]["volumeInfo"].error)
+                return completionHandler(nil)
             }
             
-            completionHandler(CSBookDetails(json: json!["items"][0]["volumeInfo"]))
+            
+            bookDetails = CSBookDetails(json: json!["items"][0]["volumeInfo"])
+            
+            if bookDetails?.thumbnailURL != nil {
+                let imageData = NSData(contentsOfURL: bookDetails!.thumbnailURL)
+                if imageData != nil {
+                    bookDetails?.thumbnailImage = UIImage(data: imageData!)
+                }
+            }
+            
+            CSLocalDataHandler.setDetails(bookDetails!, forBook: isbn)
+            
+            completionHandler(bookDetails)
         })
     }
     

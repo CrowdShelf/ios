@@ -19,14 +19,11 @@ class CSScannerViewController: UIViewController {
     
     var scannedCodes = Set<String>()
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
-        self.scannedCodes = Set<String>()
         
-//        TODO: Support scanning multiple, unique barcodes at the same time.
-//        Future feature for adding multiple books?
         MTBBarcodeScanner.requestCameraPermissionWithSuccess { (success) -> Void in
             if success {
                 self.scanner?.startScanningWithResultBlock({ (codes) -> Void in
@@ -41,6 +38,12 @@ class CSScannerViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.scannedCodes = Set<String>()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,6 +56,17 @@ class CSScannerViewController: UIViewController {
         if segue.identifier == "ShowBook" {
             let bookVC = segue.destinationViewController as! CSBookViewController
             bookVC.book = CSBook(isbn: sender as! String)
+        }
+    }
+    
+//    MARK: - Actions
+    
+    @IBAction func showMyShelf(sender: AnyObject) {
+        let pageViewController = self.parentViewController as! UIPageViewController
+        let shelfVC = pageViewController.dataSource!.pageViewController(pageViewController, viewControllerBeforeViewController: self)!
+        
+        pageViewController.setViewControllers([shelfVC], direction: UIPageViewControllerNavigationDirection.Reverse, animated: true) { (completed) -> Void in
+            
         }
     }
     

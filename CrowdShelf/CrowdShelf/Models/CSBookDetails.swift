@@ -18,16 +18,12 @@ class CSBookDetails: CSBaseModel {
     let averageRating: Float
     let publishedDate: NSDate
     let thumbnailURL: NSURL
+    var thumbnailImage : UIImage?
     
     required init(json: JSON) {
         self.description = json["description"].stringValue
         self.publisher = json["publisher"].stringValue
         self.title = json["title"].stringValue
-        if let authors = json["authors"].arrayObject as? [String] {
-            self.authors = authors
-        } else {
-            self.authors = []
-        }
         self.numberOfRatings = json["ratingsCount"].intValue
         self.numberOfPages = json["pageCount"].intValue
         self.averageRating = json["averageRating"].floatValue
@@ -35,12 +31,25 @@ class CSBookDetails: CSBaseModel {
         let thumbnailString = json["imageLinks"]["thumbnail"].stringValue
         self.thumbnailURL = NSURL(string: thumbnailString)!
         
+//        TODO: Get NSData form SwiftyJSON
+        if json.dictionaryObject != nil {
+            if let thumbnailData = json.dictionaryObject!["thumbnailImage"] as? NSData {
+                self.thumbnailImage = UIImage(data: thumbnailData)
+            }
+        }
+        
+        if let authors = json["authors"].arrayObject as? [String] {
+            self.authors = authors
+        } else {
+            self.authors = []
+        }
+        
 //        FIXME: Use date from provider
         self.publishedDate = NSDate()
     }
     
     override func toDictionary() -> [String : AnyObject] {
-        return [
+        var dictionary : [String: AnyObject] = [
             "description": self.description,
             "publisher": self.publisher,
             "title": self.title,
@@ -52,7 +61,13 @@ class CSBookDetails: CSBaseModel {
             "imageLinks": [
                 "thumbnail": self.thumbnailURL.absoluteString!
             ]
-        
         ]
+        
+        if self.thumbnailImage != nil {
+            dictionary["thumbnailImage"] = UIImageJPEGRepresentation(self.thumbnailImage!, 0.7)
+            
+        }
+        
+        return dictionary
     }
 }

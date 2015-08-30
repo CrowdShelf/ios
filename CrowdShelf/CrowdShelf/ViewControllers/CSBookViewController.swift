@@ -26,6 +26,11 @@ class CSBookViewController: UIViewController {
     var book : CSBook? {
         didSet {
             self.updateView()
+            
+            if book?.details != nil {
+                return
+            }
+            
             CSDataHandler.detailsForBook(book!.isbn, withCompletionHandler: { (details) -> Void in
                 self.book?.details = details
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -48,13 +53,7 @@ class CSBookViewController: UIViewController {
             self.authorsLabel?.text = ", ".join(self.book!.details!.authors)
         }
         
-        if self.book?.details?.thumbnailURL != nil {
-//            TODO: Load image async
-            let imageData = NSData(contentsOfURL: self.book!.details!.thumbnailURL)
-            if imageData != nil {
-                self.coverImageView?.image = UIImage(data: imageData!)
-            }
-        }
+        self.coverImageView?.image = self.book?.details?.thumbnailImage
         
         self.titleLabel?.text = self.book?.details?.title
         self.publisherLabel?.text = self.book?.details?.publisher

@@ -17,13 +17,18 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.layoutIfNeeded()
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
-        let scannerVC = storyBoard.instantiateViewControllerWithIdentifier("ScannerViewController") as! CSScannerViewController
+        let shelfVC = storyBoard.instantiateViewControllerWithIdentifier("ShelfViewController") as! UIViewController
+        self.contentViewControllers.append(shelfVC)
+        
+        let scannerVC = storyBoard.instantiateViewControllerWithIdentifier("ScannerViewController") as! UIViewController
         self.contentViewControllers.append(scannerVC)
         
         self.initializePageViewController()
-        self.pageViewController?.setViewControllers([self.contentViewControllers[0]], direction: .Forward, animated: false, completion: nil)
+        self.pageViewController?.setViewControllers([self.contentViewControllers[1]], direction: .Forward, animated: false, completion: nil)
     }
 
     /// Instantiates a new page view controller adds it as a child view controller

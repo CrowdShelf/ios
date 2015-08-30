@@ -13,14 +13,14 @@ class CSBook: CSBaseModel {
     
     let isbn : String
     let owner : String
-    var avaliableForRent: Bool
+    var avaliableForRent: Int
     var rentedTo : String?
     var numberOfCopies: Int
     
     var details : CSBookDetails?
     
     /// The bare-bones workhorse of the book initalizers
-    init(isbn: String, owner: String, avaliableForRent: Bool, rentedTo: String?, numberOfCopies: Int) {
+    init(isbn: String, owner: String, avaliableForRent: Int, rentedTo: String?, numberOfCopies: Int) {
         self.isbn = isbn
         self.owner = owner
         self.avaliableForRent = avaliableForRent
@@ -32,7 +32,7 @@ class CSBook: CSBaseModel {
     convenience init(isbn: String) {
         self.init(isbn:             isbn,
                   owner:            "localUser",
-                  avaliableForRent: true,
+                  avaliableForRent: 1,
                   rentedTo:         nil,
                   numberOfCopies:   1)        
     }
@@ -41,7 +41,7 @@ class CSBook: CSBaseModel {
     convenience init(isbn: String, numberOfCopies: Int) {
         self.init(isbn:             isbn,
                   owner:            "localUser",
-                  avaliableForRent: true,
+                  avaliableForRent: numberOfCopies,
                   rentedTo:         nil,
                   numberOfCopies:   numberOfCopies)
     }
@@ -50,7 +50,7 @@ class CSBook: CSBaseModel {
     convenience required init(json: JSON) {
         self.init(isbn:             json["isbn"].stringValue,
                   owner:            json["owner"].stringValue,
-                  avaliableForRent: json["avaliableForRent"].boolValue,
+                  avaliableForRent: json["avaliableForRent"].intValue,
                   rentedTo:         json["rentedTo"].string,
                   numberOfCopies:   json["numberOfCopies"].intValue)
     }
