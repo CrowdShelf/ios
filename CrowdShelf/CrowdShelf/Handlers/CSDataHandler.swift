@@ -11,8 +11,17 @@ import SwiftyJSON
 
 class CSDataHandler {
     
+//  Procedure:
+//  Check cache
+//      Return chached if possible
+//  Request information if needed
+//  Cache the information
+//  Return the information
+    
+    
 //    TODO: Support multiple items
 //    TODO: Support multiple providers
+    
     /// Retrieves information about a book from Google's REST API
     class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookDetails?) -> Void)) {
         
