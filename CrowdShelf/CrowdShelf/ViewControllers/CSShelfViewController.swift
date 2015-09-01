@@ -17,9 +17,6 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         self.books = CSLocalDataHandler.shelf()
 
-        CSDataHandler.booksForISBN(self.books.first!.isbn, withCompletionHandler: { (book) -> Void in
-            println(book)
-        })
         addTestDataIfNecessary()
         
         self.collectionView?.reloadData()
