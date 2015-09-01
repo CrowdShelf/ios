@@ -16,13 +16,11 @@ import UIKit
 
 class CSListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var cellStyle: UITableViewCellStyle = .Default
-    
-    /// Called when user selects a row
-    var completionHandler: ((Listable)->Void)?
-    
     @IBOutlet weak var tableView: UITableView?
     
+    var cellStyle: UITableViewCellStyle = .Default
+    /// Called when user selects a row
+    var completionHandler: ((Listable)->Void)?
     var listData : [Listable] = [] {
         didSet {
             self.tableView?.reloadData()

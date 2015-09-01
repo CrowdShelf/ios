@@ -327,7 +327,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag6-ku-bC7">
-                                <rect key="frame" x="0.0" y="581" width="180" height="44"/>
+                                <rect key="frame" x="0.0" y="571" width="375" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Remove">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -336,15 +336,38 @@
                                     <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="dPE-ew-iLZ"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qp-Ab-y3B">
-                                <rect key="frame" x="16" y="208" width="343" height="365"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlv-kk-4FW">
+                                <rect key="frame" x="0.0" y="363" width="375" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Borrow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="LJl-hR-Zft"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQv-g6-wxX">
+                                <rect key="frame" x="0.0" y="415" width="375" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Return">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="yKI-dj-OKa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2M-yi-XdK">
+                                <rect key="frame" x="0.0" y="467" width="375" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Pass along">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="xdw-W7-tm3"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btr-xZ-Bc4">
-                                <rect key="frame" x="195" y="581" width="180" height="44"/>
+                                <rect key="frame" x="0.0" y="519" width="375" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -357,19 +380,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="1qp-Ab-y3B" secondAttribute="bottom" constant="94" id="D7b-Ap-k6u"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="Mz6-kg-b4T"/>
-                            <constraint firstItem="1qp-Ab-y3B" firstAttribute="trailing" secondItem="yOh-6I-yL8" secondAttribute="trailingMargin" id="ShK-Iy-8Eb"/>
-                            <constraint firstItem="1qp-Ab-y3B" firstAttribute="top" secondItem="mvs-1O-bcu" secondAttribute="bottom" constant="8" id="Ygr-Fr-i3i"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="top" secondItem="yOh-6I-yL8" secondAttribute="topMargin" constant="20" id="kCS-Oz-EqN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mvs-1O-bcu" secondAttribute="trailing" constant="-16" id="o2D-Lb-Vqm"/>
-                            <constraint firstItem="1qp-Ab-y3B" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" id="ycW-u8-FTE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="authorsLabel" destination="O3d-G3-PUD" id="UhQ-u4-Iha"/>
                         <outlet property="coverImageView" destination="i9U-Ez-HmK" id="Y4a-MM-XNA"/>
-                        <outlet property="descriptionTextView" destination="1qp-Ab-y3B" id="PlP-y9-XkB"/>
                         <outlet property="publisherLabel" destination="gyC-5O-Bvv" id="dKS-rU-xWx"/>
                         <outlet property="titleLabel" destination="8VP-qu-ZWa" id="syV-eU-3Gd"/>
                     </connections>

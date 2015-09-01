@@ -83,4 +83,8 @@ class CSDataHandler {
         }).resume()
     }
     
+    private class func sendRequest(request: NSURLRequest) {
+        NSURLSession.sharedSession().dataTaskWithRequest(request).resume()
+    }
+    
 }
