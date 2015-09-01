@@ -31,19 +31,10 @@ class CSBook: CSBaseModel {
     /// Useful when registering a single copy of a new book
     convenience init(isbn: String) {
         self.init(isbn:             isbn,
-                  owner:            "localUser",
+                  owner:            CSUser.localUser!.id!,
                   avaliableForRent: 1,
                   rentedTo:         [],
                   numberOfCopies:   1)        
-    }
-    
-    /// Useful when registering a multipe copies of a new book
-    convenience init(isbn: String, numberOfCopies: Int) {
-        self.init(isbn:             isbn,
-                  owner:            "localUser",
-                  avaliableForRent: numberOfCopies,
-                  rentedTo:         [],
-                  numberOfCopies:   numberOfCopies)
     }
     
     /// Populate with data from a JSON object. Useful when communicating with the backend

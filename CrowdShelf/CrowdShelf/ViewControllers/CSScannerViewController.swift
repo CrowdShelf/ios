@@ -23,14 +23,15 @@ class CSScannerViewController: UIViewController {
         super.viewDidLoad()
         
         self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
-        
+
         MTBBarcodeScanner.requestCameraPermissionWithSuccess { (success) -> Void in
             if success {
                 self.scanner?.startScanningWithResultBlock({ (codes) -> Void in
                     if let code = codes.first as? AVMetadataMachineReadableCodeObject {
                         if !self.scannedCodes.contains(code.stringValue) {
                             self.scannedCodes.insert(code.stringValue)
-                            self.performSegueWithIdentifier("ShowBook", sender: code.stringValue)
+                            
+                            self.performSegueWithIdentifier("ShowBook", sender: CSBook(isbn: code.stringValue))
                         }
                     }
                 })
@@ -55,20 +56,7 @@ class CSScannerViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBook" {
             let bookVC = segue.destinationViewController as! CSBookViewController
-            bookVC.book = CSBook(isbn: sender as! String)
+            bookVC.book = sender as? CSBook
         }
     }
-    
-//    MARK: - Actions
-    
-    @IBAction func showMyShelf(sender: AnyObject) {
-        let pageViewController = self.parentViewController as! UIPageViewController
-        let shelfVC = pageViewController.dataSource!.pageViewController(pageViewController, viewControllerBeforeViewController: self)!
-        
-        pageViewController.setViewControllers([shelfVC], direction: UIPageViewControllerNavigationDirection.Reverse, animated: true) { (completed) -> Void in
-            
-        }
-    }
-    
-    
 }

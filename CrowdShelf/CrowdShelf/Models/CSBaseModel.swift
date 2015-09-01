@@ -24,7 +24,6 @@ class CSBaseModel {
         self.init(json:JSON(dictionary))
     }
     
-    
     func toDictionary() -> [String: AnyObject] {
         fatalError("toDictionary must be overridden in subclass")
     }

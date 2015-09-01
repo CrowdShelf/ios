@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-
+//TODO: Some of the properties are probably optional. Check documentation
 class CSBookDetails: CSBaseModel {
     
     let description, publisher, title: String

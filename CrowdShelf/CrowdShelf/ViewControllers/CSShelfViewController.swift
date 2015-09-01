@@ -25,12 +25,12 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     private func addTestDataIfNecessary() {
         if self.books.count == 0 {
             self.books = [
-                CSBook(isbn: "0735619670", numberOfCopies: Int(arc4random_uniform(5))),
-                CSBook(isbn: "9780471145943", numberOfCopies: Int(arc4random_uniform(5))),
-                CSBook(isbn: "9781133603627", numberOfCopies: Int(arc4random_uniform(5))),
-                CSBook(isbn: "9780130920713", numberOfCopies: Int(arc4random_uniform(5))),
-                CSBook(isbn: "9781292100241", numberOfCopies: Int(arc4random_uniform(5))),
-                CSBook(isbn: "9780566089237", numberOfCopies: Int(arc4random_uniform(5))),
+                CSBook(isbn: "0735619670"),
+                CSBook(isbn: "9780471145943"),
+                CSBook(isbn: "9781133603627"),
+                CSBook(isbn: "9780130920713"),
+                CSBook(isbn: "9781292100241"),
+                CSBook(isbn: "9780566089237"),
             ]
             
             for book in books {
@@ -63,16 +63,4 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
             bookVC.book = (sender as! CSBookCollectionViewCell).book
         }
     }
-    
-//    MARK: - Actions
-    
-    @IBAction func showScanner(sender: AnyObject) {
-        let pageViewController = self.parentViewController as! UIPageViewController
-        let scannerVC = pageViewController.dataSource!.pageViewController(pageViewController, viewControllerAfterViewController: self)!
-        
-        pageViewController.setViewControllers([scannerVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true) { (complete) -> Void in
-            
-        }
-    }
-    
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
-		3953BF8C1B8DC29B00E39CC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF8B1B8DC29B00E39CC9 /* ViewController.swift */; };
 		3953BF8F1B8DC29B00E39CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */; };
 		3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF901B8DC29B00E39CC9 /* Images.xcassets */; };
 		3953BF941B8DC29B00E39CC9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */; };
@@ -19,6 +18,9 @@
 		395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */; };
 		395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD221B8F55AE0012A465 /* CSBook.swift */; };
 		395EDD251B8F56BC0012A465 /* CSCrowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD241B8F56BC0012A465 /* CSCrowd.swift */; };
+		39A0CAFE1B958B0D00321225 /* CSListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* CSListViewController.swift */; };
+		39A0CB001B958D1D00321225 /* CSCrowdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */; };
+		39A0CB011B958DFC00321225 /* CSListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* CSListViewController.swift */; };
 		39C2F5861B8F9AB800529AA9 /* CSBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5851B8F9AB800529AA9 /* CSBaseModel.swift */; };
 		39C2F5881B8FA0CE00529AA9 /* CSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5871B8FA0CE00529AA9 /* CSUser.swift */; };
 		39C2F58A1B8FA40D00529AA9 /* CSBookDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5891B8FA40D00529AA9 /* CSBookDetails.swift */; };
@@ -34,9 +36,7 @@
 		39C2F5B01B907EC000529AA9 /* CSBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */; };
 		39C2F5B31B90A2EE00529AA9 /* CSBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */; };
 		39C2F5B51B90A40A00529AA9 /* CSShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */; };
-		39E1966F1B91C0050002B4D3 /* CSTransparentToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E1966E1B91C0050002B4D3 /* CSTransparentToolbar.swift */; };
 		3C56024ED257E757C4D16FE2 /* Pods_CrowdShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9662742CB4EA45A56D43C7 /* Pods_CrowdShelf.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		73707C01149EEF77BFBD0267 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD76C7589353231F11064D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		94AA12EADE7D640FCBFAC49E /* Pods_CrowdShelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2799C75DF698F09ECCA8FD /* Pods_CrowdShelfTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -52,11 +52,9 @@
 
 /* Begin PBXFileReference section */
 		05AEA34B1565A3C4AA87D425 /* Pods-CrowdShelfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.release.xcconfig"; sourceTree = "<group>"; };
-		3249996AC10CAAC8E7BC346D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF881B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3953BF8B1B8DC29B00E39CC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3953BF8E1B8DC29B00E39CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3953BF901B8DC29B00E39CC9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3953BF931B8DC29B00E39CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -68,6 +66,8 @@
 		395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSScannerViewController.swift; path = ViewControllers/CSScannerViewController.swift; sourceTree = "<group>"; };
 		395EDD221B8F55AE0012A465 /* CSBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBook.swift; path = Models/CSBook.swift; sourceTree = "<group>"; };
 		395EDD241B8F56BC0012A465 /* CSCrowd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowd.swift; path = Models/CSCrowd.swift; sourceTree = "<group>"; };
+		39A0CAFD1B958B0D00321225 /* CSListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSListViewController.swift; path = ViewControllers/CSListViewController.swift; sourceTree = "<group>"; };
+		39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowdsViewController.swift; path = ViewControllers/CSCrowdsViewController.swift; sourceTree = "<group>"; };
 		39C2F5851B8F9AB800529AA9 /* CSBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBaseModel.swift; path = Models/CSBaseModel.swift; sourceTree = "<group>"; };
 		39C2F5871B8FA0CE00529AA9 /* CSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSUser.swift; path = Models/CSUser.swift; sourceTree = "<group>"; };
 		39C2F5891B8FA40D00529AA9 /* CSBookDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookDetails.swift; path = Models/CSBookDetails.swift; sourceTree = "<group>"; };
@@ -75,10 +75,8 @@
 		39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookViewController.swift; path = ViewControllers/CSBookViewController.swift; sourceTree = "<group>"; };
 		39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookCollectionViewCell.swift; path = CollectionViewCell/CSBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSShelfViewController.swift; path = ViewControllers/CSShelfViewController.swift; sourceTree = "<group>"; };
-		39E1966E1B91C0050002B4D3 /* CSTransparentToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTransparentToolbar.swift; path = Views/CSTransparentToolbar.swift; sourceTree = "<group>"; };
 		3D9662742CB4EA45A56D43C7 /* Pods_CrowdShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DD76C7589353231F11064D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E135A9CE28D13E7D82D9BE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		84601E213D2377A8AB372FD8 /* Pods-CrowdShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf.debug.xcconfig"; sourceTree = "<group>"; };
 		93DD686B0A064D3CFD8F5833 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE2799C75DF698F09ECCA8FD /* Pods_CrowdShelfTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelfTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +88,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73707C01149EEF77BFBD0267 /* Pods.framework in Frameworks */,
 				3C56024ED257E757C4D16FE2 /* Pods_CrowdShelf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,12 +127,10 @@
 			isa = PBXGroup;
 			children = (
 				39C2F5B11B90A27D00529AA9 /* CollectionViewCells */,
-				39C2F5AF1B907AF200529AA9 /* Views */,
 				395EDD211B8F55650012A465 /* Models */,
 				3953BFAA1B8E224000E39CC9 /* Handlers */,
 				3953BFA91B8E223300E39CC9 /* ViewControllers */,
 				3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */,
-				3953BF8B1B8DC29B00E39CC9 /* ViewController.swift */,
 				3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */,
 				3953BF901B8DC29B00E39CC9 /* Images.xcassets */,
 				3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */,
@@ -176,6 +171,8 @@
 				39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */,
 				395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */,
 				39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */,
+				39A0CAFD1B958B0D00321225 /* CSListViewController.swift */,
+				39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -209,14 +206,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		39C2F5AF1B907AF200529AA9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				39E1966E1B91C0050002B4D3 /* CSTransparentToolbar.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		39C2F5B11B90A27D00529AA9 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,8 +227,6 @@
 		9BA01E40C1DD6A4ACBEB99AC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7E135A9CE28D13E7D82D9BE1 /* Pods.debug.xcconfig */,
-				3249996AC10CAAC8E7BC346D /* Pods.release.xcconfig */,
 				93DD686B0A064D3CFD8F5833 /* Pods-CrowdShelfTests.debug.xcconfig */,
 				05AEA34B1565A3C4AA87D425 /* Pods-CrowdShelfTests.release.xcconfig */,
 				84601E213D2377A8AB372FD8 /* Pods-CrowdShelf.debug.xcconfig */,
@@ -447,9 +434,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39E1966F1B91C0050002B4D3 /* CSTransparentToolbar.swift in Sources */,
-				3953BF8C1B8DC29B00E39CC9 /* ViewController.swift in Sources */,
 				39C2F5861B8F9AB800529AA9 /* CSBaseModel.swift in Sources */,
+				39A0CAFE1B958B0D00321225 /* CSListViewController.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
 				39C2F58A1B8FA40D00529AA9 /* CSBookDetails.swift in Sources */,
 				39C2F5931B90527200529AA9 /* CSDataHandler.swift in Sources */,
@@ -460,6 +446,7 @@
 				395EDD251B8F56BC0012A465 /* CSCrowd.swift in Sources */,
 				39C2F5B31B90A2EE00529AA9 /* CSBookCollectionViewCell.swift in Sources */,
 				395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */,
+				39A0CB001B958D1D00321225 /* CSCrowdsViewController.swift in Sources */,
 				395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +461,7 @@
 				395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */,
 				39C2F5A81B906D4300529AA9 /* CSBaseModel.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
+				39A0CB011B958DFC00321225 /* CSListViewController.swift in Sources */,
 				39C2F5AA1B906D4300529AA9 /* CSBookDetails.swift in Sources */,
 				39C2F5B01B907EC000529AA9 /* CSBookViewController.swift in Sources */,
 				395EDD1E1B8E61DE0012A465 /* CSLocalDataHandler.swift in Sources */,

@@ -11,14 +11,28 @@ import SwiftyJSON
 
 // TODO: Default array should contain the local user
 
-class CSCrowd: CSBaseModel {
+class CSCrowd: CSBaseModel, Listable {
+    
+    var id: String
     var name : String
     let creator: String
     var members : [String]
     
     
+//    Listable
+    @objc var title : String {
+        return name
+    }
+    
+    @objc var subtitle : String {
+        return creator
+    }
+    
+    
+    
     /// The bare-bones workhorse of the crowd initalizers
-    init(name: String, creator: String, members: [String]?) {
+    init(id: String, name: String, creator: String, members: [String]?) {
+        self.id = id
         self.name = name
         self.creator = creator
         self.members = members != nil ? members! : []
@@ -26,14 +40,16 @@ class CSCrowd: CSBaseModel {
     
     /// Useful when creating a new crowd
     convenience init(name: String) {
-        self.init(name:     name,
-                  creator:  "LocalUser",
-                  members:  [])
+        self.init(id:       "",
+                  name:     name,
+                  creator:  CSUser.localUser!.id!,
+                  members:  [CSUser.localUser!.id!])
     }
     
     /// Populate with data from a JSON object. Useful when communicating with the backend
     required convenience init(json: JSON) {
-        self.init(name:     json["name"].stringValue,
+        self.init(id:       json["id"].stringValue,
+                  name:     json["name"].stringValue,
                   creator:  json["creator"].stringValue,
                   members:  json["members"].arrayObject as? [String])
     }
@@ -44,6 +60,7 @@ class CSCrowd: CSBaseModel {
     
     override func toDictionary() -> [String : AnyObject] {
         return [
+            "id": self.id,
             "name": self.name,
             "creator": self.creator,
             "members": self.members

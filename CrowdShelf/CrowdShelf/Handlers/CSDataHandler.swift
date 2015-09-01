@@ -45,9 +45,6 @@ class CSDataHandler {
             } else if json!["totalItems"].intValue == 0 {
                 println("No items returned for isbn: \(isbn)")
                 return completionHandler(nil)
-            } else if json!["items"][0]["volumeInfo"].error != nil {
-                println(json!["items"][0]["volumeInfo"].error)
-                return completionHandler(nil)
             }
             
             
@@ -66,10 +63,7 @@ class CSDataHandler {
     }
     
     
-    
-    
-    
-    /// The endpoint in the client application responsible for sending a request and converting the response to a JSON object
+    /// The endpoint in the client application responsible for sending an async request and converting the response to a JSON object
     private class func sendRequest(request: NSURLRequest, withCompletionHandler completionHandler: ((JSON?) -> Void)) {
         NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if error != nil {

@@ -9,12 +9,13 @@
 import Foundation
 import SwiftyJSON
 
+// FIXME: Ugly, temporary mimic of apples local user
 private var _localUser : CSUser? = CSUser(id: "ABFKAJEb432j#$jkb", emails: ["oyvindkg@yahoo.com"], name: "Øyvind Grimnes")
 
 /// Dummy class until model is defined
 class CSUser: CSBaseModel {
     
-    let id: String
+    let id: String?
     var emails: [String]
     var name: String?
     
@@ -27,7 +28,7 @@ class CSUser: CSBaseModel {
         }
     }
     
-    init(id: String, emails: [String], name: String?) {
+    init(id: String?, emails: [String], name: String?) {
         self.id = id
         self.emails = emails
         self.name = name
@@ -35,11 +36,11 @@ class CSUser: CSBaseModel {
     }
     
     convenience init(email: String, name: String) {
-        self.init(id: "someID", emails: [email], name: name)
+        self.init(id: nil, emails: [email], name: name)
     }
     
     convenience init(email: String) {
-        self.init(id: "someID", emails: [email], name: nil)
+        self.init(id: nil, emails: [email], name: nil)
     }
     
     /// Populate with data from a JSON object. Useful when communicating with the backend
