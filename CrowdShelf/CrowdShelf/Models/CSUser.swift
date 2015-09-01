@@ -9,6 +9,8 @@
 import Foundation
 import SwiftyJSON
 
+private var _localUser : CSUser? = CSUser(id: "ABFKAJEb432j#$jkb", emails: ["oyvindkg@yahoo.com"], name: "Øyvind Grimnes")
+
 /// Dummy class until model is defined
 class CSUser: CSBaseModel {
     
@@ -16,9 +18,16 @@ class CSUser: CSBaseModel {
     var emails: [String]
     var name: String?
     
+    class var localUser : CSUser? {
+        get {
+            return _localUser
+        }
+        set {
+            _localUser = newValue
+        }
+    }
     
     init(id: String, emails: [String], name: String?) {
-        
         self.id = id
         self.emails = emails
         self.name = name

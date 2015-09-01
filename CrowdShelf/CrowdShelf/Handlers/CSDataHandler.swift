@@ -26,7 +26,6 @@ class CSDataHandler {
     class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookDetails?) -> Void)) {
         
         var bookDetails : CSBookDetails? = CSLocalDataHandler.detailsForBook(isbn)
-
         if bookDetails != nil {
             return completionHandler(bookDetails)
         }
@@ -53,7 +52,6 @@ class CSDataHandler {
             
             
             bookDetails = CSBookDetails(json: json!["items"][0]["volumeInfo"])
-            
             if bookDetails?.thumbnailURL != nil {
                 let imageData = NSData(contentsOfURL: bookDetails!.thumbnailURL)
                 if imageData != nil {
@@ -66,6 +64,10 @@ class CSDataHandler {
             completionHandler(bookDetails)
         })
     }
+    
+    
+    
+    
     
     /// The endpoint in the client application responsible for sending a request and converting the response to a JSON object
     private class func sendRequest(request: NSURLRequest, withCompletionHandler completionHandler: ((JSON?) -> Void)) {

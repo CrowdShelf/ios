@@ -14,13 +14,13 @@ class CSBook: CSBaseModel {
     let isbn : String
     let owner : String
     var avaliableForRent: Int
-    var rentedTo : String?
+    var rentedTo : [String]
     var numberOfCopies: Int
     
     var details : CSBookDetails?
     
     /// The bare-bones workhorse of the book initalizers
-    init(isbn: String, owner: String, avaliableForRent: Int, rentedTo: String?, numberOfCopies: Int) {
+    init(isbn: String, owner: String, avaliableForRent: Int, rentedTo: [String], numberOfCopies: Int) {
         self.isbn = isbn
         self.owner = owner
         self.avaliableForRent = avaliableForRent
@@ -33,7 +33,7 @@ class CSBook: CSBaseModel {
         self.init(isbn:             isbn,
                   owner:            "localUser",
                   avaliableForRent: 1,
-                  rentedTo:         nil,
+                  rentedTo:         [],
                   numberOfCopies:   1)        
     }
     
@@ -42,7 +42,7 @@ class CSBook: CSBaseModel {
         self.init(isbn:             isbn,
                   owner:            "localUser",
                   avaliableForRent: numberOfCopies,
-                  rentedTo:         nil,
+                  rentedTo:         [],
                   numberOfCopies:   numberOfCopies)
     }
     
@@ -51,7 +51,7 @@ class CSBook: CSBaseModel {
         self.init(isbn:             json["isbn"].stringValue,
                   owner:            json["owner"].stringValue,
                   avaliableForRent: json["avaliableForRent"].intValue,
-                  rentedTo:         json["rentedTo"].string,
+                  rentedTo:         json["rentedTo"].arrayObject as! [String],
                   numberOfCopies:   json["numberOfCopies"].intValue)
     }
     
@@ -61,13 +61,10 @@ class CSBook: CSBaseModel {
             "isbn": self.isbn,
             "owner": self.owner,
             "avaliableForRent": self.avaliableForRent,
-            "numberOfCopies": self.numberOfCopies
+            "numberOfCopies": self.numberOfCopies,
+            "rentedTo": self.rentedTo
         ]
-        
-        if self.rentedTo != nil {
-            dictionary["rentedTo"] = self.rentedTo!
-        }
-        
+
         return dictionary
     }
 }

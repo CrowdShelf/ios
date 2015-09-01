@@ -84,42 +84,40 @@ class CSLocalDataHandler {
     
     /// Add book to shelf. Increment number of copies if the book is already added
     class func addBookToShelf(book: CSBook) -> Bool {
-        var shelf = self.getDataFromFile(LocalDataFile.Shelf)
+        var shelf = self.getObjectForKey(CSUser.localUser!.id, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
         
-        if shelf.isEmpty {
+        if shelf == nil {
             shelf = [book.isbn: book.toDictionary()]
-        } else if shelf[book.isbn] == nil {
-            shelf[book.isbn] = book.toDictionary()
-        } else if let existingBookDictionary = shelf[book.isbn] as? [String: AnyObject] {
-            let existingBook = CSBook(json: JSON(existingBookDictionary))
-            existingBook.numberOfCopies++
-            shelf[existingBook.isbn] = existingBook.toDictionary()
+        } else if shelf?[book.isbn] == nil {
+            shelf?[book.isbn] = book.toDictionary()
         } else {
-            return false
+            let existingBook = CSBook(json: JSON(shelf![book.isbn]!))
+            existingBook.numberOfCopies += book.numberOfCopies
+            shelf?[existingBook.isbn] = existingBook.toDictionary()
         }
         
-        return self.setData(shelf, inFile: LocalDataFile.Shelf)
+        return self.setObject(shelf, forKey: CSUser.localUser!.id, inFile: LocalDataFile.Shelf)
     }
     
     class func removeBookFromShelf(book: CSBook) -> Bool {
-        var shelf = self.getDataFromFile(LocalDataFile.Shelf)
+        var shelf = self.getObjectForKey(CSUser.localUser!.id, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
         
-        if shelf.isEmpty || shelf[book.isbn] == nil {
+        if shelf == nil || shelf![book.isbn] == nil {
             return false
         }
         
-        if let existingBookDictionary = shelf[book.isbn] as? [String: AnyObject] {
+        if let existingBookDictionary = shelf![book.isbn] as? [String: AnyObject] {
             let existingBook = CSBook(json: JSON(existingBookDictionary))
             existingBook.numberOfCopies--
             
             if existingBook.numberOfCopies <= 0 {
-                shelf.removeValueForKey(existingBook.isbn)
+                shelf?.removeValueForKey(existingBook.isbn)
             } else {
-                shelf[existingBook.isbn] = existingBook.toDictionary()
+                shelf?[existingBook.isbn] = existingBook.toDictionary()
             }
         }
         
-        return self.setData(shelf, inFile: LocalDataFile.Shelf)
+        return self.setObject(shelf, forKey: CSUser.localUser!.id, inFile: LocalDataFile.Shelf)
     }
     
     class func shelf() -> [CSBook] {
