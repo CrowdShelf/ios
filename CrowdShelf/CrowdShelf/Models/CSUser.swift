@@ -17,7 +17,7 @@ class CSUser: CSBaseModel {
     
     let id: String?
     var emails: [String]
-    var name: String?
+    var name: String
     
     class var localUser : CSUser? {
         get {
@@ -28,7 +28,7 @@ class CSUser: CSBaseModel {
         }
     }
     
-    init(id: String?, emails: [String], name: String?) {
+    init(id: String?, emails: [String], name: String) {
         self.id = id
         self.emails = emails
         self.name = name
@@ -39,14 +39,14 @@ class CSUser: CSBaseModel {
         self.init(id: nil, emails: [email], name: name)
     }
     
-    convenience init(email: String) {
-        self.init(id: nil, emails: [email], name: nil)
+    convenience init(name: String) {
+        self.init(id: nil, emails: [], name: name)
     }
     
     /// Populate with data from a JSON object. Useful when communicating with the backend
     convenience required init(json: JSON) {
         self.init(id:       json["id"].stringValue,
                   emails:   json["emails"].arrayObject as! [String],
-                  name:     json["name"].string)
+                  name:     json["name"].stringValue)
     }
 }

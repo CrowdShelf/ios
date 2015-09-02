@@ -26,7 +26,7 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     }
     
     private func addTestDataIfNecessary() {
-        if self.books.count == 0 {
+        if CSLocalDataHandler.books().count == 0 {
             self.books = [
                 CSBook(isbn: "0735619670"),
                 CSBook(isbn: "9780471145943"),
