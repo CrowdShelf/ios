@@ -62,8 +62,8 @@ class CSDataHandler {
         self.sendPutRequest(route, json: book.toJSON(), withCompletionHandler: completionHandler)
     }
     
-    class func getBook(isnb: String, owner: CSUser, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
-        let route = host+"/book/\(isnb)/\(owner.name)"
+    class func getBook(isbn: String, owner: CSUser, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
+        let route = host+"/book/\(isbn)/\(owner.name)"
         self.sendGetRequest(route, withCompletionHandler: { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)

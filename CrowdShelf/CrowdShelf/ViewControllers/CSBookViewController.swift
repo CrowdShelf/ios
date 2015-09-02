@@ -61,7 +61,6 @@ class CSBookViewController: UIViewController {
         self.titleLabel?.text = self.book?.details?.title
         self.publisherLabel?.text = self.book?.details?.publisher
         self.descriptionTextView?.text = self.book?.details?.description
-        
     }
     
     @IBAction func addBookToShelf(sender: AnyObject) {
@@ -74,13 +73,13 @@ class CSBookViewController: UIViewController {
     }
     
     @IBAction func removeBookFromShelf(sender: AnyObject) {
-        self.book?.numberOfCopies--
+        if self.book!.numberOfCopies <= 0 {
+            return
+        }
         
-        if self.book?.numberOfCopies <= 0 {
-            if CSLocalDataHandler.removeBook(self.book!) {
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-        } else if CSLocalDataHandler.setBook(self.book!) {
+        self.book?.numberOfCopies--
+
+        if CSLocalDataHandler.setBook(self.book!) {
             println(self.book?.numberOfCopies)
         }
         
