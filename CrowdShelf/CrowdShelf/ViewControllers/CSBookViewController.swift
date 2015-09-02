@@ -15,6 +15,7 @@ class CSBookViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var authorsLabel: UILabel?
     @IBOutlet weak var publisherLabel: UILabel?
+    @IBOutlet weak var numberOfCopiesLabel: UILabel?
     
     @IBOutlet weak var coverImageView: UIImageView?
     
@@ -51,7 +52,11 @@ class CSBookViewController: UIViewController {
             self.authorsLabel?.text = ", ".join(self.book!.details!.authors)
         }
         
+        
         self.coverImageView?.image = self.book?.details?.thumbnailImage
+        if self.book != nil {
+            self.numberOfCopiesLabel?.text = "\(self.book!.numberOfCopies)"
+        }
         
         self.titleLabel?.text = self.book?.details?.title
         self.publisherLabel?.text = self.book?.details?.publisher
@@ -64,6 +69,8 @@ class CSBookViewController: UIViewController {
         if CSLocalDataHandler.setBook(self.book!) {
             println(self.book?.numberOfCopies)
         }
+        
+        self.updateView()
     }
     
     @IBAction func removeBookFromShelf(sender: AnyObject) {
@@ -76,6 +83,8 @@ class CSBookViewController: UIViewController {
         } else if CSLocalDataHandler.setBook(self.book!) {
             println(self.book?.numberOfCopies)
         }
+        
+        self.updateView()
     }
     
     @IBAction func close(sender: AnyObject) {
