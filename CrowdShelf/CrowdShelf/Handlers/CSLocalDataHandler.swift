@@ -83,44 +83,31 @@ class CSLocalDataHandler {
 //    MARK: - Local Storage
     
     /// Add book to shelf. Increment number of copies if the book is already added
-    class func addBookToShelf(book: CSBook) -> Bool {
+    class func setBook(book: CSBook) -> Bool {
         var shelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
         
         if shelf == nil {
             shelf = [book.isbn: book.toDictionary()]
-        } else if shelf?[book.isbn] == nil {
-            shelf?[book.isbn] = book.toDictionary()
         } else {
-            let existingBook = CSBook(json: JSON(shelf![book.isbn]!))
-            existingBook.numberOfCopies += book.numberOfCopies
-            shelf?[existingBook.isbn] = existingBook.toDictionary()
+            shelf?[book.isbn] = book.toDictionary()
         }
         
         return self.setObject(shelf, forKey: CSUser.localUser!.id!, inFile: LocalDataFile.Shelf)
     }
     
-    class func removeBookFromShelf(book: CSBook) -> Bool {
+    class func removeBook(book: CSBook) -> Bool {
         var shelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
         
         if shelf == nil || shelf![book.isbn] == nil {
             return false
         }
         
-        if let existingBookDictionary = shelf![book.isbn] as? [String: AnyObject] {
-            let existingBook = CSBook(json: JSON(existingBookDictionary))
-            existingBook.numberOfCopies--
-            
-            if existingBook.numberOfCopies <= 0 {
-                
-            } else {
-                shelf?[existingBook.isbn] = existingBook.toDictionary()
-            }
-        }
+        shelf?.removeValueForKey(book.isbn)
         
         return self.setObject(shelf, forKey: CSUser.localUser!.id!, inFile: LocalDataFile.Shelf)
     }
     
-    class func shelf() -> [CSBook] {
+    class func books() -> [CSBook] {
         let userShelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
         if userShelf == nil {
             return []

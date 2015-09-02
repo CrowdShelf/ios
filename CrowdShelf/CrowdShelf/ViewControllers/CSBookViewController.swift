@@ -60,14 +60,21 @@ class CSBookViewController: UIViewController {
     }
     
     @IBAction func addBookToShelf(sender: AnyObject) {
-        if CSLocalDataHandler.addBookToShelf(self.book!) {
-            println(CSLocalDataHandler.shelf().first!.numberOfCopies)
+        self.book?.numberOfCopies++
+        if CSLocalDataHandler.setBook(self.book!) {
+            println(self.book?.numberOfCopies)
         }
     }
     
     @IBAction func removeBookFromShelf(sender: AnyObject) {
-        if CSLocalDataHandler.removeBookFromShelf(self.book!) {
-            println(CSLocalDataHandler.shelf().first?.numberOfCopies)
+        self.book?.numberOfCopies--
+        
+        if self.book?.numberOfCopies <= 0 {
+            if CSLocalDataHandler.removeBook(self.book!) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        } else if CSLocalDataHandler.setBook(self.book!) {
+            println(self.book?.numberOfCopies)
         }
     }
     

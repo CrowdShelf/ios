@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39153A511B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
+		39153A521B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
 		3953BF8F1B8DC29B00E39CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */; };
 		3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF901B8DC29B00E39CC9 /* Images.xcassets */; };
@@ -52,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		05AEA34B1565A3C4AA87D425 /* Pods-CrowdShelfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.release.xcconfig"; sourceTree = "<group>"; };
+		39153A501B970F1E00D34293 /* CSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTextView.swift; path = Views/CSTextView.swift; sourceTree = "<group>"; };
 		3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF881B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39153A531B97150B00D34293 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				39153A501B970F1E00D34293 /* CSTextView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		3953BF7B1B8DC29B00E39CC9 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +146,7 @@
 				3953BF901B8DC29B00E39CC9 /* Images.xcassets */,
 				3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */,
 				3953BF871B8DC29B00E39CC9 /* Supporting Files */,
+				39153A531B97150B00D34293 /* Views */,
 			);
 			path = CrowdShelf;
 			sourceTree = "<group>";
@@ -451,6 +463,7 @@
 				39C2F5881B8FA0CE00529AA9 /* CSUser.swift in Sources */,
 				39C2F5AE1B906D8D00529AA9 /* CSBookViewController.swift in Sources */,
 				39C2F5B51B90A40A00529AA9 /* CSShelfViewController.swift in Sources */,
+				39153A511B970F1E00D34293 /* CSTextView.swift in Sources */,
 				395EDD251B8F56BC0012A465 /* CSCrowd.swift in Sources */,
 				39C2F5B31B90A2EE00529AA9 /* CSBookCollectionViewCell.swift in Sources */,
 				395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */,
@@ -466,6 +479,7 @@
 				39C2F5A61B906D4300529AA9 /* CSBook.swift in Sources */,
 				39C2F5A91B906D4300529AA9 /* CSUser.swift in Sources */,
 				39C2F5AB1B906D5600529AA9 /* CSDataHandler.swift in Sources */,
+				39153A521B970F1E00D34293 /* CSTextView.swift in Sources */,
 				395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */,
 				39C2F5A81B906D4300529AA9 /* CSBaseModel.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,

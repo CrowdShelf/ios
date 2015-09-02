@@ -15,10 +15,13 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     var books : [CSBook] = []
     
     override func viewDidLoad() {
-        self.books = CSLocalDataHandler.shelf()
-
         addTestDataIfNecessary()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
+        self.books = CSLocalDataHandler.books()
         self.collectionView?.reloadData()
     }
     
@@ -34,7 +37,7 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
             ]
             
             for book in books {
-                CSLocalDataHandler.addBookToShelf(book)
+                CSLocalDataHandler.setBook(book)
             }
         }
     }

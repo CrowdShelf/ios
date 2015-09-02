@@ -35,9 +35,6 @@ class CSBookCollectionViewCell: UICollectionViewCell {
         
         self.coverImageView?.layer.borderWidth = 1
         self.coverImageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
-        
-        self.numberOfCopiesLabel?.layer.cornerRadius =  self.numberOfCopiesLabel!.bounds.height/2
-        self.numberOfCopiesLabel?.layer.masksToBounds = true
     }
     
     func updateView() {
