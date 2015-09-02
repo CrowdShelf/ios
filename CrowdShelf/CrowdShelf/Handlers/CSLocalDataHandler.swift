@@ -107,6 +107,16 @@ class CSLocalDataHandler {
         return self.setObject(shelf, forKey: CSUser.localUser!.id!, inFile: LocalDataFile.Shelf)
     }
     
+    class func bookForISBN(isbn: String) -> CSBook? {
+        var shelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
+        
+        if shelf == nil || shelf![isbn] == nil {
+            return nil
+        }
+        
+        return CSBook(json: JSON(shelf![isbn] as! [String: AnyObject]))
+    }
+    
     class func books() -> [CSBook] {
         let userShelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
         if userShelf == nil {

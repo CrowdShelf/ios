@@ -30,7 +30,14 @@ class CSScannerViewController: UIViewController {
                     if let code = codes.first as? AVMetadataMachineReadableCodeObject {
                         if !self.scannedCodes.contains(code.stringValue) {
                             self.scannedCodes.insert(code.stringValue)
-                            self.performSegueWithIdentifier("ShowBook", sender: CSBook(isbn: code.stringValue))
+                            
+//                            Use an existing book if possible
+                            var book = CSLocalDataHandler.bookForISBN(code.stringValue)
+                            if book == nil {
+                                book = CSBook(isbn: code.stringValue)
+                            }
+                            
+                            self.performSegueWithIdentifier("ShowBook", sender: book)
                         }
                     }
                 })
