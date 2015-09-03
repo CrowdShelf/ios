@@ -82,88 +82,6 @@ class CSLocalDataHandler {
     
 //    MARK: - Local Storage
     
-    /// Add book to shelf. Increment number of copies if the book is already added
-    class func setBook(book: CSBook) -> Bool {
-        var shelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
-        
-        if shelf == nil {
-            shelf = [book.isbn: book.toDictionary()]
-        } else {
-            shelf?[book.isbn] = book.toDictionary()
-        }
-        
-        return self.setObject(shelf, forKey: CSUser.localUser!.id!, inFile: LocalDataFile.Shelf)
-    }
-    
-    class func removeBook(book: CSBook) -> Bool {
-        var shelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
-        
-        if shelf == nil || shelf![book.isbn] == nil {
-            return false
-        }
-        
-        shelf?.removeValueForKey(book.isbn)
-        
-        return self.setObject(shelf, forKey: CSUser.localUser!.id!, inFile: LocalDataFile.Shelf)
-    }
-    
-    class func bookForISBN(isbn: String) -> CSBook? {
-        var shelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
-        
-        if shelf == nil || shelf![isbn] == nil {
-            return nil
-        }
-        
-        return CSBook(json: JSON(shelf![isbn] as! [String: AnyObject]))
-    }
-    
-    class func books() -> [CSBook] {
-        let userShelf = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Shelf) as? [String: AnyObject]
-        if userShelf == nil {
-            return []
-        }
-        
-        return map(userShelf!.values) {
-            CSBook(json: JSON($0 as! [String: AnyObject]))
-        }
-    }
-    
-    
-//    MARK: - Crowds
-    
-    class func crowds() -> [CSCrowd] {
-        let userCrowds = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Crowd) as? [String: AnyObject]
-        if userCrowds == nil {
-            return []
-        }
-        
-        return map(userCrowds!.values) {
-            CSCrowd(json: JSON($0 as! [String: AnyObject]))
-        }
-    }
-    
-    class func setCrowd(crowd: CSCrowd) -> Bool {
-        var userCrowds = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Crowd) as? [String: AnyObject]
-        if userCrowds == nil {
-            return false
-        }
-        
-        userCrowds![crowd.id] = crowd.toDictionary()
-        
-        return self.setObject(userCrowds, forKey: CSUser.localUser!.id!, inFile: LocalDataFile.Crowd)
-    }
-    
-    class func removeCrowd(crowd: CSCrowd) -> Bool {
-        var userCrowds = self.getObjectForKey(CSUser.localUser!.id!, fromFile: LocalDataFile.Crowd) as? [String: AnyObject]
-        if userCrowds == nil {
-            return false
-        }
-        
-        userCrowds!.removeValueForKey(crowd.id)
-        
-        return self.setObject(userCrowds, forKey: CSUser.localUser!.id!, inFile: LocalDataFile.Crowd)
-    }
-    
 //    MARK: - Book Details
     
     class func detailsForBook(isbn: String) -> CSBookDetails? {
@@ -178,6 +96,7 @@ class CSLocalDataHandler {
     class func removeDetailsForBook(isbn: String) -> Bool {
         return self.setObject(nil, forKey: isbn, inFile: LocalDataFile.BookDetails)
     }
+    
     
     
 //    MARK: - Helpers

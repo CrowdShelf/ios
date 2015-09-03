@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		39153A511B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A521B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
+		39153A551B97406700D34293 /* CSCrowdShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */; };
+		39153A571B9778B200D34293 /* CSShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */; };
+		39153A581B9778B800D34293 /* CSCrowdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */; };
+		39153A591B9778BA00D34293 /* CSCrowdShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */; };
+		39153A5A1B9778BD00D34293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
+		39153A5B1B9778C900D34293 /* CSBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */; };
 		3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
 		3953BF8F1B8DC29B00E39CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */; };
 		3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF901B8DC29B00E39CC9 /* Images.xcassets */; };
@@ -55,6 +61,7 @@
 /* Begin PBXFileReference section */
 		05AEA34B1565A3C4AA87D425 /* Pods-CrowdShelfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.release.xcconfig"; sourceTree = "<group>"; };
 		39153A501B970F1E00D34293 /* CSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTextView.swift; path = Views/CSTextView.swift; sourceTree = "<group>"; };
+		39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowdShelfViewController.swift; path = ViewControllers/CSCrowdShelfViewController.swift; sourceTree = "<group>"; };
 		3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF881B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +193,7 @@
 				39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */,
 				39A0CAFD1B958B0D00321225 /* CSListViewController.swift */,
 				39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */,
+				39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -456,6 +464,7 @@
 			files = (
 				39C2F5861B8F9AB800529AA9 /* CSBaseModel.swift in Sources */,
 				39A0CAFE1B958B0D00321225 /* CSListViewController.swift in Sources */,
+				39153A551B97406700D34293 /* CSCrowdShelfViewController.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
 				39C2F58A1B8FA40D00529AA9 /* CSBookDetails.swift in Sources */,
 				39C2F5931B90527200529AA9 /* CSDataHandler.swift in Sources */,
@@ -478,16 +487,21 @@
 			files = (
 				39C2F5A61B906D4300529AA9 /* CSBook.swift in Sources */,
 				39C2F5A91B906D4300529AA9 /* CSUser.swift in Sources */,
+				39153A591B9778BA00D34293 /* CSCrowdShelfViewController.swift in Sources */,
 				39C2F5AB1B906D5600529AA9 /* CSDataHandler.swift in Sources */,
+				39153A581B9778B800D34293 /* CSCrowdsViewController.swift in Sources */,
 				39153A521B970F1E00D34293 /* CSTextView.swift in Sources */,
 				395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */,
 				39C2F5A81B906D4300529AA9 /* CSBaseModel.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
+				39153A5B1B9778C900D34293 /* CSBookCollectionViewCell.swift in Sources */,
 				39A0CB011B958DFC00321225 /* CSListViewController.swift in Sources */,
 				39C2F5AA1B906D4300529AA9 /* CSBookDetails.swift in Sources */,
+				39153A571B9778B200D34293 /* CSShelfViewController.swift in Sources */,
 				39C2F5B01B907EC000529AA9 /* CSBookViewController.swift in Sources */,
 				395EDD1E1B8E61DE0012A465 /* CSLocalDataHandler.swift in Sources */,
 				39C2F5A71B906D4300529AA9 /* CSCrowd.swift in Sources */,
+				39153A5A1B9778BD00D34293 /* AppDelegate.swift in Sources */,
 				39C2F5AC1B906D5A00529AA9 /* CSScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

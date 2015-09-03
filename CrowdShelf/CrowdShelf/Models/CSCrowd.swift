@@ -35,15 +35,15 @@ class CSCrowd: CSBaseModel, Listable {
         self.id = id
         self.name = name
         self.creator = creator
-        self.members = members != nil ? members! : []
+        self.members = members != nil ? members! : [creator]
     }
     
     /// Useful when creating a new crowd
-    convenience init(name: String) {
+    convenience init(name: String, creator: String) {
         self.init(id:       "",
                   name:     name,
-                  creator:  CSUser.localUser!.id!,
-                  members:  [CSUser.localUser!.id!])
+                  creator:  creator,
+                  members:  [creator])
     }
     
     /// Populate with data from a JSON object. Useful when communicating with the backend

@@ -10,14 +10,19 @@ import Foundation
 import SwiftyJSON
 
 // FIXME: Ugly, temporary mimic of apples local user
-private var _localUser : CSUser? = CSUser(id: "ABFKAJEb432j#$jkb", emails: ["oyvindkg@yahoo.com"], name: "Øyvind Grimnes")
+private var _localUser : CSUser?
 
 /// Dummy class until model is defined
 class CSUser: CSBaseModel {
     
-    let id: String?
-    var emails: [String]
-    var name: String
+    let username: String
+    var booksOwned: [CSBook]
+    var booksRented: [CSBook]
+    var crowds: [CSCrowd]
+    
+    var books: [CSBook] {
+        return self.booksOwned + self.booksRented
+    }
     
     class var localUser : CSUser? {
         get {
@@ -28,25 +33,41 @@ class CSUser: CSBaseModel {
         }
     }
     
-    init(id: String?, emails: [String], name: String) {
-        self.id = id
-        self.emails = emails
-        self.name = name
+    init(username: String, booksOwned: [CSBook], booksRented: [CSBook], crowds: [CSCrowd]) {
+        self.username = username
+        self.booksOwned = booksOwned
+        self.booksRented = booksRented
+        self.crowds = crowds
+        
         super.init()
     }
     
-    convenience init(email: String, name: String) {
-        self.init(id: nil, emails: [email], name: name)
-    }
-    
-    convenience init(name: String) {
-        self.init(id: nil, emails: [], name: name)
+    convenience init(username: String) {
+        self.init(username: username,
+                  booksOwned: [],
+                  booksRented: [],
+                  crowds: [])
     }
     
     /// Populate with data from a JSON object. Useful when communicating with the backend
     convenience required init(json: JSON) {
-        self.init(id:       json["id"].stringValue,
-                  emails:   json["emails"].arrayObject as! [String],
-                  name:     json["name"].stringValue)
+        let booksOwned : [CSBook] = map(json["booksOwned"].arrayValue) {CSBook(json: $0)}
+        let booksRented : [CSBook] = map(json["booksRented"].arrayValue) {CSBook(json: $0)}
+        let crowds : [CSCrowd] = map(json["crowds"].arrayValue) {CSCrowd(json: $0)}
+        
+        self.init(username:     json["id"].stringValue,
+                  booksOwned:   booksOwned,
+                  booksRented:  booksRented,
+                  crowds:       crowds)
+    }
+    
+    
+    override func toDictionary() -> [String : AnyObject] {
+        return [
+            "username": self.username,
+            "booksOwned": self.booksOwned.map {$0.toDictionary()},
+            "booksRented": self.booksRented.map {$0.toDictionary()},
+            "crowds": self.crowds.map {$0.toDictionary()}
+        ]
     }
 }

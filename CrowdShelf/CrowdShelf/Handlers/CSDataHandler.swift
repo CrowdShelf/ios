@@ -15,6 +15,10 @@ enum CSHTTPMethod : String {
     case PUT    = "PUT"
 }
 
+struct CSDataHandlerNotification {
+    static let LocalUserUpdated = "localUserUpdated"
+}
+
 typealias CSPutCompletionHandler = ((Bool)->Void)?
 typealias CSPostCompletionHandler = CSPutCompletionHandler
 typealias CSCompletionHandler = ((JSON?)->Void)
@@ -63,7 +67,7 @@ class CSDataHandler {
     }
     
     class func getBook(isbn: String, owner: CSUser, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
-        let route = host+"/book/\(isbn)/\(owner.name)"
+        let route = host+"/book/\(isbn)/\(owner.username)"
         self.sendGetRequest(route, withCompletionHandler: { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
@@ -160,16 +164,14 @@ class CSDataHandler {
             request.HTTPBody = json!.rawData(options: .PrettyPrinted, error: nil)
         }
         
-        
         NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if error != nil {
                 println(error)
-                completionHandler(nil)
-                return
+                return completionHandler(nil)
             }
             
             var jsonError: NSError?
-            let json = JSON(data: data, options: .MutableContainers, error: &jsonError)
+            let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)
             
             if jsonError != nil {
                 println(jsonError)

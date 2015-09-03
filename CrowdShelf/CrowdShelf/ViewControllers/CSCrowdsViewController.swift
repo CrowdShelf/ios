@@ -15,12 +15,19 @@ class CSCrowdsViewController: CSListViewController {
         super.viewDidLoad()
         
         self.cellStyle = .Subtitle
-        self.completionHandler = {crowd in
-            println(crowd)
+        
+        self.loadCrowds()
+        
+        self.completionHandler = {listable in
+            self.performSegueWithIdentifier("ShowCrowdShelf", sender: listable)
         }
         
-        self.listData = [CSCrowd(name: "My crowd")]
-        self.tableView?.reloadData()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadCrowds", name: CSDataHandlerNotification.LocalUserUpdated, object: nil)
+    }
+    
+    func loadCrowds() {
+        self.listData = CSUser.localUser != nil ? CSUser.localUser!.crowds : []
+        self.updateView()
     }
     
 }

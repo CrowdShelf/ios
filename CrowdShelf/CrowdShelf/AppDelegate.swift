@@ -16,7 +16,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-                
+        
+        var localUser = CSUser(username: "oyvindkg")
+        CSUser.localUser = localUser
+        
+        localUser.booksRented = [
+            CSBook(isbn: "9781133603627", owner: localUser.username),
+            CSBook(isbn: "9780130920713", owner: localUser.username),
+            CSBook(isbn: "9781292100241", owner: localUser.username),
+            CSBook(isbn: "9780566089237", owner: localUser.username)
+        ]
+        
+        localUser.booksOwned = [
+            CSBook(isbn: "0735619670", owner: localUser.username),
+            CSBook(isbn: "9780471145943", owner: localUser.username),
+        ]
+        
+        localUser.crowds = [
+            CSCrowd(name: "Super Cool Crowd", creator: CSUser.localUser!.username),
+        ]
+        
+        for book in localUser.booksOwned {
+            CSDataHandler.addBook(book, withCompletionHandler: { (success) -> Void in
+                println(success)
+            })
+        }
+        
+        CSUser.localUser = localUser
+        
         return true
     }
 

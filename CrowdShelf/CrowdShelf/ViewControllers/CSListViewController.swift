@@ -36,6 +36,10 @@ class CSListViewController: UIViewController, UITableViewDataSource, UITableView
         assert(self.tableView != nil, "Table view was not set for CSListViewController")
     }
     
+    func updateView() {
+        self.tableView?.reloadData()
+    }
+    
     
 //    MARK: - Table View Data Source
     

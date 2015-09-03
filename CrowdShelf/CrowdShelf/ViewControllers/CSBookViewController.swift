@@ -48,16 +48,16 @@ class CSBookViewController: UIViewController {
     }
     
     func updateView() {
+        
         if self.book?.details?.authors != nil {
             self.authorsLabel?.text = ", ".join(self.book!.details!.authors)
         }
         
-        
-        self.coverImageView?.image = self.book?.details?.thumbnailImage
         if self.book != nil {
             self.numberOfCopiesLabel?.text = "\(self.book!.numberOfCopies)"
         }
         
+        self.coverImageView?.image = self.book?.details?.thumbnailImage
         self.titleLabel?.text = self.book?.details?.title
         self.publisherLabel?.text = self.book?.details?.publisher
         self.descriptionTextView?.text = self.book?.details?.description
@@ -65,10 +65,7 @@ class CSBookViewController: UIViewController {
     
     @IBAction func addBookToShelf(sender: AnyObject) {
         self.book?.numberOfCopies++
-        if CSLocalDataHandler.setBook(self.book!) {
-            println(self.book?.numberOfCopies)
-        }
-        
+
         self.updateView()
     }
     
@@ -79,10 +76,6 @@ class CSBookViewController: UIViewController {
         
         self.book?.numberOfCopies--
 
-        if CSLocalDataHandler.setBook(self.book!) {
-            println(self.book?.numberOfCopies)
-        }
-        
         self.updateView()
     }
     

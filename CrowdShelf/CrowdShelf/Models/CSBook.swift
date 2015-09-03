@@ -29,9 +29,9 @@ class CSBook: CSBaseModel {
     }
     
     /// Useful when registering a single copy of a new book
-    convenience init(isbn: String) {
+    convenience init(isbn: String, owner: String) {
         self.init(isbn:             isbn,
-                  owner:            CSUser.localUser!.id!,
+                  owner:            owner,
                   avaliableForRent: 1,
                   rentedTo:         [],
                   numberOfCopies:   1)        
@@ -48,14 +48,12 @@ class CSBook: CSBaseModel {
     
     
     override func toDictionary() -> [String : AnyObject] {
-        var dictionary : [String: AnyObject] = [
+        return [
             "isbn": self.isbn,
             "owner": self.owner,
             "avaliableForRent": self.avaliableForRent,
             "numberOfCopies": self.numberOfCopies,
             "rentedTo": self.rentedTo
         ]
-
-        return dictionary
     }
 }
