@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mxW-2f-Nzp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mxW-2f-Nzp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -177,13 +177,13 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Netlight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DaH-zP-XNf">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Employees" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Uc-Mi-teO">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="crowd" id="SRa-By-QJ0">
@@ -384,13 +384,13 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="180"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i9U-Ez-HmK">
-                                        <rect key="frame" x="16" y="8" width="123.5" height="164"/>
+                                        <rect key="frame" x="16" y="8" width="123" height="164"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="i9U-Ez-HmK" secondAttribute="height" multiplier="120:160" id="I45-BW-mMD"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.90000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="8VP-qu-ZWa">
-                                        <rect key="frame" x="148" y="8" width="219" height="42"/>
+                                        <rect key="frame" x="147" y="8" width="220" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="hQp-ST-7b5"/>
                                         </constraints>
@@ -399,7 +399,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3d-G3-PUD">
-                                        <rect key="frame" x="148" y="50" width="219" height="15"/>
+                                        <rect key="frame" x="147" y="50" width="220" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="Kyg-uM-3dw"/>
                                         </constraints>
@@ -408,7 +408,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publisher" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyC-5O-Bvv">
-                                        <rect key="frame" x="148" y="66" width="219" height="15"/>
+                                        <rect key="frame" x="147" y="66" width="220" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="ZYl-nC-2Xy"/>
                                         </constraints>
@@ -417,7 +417,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJp-0a-Mu4" customClass="CSTextView" customModule="CrowdShelf" customModuleProvider="target">
-                                        <rect key="frame" x="148" y="84" width="219" height="88"/>
+                                        <rect key="frame" x="147" y="84" width="220" height="88"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -427,7 +427,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnF-g0-Mrp">
-                                        <rect key="frame" x="114.5" y="147" width="25" height="25"/>
+                                        <rect key="frame" x="114" y="147" width="25" height="25"/>
                                         <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="gIT-7u-brJ"/>
@@ -460,66 +460,89 @@
                                     <constraint firstAttribute="trailing" secondItem="gyC-5O-Bvv" secondAttribute="trailing" constant="8" id="tQm-Xq-6lR"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5Q-EU-aoY">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="close:" destination="8vd-8z-IT4" eventType="touchUpInside" id="WI8-Ng-k3y"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag6-ku-bC7">
-                                <rect key="frame" x="0.0" y="571" width="375" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Remove">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="dPE-ew-iLZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlv-kk-4FW">
-                                <rect key="frame" x="0.0" y="363" width="375" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Borrow">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQv-g6-wxX">
-                                <rect key="frame" x="0.0" y="415" width="375" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Return">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2M-yi-XdK">
-                                <rect key="frame" x="0.0" y="467" width="375" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Pass along">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="xdw-W7-tm3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btr-xZ-Bc4">
-                                <rect key="frame" x="0.0" y="519" width="375" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Add">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addBookToShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="JKT-PZ-JKJ"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13n-Hd-A9Z" userLabel="Button View">
+                                <rect key="frame" x="53" y="277" width="275" height="370"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag6-ku-bC7">
+                                        <rect key="frame" x="104" y="287" width="67" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Remove">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="dPE-ew-iLZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlv-kk-4FW">
+                                        <rect key="frame" x="108" y="90" width="59" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Borrow">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQv-g6-wxX">
+                                        <rect key="frame" x="111" y="129" width="54" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Return">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2M-yi-XdK">
+                                        <rect key="frame" x="93" y="168" width="89" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Pass along">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="xdw-W7-tm3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btr-xZ-Bc4">
+                                        <rect key="frame" x="121" y="248" width="34" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addBookToShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="JKT-PZ-JKJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5Q-EU-aoY">
+                                        <rect key="frame" x="109" y="326" width="56" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="close:" destination="8vd-8z-IT4" eventType="touchUpInside" id="WI8-Ng-k3y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="s5Q-EU-aoY" secondAttribute="bottom" constant="10" id="2ep-WV-7Fw"/>
+                                    <constraint firstAttribute="centerY" secondItem="K2M-yi-XdK" secondAttribute="centerY" id="8U6-VX-dJk"/>
+                                    <constraint firstAttribute="centerX" secondItem="s5Q-EU-aoY" secondAttribute="centerX" id="N6z-o4-DCC"/>
+                                    <constraint firstAttribute="centerX" secondItem="ag6-ku-bC7" secondAttribute="centerX" id="TqK-DH-bFj"/>
+                                    <constraint firstAttribute="centerX" secondItem="btr-xZ-Bc4" secondAttribute="centerX" id="a28-Qb-hvc"/>
+                                    <constraint firstAttribute="centerX" secondItem="BQv-g6-wxX" secondAttribute="centerX" id="ef6-l5-swn"/>
+                                    <constraint firstItem="K2M-yi-XdK" firstAttribute="top" secondItem="BQv-g6-wxX" secondAttribute="bottom" constant="5" id="gbE-qd-5xs"/>
+                                    <constraint firstItem="ag6-ku-bC7" firstAttribute="top" secondItem="btr-xZ-Bc4" secondAttribute="bottom" constant="5" id="kwh-zA-6lp"/>
+                                    <constraint firstItem="BQv-g6-wxX" firstAttribute="top" secondItem="hlv-kk-4FW" secondAttribute="bottom" constant="5" id="oYg-TN-Egk"/>
+                                    <constraint firstAttribute="centerX" secondItem="K2M-yi-XdK" secondAttribute="centerX" id="p96-qt-vF3"/>
+                                    <constraint firstItem="s5Q-EU-aoY" firstAttribute="top" secondItem="ag6-ku-bC7" secondAttribute="bottom" constant="5" id="qtu-aa-W4W"/>
+                                    <constraint firstAttribute="centerX" secondItem="hlv-kk-4FW" secondAttribute="centerX" id="y4e-mB-YeC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="13n-Hd-A9Z" secondAttribute="bottom" constant="20" symbolic="YES" id="6BK-ID-uoA"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="Mz6-kg-b4T"/>
+                            <constraint firstItem="13n-Hd-A9Z" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="37" id="UIW-Gz-o1I"/>
+                            <constraint firstItem="13n-Hd-A9Z" firstAttribute="top" secondItem="mvs-1O-bcu" secondAttribute="bottom" constant="77" id="cbS-sj-iNi"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="top" secondItem="yOh-6I-yL8" secondAttribute="topMargin" constant="20" id="kCS-Oz-EqN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mvs-1O-bcu" secondAttribute="trailing" constant="-16" id="o2D-Lb-Vqm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="13n-Hd-A9Z" secondAttribute="trailing" constant="31" id="zON-Kc-ogv"/>
                         </constraints>
                     </view>
                     <connections>
