@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSDataHandler Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CSDataHandler" class="dashAnchor"></a>
+    <a title="CSDataHandler Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href=""><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CSDataHandler Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSBaseModel.html">CSBaseModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSBook.html">CSBook</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSBookDetails.html">CSBookDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSCrowd.html">CSCrowd</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSDataHandler.html">CSDataHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLocalDataHandler.html">CSLocalDataHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSUser.html">CSUser</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O10CrowdShelf12CSHTTPMethod">CSHTTPMethod</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:V10CrowdShelf25CSDataHandlerNotification">CSDataHandlerNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:V10CrowdShelf15CSLocalDataFile">CSLocalDataFile</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10CrowdShelf26CSBooleanCompletionHandler">CSBooleanCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10CrowdShelf19CSCompletionHandler">CSCompletionHandler</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CSDataHandler</h1>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CSDataHandler</span></code></pre>
+
+                </div>
+              </div>
+            <p>Responsible for brokering between the server and client</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Books"></a>
+                  <a name="//apple_ref/swift/Section/Books" class="dashAnchor"></a>
+                  <a href="#/Books">
+                    <h3 class="section-name">Books</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler14detailsForBookFMS0_FTSS21withCompletionHandlerFGSqCS_13CSBookDetails_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/detailsForBook(_:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler14detailsForBookFMS0_FTSS21withCompletionHandlerFGSqCS_13CSBookDetails_T__T_">detailsForBook(_:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieve information about a book from Google&rsquo;s REST API</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">detailsForBook</span><span class="p">(</span><span class="nv">isbn</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">CSBookDetails</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isbn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>international standard book number of a book</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler7addBookFMS0_FTCS_6CSBook21withCompletionHandlerGSqFSbT___T_"></a>
+                    <a name="//apple_ref/swift/Method/addBook(_:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler7addBookFMS0_FTCS_6CSBook21withCompletionHandlerGSqFSbT___T_">addBook(_:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add book to database or update existing one
+PUT /book</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">addBook</span><span class="p">(</span><span class="nv">book</span><span class="p">:</span> <span class="kt">CSBook</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">CSBooleanCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>book</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>book that will be added or updated</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler7getBookFMS0_FTSS5ownerSS21withCompletionHandlerFGSqCS_6CSBook_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getBook(_:owner:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler7getBookFMS0_FTSS5ownerSS21withCompletionHandlerFGSqCS_6CSBook_T__T_">getBook(_:owner:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get book from database</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getBook</span><span class="p">(</span><span class="nv">isbn</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">owner</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">CSBook</span><span class="p">?)</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isbn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>international standard book number for the book that will be added or updated</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler9addRenterFMS0_FTSS6toBookSS9withOwnerSS21withCompletionHandlerGSqFSbT___T_"></a>
+                    <a name="//apple_ref/swift/Method/addRenter(_:toBook:withOwner:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler9addRenterFMS0_FTSS6toBookSS9withOwnerSS21withCompletionHandlerGSqFSbT___T_">addRenter(_:toBook:withOwner:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add renter to owners book in database</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">addRenter</span><span class="p">(</span><span class="nv">renter</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">toBook</span> <span class="nv">isbn</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withOwner</span> <span class="nv">owner</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">CSBooleanCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>renter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>username of the renter</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isbn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>international standard book number for the book</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>owner</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>username of the owner</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler12removeRenterFMS0_FTSS8fromBookSS9withOwnerSS21withCompletionHandlerGSqFSbT___T_"></a>
+                    <a name="//apple_ref/swift/Method/removeRenter(_:fromBook:withOwner:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler12removeRenterFMS0_FTSS8fromBookSS9withOwnerSS21withCompletionHandlerGSqFSbT___T_">removeRenter(_:fromBook:withOwner:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove renter from owners book in database</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">removeRenter</span><span class="p">(</span><span class="nv">renter</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">fromBook</span> <span class="nv">isbn</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withOwner</span> <span class="nv">owner</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">CSBooleanCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>renter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>username of the renter</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isbn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>international standard book number for the book</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>owner</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>username of the owner</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Crowds"></a>
+                  <a name="//apple_ref/swift/Section/Crowds" class="dashAnchor"></a>
+                  <a href="#/Crowds">
+                    <h3 class="section-name">Crowds</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler11createCrowdFMS0_FTCS_7CSCrowd21withCompletionHandlerGSqFGSqS1__T___T_"></a>
+                    <a name="//apple_ref/swift/Method/createCrowd(_:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler11createCrowdFMS0_FTCS_7CSCrowd21withCompletionHandlerGSqFGSqS1__T___T_">createCrowd(_:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new crowd in the database. If successful, a crowd object with correct id is returned</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">createCrowd</span><span class="p">(</span><span class="nv">crowd</span><span class="p">:</span> <span class="kt">CSCrowd</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">CSCrowd</span><span class="p">?)</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>crowd</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a crowd object representing the new crowd</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler8getCrowdFMS0_FTSS21withCompletionHandlerFGSqCS_7CSCrowd_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getCrowd(_:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler8getCrowdFMS0_FTSS21withCompletionHandlerFGSqCS_7CSCrowd_T__T_">getCrowd(_:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get crowd for id from database</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getCrowd</span><span class="p">(</span><span class="nv">crowdID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">CSCrowd</span><span class="p">?)</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>crowdID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>id of the crowd</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler30getCrowdsWithCompletionHandlerFMS0_FFGSaCS_7CSCrowd_T_T_"></a>
+                    <a name="//apple_ref/swift/Method/getCrowdsWithCompletionHandler(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler30getCrowdsWithCompletionHandlerFMS0_FFGSaCS_7CSCrowd_T_T_">getCrowdsWithCompletionHandler(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get crowds form database</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getCrowdsWithCompletionHandler</span><span class="p">(</span><span class="nv">completionHandler</span><span class="p">:</span> <span class="p">(([</span><span class="kt">CSCrowd</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler9addMemberFMS0_FTSS7toCrowdSS21withCompletionHandlerGSqFSbT___T_"></a>
+                    <a name="//apple_ref/swift/Method/addMember(_:toCrowd:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler9addMemberFMS0_FTSS7toCrowdSS21withCompletionHandlerGSqFSbT___T_">addMember(_:toCrowd:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add member to crowd</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">addMember</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">toCrowd</span> <span class="nv">crowdID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">CSBooleanCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>username of the member</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>crowdID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>id of the crowd</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler12removeMemberFMS0_FTSS9fromCrowdSS21withCompletionHandlerGSqFSbT___T_"></a>
+                    <a name="//apple_ref/swift/Method/removeMember(_:fromCrowd:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler12removeMemberFMS0_FTSS9fromCrowdSS21withCompletionHandlerGSqFSbT___T_">removeMember(_:fromCrowd:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove member from crowd</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">removeMember</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">fromCrowd</span> <span class="nv">crowdID</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="kt">CSBooleanCompletionHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>username of the member</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>crowdID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>id of the crowd</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Users"></a>
+                  <a name="//apple_ref/swift/Section/Users" class="dashAnchor"></a>
+                  <a href="#/Users">
+                    <h3 class="section-name">Users</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler7getUserFMS0_FTSS21withCompletionHandlerFGSqCS_6CSUser_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getUser(_:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler7getUserFMS0_FTSS21withCompletionHandlerFGSqCS_6CSUser_T__T_">getUser(_:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get user with the provided username if it exists</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getUser</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">CSUser</span><span class="p">?)</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>username</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>username of the user</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completionHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure which will be called with the result of the request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Void</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf13CSDataHandler10createUserFMS0_FTSS21withCompletionHandlerFGSqCS_6CSUser_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/createUser(_:withCompletionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf13CSDataHandler10createUserFMS0_FTSS21withCompletionHandlerFGSqCS_6CSUser_T__T_">createUser(_:withCompletionHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><em>Not yet implemented</em></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">createUser</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">CSUser</span><span class="p">?)</span><span class="o">-&gt;</span><span class="kt">Void</span> <span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-09-08)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

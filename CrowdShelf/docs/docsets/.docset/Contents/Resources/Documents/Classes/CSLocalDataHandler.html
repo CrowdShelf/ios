@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSLocalDataHandler Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CSLocalDataHandler" class="dashAnchor"></a>
+    <a title="CSLocalDataHandler Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href=""><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CSLocalDataHandler Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSBaseModel.html">CSBaseModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSBook.html">CSBook</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSBookDetails.html">CSBookDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSCrowd.html">CSCrowd</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSDataHandler.html">CSDataHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLocalDataHandler.html">CSLocalDataHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSUser.html">CSUser</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O10CrowdShelf12CSHTTPMethod">CSHTTPMethod</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:V10CrowdShelf25CSDataHandlerNotification">CSDataHandlerNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:V10CrowdShelf15CSLocalDataFile">CSLocalDataFile</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10CrowdShelf26CSBooleanCompletionHandler">CSBooleanCompletionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10CrowdShelf19CSCompletionHandler">CSCompletionHandler</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CSLocalDataHandler</h1>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CSLocalDataHandler</span></code></pre>
+
+                </div>
+              </div>
+            <p>A class reponsible for managing a local key-value storage.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Setters"></a>
+                  <a name="//apple_ref/swift/Section/Setters" class="dashAnchor"></a>
+                  <a href="#/Setters">
+                    <h3 class="section-name">Setters</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf18CSLocalDataHandler9setObjectFMS0_FTGSqPSs9AnyObject__6forKeySS6inFileSS_Sb"></a>
+                    <a name="//apple_ref/swift/Method/setObject(_:forKey:inFile:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf18CSLocalDataHandler9setObjectFMS0_FTGSqPSs9AnyObject__6forKeySS6inFileSS_Sb">setObject(_:forKey:inFile:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Change the value for the provided key in a file</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">setObject</span><span class="p">(</span><span class="nv">object</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">inFile</span> <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>object</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>object that will be the new value</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>key for which to change the value</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the file in which to change the value</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Boolean indicatig the success of the operation</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf18CSLocalDataHandler7setDataFMS0_FTGSqGVSs10DictionarySSPSs9AnyObject___6inFileSS_Sb"></a>
+                    <a name="//apple_ref/swift/Method/setData(_:inFile:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf18CSLocalDataHandler7setDataFMS0_FTGSqGVSs10DictionarySSPSs9AnyObject___6inFileSS_Sb">setData(_:inFile:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Overwrites all data in a file</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">setData</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?,</span> <span class="n">inFile</span> <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>file that will be created or overwritten</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Boolean indicatig the success of the operation</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Getters"></a>
+                  <a name="//apple_ref/swift/Section/Getters" class="dashAnchor"></a>
+                  <a href="#/Getters">
+                    <h3 class="section-name">Getters</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf18CSLocalDataHandler15getDataFromFileFMS0_FSSGVSs10DictionarySSPSs9AnyObject__"></a>
+                    <a name="//apple_ref/swift/Method/getDataFromFile(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf18CSLocalDataHandler15getDataFromFileFMS0_FSSGVSs10DictionarySSPSs9AnyObject__">getDataFromFile(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns all data found in a file as a dictionary</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getDataFromFile</span><span class="p">(</span><span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>file to be read</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A dictionary containing the data from the file</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf18CSLocalDataHandler15getObjectForKeyFMS0_FTSS8fromFileSS_GSqPSs9AnyObject__"></a>
+                    <a name="//apple_ref/swift/Method/getObjectForKey(_:fromFile:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf18CSLocalDataHandler15getObjectForKeyFMS0_FTSS8fromFileSS_GSqPSs9AnyObject__">getObjectForKey(_:fromFile:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the value for the provided key in a file</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">getObjectForKey</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">fromFile</span> <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyObject</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>key for for the value that will be returned</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>name of the file that will be read</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An optional object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Book%20Details"></a>
+                  <a name="//apple_ref/swift/Section/Book Details" class="dashAnchor"></a>
+                  <a href="#/Book%20Details">
+                    <h3 class="section-name">Book Details</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf18CSLocalDataHandler14detailsForBookFMS0_FSSGSqCS_13CSBookDetails_"></a>
+                    <a name="//apple_ref/swift/Method/detailsForBook(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf18CSLocalDataHandler14detailsForBookFMS0_FSSGSqCS_13CSBookDetails_">detailsForBook(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the details for an ISBN from cache</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">detailsForBook</span><span class="p">(</span><span class="nv">isbn</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CSBookDetails</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isbn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>international standard book number for a book</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An optional CSBookDetails object</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf18CSLocalDataHandler10setDetailsFMS0_FTCS_13CSBookDetails7forBookSS_Sb"></a>
+                    <a name="//apple_ref/swift/Method/setDetails(_:forBook:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf18CSLocalDataHandler10setDetailsFMS0_FTCS_13CSBookDetails7forBookSS_Sb">setDetails(_:forBook:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add the details for an ISBN to cache</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">setDetails</span><span class="p">(</span><span class="nv">details</span><span class="p">:</span> <span class="kt">CSBookDetails</span><span class="p">,</span> <span class="n">forBook</span> <span class="nv">isbn</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>details</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>book details to be cached</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isbn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>international standard book number for a book</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A boolean indicating the success of the operation</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC10CrowdShelf18CSLocalDataHandler20removeDetailsForBookFMS0_FSSSb"></a>
+                    <a name="//apple_ref/swift/Method/removeDetailsForBook(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC10CrowdShelf18CSLocalDataHandler20removeDetailsForBookFMS0_FSSSb">removeDetailsForBook(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove the details for an ISBN from cache</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">removeDetailsForBook</span><span class="p">(</span><span class="nv">isbn</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isbn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>international standard book number for a book</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A boolean indicating the success of the operation</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-09-08)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
