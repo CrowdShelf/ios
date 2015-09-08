@@ -9,7 +9,9 @@
 import Foundation
 import SwiftyJSON
 
-class CSBook: CSBaseModel {
+
+/// A class representing a book
+public class CSBook: CSBaseModel {
     
     let isbn : String
     let owner : String
@@ -28,8 +30,17 @@ class CSBook: CSBaseModel {
         self.numberOfCopies = numberOfCopies
     }
     
-    /// Useful when registering a single copy of a new book
-    convenience init(isbn: String, owner: String) {
+    
+    /**
+    Create a new book instance with a provided owner
+    
+    :param:     isbn    international standard book number for a book
+    :param:     owner   username of the owner of the book
+    
+    :returns:   A new book instance
+    */
+    
+    convenience public init(isbn: String, owner: String) {
         self.init(isbn:             isbn,
                   owner:            owner,
                   avaliableForRent: 1,
@@ -37,8 +48,16 @@ class CSBook: CSBaseModel {
                   numberOfCopies:   1)        
     }
     
-    /// Populate with data from a JSON object. Useful when communicating with the backend
-    convenience required init(json: JSON) {
+    
+    /**
+    Create a new book instance populated with data from a JSON object. Useful when communicating with external systems
+    
+    :param:     json   json object containing data about a book
+    
+    :returns:   A new book instance
+    */
+
+    convenience required public init(json: JSON) {
         self.init(isbn:             json["isbn"].stringValue,
                   owner:            json["owner"].stringValue,
                   avaliableForRent: json["avaliableForRent"].intValue,
@@ -46,6 +65,12 @@ class CSBook: CSBaseModel {
                   numberOfCopies:   json["numberOfCopies"].intValue)
     }
     
+    
+    /**
+    Create a dictionary containing all information the instance contains
+    
+    :returns:   A dictionary containing all information the instance contains
+    */
     
     override func toDictionary() -> [String : AnyObject] {
         return [

@@ -9,24 +9,16 @@
 import Foundation
 import SwiftyJSON
 
-// TODO: Default array should contain the local user
-
-class CSCrowd: CSBaseModel, Listable {
+/// A class representing a crowd
+public class CSCrowd: CSBaseModel, Listable {
     
     var id: String
     var name : String
     let creator: String
     var members : [String]
     
-    
-//    Listable
-    @objc var title : String {
-        return name
-    }
-    
-    @objc var subtitle : String {
-        return creator
-    }
+    @objc var title : String { return name }
+    @objc var subtitle : String { return creator }
     
     
     
@@ -38,16 +30,33 @@ class CSCrowd: CSBaseModel, Listable {
         self.members = members != nil ? members! : [creator]
     }
     
-    /// Useful when creating a new crowd
-    convenience init(name: String, creator: String) {
+    
+    /**
+    Create a new crowd instance with a provided creator
+    
+    :param:     name    name of the crowd
+    :param:     creator username of the creator
+    
+    :returns:   A new crowd instance
+    */
+    
+    convenience public init(name: String, creator: String) {
         self.init(id:       "",
                   name:     name,
                   creator:  creator,
                   members:  [creator])
     }
     
-    /// Populate with data from a JSON object. Useful when communicating with the backend
-    required convenience init(json: JSON) {
+    
+    /**
+    Create a new crowd instance populated with data from a JSON object. Useful when communicating with external systems
+    
+    :param:     json   json object containing data about a crowd
+    
+    :returns:   A new crowd instance
+    */
+    
+    required convenience public init(json: JSON) {
         self.init(id:       json["id"].stringValue,
                   name:     json["name"].stringValue,
                   creator:  json["creator"].stringValue,
@@ -55,8 +64,11 @@ class CSCrowd: CSBaseModel, Listable {
     }
     
     
+    /**
+    Create a dictionary containing all information the instance contains
     
-    
+    :returns:   A dictionary containing all information the instance contains
+    */
     
     override func toDictionary() -> [String : AnyObject] {
         return [

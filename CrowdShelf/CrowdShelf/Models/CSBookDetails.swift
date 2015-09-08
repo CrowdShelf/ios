@@ -9,8 +9,8 @@
 import Foundation
 import SwiftyJSON
 
-//TODO: Some of the properties are probably optional. Check documentation
-class CSBookDetails: CSBaseModel {
+/// A class representing detail about a book
+public class CSBookDetails: CSBaseModel {
     
     let description, publisher, title: String
     let numberOfRatings, numberOfPages: Int
@@ -20,7 +20,18 @@ class CSBookDetails: CSBaseModel {
     let thumbnailURL: NSURL
     var thumbnailImage : UIImage?
     
-    required init(json: JSON) {
+    
+    /**
+    Create a new book detail instance populated with data from a JSON object 
+    
+    :discussion: Useful when communicating with external systems
+    
+    :param:     json   json object containing data about a user
+    
+    :returns:   A new book details instance
+    */
+    
+    required public init(json: JSON) {
         self.description = json["description"].stringValue
         self.publisher = json["publisher"].stringValue
         self.title = json["title"].stringValue
@@ -47,6 +58,13 @@ class CSBookDetails: CSBaseModel {
 //        FIXME: Use date from provider
         self.publishedDate = NSDate()
     }
+    
+    
+    /**
+    Create a dictionary containing all information the instance contains
+    
+    :returns:   A dictionary containing all information the instance contains
+    */
     
     override func toDictionary() -> [String : AnyObject] {
         var dictionary : [String: AnyObject] = [

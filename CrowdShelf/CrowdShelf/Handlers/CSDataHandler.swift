@@ -18,23 +18,35 @@ The supported HTTP methods:
 - POST
 
 */
-enum CSHTTPMethod : String {
+public enum CSHTTPMethod : String {
     case GET    = "GET"
     case POST   = "POST"
     case PUT    = "PUT"
 }
 
 
+/**
+Notifications posted by CSDataHandler
+
+- LocalUserUpdated: 
+    A user was authenticated or signed out
+
+*/
+public struct CSDataHandlerNotification {
+    static let LocalUserUpdated = "localUserUpdated"
+}
+
+
 /// A closure type with a boolean parameter indicating the success of a request
-typealias CSBooleanCompletionHandler = ((Bool)->Void)?
+public typealias CSBooleanCompletionHandler = ((Bool)->Void)?
 
 /// A closure type with an optional JSON parameter which represents any received data
-typealias CSCompletionHandler = ((JSON?)->Void)
+public typealias CSCompletionHandler = ((JSON?)->Void)
 
 
 
 ///Responsible for brokering between the server and client
-class CSDataHandler {
+public class CSDataHandler {
     
     /// The root url for the database
     class var host : String {
@@ -42,17 +54,17 @@ class CSDataHandler {
     }
 
 //    MARK: Books
-    
+
     /**
     Retrieve information about a book from Google's REST API
     
-    :param: 	isbn                the international standard book number of a book
-    :param:     completionHandler   the closure which will be called with the result of the request
+    :param: 	isbn                international standard book number of a book
+    :param:     completionHandler   closure which will be called with the result of the request
     
     :returns: 	Void
     */
     
-    class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookDetails?) -> Void)) {
+    public class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookDetails?) -> Void)) {
         
         var bookDetails : CSBookDetails? = CSLocalDataHandler.detailsForBook(isbn)
         if bookDetails != nil {
@@ -89,13 +101,13 @@ class CSDataHandler {
     Add book to database or update existing one
     PUT /book
     
-    :param: 	book                 the book that will be added or updated
+    :param: 	book                 book that will be added or updated
     :param:     completionHandler    closure which will be called with the result of the request
     
     :returns: 	Void
     */
     
-    class func addBook(book: CSBook, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+    public class func addBook(book: CSBook, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
         self.sendRequestWithRoute("/book", andData: book.toJSON(), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
     
@@ -108,7 +120,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func getBook(isbn: String, owner: String, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
+    public class func getBook(isbn: String, owner: String, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
         self.sendRequestWithRoute("/book/\(isbn)/\(owner)", usingMethod: .GET) { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
@@ -129,7 +141,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func addRenter(renter: String, toBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+    public class func addRenter(renter: String, toBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
         self.sendRequestWithRoute("/book/\(isbn)/\(owner)/addrenter", andData: JSON(["username": renter]), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
     
@@ -144,7 +156,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func removeRenter(renter: String, fromBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+    public class func removeRenter(renter: String, fromBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
         self.sendRequestWithRoute("/book/\(isbn)/\(owner)/removerenter", andData: JSON(["username": renter]), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
     
@@ -159,7 +171,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func createCrowd(crowd: CSCrowd, withCompletionHandler completionHandler: ((CSCrowd?)->Void)?) {
+    public class func createCrowd(crowd: CSCrowd, withCompletionHandler completionHandler: ((CSCrowd?)->Void)?) {
         self.sendRequestWithRoute("/crowd", andData: crowd.toJSON(), usingMethod: .PUT) { (json) -> Void in
             if json == nil {
                 completionHandler?(nil)
@@ -178,7 +190,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((CSCrowd?)->Void)) {
+    public class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((CSCrowd?)->Void)) {
         self.sendRequestWithRoute("/crowd/\(crowdID)", usingMethod: .GET) { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
@@ -196,7 +208,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func getCrowdsWithCompletionHandler(completionHandler: (([CSCrowd]) -> Void) ) {
+    public class func getCrowdsWithCompletionHandler(completionHandler: (([CSCrowd]) -> Void) ) {
         self.sendRequestWithRoute("/crowd", usingMethod: .GET) { (json) -> Void in
             if json == nil {
                 completionHandler([])
@@ -218,7 +230,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func addMember(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+    public class func addMember(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
         
         self.sendRequestWithRoute("/crowd/\(crowdID)/addmember", andData: JSON(["username": username]), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
@@ -233,7 +245,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func removeMember(username: String, fromCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+    public class func removeMember(username: String, fromCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
         
         self.sendRequestWithRoute("/crowd/\(crowdID)/removemember", andData: JSON(["username": username]), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
@@ -249,7 +261,7 @@ class CSDataHandler {
     :returns: 	Void
     */
     
-    class func getUser(username: String, withCompletionHandler completionHandler: ((CSUser?)->Void)) {
+    public class func getUser(username: String, withCompletionHandler completionHandler: ((CSUser?)->Void)) {
         self.sendRequestWithRoute("/user/\(username)", usingMethod: .GET) { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
@@ -259,7 +271,8 @@ class CSDataHandler {
         }
     }
     
-    class func createUser(username: String, withCompletionHandler completionHandler: ((CSUser?)->Void )) {
+    /// *Not yet implemented*
+    public class func createUser(username: String, withCompletionHandler completionHandler: ((CSUser?)->Void )) {
         fatalError("Create user not implemented")
     }
     

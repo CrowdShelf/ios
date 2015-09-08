@@ -13,7 +13,7 @@ import SwiftyJSON
 private var _localUser : CSUser?
 
 /// Dummy class until model is defined
-class CSUser: CSBaseModel {
+public class CSUser: CSBaseModel {
     
     let username: String
     var booksOwned: [CSBook]
@@ -24,6 +24,7 @@ class CSUser: CSBaseModel {
         return self.booksOwned + self.booksRented
     }
     
+    /// The user that is currently authenticated
     class var localUser : CSUser? {
         get {
             return _localUser
@@ -42,15 +43,32 @@ class CSUser: CSBaseModel {
         super.init()
     }
     
-    convenience init(username: String) {
+    
+    /**
+    Create a new user instance
+    
+    :param:     username    username of the user
+    
+    :returns:   A new user instance
+    */
+    
+    convenience public init(username: String) {
         self.init(username: username,
                   booksOwned: [],
                   booksRented: [],
                   crowds: [])
     }
     
-    /// Populate with data from a JSON object. Useful when communicating with the backend
-    convenience required init(json: JSON) {
+    
+    /**
+    Create a new user instance populated with data from a JSON object. Useful when communicating with external systems
+    
+    :param:     json   json object containing data about a user
+    
+    :returns:   A new user instance
+    */
+    
+    convenience required public init(json: JSON) {
         let booksOwned : [CSBook] = map(json["booksOwned"].arrayValue) {CSBook(json: $0)}
         let booksRented : [CSBook] = map(json["booksRented"].arrayValue) {CSBook(json: $0)}
         let crowds : [CSCrowd] = map(json["crowds"].arrayValue) {CSCrowd(json: $0)}
@@ -61,6 +79,12 @@ class CSUser: CSBaseModel {
                   crowds:       crowds)
     }
     
+    
+    /**
+    Create a dictionary containing all information the instance contains
+    
+    :returns:   A dictionary containing all information the instance contains
+    */
     
     override func toDictionary() -> [String : AnyObject] {
         return [
