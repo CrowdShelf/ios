@@ -9,27 +9,49 @@
 import Foundation
 import SwiftyJSON
 
+
+/**
+The supported HTTP methods:
+
+- GET
+- PUT
+- POST
+
+*/
 enum CSHTTPMethod : String {
     case GET    = "GET"
     case POST   = "POST"
     case PUT    = "PUT"
 }
 
-struct CSDataHandlerNotification {
-    static let LocalUserUpdated = "localUserUpdated"
-}
 
-typealias CSPutCompletionHandler = ((Bool)->Void)?
-typealias CSPostCompletionHandler = CSPutCompletionHandler
+/// A closure type with a boolean parameter indicating the success of a request
+typealias CSBooleanCompletionHandler = ((Bool)->Void)?
+
+/// A closure type with an optional JSON parameter which represents any received data
 typealias CSCompletionHandler = ((JSON?)->Void)
 
+
+
+///Responsible for brokering between the server and client
 class CSDataHandler {
     
+    /// The root url for the database
     class var host : String {
         return "https://crowdshelf.herokuapp.com/api"
     }
+
+//    MARK: Books
     
-    /// Retrieves information about a book from Google's REST API
+    /**
+    Retrieve information about a book from Google's REST API
+    
+    :param: 	isbn                the international standard book number of a book
+    :param:     completionHandler   the closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
     class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookDetails?) -> Void)) {
         
         var bookDetails : CSBookDetails? = CSLocalDataHandler.detailsForBook(isbn)
@@ -37,7 +59,9 @@ class CSDataHandler {
             return completionHandler(bookDetails)
         }
         
-        self.sendGetRequest("https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)") { (json) -> Void in
+        let route = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)"
+        
+        self.sendRequestWithRoute(route, usingMethod: .GET) { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
             } else if json!["totalItems"].intValue == 0 {
@@ -60,96 +84,257 @@ class CSDataHandler {
         }
     }
     
+    /**
     
-    class func addBook(book: CSBook, withCompletionHandler completionHandler: CSPutCompletionHandler) {
-        let route = host+"/book"
-        self.sendPutRequest(route, json: book.toJSON(), withCompletionHandler: completionHandler)
+    Add book to database or update existing one
+    PUT /book
+    
+    :param: 	book                 the book that will be added or updated
+    :param:     completionHandler    closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func addBook(book: CSBook, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+        self.sendRequestWithRoute("/book", andData: book.toJSON(), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
     
-    class func getBook(isbn: String, owner: CSUser, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
-        let route = host+"/book/\(isbn)/\(owner.username)"
-        self.sendGetRequest(route, withCompletionHandler: { (json) -> Void in
+    /**
+    Get book from database
+    
+    :param: 	isbn                international standard book number for the book that will be added or updated
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func getBook(isbn: String, owner: String, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
+        self.sendRequestWithRoute("/book/\(isbn)/\(owner)", usingMethod: .GET) { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
             }
             
             completionHandler(CSBook(json: json!))
-        })
+        }
     }
     
-    class func addRenter(renter: CSUser, book: CSBook, withCompletionHandler completionHandler: CSPutCompletionHandler) {
-        let route = host+"/book/\(book.isbn)/\(book.owner)/addrenter"
-        self.sendPutRequest(route, json: renter.toJSON(), withCompletionHandler: completionHandler)
+    /**
+    Add renter to owners book in database
+    
+    :param: 	renter              username of the renter
+    :param:     isbn                international standard book number for the book
+    :param:     owner               username of the owner
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func addRenter(renter: String, toBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+        self.sendRequestWithRoute("/book/\(isbn)/\(owner)/addrenter", andData: JSON(["username": renter]), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
     
-    class func removeRenter(renter: CSUser, book: CSBook, withCompletionHandler completionHandler: CSPutCompletionHandler) {
-        let route = host+"/book/\(book.isbn)/\(book.owner)/removerenter"
-        self.sendPutRequest(route, json: renter.toJSON(), withCompletionHandler: completionHandler)
+    /**
+    Remove renter from owners book in database
+    
+    :param: 	renter              username of the renter
+    :param:     isbn                international standard book number for the book
+    :param:     owner               username of the owner
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func removeRenter(renter: String, fromBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+        self.sendRequestWithRoute("/book/\(isbn)/\(owner)/removerenter", andData: JSON(["username": renter]), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
     
-    class func createCrowd(crowd: CSCrowd, withCompletionHandler completionHandler: CSPutCompletionHandler) {
-        let route = host+"/crowd"
-        self.sendPutRequest(route, json: crowd.toJSON(), withCompletionHandler: completionHandler)
+//    MARK: - Crowds
+    
+    /**
+    Create a new crowd in the database. If successful, a crowd object with correct id is returned
+    
+    :param: 	crowd               a crowd object representing the new crowd
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func createCrowd(crowd: CSCrowd, withCompletionHandler completionHandler: ((CSCrowd?)->Void)?) {
+        self.sendRequestWithRoute("/crowd", andData: crowd.toJSON(), usingMethod: .PUT) { (json) -> Void in
+            if json == nil {
+                completionHandler?(nil)
+            } else {
+                completionHandler?(CSCrowd(json: json!))
+            }
+        }
     }
+    
+    /**
+    Get crowd for id from database
+    
+    :param: 	crowdID             id of the crowd
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
     
     class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((CSCrowd?)->Void)) {
-        let route = host+"/crowd/\(crowdID)"
-        self.sendGetRequest(route, withCompletionHandler: { (json) -> Void in
+        self.sendRequestWithRoute("/crowd/\(crowdID)", usingMethod: .GET) { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
             }
             
             completionHandler(CSCrowd(json: json!))
-        })
+        }
     }
     
-    class func addCrowdMember(crowd: CSCrowd, member: CSUser, withCompletionHandler completionHandler: CSPutCompletionHandler) {
-        let route = host+"/crowd/\(crowd.id)/addememeber"
-        self.sendPutRequest(route, json: member.toJSON(), withCompletionHandler: completionHandler)
+    /**
+    Get crowds form database
+    
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func getCrowdsWithCompletionHandler(completionHandler: (([CSCrowd]) -> Void) ) {
+        self.sendRequestWithRoute("/crowd", usingMethod: .GET) { (json) -> Void in
+            if json == nil {
+                completionHandler([])
+            }
+            
+            completionHandler(json!.arrayValue.map({
+                CSCrowd(json: $0)
+            }))
+        }
     }
     
-    class func removeCrowdMember(crowd: CSCrowd, member: CSUser, withCompletionHandler completionHandler: CSPutCompletionHandler) {
-        let route = host+"/crowd/\(crowd.id)/removemember"
-        self.sendPutRequest(route, json: member.toJSON(), withCompletionHandler: completionHandler)
+    /**
+    Add member to crowd
+    
+    :param: 	username            username of the member
+    :param:     crowdID             id of the crowd
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func addMember(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+        
+        self.sendRequestWithRoute("/crowd/\(crowdID)/addmember", andData: JSON(["username": username]), usingMethod: .PUT, withCompletionHandler: completionHandler)
     }
     
-    class func getUser(name: String, withCompletionHandler completionHandler: ((CSUser?)->Void)) {
-        let route = host+"/user/\(name)"
-        self.sendGetRequest(route, withCompletionHandler: { (json) -> Void in
+    /**
+    Remove member from crowd
+    
+    :param: 	username            username of the member
+    :param:     crowdID             id of the crowd
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func removeMember(username: String, fromCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+        
+        self.sendRequestWithRoute("/crowd/\(crowdID)/removemember", andData: JSON(["username": username]), usingMethod: .PUT, withCompletionHandler: completionHandler)
+    }
+    
+//    MARK: - Users
+    
+    /**
+    Get user with the provided username if it exists
+    
+    :param: 	username            username of the user
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    class func getUser(username: String, withCompletionHandler completionHandler: ((CSUser?)->Void)) {
+        self.sendRequestWithRoute("/user/\(username)", usingMethod: .GET) { (json) -> Void in
             if json == nil {
                 return completionHandler(nil)
             }
             
             completionHandler(CSUser(json: json!))
-        })
+        }
     }
     
-    
+    class func createUser(username: String, withCompletionHandler completionHandler: ((CSUser?)->Void )) {
+        fatalError("Create user not implemented")
+    }
     
     
 //    MARK: - Private
     
-    private class func sendGetRequest(route: String, withCompletionHandler completionHandler: CSCompletionHandler) {
-        self.sendRequestWithRoute(route, andData: nil, usingMethod: .GET) { (json) -> Void in
-            completionHandler(json)
-        }
-    }
+    /**
+    A convenience method for requests without body data that does not provide a data object, but a boolean indicating the success of the request
     
-    private class func sendPutRequest(route: String, json: JSON, withCompletionHandler completionHandler: CSPutCompletionHandler) {
-        self.sendRequestWithRoute(route, andData: json, usingMethod: .PUT) { (json) -> Void in
+    :param: 	subRoute            subpath for the request from the host root
+    :param:     method              HTTP method that should be used
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    private class func sendRequestWithRoute(subRoute: String, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+        self.sendRequestWithRoute(subRoute, andData: nil, usingMethod: method) { (json) in
+            if json == nil {
+                completionHandler?(false)
+                return
+            }
+            
             completionHandler?(true)
         }
     }
     
-    private class func sendPostRequest(route: String, json: JSON, withCompletionHandler completionHandler: CSPutCompletionHandler) {
-        self.sendRequestWithRoute(route, andData: json, usingMethod: .POST) { (json) -> Void in
+    /**
+    A convenience method for requests that does not provide a data object, but a boolean indicating the success of the request
+    
+    :param: 	subRoute            subpath for the request from the host root
+    :param:     json                an optional JSON object. This will become the body of the request
+    :param:     method              HTTP method that should be used
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    private class func sendRequestWithRoute(subRoute: String, andData json: JSON?, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+        self.sendRequestWithRoute(subRoute, andData: json, usingMethod: method) { (json) in
+            if json == nil {
+                completionHandler?(false)
+                return
+            }
+            
             completionHandler?(true)
         }
     }
     
-    /// The endpoint in the client application responsible for sending an async request and converting the response to a JSON object
-    private class func sendRequestWithRoute(route: String, andData json: JSON?, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSCompletionHandler) {
-        
+    /**
+    A convenience method for requests without body data
+    
+    :param: 	subRoute            subpath for the request from the host root
+    :param:     method              HTTP method that should be used
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    
+    private class func sendRequestWithRoute(subRoute: String, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSCompletionHandler) {
+        self.sendRequestWithRoute(subRoute, andData: nil, usingMethod: method, withCompletionHandler: completionHandler)
+    }
+    
+    /**
+    The endpoint in the client application responsible for sending an asynchronous request and converting the response to a JSON object
+    
+    :param: 	subRoute            subpath for the request from the host root
+    :param:     json                an optional JSON object. This will become the body of the request
+    :param:     method              HTTP method that should be used
+    :param:     completionHandler   closure which will be called with the result of the request
+    
+    :returns: 	Void
+    */
+    private class func sendRequestWithRoute(subRoute: String, andData json: JSON?, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSCompletionHandler) {
+        let route = host + subRoute
         let URL = NSURL(string: route)
         if URL == nil {
             completionHandler(nil)
@@ -160,7 +345,7 @@ class CSDataHandler {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod  = method.rawValue
         
-        if method != .GET {
+        if json != nil {
             request.HTTPBody = json!.rawData(options: .PrettyPrinted, error: nil)
         }
         
