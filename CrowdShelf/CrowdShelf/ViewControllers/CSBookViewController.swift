@@ -21,6 +21,7 @@ class CSBookViewController: UIViewController {
     
     @IBOutlet weak var descriptionTextView: UITextView?
     
+    @IBOutlet var buttons: [UIButton]?
     
 //    MARK: - Properties
     
@@ -45,9 +46,17 @@ class CSBookViewController: UIViewController {
         super.viewDidLoad()
         
         self.updateView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateView", name: CSNotification.LocalUserUpdated, object: nil)
     }
     
     func updateView() {
+        
+        self.coverImageView?.image = self.book?.details?.thumbnailImage
+        self.titleLabel?.text = self.book?.details?.title
+        self.publisherLabel?.text = self.book?.details?.publisher
+        self.descriptionTextView?.text = self.book?.details?.description
+        
         
         if self.book?.details?.authors != nil {
             self.authorsLabel?.text = ", ".join(self.book!.details!.authors)
@@ -57,14 +66,21 @@ class CSBookViewController: UIViewController {
             self.numberOfCopiesLabel?.text = "\(self.book!.numberOfCopies)"
         }
         
-        self.coverImageView?.image = self.book?.details?.thumbnailImage
-        self.titleLabel?.text = self.book?.details?.title
-        self.publisherLabel?.text = self.book?.details?.publisher
-        self.descriptionTextView?.text = self.book?.details?.description
+        if self.buttons != nil {
+            for button in self.buttons! {
+                button.enabled = CSUser.localUser != nil
+            }
+        }
+        
     }
     
     @IBAction func addBookToShelf(sender: AnyObject) {
         self.book?.numberOfCopies++
+        
+        
+        if !contains(CSUser.localUser!.books, self.book!) {
+            CSUser.localUser?.booksOwned.append(self.book!)
+        }
 
         self.updateView()
     }
@@ -80,9 +96,12 @@ class CSBookViewController: UIViewController {
     }
     
     @IBAction func close(sender: AnyObject) {
-        CSDataHandler.addBook(self.book!, withCompletionHandler: { (success) -> Void in
-            
-        })
+        if self.book?.owner != nil {
+            CSDataHandler.addBook(self.book!, withCompletionHandler: { (success) -> Void in
+                
+            })
+        }
+        
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }

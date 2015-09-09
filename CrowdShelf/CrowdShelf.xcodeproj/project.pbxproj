@@ -318,6 +318,7 @@
 				TargetAttributes = {
 					3953BF831B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = FXWNTJ4XVX;
 					};
 					3953BF981B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
@@ -622,6 +623,7 @@
 			baseConfigurationReference = 84601E213D2377A8AB372FD8 /* Pods-CrowdShelf.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CrowdShelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -633,6 +635,7 @@
 			baseConfigurationReference = FB4479BCD7D29044F3F93950 /* Pods-CrowdShelf.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CrowdShelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

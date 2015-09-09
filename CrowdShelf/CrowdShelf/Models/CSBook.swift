@@ -9,20 +9,23 @@
 import Foundation
 import SwiftyJSON
 
+public func ==(lhs: CSBook, rhs: CSBook) -> Bool {
+    return lhs.isbn == rhs.isbn
+}
 
 /// A class representing a book
-public class CSBook: CSBaseModel {
-    
+public class CSBook: CSBaseModel, Equatable {
+
     let isbn : String
-    let owner : String
+    let owner : String?
     var avaliableForRent: Int
     var rentedTo : [String]
     var numberOfCopies: Int
     
-    var details : CSBookDetails?
+    var details : CSBookInformation?
     
     /// The bare-bones workhorse of the book initalizers
-    init(isbn: String, owner: String, avaliableForRent: Int, rentedTo: [String], numberOfCopies: Int) {
+    init(isbn: String, owner: String?, avaliableForRent: Int, rentedTo: [String], numberOfCopies: Int) {
         self.isbn = isbn
         self.owner = owner
         self.avaliableForRent = avaliableForRent
@@ -40,7 +43,7 @@ public class CSBook: CSBaseModel {
     :returns:   A new book instance
     */
     
-    convenience public init(isbn: String, owner: String) {
+    convenience public init(isbn: String, owner: String?) {
         self.init(isbn:             isbn,
                   owner:            owner,
                   avaliableForRent: 1,
@@ -59,7 +62,7 @@ public class CSBook: CSBaseModel {
 
     convenience required public init(json: JSON) {
         self.init(isbn:             json["isbn"].stringValue,
-                  owner:            json["owner"].stringValue,
+                  owner:            json["owner"].string,
                   avaliableForRent: json["numAvailableForRent"].intValue,
                   rentedTo:         json["rentedTo"].arrayObject as! [String],
                   numberOfCopies:   json["numberOfCopies"].intValue)
@@ -75,7 +78,7 @@ public class CSBook: CSBaseModel {
     override func toDictionary() -> [String : AnyObject] {
         return [
             "isbn": self.isbn,
-            "owner": self.owner,
+            "owner": self.owner!,
             "numAvailableForRent": self.avaliableForRent,
             "numberOfCopies": self.numberOfCopies,
             "rentedTo": self.rentedTo

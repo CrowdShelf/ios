@@ -31,7 +31,7 @@ public class CSUser: CSBaseModel {
         }
         set {
             _localUser = newValue
-            NSNotificationCenter.defaultCenter().postNotificationName(CSDataHandlerNotification.LocalUserUpdated, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(CSNotification.LocalUserUpdated, object: nil)
         }
     }
     

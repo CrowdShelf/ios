@@ -25,7 +25,7 @@ class CSCrowdsViewController: CSListViewController {
             self.performSegueWithIdentifier("ShowCrowdShelf", sender: listable)
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadCrowds", name: CSDataHandlerNotification.LocalUserUpdated, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadCrowds", name: CSNotification.LocalUserUpdated, object: nil)
     }
     
     func loadCrowds() {

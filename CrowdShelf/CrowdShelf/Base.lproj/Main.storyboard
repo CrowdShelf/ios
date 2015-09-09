@@ -181,7 +181,7 @@
                             <constraint firstItem="1s0-gA-9JO" firstAttribute="top" secondItem="OlL-g1-0un" secondAttribute="topMargin" constant="20" id="j0B-yg-obe"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Crowds" image="crowd" id="JDz-uc-KC7"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Crowds" image="crowd" id="JDz-uc-KC7"/>
                     <connections>
                         <outlet property="tableView" destination="1s0-gA-9JO" id="37G-eb-IKt"/>
                         <segue destination="1Fi-S1-8Cx" kind="modal" identifier="ShowCrowdShelf" id="lKz-2S-7LT"/>
@@ -447,30 +447,6 @@
                                             <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="dPE-ew-iLZ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlv-kk-4FW">
-                                        <rect key="frame" x="108" y="90" width="59" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Borrow">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQv-g6-wxX">
-                                        <rect key="frame" x="111" y="129" width="54" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Return">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2M-yi-XdK">
-                                        <rect key="frame" x="93" y="168" width="89" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Pass along">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="removeBookFromShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="xdw-W7-tm3"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btr-xZ-Bc4">
                                         <rect key="frame" x="121" y="248" width="34" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -494,17 +470,11 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="s5Q-EU-aoY" secondAttribute="bottom" constant="10" id="2ep-WV-7Fw"/>
-                                    <constraint firstAttribute="centerY" secondItem="K2M-yi-XdK" secondAttribute="centerY" id="8U6-VX-dJk"/>
                                     <constraint firstAttribute="centerX" secondItem="s5Q-EU-aoY" secondAttribute="centerX" id="N6z-o4-DCC"/>
                                     <constraint firstAttribute="centerX" secondItem="ag6-ku-bC7" secondAttribute="centerX" id="TqK-DH-bFj"/>
                                     <constraint firstAttribute="centerX" secondItem="btr-xZ-Bc4" secondAttribute="centerX" id="a28-Qb-hvc"/>
-                                    <constraint firstAttribute="centerX" secondItem="BQv-g6-wxX" secondAttribute="centerX" id="ef6-l5-swn"/>
-                                    <constraint firstItem="K2M-yi-XdK" firstAttribute="top" secondItem="BQv-g6-wxX" secondAttribute="bottom" constant="5" id="gbE-qd-5xs"/>
                                     <constraint firstItem="ag6-ku-bC7" firstAttribute="top" secondItem="btr-xZ-Bc4" secondAttribute="bottom" constant="5" id="kwh-zA-6lp"/>
-                                    <constraint firstItem="BQv-g6-wxX" firstAttribute="top" secondItem="hlv-kk-4FW" secondAttribute="bottom" constant="5" id="oYg-TN-Egk"/>
-                                    <constraint firstAttribute="centerX" secondItem="K2M-yi-XdK" secondAttribute="centerX" id="p96-qt-vF3"/>
                                     <constraint firstItem="s5Q-EU-aoY" firstAttribute="top" secondItem="ag6-ku-bC7" secondAttribute="bottom" constant="5" id="qtu-aa-W4W"/>
-                                    <constraint firstAttribute="centerX" secondItem="hlv-kk-4FW" secondAttribute="centerX" id="y4e-mB-YeC"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -526,6 +496,8 @@
                         <outlet property="numberOfCopiesLabel" destination="rnF-g0-Mrp" id="yH1-aA-NUH"/>
                         <outlet property="publisherLabel" destination="gyC-5O-Bvv" id="dKS-rU-xWx"/>
                         <outlet property="titleLabel" destination="8VP-qu-ZWa" id="syV-eU-3Gd"/>
+                        <outletCollection property="buttons" destination="btr-xZ-Bc4" collectionClass="NSMutableArray" id="0An-PJ-Zg8"/>
+                        <outletCollection property="buttons" destination="ag6-ku-bC7" collectionClass="NSMutableArray" id="lh5-34-Mm1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJg-xY-8L6" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -26,13 +26,13 @@ public enum CSHTTPMethod : String {
 
 
 /**
-Notifications posted by CSDataHandler
+Notifications posted for important events
 
 - LocalUserUpdated: 
     A user was authenticated or signed out
 
 */
-public struct CSDataHandlerNotification {
+public struct CSNotification {
     static let LocalUserUpdated = "localUserUpdated"
 }
 
@@ -66,9 +66,9 @@ public class CSDataHandler {
     :returns: 	Void
     */
     
-    public class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookDetails?) -> Void)) {
+    public class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookInformation?) -> Void)) {
         
-        var bookDetails : CSBookDetails? = CSLocalDataHandler.detailsForBook(isbn)
+        var bookDetails : CSBookInformation? = CSLocalDataHandler.detailsForBook(isbn)
         if bookDetails != nil {
             return completionHandler(bookDetails)
         }
@@ -92,7 +92,7 @@ public class CSDataHandler {
                     return completionHandler(nil)
                 }
                 
-                bookDetails = CSBookDetails(json: json["items"][0]["volumeInfo"])
+                bookDetails = CSBookInformation(json: json["items"][0]["volumeInfo"])
                 
                 if bookDetails?.thumbnailURL != nil {
                     let imageData = NSData(contentsOfURL: bookDetails!.thumbnailURL)

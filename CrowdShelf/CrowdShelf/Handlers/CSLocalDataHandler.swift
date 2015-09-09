@@ -132,12 +132,15 @@ public class CSLocalDataHandler {
     
     :param:     isbn        international standard book number for a book
     
-    :returns: 	An optional CSBookDetails object
+    :returns: 	An optional CSBookInformation object
     */
     
-    public class func detailsForBook(isbn: String) -> CSBookDetails? {
-        let detailsDictionary = self.getObjectForKey(isbn, fromFile: CSLocalDataFile.BookDetail) as? [String: AnyObject]
-        return detailsDictionary != nil ? CSBookDetails(json: JSON(detailsDictionary!)) : nil
+    public class func detailsForBook(isbn: String) -> CSBookInformation? {
+        if let detailsDictionary = self.getObjectForKey(isbn, fromFile: CSLocalDataFile.BookDetail) as? [String: AnyObject] {
+            return CSBookInformation(json: JSON(detailsDictionary))
+        }
+        
+        return nil
     }
     
     
@@ -150,7 +153,7 @@ public class CSLocalDataHandler {
     :returns: 	A boolean indicating the success of the operation
     */
     
-    public class func setDetails(details: CSBookDetails, forBook isbn: String) -> Bool {
+    public class func setDetails(details: CSBookInformation, forBook isbn: String) -> Bool {
         return self.setObject(details.toDictionary(), forKey: isbn, inFile: CSLocalDataFile.BookDetail)
     }
     

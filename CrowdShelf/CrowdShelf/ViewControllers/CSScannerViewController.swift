@@ -32,7 +32,7 @@ class CSScannerViewController: UIViewController {
                             self.scannedCodes.insert(code.stringValue)
                             
 //                            Use an existing book if possible
-                            var book = CSBook(isbn: code.stringValue, owner: CSUser.localUser!.username)
+                            var book = CSBook(isbn: code.stringValue, owner: CSUser.localUser?.username)
                             self.performSegueWithIdentifier("ShowBook", sender: book)
                         }
                     }

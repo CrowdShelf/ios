@@ -17,7 +17,7 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadBooks", name: CSDataHandlerNotification.LocalUserUpdated, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadBooks", name: CSNotification.LocalUserUpdated, object: nil)
         
         self.loadBooks()
     }

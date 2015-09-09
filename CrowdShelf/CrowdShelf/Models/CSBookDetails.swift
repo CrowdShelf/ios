@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 /// A class representing detail about a book
-public class CSBookDetails: CSBaseModel {
+public class CSBookInformation: CSBaseModel {
     
     let description, publisher, title: String
     let numberOfRatings, numberOfPages: Int
