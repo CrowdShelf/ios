@@ -31,6 +31,7 @@ public class CSUser: CSBaseModel {
         }
         set {
             _localUser = newValue
+            NSNotificationCenter.defaultCenter().postNotificationName(CSDataHandlerNotification.LocalUserUpdated, object: nil)
         }
     }
     
@@ -73,7 +74,7 @@ public class CSUser: CSBaseModel {
         let booksRented : [CSBook] = map(json["booksRented"].arrayValue) {CSBook(json: $0)}
         let crowds : [CSCrowd] = map(json["crowds"].arrayValue) {CSCrowd(json: $0)}
         
-        self.init(username:     json["id"].stringValue,
+        self.init(username:     json["username"].stringValue,
                   booksOwned:   booksOwned,
                   booksRented:  booksRented,
                   crowds:       crowds)

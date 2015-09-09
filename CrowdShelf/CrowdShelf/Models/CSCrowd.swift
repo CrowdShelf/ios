@@ -14,20 +14,20 @@ public class CSCrowd: CSBaseModel, Listable {
     
     var id: String
     var name : String
-    let creator: String
-    var members : [String]
+    let owner: String
+    var members : [CSUser]
     
     @objc var title : String { return name }
-    @objc var subtitle : String { return creator }
+    @objc var subtitle : String { return owner }
     
     
     
     /// The bare-bones workhorse of the crowd initalizers
-    init(id: String, name: String, creator: String, members: [String]?) {
+    init(id: String, name: String, owner: String, members: [CSUser]?) {
         self.id = id
         self.name = name
-        self.creator = creator
-        self.members = members != nil ? members! : [creator]
+        self.owner = owner
+        self.members = members ?? []
     }
     
     
@@ -40,11 +40,11 @@ public class CSCrowd: CSBaseModel, Listable {
     :returns:   A new crowd instance
     */
     
-    convenience public init(name: String, creator: String) {
-        self.init(id:       "",
+    convenience public init(name: String, owner: String) {
+        self.init(id:       "-1",
                   name:     name,
-                  creator:  creator,
-                  members:  [creator])
+                  owner:    owner,
+                  members:  nil)
     }
     
     
@@ -57,10 +57,12 @@ public class CSCrowd: CSBaseModel, Listable {
     */
     
     required convenience public init(json: JSON) {
-        self.init(id:       json["id"].stringValue,
+        let members: [CSUser] = json["members"].arrayValue.map {CSUser(json: $0)}
+        
+        self.init(id:       json["_id"].stringValue,
                   name:     json["name"].stringValue,
-                  creator:  json["creator"].stringValue,
-                  members:  json["members"].arrayObject as? [String])
+                  owner:    json["owner"].stringValue,
+                  members:  members)
     }
     
     
@@ -72,9 +74,9 @@ public class CSCrowd: CSBaseModel, Listable {
     
     override func toDictionary() -> [String : AnyObject] {
         return [
-            "id": self.id,
+            "_id": self.id,
             "name": self.name,
-            "creator": self.creator,
+            "owner": self.owner,
             "members": self.members
         ]
     }

@@ -23,12 +23,18 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     }
     
     func loadBooks() {
-        self.books = CSUser.localUser != nil ? CSUser.localUser!.books : []
+        if CSUser.localUser != nil {
+            self.books = CSUser.localUser!.books
+        }
+        
         self.updateView()
     }
     
     func updateView() {
-        self.collectionView?.reloadData()
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.collectionView?.reloadData()
+        })
+        
     }
 
 //    MARK: - Collection View Cell Data Source

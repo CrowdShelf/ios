@@ -58,6 +58,8 @@ public class CSDataHandler {
     /**
     Retrieve information about a book from Google's REST API
     
+    :discussion: This is currently functioning as a standalone method in the class. It has no internal dependencies. Will be modified or moved in the future. It should support multiple information providers
+    
     :param: 	isbn                international standard book number of a book
     :param:     completionHandler   closure which will be called with the result of the request
     
@@ -72,27 +74,37 @@ public class CSDataHandler {
         }
         
         let route = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)"
-        
-        self.sendRequestWithRoute(route, usingMethod: .GET) { (json) -> Void in
-            if json == nil {
-                return completionHandler(nil)
-            } else if json!["totalItems"].intValue == 0 {
-                println("No items returned for isbn: \(isbn)")
-                return completionHandler(nil)
-            }
+        if let URL = NSURL(string: route) {
+            let request = NSURLRequest(URL: URL)
             
-            bookDetails = CSBookDetails(json: json!["items"][0]["volumeInfo"])
-            
-            if bookDetails?.thumbnailURL != nil {
-                let imageData = NSData(contentsOfURL: bookDetails!.thumbnailURL)
-                if imageData != nil {
-                    bookDetails?.thumbnailImage = UIImage(data: imageData!)
+            NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+                if error != nil {
+                    println(error.localizedDescription)
+                    return completionHandler(nil)
                 }
-            }
-            
-            CSLocalDataHandler.setDetails(bookDetails!, forBook: isbn)
-            
-            completionHandler(bookDetails)
+                
+                let json = JSON(data: data, options: .AllowFragments, error: nil)
+                
+                if json == nil {
+                    return completionHandler(nil)
+                } else if json["totalItems"].intValue == 0 {
+                    println("No items returned for isbn: \(isbn)")
+                    return completionHandler(nil)
+                }
+                
+                bookDetails = CSBookDetails(json: json["items"][0]["volumeInfo"])
+                
+                if bookDetails?.thumbnailURL != nil {
+                    let imageData = NSData(contentsOfURL: bookDetails!.thumbnailURL)
+                    if imageData != nil {
+                        bookDetails?.thumbnailImage = UIImage(data: imageData!)
+                    }
+                }
+                
+                CSLocalDataHandler.setDetails(bookDetails!, forBook: isbn)
+                
+                completionHandler(bookDetails)
+            }).resume()
         }
     }
     
@@ -213,8 +225,8 @@ public class CSDataHandler {
             if json == nil {
                 completionHandler([])
             }
-            
-            completionHandler(json!.arrayValue.map({
+
+            completionHandler(json!["crowds"].arrayValue.map({
                 CSCrowd(json: $0)
             }))
         }
@@ -322,6 +334,7 @@ public class CSDataHandler {
         }
     }
     
+    
     /**
     A convenience method for requests without body data
     
@@ -336,6 +349,7 @@ public class CSDataHandler {
         self.sendRequestWithRoute(subRoute, andData: nil, usingMethod: method, withCompletionHandler: completionHandler)
     }
     
+    
     /**
     The endpoint in the client application responsible for sending an asynchronous request and converting the response to a JSON object
     
@@ -346,6 +360,7 @@ public class CSDataHandler {
     
     :returns: 	Void
     */
+    
     private class func sendRequestWithRoute(subRoute: String, andData json: JSON?, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSCompletionHandler) {
         let route = host + subRoute
         let URL = NSURL(string: route)
@@ -364,15 +379,16 @@ public class CSDataHandler {
         
         NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if error != nil {
-                println(error)
+                println(error.localizedDescription)
                 return completionHandler(nil)
             }
             
+            var responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
             var jsonError: NSError?
             let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)
             
             if jsonError != nil {
-                println(jsonError)
+                println(jsonError?.localizedDescription)
             }
             
             completionHandler(json)

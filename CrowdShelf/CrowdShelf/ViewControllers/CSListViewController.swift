@@ -18,7 +18,8 @@ class CSListViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView?
     
-    var cellStyle: UITableViewCellStyle = .Default
+    var tableViewCellStyle: UITableViewCellStyle = .Subtitle
+    
     /// Called when user selects a row
     var completionHandler: ((Listable)->Void)?
     var listData : [Listable] = [] {
@@ -37,7 +38,9 @@ class CSListViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func updateView() {
-        self.tableView?.reloadData()
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView?.reloadData()
+        })
     }
     
     
@@ -54,7 +57,7 @@ class CSListViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("ListCell") as? UITableViewCell
         if cell == nil {
-            cell = UITableViewCell(style: self.cellStyle, reuseIdentifier: "ListCell")
+            cell = UITableViewCell(style: self.tableViewCellStyle, reuseIdentifier: "ListCell")
         }
         
         let listable = self.listData[indexPath.row]

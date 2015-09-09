@@ -80,6 +80,10 @@ class CSBookViewController: UIViewController {
     }
     
     @IBAction func close(sender: AnyObject) {
+        CSDataHandler.addBook(self.book!, withCompletionHandler: { (success) -> Void in
+            
+        })
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

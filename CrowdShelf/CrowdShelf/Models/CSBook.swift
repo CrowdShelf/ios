@@ -60,7 +60,7 @@ public class CSBook: CSBaseModel {
     convenience required public init(json: JSON) {
         self.init(isbn:             json["isbn"].stringValue,
                   owner:            json["owner"].stringValue,
-                  avaliableForRent: json["avaliableForRent"].intValue,
+                  avaliableForRent: json["numAvailableForRent"].intValue,
                   rentedTo:         json["rentedTo"].arrayObject as! [String],
                   numberOfCopies:   json["numberOfCopies"].intValue)
     }
@@ -76,7 +76,7 @@ public class CSBook: CSBaseModel {
         return [
             "isbn": self.isbn,
             "owner": self.owner,
-            "avaliableForRent": self.avaliableForRent,
+            "numAvailableForRent": self.avaliableForRent,
             "numberOfCopies": self.numberOfCopies,
             "rentedTo": self.rentedTo
         ]

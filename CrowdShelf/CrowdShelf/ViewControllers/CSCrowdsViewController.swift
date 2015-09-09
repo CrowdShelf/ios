@@ -11,10 +11,13 @@ import UIKit
 
 class CSCrowdsViewController: CSListViewController {
     
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.tableViewCellStyle = .Subtitle
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.cellStyle = .Subtitle
         
         self.loadCrowds()
         
@@ -26,8 +29,10 @@ class CSCrowdsViewController: CSListViewController {
     }
     
     func loadCrowds() {
-        self.listData = CSUser.localUser != nil ? CSUser.localUser!.crowds : []
-        self.updateView()
+        CSDataHandler.getCrowdsWithCompletionHandler { (crowds) -> Void in
+            self.listData = crowds
+            self.updateView()
+        }
     }
     
 }
