@@ -16,12 +16,14 @@ The supported HTTP methods:
 - GET
 - PUT
 - POST
+- DELETE
 
 */
 public enum CSHTTPMethod : String {
     case GET    = "GET"
     case POST   = "POST"
     case PUT    = "PUT"
+    case DELETE = "DELETE"
 }
 
 
@@ -54,58 +56,20 @@ public class CSDataHandler {
     }
 
 //    MARK: Books
+    
+    public class func informationForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookInformation?)->Void)) {
 
-    /**
-    Retrieve information about a book from Google's REST API
-    
-    :discussion: This is currently functioning as a standalone method in the class. It has no internal dependencies. Will be modified or moved in the future. It should support multiple information providers
-    
-    :param: 	isbn                international standard book number of a book
-    :param:     completionHandler   closure which will be called with the result of the request
-    
-    :returns: 	Void
-    */
-    
-    public class func detailsForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookInformation?) -> Void)) {
-        
-        var bookDetails : CSBookInformation? = CSLocalDataHandler.detailsForBook(isbn)
-        if bookDetails != nil {
-            return completionHandler(bookDetails)
+        if let bookInformation = CSLocalDataHandler.detailsForBook(isbn) {
+            return completionHandler(bookInformation)
         }
         
-        let route = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)"
-        if let URL = NSURL(string: route) {
-            let request = NSURLRequest(URL: URL)
+        CSGoogleBooksHandler.informationForBook(isbn, withCompletionHandler: { (bookInformation) -> Void in
+            if bookInformation != nil {
+                CSLocalDataHandler.setDetails(bookInformation!, forBook: isbn)
+            }
             
-            NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-                if error != nil {
-                    println(error.localizedDescription)
-                    return completionHandler(nil)
-                }
-                
-                let json = JSON(data: data, options: .AllowFragments, error: nil)
-                
-                if json == nil {
-                    return completionHandler(nil)
-                } else if json["totalItems"].intValue == 0 {
-                    println("No items returned for isbn: \(isbn)")
-                    return completionHandler(nil)
-                }
-                
-                bookDetails = CSBookInformation(json: json["items"][0]["volumeInfo"])
-                
-                if bookDetails?.thumbnailURL != nil {
-                    let imageData = NSData(contentsOfURL: bookDetails!.thumbnailURL)
-                    if imageData != nil {
-                        bookDetails?.thumbnailImage = UIImage(data: imageData!)
-                    }
-                }
-                
-                CSLocalDataHandler.setDetails(bookDetails!, forBook: isbn)
-                
-                completionHandler(bookDetails)
-            }).resume()
-        }
+            completionHandler(bookInformation)
+        })
     }
     
     /**
@@ -389,6 +353,7 @@ public class CSDataHandler {
             
             if jsonError != nil {
                 println(jsonError?.localizedDescription)
+                return completionHandler(nil)
             }
             
             completionHandler(json)

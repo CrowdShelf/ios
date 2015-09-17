@@ -30,8 +30,8 @@ class CSBookViewController: UIViewController {
             self.updateView()
             
             if book?.details == nil {
-                CSDataHandler.detailsForBook(book!.isbn, withCompletionHandler: { (details) -> Void in
-                    self.book?.details = details
+                CSDataHandler.informationForBook(book!.isbn, withCompletionHandler: { (information) -> Void in
+                    self.book?.details = information
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.updateView()
                     })

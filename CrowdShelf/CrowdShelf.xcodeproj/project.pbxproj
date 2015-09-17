@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390EAF261BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift */; };
+		390EAF271BAA0EEA00D0DCEB /* CSGoogleBooksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift */; };
 		39153A511B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A521B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A551B97406700D34293 /* CSCrowdShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */; };
@@ -60,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		05AEA34B1565A3C4AA87D425 /* Pods-CrowdShelfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.release.xcconfig"; sourceTree = "<group>"; };
+		390EAF251BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSGoogleBooksHandler.swift; path = Handlers/CSGoogleBooksHandler.swift; sourceTree = "<group>"; };
 		39153A501B970F1E00D34293 /* CSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTextView.swift; path = Views/CSTextView.swift; sourceTree = "<group>"; };
 		39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowdShelfViewController.swift; path = ViewControllers/CSCrowdShelfViewController.swift; sourceTree = "<group>"; };
 		3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +206,7 @@
 			children = (
 				3953BFAB1B8E230300E39CC9 /* CSLocalDataHandler.swift */,
 				39C2F5921B90527200529AA9 /* CSDataHandler.swift */,
+				390EAF251BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift */,
 			);
 			name = Handlers;
 			sourceTree = "<group>";
@@ -313,6 +317,7 @@
 		3953BF7C1B8DC29B00E39CC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Øyvind Grimnes";
 				TargetAttributes = {
@@ -470,6 +475,7 @@
 				39C2F58A1B8FA40D00529AA9 /* CSBookDetails.swift in Sources */,
 				39C2F5931B90527200529AA9 /* CSDataHandler.swift in Sources */,
 				3953BFAC1B8E230300E39CC9 /* CSLocalDataHandler.swift in Sources */,
+				390EAF261BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift in Sources */,
 				39C2F5881B8FA0CE00529AA9 /* CSUser.swift in Sources */,
 				39C2F5AE1B906D8D00529AA9 /* CSBookViewController.swift in Sources */,
 				39C2F5B51B90A40A00529AA9 /* CSShelfViewController.swift in Sources */,
@@ -495,6 +501,7 @@
 				395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */,
 				39C2F5A81B906D4300529AA9 /* CSBaseModel.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
+				390EAF271BAA0EEA00D0DCEB /* CSGoogleBooksHandler.swift in Sources */,
 				39153A5B1B9778C900D34293 /* CSBookCollectionViewCell.swift in Sources */,
 				39A0CB011B958DFC00321225 /* CSListViewController.swift in Sources */,
 				39C2F5AA1B906D4300529AA9 /* CSBookDetails.swift in Sources */,

@@ -18,9 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         if let username = CSLocalDataHandler.getObjectForKey("username", fromFile: CSLocalDataFile.User) as? String {
-            CSDataHandler.getUser(username, withCompletionHandler: { (user) -> Void in
-                CSUser.localUser = user!
-            })
+            CSUser.localUser = CSUser(username: username)
+            
+//            CSDataHandler.getUser(username, withCompletionHandler: { (user) -> Void in
+//                CSUser.localUser = user!
+//            })
         } else {
             self.showUsernameInput()
         }
