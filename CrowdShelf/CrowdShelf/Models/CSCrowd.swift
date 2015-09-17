@@ -34,10 +34,10 @@ public class CSCrowd: CSBaseModel, Listable {
     /**
     Create a new crowd instance with a provided creator
     
-    :param:     name    name of the crowd
-    :param:     creator username of the creator
+    - parameter     name:    name of the crowd
+    - parameter     creator: username of the creator
     
-    :returns:   A new crowd instance
+    - returns:   A new crowd instance
     */
     
     convenience public init(name: String, owner: String) {
@@ -51,9 +51,9 @@ public class CSCrowd: CSBaseModel, Listable {
     /**
     Create a new crowd instance populated with data from a JSON object. Useful when communicating with external systems
     
-    :param:     json   json object containing data about a crowd
+    - parameter     json:   json object containing data about a crowd
     
-    :returns:   A new crowd instance
+    - returns:   A new crowd instance
     */
     
     required convenience public init(json: JSON) {
@@ -69,7 +69,7 @@ public class CSCrowd: CSBaseModel, Listable {
     /**
     Create a dictionary containing all information the instance contains
     
-    :returns:   A dictionary containing all information the instance contains
+    - returns:   A dictionary containing all information the instance contains
     */
     
     override func toDictionary() -> [String : AnyObject] {

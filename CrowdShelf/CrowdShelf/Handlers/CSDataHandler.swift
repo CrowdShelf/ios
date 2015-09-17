@@ -77,10 +77,10 @@ public class CSDataHandler {
     Add book to database or update existing one
     PUT /book
     
-    :param: 	book                 book that will be added or updated
-    :param:     completionHandler    closure which will be called with the result of the request
+    - parameter 	book:                 book that will be added or updated
+    - parameter     completionHandler:    closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func addBook(book: CSBook, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
@@ -90,10 +90,10 @@ public class CSDataHandler {
     /**
     Get book from database
     
-    :param: 	isbn                international standard book number for the book that will be added or updated
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	isbn:                international standard book number for the book that will be added or updated
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func getBook(isbn: String, owner: String, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
@@ -109,12 +109,12 @@ public class CSDataHandler {
     /**
     Add renter to owners book in database
     
-    :param: 	renter              username of the renter
-    :param:     isbn                international standard book number for the book
-    :param:     owner               username of the owner
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	renter:              username of the renter
+    - parameter     isbn:                international standard book number for the book
+    - parameter     owner:               username of the owner
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func addRenter(renter: String, toBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
@@ -124,12 +124,12 @@ public class CSDataHandler {
     /**
     Remove renter from owners book in database
     
-    :param: 	renter              username of the renter
-    :param:     isbn                international standard book number for the book
-    :param:     owner               username of the owner
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	renter:              username of the renter
+    - parameter     isbn:                international standard book number for the book
+    - parameter     owner:               username of the owner
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func removeRenter(renter: String, fromBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
@@ -141,10 +141,10 @@ public class CSDataHandler {
     /**
     Create a new crowd in the database. If successful, a crowd object with correct id is returned
     
-    :param: 	crowd               a crowd object representing the new crowd
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	crowd:               a crowd object representing the new crowd
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func createCrowd(crowd: CSCrowd, withCompletionHandler completionHandler: ((CSCrowd?)->Void)?) {
@@ -160,10 +160,10 @@ public class CSDataHandler {
     /**
     Get crowd for id from database
     
-    :param: 	crowdID             id of the crowd
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	crowdID:             id of the crowd
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((CSCrowd?)->Void)) {
@@ -179,9 +179,9 @@ public class CSDataHandler {
     /**
     Get crowds form database
     
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func getCrowdsWithCompletionHandler(completionHandler: (([CSCrowd]) -> Void) ) {
@@ -199,11 +199,11 @@ public class CSDataHandler {
     /**
     Add member to crowd
     
-    :param: 	username            username of the member
-    :param:     crowdID             id of the crowd
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	username:            username of the member
+    - parameter     crowdID:             id of the crowd
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func addMember(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
@@ -214,11 +214,11 @@ public class CSDataHandler {
     /**
     Remove member from crowd
     
-    :param: 	username            username of the member
-    :param:     crowdID             id of the crowd
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	username:            username of the member
+    - parameter     crowdID:             id of the crowd
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func removeMember(username: String, fromCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
@@ -231,10 +231,10 @@ public class CSDataHandler {
     /**
     Get user with the provided username if it exists
     
-    :param: 	username            username of the user
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	username:            username of the user
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func getUser(username: String, withCompletionHandler completionHandler: ((CSUser?)->Void)) {
@@ -258,11 +258,11 @@ public class CSDataHandler {
     /**
     A convenience method for requests without body data that does not provide a data object, but a boolean indicating the success of the request
     
-    :param: 	subRoute            subpath for the request from the host root
-    :param:     method              HTTP method that should be used
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	subRoute:            subpath for the request from the host root
+    - parameter     method:              HTTP method that should be used
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     private class func sendRequestWithRoute(subRoute: String, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
@@ -279,12 +279,12 @@ public class CSDataHandler {
     /**
     A convenience method for requests that does not provide a data object, but a boolean indicating the success of the request
     
-    :param: 	subRoute            subpath for the request from the host root
-    :param:     json                an optional JSON object. This will become the body of the request
-    :param:     method              HTTP method that should be used
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	subRoute:            subpath for the request from the host root
+    - parameter     json:                an optional JSON object. This will become the body of the request
+    - parameter     method:              HTTP method that should be used
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     private class func sendRequestWithRoute(subRoute: String, andData json: JSON?, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
@@ -302,11 +302,11 @@ public class CSDataHandler {
     /**
     A convenience method for requests without body data
     
-    :param: 	subRoute            subpath for the request from the host root
-    :param:     method              HTTP method that should be used
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	subRoute:            subpath for the request from the host root
+    - parameter     method:              HTTP method that should be used
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     private class func sendRequestWithRoute(subRoute: String, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSCompletionHandler) {
@@ -317,12 +317,12 @@ public class CSDataHandler {
     /**
     The endpoint in the client application responsible for sending an asynchronous request and converting the response to a JSON object
     
-    :param: 	subRoute            subpath for the request from the host root
-    :param:     json                an optional JSON object. This will become the body of the request
-    :param:     method              HTTP method that should be used
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	subRoute:            subpath for the request from the host root
+    - parameter     json:                an optional JSON object. This will become the body of the request
+    - parameter     method:              HTTP method that should be used
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     private class func sendRequestWithRoute(subRoute: String, andData json: JSON?, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSCompletionHandler) {
@@ -338,21 +338,21 @@ public class CSDataHandler {
         request.HTTPMethod  = method.rawValue
         
         if json != nil {
-            request.HTTPBody = json!.rawData(options: .PrettyPrinted, error: nil)
+            request.HTTPBody = try? json!.rawData(options: .PrettyPrinted)
         }
         
         NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if error != nil {
-                println(error.localizedDescription)
+                print(error!.localizedDescription)
                 return completionHandler(nil)
             }
             
-            var responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            var responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
             var jsonError: NSError?
-            let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)
+            let json = JSON(data: data!, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)
             
             if jsonError != nil {
-                println(jsonError?.localizedDescription)
+                print(jsonError?.localizedDescription)
                 return completionHandler(nil)
             }
             

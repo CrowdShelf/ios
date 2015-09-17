@@ -48,9 +48,9 @@ public class CSUser: CSBaseModel {
     /**
     Create a new user instance
     
-    :param:     username    username of the user
+    - parameter     username:    username of the user
     
-    :returns:   A new user instance
+    - returns:   A new user instance
     */
     
     convenience public init(username: String) {
@@ -64,15 +64,15 @@ public class CSUser: CSBaseModel {
     /**
     Create a new user instance populated with data from a JSON object. Useful when communicating with external systems
     
-    :param:     json   json object containing data about a user
+    - parameter     json:   json object containing data about a user
     
-    :returns:   A new user instance
+    - returns:   A new user instance
     */
     
     convenience required public init(json: JSON) {
-        let booksOwned : [CSBook] = map(json["booksOwned"].arrayValue) {CSBook(json: $0)}
-        let booksRented : [CSBook] = map(json["booksRented"].arrayValue) {CSBook(json: $0)}
-        let crowds : [CSCrowd] = map(json["crowds"].arrayValue) {CSCrowd(json: $0)}
+        let booksOwned : [CSBook] = json["booksOwned"].arrayValue.map {CSBook(json: $0)}
+        let booksRented : [CSBook] = json["booksRented"].arrayValue.map {CSBook(json: $0)}
+        let crowds : [CSCrowd] = json["crowds"].arrayValue.map {CSCrowd(json: $0)}
         
         self.init(username:     json["username"].stringValue,
                   booksOwned:   booksOwned,
@@ -84,7 +84,7 @@ public class CSUser: CSBaseModel {
     /**
     Create a dictionary containing all information the instance contains
     
-    :returns:   A dictionary containing all information the instance contains
+    - returns:   A dictionary containing all information the instance contains
     */
     
     override func toDictionary() -> [String : AnyObject] {

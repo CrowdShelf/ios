@@ -18,9 +18,9 @@ public class CSBaseModel {
     /**
     Create a new instance populated with data from a JSON object. Useful when communicating with external systems
     
-    :param:     json   json object containing data about a book
+    - parameter     json:   json object containing data about a book
     
-    :returns:   A new instance
+    - returns:   A new instance
     */
     
     convenience required public init(json: JSON) {
@@ -32,9 +32,9 @@ public class CSBaseModel {
     /**
     Create a new instance populated with data from a dictionary
     
-    :param:     dictionary   dictionary object containing data about a book
+    - parameter     dictionary:   dictionary object containing data about a book
     
-    :returns:   A new instance
+    - returns:   A new instance
     */
     
     convenience public init(dictionary: [String: AnyObject]) {
@@ -45,7 +45,7 @@ public class CSBaseModel {
     /**
     Create a dictionary containing all information the instance contains
     
-    :returns:   A dictionary containing all information the instance contains
+    - returns:   A dictionary containing all information the instance contains
     */
     
     func toDictionary() -> [String: AnyObject] {
@@ -56,7 +56,7 @@ public class CSBaseModel {
     /**
     Create a JSON object containing all information the instance contains
     
-    :returns:   A JSON object containing all information the instance contains
+    - returns:   A JSON object containing all information the instance contains
     */
     
     func toJSON() -> JSON {

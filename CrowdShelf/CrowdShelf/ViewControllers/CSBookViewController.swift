@@ -59,7 +59,7 @@ class CSBookViewController: UIViewController {
         
         
         if self.book?.details?.authors != nil {
-            self.authorsLabel?.text = ", ".join(self.book!.details!.authors)
+            self.authorsLabel?.text = self.book!.details!.authors.joinWithSeparator(", ")
         }
         
         if self.book != nil {
@@ -78,7 +78,7 @@ class CSBookViewController: UIViewController {
         self.book?.numberOfCopies++
         
         
-        if !contains(CSUser.localUser!.books, self.book!) {
+        if !CSUser.localUser!.books.contains(self.book!) {
             CSUser.localUser?.booksOwned.append(self.book!)
         }
 

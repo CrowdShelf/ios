@@ -37,10 +37,10 @@ public class CSBook: CSBaseModel, Equatable {
     /**
     Create a new book instance with a provided owner
     
-    :param:     isbn    international standard book number for a book
-    :param:     owner   username of the owner of the book
+    - parameter     isbn:    international standard book number for a book
+    - parameter     owner:   username of the owner of the book
     
-    :returns:   A new book instance
+    - returns:   A new book instance
     */
     
     convenience public init(isbn: String, owner: String?) {
@@ -55,9 +55,9 @@ public class CSBook: CSBaseModel, Equatable {
     /**
     Create a new book instance populated with data from a JSON object. Useful when communicating with external systems
     
-    :param:     json   json object containing data about a book
+    - parameter     json:   json object containing data about a book
     
-    :returns:   A new book instance
+    - returns:   A new book instance
     */
 
     convenience required public init(json: JSON) {
@@ -72,7 +72,7 @@ public class CSBook: CSBaseModel, Equatable {
     /**
     Create a dictionary containing all information the instance contains
     
-    :returns:   A dictionary containing all information the instance contains
+    - returns:   A dictionary containing all information the instance contains
     */
     
     override func toDictionary() -> [String : AnyObject] {

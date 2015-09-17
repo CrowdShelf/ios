@@ -17,10 +17,10 @@ public class CSGoogleBooksHandler {
     
     :discussion: This is currently functioning as a standalone method in the class. It has no internal dependencies. Will be modified or moved in the future. It should support multiple information providers
     
-    :param: 	isbn                international standard book number of a book
-    :param:     completionHandler   closure which will be called with the result of the request
+    - parameter 	isbn:                international standard book number of a book
+    - parameter     completionHandler:   closure which will be called with the result of the request
     
-    :returns: 	Void
+    - returns: 	Void
     */
     
     public class func informationForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookInformation?) -> Void)) {
@@ -28,7 +28,7 @@ public class CSGoogleBooksHandler {
             if json == nil {
                 return completionHandler(nil)
             } else if json!["totalItems"].intValue == 0 {
-                println("No items returned for isbn: \(isbn)")
+                print("No items returned for isbn: \(isbn)")
                 return completionHandler(nil)
             }
             
@@ -53,11 +53,11 @@ public class CSGoogleBooksHandler {
             
             NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
                 if error != nil {
-                    println(error.localizedDescription)
+                    print(error!.localizedDescription)
                     return completionHandler(nil)
                 }
                 
-                let json = JSON(data: data, options: .AllowFragments, error: nil)
+                let json = JSON(data: data!, options: .AllowFragments, error: nil)
                 
                 completionHandler(json)
             }).resume()

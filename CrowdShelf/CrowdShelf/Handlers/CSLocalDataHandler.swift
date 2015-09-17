@@ -44,11 +44,11 @@ public class CSLocalDataHandler {
     /**
     Change the value for the provided key in a file
     
-    :param: 	object      object that will be the new value
-    :param:     key         key for which to change the value
-    :param:     fileName    name of the file in which to change the value
+    - parameter 	object:      object that will be the new value
+    - parameter     key:         key for which to change the value
+    - parameter     fileName:    name of the file in which to change the value
     
-    :returns: 	Boolean indicatig the success of the operation
+    - returns: 	Boolean indicatig the success of the operation
     */
     
     public class func setObject(object : AnyObject?, forKey key: String, inFile fileName: String) -> Bool {
@@ -67,16 +67,21 @@ public class CSLocalDataHandler {
     /**
     Overwrites all data in a file
     
-    :param: 	fileName    file that will be created or overwritten
+    - parameter 	fileName:    file that will be created or overwritten
     
-    :returns: 	Boolean indicatig the success of the operation
+    - returns: 	Boolean indicatig the success of the operation
     */
     
     public class func setData(data: [String: AnyObject]?, inFile fileName: String) -> Bool {
         let plistPath = self.pathToFileInDocumentsDirectory(fileName, ofType: "plist")
         
         if data == nil {
-            return NSFileManager.defaultManager().removeItemAtPath(plistPath, error: nil)
+            do {
+                try NSFileManager.defaultManager().removeItemAtPath(plistPath)
+                return true
+            } catch _ {
+                return false
+            }
         }
         
         return (data! as NSDictionary).writeToFile(plistPath, atomically: true)
@@ -88,9 +93,9 @@ public class CSLocalDataHandler {
     /**
     Returns all data found in a file as a dictionary
     
-    :param:     fileName    file to be read
+    - parameter     fileName:    file to be read
     
-    :returns: 	A dictionary containing the data from the file
+    - returns: 	A dictionary containing the data from the file
     */
     
     public class func getDataFromFile(fileName: String) -> [String: AnyObject] {
@@ -99,7 +104,7 @@ public class CSLocalDataHandler {
         if NSFileManager.defaultManager().fileExistsAtPath(plistPath) {
             return NSDictionary(contentsOfFile: plistPath) as! [String: AnyObject]
         } else {
-            var bundleFilePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "plist")
+            let bundleFilePath = NSBundle.mainBundle().pathForResource(fileName, ofType: "plist")
             if bundleFilePath != nil && NSFileManager.defaultManager().fileExistsAtPath(bundleFilePath!) {
                 return NSDictionary(contentsOfFile: bundleFilePath!) as! [String: AnyObject]
             }
@@ -111,10 +116,10 @@ public class CSLocalDataHandler {
     /**
     Get the value for the provided key in a file
     
-    :param:     key         key for for the value that will be returned
-    :param:     fileName    name of the file that will be read
+    - parameter     key:         key for for the value that will be returned
+    - parameter     fileName:    name of the file that will be read
     
-    :returns: 	An optional object
+    - returns: 	An optional object
     */
     
     public class func getObjectForKey(key: String, fromFile fileName: String) -> AnyObject? {
@@ -130,9 +135,9 @@ public class CSLocalDataHandler {
     /**
     Get the details for an ISBN from cache
     
-    :param:     isbn        international standard book number for a book
+    - parameter     isbn:        international standard book number for a book
     
-    :returns: 	An optional CSBookInformation object
+    - returns: 	An optional CSBookInformation object
     */
     
     public class func detailsForBook(isbn: String) -> CSBookInformation? {
@@ -147,10 +152,10 @@ public class CSLocalDataHandler {
     /**
     Add the details for an ISBN to cache
     
-    :param:     details     book details to be cached
-    :param:     isbn        international standard book number for a book
+    - parameter     details:     book details to be cached
+    - parameter     isbn:        international standard book number for a book
     
-    :returns: 	A boolean indicating the success of the operation
+    - returns: 	A boolean indicating the success of the operation
     */
     
     public class func setDetails(details: CSBookInformation, forBook isbn: String) -> Bool {
@@ -161,9 +166,9 @@ public class CSLocalDataHandler {
     /**
     Remove the details for an ISBN from cache
     
-    :param:     isbn        international standard book number for a book
+    - parameter     isbn:        international standard book number for a book
     
-    :returns: 	A boolean indicating the success of the operation
+    - returns: 	A boolean indicating the success of the operation
     */
     
     public class func removeDetailsForBook(isbn: String) -> Bool {
@@ -176,7 +181,7 @@ public class CSLocalDataHandler {
     
     /// Returns the path to a specified file in the documents directory
     private class func pathToFileInDocumentsDirectory(fileName: String, ofType fileType: String) -> String {
-        let documentsPath : String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+        let documentsPath : String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] 
         return "\(documentsPath)/\(fileName).\(fileType)"
     }
 }

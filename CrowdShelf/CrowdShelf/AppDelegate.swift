@@ -54,10 +54,10 @@ extension AppDelegate: UIAlertViewDelegate {
             return
         }
         
-        let username = alertView.textFieldAtIndex(0)!.text
+        let username = alertView.textFieldAtIndex(0)!.text!
             
-        if count(username) != 0 {
-            CSLocalDataHandler.setObject(username!, forKey: "username", inFile: CSLocalDataFile.User)
+        if username.characters.count != 0 {
+            CSLocalDataHandler.setObject(username, forKey: "username", inFile: CSLocalDataFile.User)
             
             CSDataHandler.getUser(username, withCompletionHandler: { (user) -> Void in
                 if user == nil {

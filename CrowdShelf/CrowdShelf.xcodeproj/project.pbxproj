@@ -317,6 +317,7 @@
 		3953BF7C1B8DC29B00E39CC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Øyvind Grimnes";

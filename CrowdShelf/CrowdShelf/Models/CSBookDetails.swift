@@ -26,9 +26,9 @@ public class CSBookInformation: CSBaseModel {
     
     :discussion: Useful when communicating with external systems
     
-    :param:     json   json object containing data about a user
+    - parameter     json:   json object containing data about a user
     
-    :returns:   A new book details instance
+    - returns:   A new book details instance
     */
     
     required public init(json: JSON) {
@@ -63,7 +63,7 @@ public class CSBookInformation: CSBaseModel {
     /**
     Create a dictionary containing all information the instance contains
     
-    :returns:   A dictionary containing all information the instance contains
+    - returns:   A dictionary containing all information the instance contains
     */
     
     override func toDictionary() -> [String : AnyObject] {
@@ -77,7 +77,7 @@ public class CSBookInformation: CSBaseModel {
             "averageRating": self.averageRating,
             "publishedDate": (self.publishedDate.timeIntervalSince1970 * 1000),
             "imageLinks": [
-                "thumbnail": self.thumbnailURL.absoluteString!
+                "thumbnail": self.thumbnailURL.absoluteString
             ]
         ]
         

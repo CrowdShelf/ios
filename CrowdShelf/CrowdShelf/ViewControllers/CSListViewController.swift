@@ -55,7 +55,7 @@ class CSListViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ListCell") as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("ListCell")
         if cell == nil {
             cell = UITableViewCell(style: self.tableViewCellStyle, reuseIdentifier: "ListCell")
         }
