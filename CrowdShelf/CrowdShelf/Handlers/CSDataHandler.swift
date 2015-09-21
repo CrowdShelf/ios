@@ -7,25 +7,8 @@
 //
 
 import Foundation
-import SwiftyJSON
-
-
-/**
-The supported HTTP methods:
-
-- GET
-- PUT
-- POST
-- DELETE
-
-*/
-public enum CSHTTPMethod : String {
-    case GET    = "GET"
-    case POST   = "POST"
-    case PUT    = "PUT"
-    case DELETE = "DELETE"
-}
-
+import RealmSwift
+import Alamofire
 
 /**
 Notifications posted for important events
@@ -39,101 +22,169 @@ public struct CSNotification {
 }
 
 
-/// A closure type with a boolean parameter indicating the success of a request
-public typealias CSBooleanCompletionHandler = ((Bool)->Void)?
-
-/// A closure type with an optional JSON parameter which represents any received data
-public typealias CSCompletionHandler = ((JSON?)->Void)
-
-
-
 ///Responsible for brokering between the server and client
 public class CSDataHandler {
-    
-    /// The root url for the database
-    class var host : String {
-        return "https://crowdshelf.herokuapp.com/api"
-    }
 
-//    MARK: Books
+//    MARK: - Book Information
     
-    public class func informationForBook(isbn: String, withCompletionHandler completionHandler: ((CSBookInformation?)->Void)) {
-
-        if let bookInformation = CSLocalDataHandler.detailsForBook(isbn) {
-            return completionHandler(bookInformation)
+    /**
+    
+    Retrieve information about a book
+    
+    Checks the local cache for the information. If not present, it will query an information provider for the information and cache it for later
+    
+    - parameter 	isbn:                 international standard book number of the book
+    - parameter     completionHandler:    closure which will be called with the result of the request
+    
+    */
+    
+    public class func informationAboutBook(isbn: String, withCompletionHandler completionHandler: ((CSBookInformation?)->Void)) {
+        
+        do {
+            if let bookInformation = try Realm().objectForPrimaryKey(CSBookInformation.self, key: isbn) {
+                return completionHandler(bookInformation)
+            }
+        } catch let error as NSError {
+            csprint(CS_DEBUG_REALM, "Failed to retrieve book information from Realm for isbn: \(isbn)", "\nError:", error.debugDescription)
         }
         
-        CSGoogleBooksHandler.informationForBook(isbn, withCompletionHandler: { (bookInformation) -> Void in
-            if bookInformation != nil {
-                CSLocalDataHandler.setDetails(bookInformation!, forBook: isbn)
+        self.informationFromGoogleAboutBook(isbn) { (value: [String:AnyObject]?) -> Void in
+            if value == nil {
+                return completionHandler(nil)
+            }
+            
+            var valueDictionary = value!
+            self.makeJSONDictionaryRealmCompatible(&valueDictionary)
+            
+            let bookInformation = CSBookInformation(value: valueDictionary)
+            
+            if let imageData = NSData(contentsOfURL: NSURL(string: bookInformation.thumbnailURLString)!) {
+                bookInformation.thumbnailData = imageData
             }
             
             completionHandler(bookInformation)
-        })
+            
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(bookInformation, update: true)
+                }
+            }
+            catch let error as NSError {
+                csprint(CS_DEBUG_REALM, "Failed to add book information for isbn: \(isbn)", "\nError:", error.debugDescription)
+            }
+        }
     }
+    
+    
+//    MARK: - Books
     
     /**
     
     Add book to database or update existing one
-    PUT /book
     
     - parameter 	book:                 book that will be added or updated
     - parameter     completionHandler:    closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
-    public class func addBook(book: CSBook, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
-        self.sendRequestWithRoute("/book", andData: book.toJSON(), usingMethod: .PUT, withCompletionHandler: completionHandler)
+    public class func addBook(book: CSBook, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
+        self.sendRequestWithSubRoute("/books", usingMethod: .POST, andParameters: book.serialize() as? [String: AnyObject], parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+            completionHandler?(isSuccess)
+        }
     }
     
     /**
-    Get book from database
     
-    - parameter 	isbn:                international standard book number for the book that will be added or updated
-    - parameter     completionHandler:   closure which will be called with the result of the request
+    Remove book from database
     
-    - returns: 	Void
+    - parameter 	bookID:               id of the book that will be removed
+    - parameter     completionHandler:    closure which will be called with the result of the request
+    
     */
     
-    public class func getBook(isbn: String, owner: String, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
-        self.sendRequestWithRoute("/book/\(isbn)/\(owner)", usingMethod: .GET) { (json) -> Void in
-            if json == nil {
-                return completionHandler(nil)
-            }
-            
-            completionHandler(CSBook(json: json!))
+    public class func removeBook(bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
+        
+        self.sendRequestWithSubRoute("/books/\(bookID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
+            completionHandler?(isSuccess)
         }
     }
+    
+    /**
+    
+    Get book from database
+    
+    - parameter 	bookID:              ID of the book
+    - parameter     completionHandler:   closure which will be called with the result of the request
+    
+    */
+    
+    public class func getBook(bookID: String, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
+        self.sendRequestWithSubRoute("/books/\(bookID)", usingMethod: .GET) { (result, isSuccess) -> Void in
+            if let value = result as? [String: AnyObject] {
+                let book = CSBook(value: value)
+                return completionHandler(book)
+            }
+            
+            completionHandler(nil)
+        }
+    }
+    
+    
+    /**
+    Get books from database matching query. Retrieves all books if parameters is nil
+    
+    - parameter     parameters:         dictionary containing key-value parameters used for querying
+    - parameter     completionHandler:  closure which will be called with the result of the request
+    
+    */
+    
+    public class func getBooksWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([CSBook])->Void)) {
+        self.sendRequestWithSubRoute("/books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+            
+            if let resultDictionary = result as? [String: AnyObject] {
+                if let value = resultDictionary["books"] as? [[String: AnyObject]] {
+                    let books = value.map {CSBook(value: $0)}
+                    return completionHandler(books)
+                }
+            }
+            
+            
+            completionHandler([])
+        }
+    }
+    
+    
+//    MARK: - NOT YET IMPLEMENTED -
     
     /**
     Add renter to owners book in database
     
     - parameter 	renter:              username of the renter
-    - parameter     isbn:                international standard book number for the book
-    - parameter     owner:               username of the owner
+    - parameter     bookID:              the ID of the book
     - parameter     completionHandler:   closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
-    public class func addRenter(renter: String, toBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
-        self.sendRequestWithRoute("/book/\(isbn)/\(owner)/addrenter", andData: JSON(["username": renter]), usingMethod: .PUT, withCompletionHandler: completionHandler)
+    public class func addRenter(renter: String, toBook bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
+        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renter)", usingMethod: .PUT, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+            completionHandler?(isSuccess)
+        }
     }
     
     /**
     Remove renter from owners book in database
     
     - parameter 	renter:              username of the renter
-    - parameter     isbn:                international standard book number for the book
-    - parameter     owner:               username of the owner
+    - parameter     bookID:              the ID of the book
     - parameter     completionHandler:   closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
-    public class func removeRenter(renter: String, fromBook isbn: String, withOwner owner: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
-        self.sendRequestWithRoute("/book/\(isbn)/\(owner)/removerenter", andData: JSON(["username": renter]), usingMethod: .PUT, withCompletionHandler: completionHandler)
+    public class func removeRenter(renter: String, fromBook bookID: String, withOwner username: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
+        self.sendRequestWithSubRoute("/books/\(bookID)/renter/\(username)", usingMethod: .DELETE, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+            completionHandler?(isSuccess)
+        }
     }
     
 //    MARK: - Crowds
@@ -148,11 +199,17 @@ public class CSDataHandler {
     */
     
     public class func createCrowd(crowd: CSCrowd, withCompletionHandler completionHandler: ((CSCrowd?)->Void)?) {
-        self.sendRequestWithRoute("/crowd", andData: crowd.toJSON(), usingMethod: .PUT) { (json) -> Void in
-            if json == nil {
-                completionHandler?(nil)
+        self.sendRequestWithSubRoute("/crowds", usingMethod: .PUT, andParameters: crowd.serialize() as? [String : AnyObject], parameterEncoding: .JSON)  { (result, isSuccess) -> Void in
+            if let value = result as? [String: AnyObject] {
+                
+                //
+                var updatedValue = value
+                self.makeJSONDictionaryRealmCompatible(&updatedValue)
+                //
+                
+                completionHandler?(CSCrowd(value: updatedValue))
             } else {
-                completionHandler?(CSCrowd(json: json!))
+                completionHandler?(nil)
             }
         }
     }
@@ -167,12 +224,19 @@ public class CSDataHandler {
     */
     
     public class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((CSCrowd?)->Void)) {
-        self.sendRequestWithRoute("/crowd/\(crowdID)", usingMethod: .GET) { (json) -> Void in
-            if json == nil {
-                return completionHandler(nil)
+        
+        self.sendRequestWithSubRoute("/crowds/\(crowdID)", usingMethod: .GET, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+            if let value = result as? [String: AnyObject] {
+                
+                //
+                var updatedValue = value
+                self.makeJSONDictionaryRealmCompatible(&updatedValue)
+                //
+                
+                completionHandler(CSCrowd(value: updatedValue))
+            } else {
+                completionHandler(nil)
             }
-            
-            completionHandler(CSCrowd(json: json!))
         }
     }
     
@@ -185,14 +249,21 @@ public class CSDataHandler {
     */
     
     public class func getCrowdsWithCompletionHandler(completionHandler: (([CSCrowd]) -> Void) ) {
-        self.sendRequestWithRoute("/crowd", usingMethod: .GET) { (json) -> Void in
-            if json == nil {
+        self.sendRequestWithSubRoute("/crowds", usingMethod: .GET, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+            
+            if let values = result as? [[String: AnyObject]] {
+                completionHandler(values.map { (value) -> CSCrowd in
+                    
+                    //
+                    var updatedValue = value
+                    self.makeJSONDictionaryRealmCompatible(&updatedValue)
+                    //
+                    
+                    return CSCrowd(value: updatedValue)
+                    })
+            } else {
                 completionHandler([])
             }
-
-            completionHandler(json!["crowds"].arrayValue.map({
-                CSCrowd(json: $0)
-            }))
         }
     }
     
@@ -203,12 +274,12 @@ public class CSDataHandler {
     - parameter     crowdID:             id of the crowd
     - parameter     completionHandler:   closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
-    public class func addMember(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
-        
-        self.sendRequestWithRoute("/crowd/\(crowdID)/addmember", andData: JSON(["username": username]), usingMethod: .PUT, withCompletionHandler: completionHandler)
+    public class func addMember(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
+        self.sendRequestWithSubRoute("/crowds/\(crowdID)/members/\(username)", usingMethod: .PUT) { (result, isSuccess) -> Void in
+            completionHandler?(isSuccess)
+        }
     }
     
     /**
@@ -218,12 +289,13 @@ public class CSDataHandler {
     - parameter     crowdID:             id of the crowd
     - parameter     completionHandler:   closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
-    public class func removeMember(username: String, fromCrowd crowdID: String, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
+    public class func removeMember(username: String, fromCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
         
-        self.sendRequestWithRoute("/crowd/\(crowdID)/removemember", andData: JSON(["username": username]), usingMethod: .PUT, withCompletionHandler: completionHandler)
+        self.sendRequestWithSubRoute("/crowds/\(crowdID)/members/\(username)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
+            completionHandler?(isSuccess)
+        }
     }
     
 //    MARK: - Users
@@ -234,16 +306,15 @@ public class CSDataHandler {
     - parameter 	username:            username of the user
     - parameter     completionHandler:   closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
     public class func getUser(username: String, withCompletionHandler completionHandler: ((CSUser?)->Void)) {
-        self.sendRequestWithRoute("/user/\(username)", usingMethod: .GET) { (json) -> Void in
-            if json == nil {
-                return completionHandler(nil)
+        self.sendRequestWithSubRoute("/users/\(username)", usingMethod: .GET) { (result, isSuccess) -> Void in
+            if let resultDictionary = result as? [String: AnyObject] {
+                return completionHandler(CSUser(value: resultDictionary))
             }
             
-            completionHandler(CSUser(json: json!))
+            completionHandler(nil)
         }
     }
     
@@ -253,113 +324,129 @@ public class CSDataHandler {
     }
     
     
+//    MARK: - General
+    
+    //    TODO: Remove or improve this :)
+    
+    /**
+    
+    Should not be necessary? To be removed, or improved
+    
+    Prepares objects incompatible with realm to be wrapped by creating a dictionary with a key 'content' needed by the RLEWrapper initializer
+
+    - parameter dictionary: A dictionary to be made compatible in a realm objects initializer
+
+    */
+    
+    private class func makeJSONDictionaryRealmCompatible(inout dictionary: [String: AnyObject]) {
+        for key in dictionary.keys {
+            if let arrayValue = dictionary[key] as? [AnyObject] {
+                if let _ = arrayValue as? [[String: AnyObject]] {
+                    continue
+                }
+                
+                dictionary[key] = arrayValue.map { ["content": $0] }
+            }
+        }
+    }
+    
+    /**
+    
+    Extracts information from the results based on predefined, provider based key-value coded mapping. NSNull values are discarded
+    
+    - parameter results:    the dictionary retrieved form google's books API
+    
+    returns:    A dictionary containing values and keys based on the defined mapping
+    
+    */
+    
+    public class func dictionaryFromDictionary(originalDictionary: NSDictionary, usingMapping mapping: [String: String]) -> [String: AnyObject]{
+        
+        var dictionary: [String: AnyObject] = [:]
+        for (key, keyPath) in mapping {
+            if let value = originalDictionary.valueForKeyPath(keyPath) {
+                if !(value is NSNull) {
+                    dictionary[key] = value
+                }
+            }
+            
+        }
+        
+        return dictionary
+    }
+    
 //    MARK: - Private
-    
+
     /**
-    A convenience method for requests without body data that does not provide a data object, but a boolean indicating the success of the request
+    Sends a request to a sub path of the enviroments host root
     
-    - parameter 	subRoute:            subpath for the request from the host root
+    - parameter 	subRoute:            subpath for the request from the environments host root
     - parameter     method:              HTTP method that should be used
+    - parameter     parameters:          a dictionary with key-value parameters
+    - parameter     parameterEncoding:   the Alamofire.ParameterEncoding to be used (e.g. URL or JSON)
     - parameter     completionHandler:   closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
-    private class func sendRequestWithRoute(subRoute: String, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
-        self.sendRequestWithRoute(subRoute, andData: nil, usingMethod: method) { (json) in
-            if json == nil {
-                completionHandler?(false)
-                return
-            }
-            
-            completionHandler?(true)
-        }
+    class func sendRequestWithSubRoute(subRoute: String,
+                                       usingMethod method: Alamofire.Method,
+                                       andParameters parameters: [String: AnyObject]?,
+                                       parameterEncoding: ParameterEncoding,
+                                       withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
+                
+        let route = CS_ENVIRONMENT.hostString() + subRoute
+                           
+        self.sendRequestWithRoute(route, usingMethod: method, andParameters: parameters, parameterEncoding: parameterEncoding, withCompletionHandler: completionHandler)
     }
     
     /**
-    A convenience method for requests that does not provide a data object, but a boolean indicating the success of the request
+    Sends a request to a sub path of the enviroments host root. A shorthand for use without parameters
     
-    - parameter 	subRoute:            subpath for the request from the host root
-    - parameter     json:                an optional JSON object. This will become the body of the request
+    - parameter 	subRoute:            subpath for the request from the environments host root
     - parameter     method:              HTTP method that should be used
     - parameter     completionHandler:   closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
-    private class func sendRequestWithRoute(subRoute: String, andData json: JSON?, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSBooleanCompletionHandler) {
-        self.sendRequestWithRoute(subRoute, andData: json, usingMethod: method) { (json) in
-            if json == nil {
-                completionHandler?(false)
-                return
-            }
+    class func sendRequestWithSubRoute(subRoute: String,
+        usingMethod method: Alamofire.Method,
+        withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
             
-            completionHandler?(true)
-        }
-    }
-    
-    
-    /**
-    A convenience method for requests without body data
-    
-    - parameter 	subRoute:            subpath for the request from the host root
-    - parameter     method:              HTTP method that should be used
-    - parameter     completionHandler:   closure which will be called with the result of the request
-    
-    - returns: 	Void
-    */
-    
-    private class func sendRequestWithRoute(subRoute: String, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSCompletionHandler) {
-        self.sendRequestWithRoute(subRoute, andData: nil, usingMethod: method, withCompletionHandler: completionHandler)
+            let route = CS_ENVIRONMENT.hostString() + subRoute
+            
+            self.sendRequestWithRoute(route, usingMethod: method, andParameters: nil, parameterEncoding: ParameterEncoding.URL, withCompletionHandler: completionHandler)
     }
     
     
     /**
     The endpoint in the client application responsible for sending an asynchronous request and converting the response to a JSON object
     
-    - parameter 	subRoute:            subpath for the request from the host root
-    - parameter     json:                an optional JSON object. This will become the body of the request
-    - parameter     method:              HTTP method that should be used
-    - parameter     completionHandler:   closure which will be called with the result of the request
+    - parameter 	route:              route for the request
+    - parameter     method:             HTTP method that should be used
+    - parameter     parameters:         a dictionary with key-value parameters
+    - parameter     parameterEncoding:  the Alamofire.ParameterEncoding to be used (e.g. URL or JSON)
+    - parameter     completionHandler:  closure which will be called with the result of the request
     
-    - returns: 	Void
     */
     
-    private class func sendRequestWithRoute(subRoute: String, andData json: JSON?, usingMethod method: CSHTTPMethod, withCompletionHandler completionHandler: CSCompletionHandler) {
-        let route = host + subRoute
-        let URL = NSURL(string: route)
-        if URL == nil {
-            completionHandler(nil)
-            return
-        }
-        
-        let request = NSMutableURLRequest(URL: URL!)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPMethod  = method.rawValue
-        
-        if json != nil {
-            request.HTTPBody = try? json!.rawData(options: .PrettyPrinted)
-        }
-        
-        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            if error != nil {
-                print(error!.localizedDescription)
-                return completionHandler(nil)
+    class func sendRequestWithRoute(route: String,
+                                    usingMethod method: Alamofire.Method,
+                                    andParameters parameters: [String: AnyObject]?,
+                                    parameterEncoding: ParameterEncoding,
+                                    withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
+            
+            
+            csprint(CS_DEBUG_NETWORK, "Send request to URL:", route)
+            
+            Alamofire.request(method, route, parameters: parameters, encoding: parameterEncoding, headers: ["Content-Type": "application/json"])
+                .responseJSON { (request, response, result) -> Void in
+                    if result.isFailure {
+                        csprint(CS_DEBUG_NETWORK, "Request failed:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result.debugDescription)
+                    } else {
+                        csprint(CS_DEBUG_NETWORK, "Request successful:", request!)
+                    }
+                    
+                    completionHandler?(result.value, result.isSuccess)
             }
-            
-            var responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            var jsonError: NSError?
-            let json = JSON(data: data!, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)
-            
-            if jsonError != nil {
-                print(jsonError?.localizedDescription)
-                return completionHandler(nil)
-            }
-            
-            completionHandler(json)
-        }).resume()
     }
-//
-    
-    
 }

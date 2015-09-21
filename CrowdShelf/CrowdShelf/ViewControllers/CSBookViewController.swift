@@ -15,7 +15,6 @@ class CSBookViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var authorsLabel: UILabel?
     @IBOutlet weak var publisherLabel: UILabel?
-    @IBOutlet weak var numberOfCopiesLabel: UILabel?
     
     @IBOutlet weak var coverImageView: UIImageView?
     
@@ -30,7 +29,7 @@ class CSBookViewController: UIViewController {
             self.updateView()
             
             if book?.details == nil {
-                CSDataHandler.informationForBook(book!.isbn, withCompletionHandler: { (information) -> Void in
+                CSDataHandler.informationAboutBook(book!.isbn, withCompletionHandler: { (information) -> Void in
                     self.book?.details = information
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.updateView()
@@ -52,18 +51,14 @@ class CSBookViewController: UIViewController {
     
     func updateView() {
         
-        self.coverImageView?.image = self.book?.details?.thumbnailImage
+        self.coverImageView?.image = self.book?.details?.thumbnail
         self.titleLabel?.text = self.book?.details?.title
         self.publisherLabel?.text = self.book?.details?.publisher
-        self.descriptionTextView?.text = self.book?.details?.description
+        self.descriptionTextView?.text = self.book?.details?.summary
         
         
-        if self.book?.details?.authors != nil {
-            self.authorsLabel?.text = self.book!.details!.authors.joinWithSeparator(", ")
-        }
-        
-        if self.book != nil {
-            self.numberOfCopiesLabel?.text = "\(self.book!.numberOfCopies)"
+        if self.book?.details != nil {
+            self.authorsLabel?.text = self.book?.details?.authors.map {($0 as! RLMWrapper).stringValue!}.joinWithSeparator(", ")
         }
         
         if self.buttons != nil {
@@ -75,34 +70,35 @@ class CSBookViewController: UIViewController {
     }
     
     @IBAction func addBookToShelf(sender: AnyObject) {
-        self.book?.numberOfCopies++
+        csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
         
-        
-        if !CSUser.localUser!.books.contains(self.book!) {
-            CSUser.localUser?.booksOwned.append(self.book!)
+        self.book!.owner = CSUser.localUser!.username
+        CSDataHandler.addBook(self.book!) { (isSuccess) -> Void in
+            if isSuccess {
+                csprint(CS_DEBUG_BOOK_VIEW, "Successfully added book:", self.book)
+            } else {
+                csprint(CS_DEBUG_BOOK_VIEW, "Failed to add book:", self.book)
+            }
+            
+            self.updateView()
         }
-
-        self.updateView()
     }
     
     @IBAction func removeBookFromShelf(sender: AnyObject) {
-        if self.book!.numberOfCopies <= 0 {
-            return
+        csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
+        
+        CSDataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
+            if isSuccess {
+                csprint(CS_DEBUG_BOOK_VIEW, "Successfully removed book:", self.book)
+            } else {
+                csprint(CS_DEBUG_BOOK_VIEW, "Failed to remove book:", self.book)
+            }
         }
         
-        self.book?.numberOfCopies--
-
         self.updateView()
     }
     
     @IBAction func close(sender: AnyObject) {
-        if self.book?.owner != nil {
-            CSDataHandler.addBook(self.book!, withCompletionHandler: { (success) -> Void in
-                
-            })
-        }
-        
-        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

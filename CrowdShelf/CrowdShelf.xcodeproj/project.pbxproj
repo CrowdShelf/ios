@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		390EAF261BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift */; };
-		390EAF271BAA0EEA00D0DCEB /* CSGoogleBooksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift */; };
+		390EAF261BAA0D5000D0DCEB /* CSDataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* CSDataHandler+GoogleBooks.swift */; };
+		390EAF271BAA0EEA00D0DCEB /* CSDataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* CSDataHandler+GoogleBooks.swift */; };
 		39153A511B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A521B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A551B97406700D34293 /* CSCrowdShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */; };
@@ -17,6 +17,10 @@
 		39153A591B9778BA00D34293 /* CSCrowdShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */; };
 		39153A5A1B9778BD00D34293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
 		39153A5B1B9778C900D34293 /* CSBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */; };
+		392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169141BAF702A0029A6C8 /* RLMWrapper.swift */; settings = {ASSET_TAGS = (); }; };
+		392169161BAF70410029A6C8 /* RLMWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169141BAF702A0029A6C8 /* RLMWrapper.swift */; settings = {ASSET_TAGS = (); }; };
+		392169181BB083E70029A6C8 /* SerializableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169171BB083E70029A6C8 /* SerializableObject.swift */; settings = {ASSET_TAGS = (); }; };
+		392169191BB084210029A6C8 /* SerializableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169171BB083E70029A6C8 /* SerializableObject.swift */; settings = {ASSET_TAGS = (); }; };
 		3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
 		3953BF8F1B8DC29B00E39CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */; };
 		3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF901B8DC29B00E39CC9 /* Images.xcassets */; };
@@ -31,23 +35,28 @@
 		39A0CAFE1B958B0D00321225 /* CSListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* CSListViewController.swift */; };
 		39A0CB001B958D1D00321225 /* CSCrowdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */; };
 		39A0CB011B958DFC00321225 /* CSListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* CSListViewController.swift */; };
+		39BFDEF41BACBA310058C2CF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BFDEF31BACBA310058C2CF /* Environment.swift */; settings = {ASSET_TAGS = (); }; };
+		39BFDEF51BACBBB50058C2CF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BFDEF31BACBA310058C2CF /* Environment.swift */; settings = {ASSET_TAGS = (); }; };
+		39BFDEFB1BAD4D5E0058C2CF /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BFDEFA1BAD4D5E0058C2CF /* Debug.swift */; settings = {ASSET_TAGS = (); }; };
+		39BFDEFC1BAD4EE30058C2CF /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BFDEFA1BAD4D5E0058C2CF /* Debug.swift */; settings = {ASSET_TAGS = (); }; };
 		39C2F5861B8F9AB800529AA9 /* CSBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5851B8F9AB800529AA9 /* CSBaseModel.swift */; };
 		39C2F5881B8FA0CE00529AA9 /* CSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5871B8FA0CE00529AA9 /* CSUser.swift */; };
-		39C2F58A1B8FA40D00529AA9 /* CSBookDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5891B8FA40D00529AA9 /* CSBookDetails.swift */; };
+		39C2F58A1B8FA40D00529AA9 /* CSBookInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5891B8FA40D00529AA9 /* CSBookInformation.swift */; };
 		39C2F5931B90527200529AA9 /* CSDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5921B90527200529AA9 /* CSDataHandler.swift */; };
 		39C2F5A61B906D4300529AA9 /* CSBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD221B8F55AE0012A465 /* CSBook.swift */; };
 		39C2F5A71B906D4300529AA9 /* CSCrowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD241B8F56BC0012A465 /* CSCrowd.swift */; };
 		39C2F5A81B906D4300529AA9 /* CSBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5851B8F9AB800529AA9 /* CSBaseModel.swift */; };
 		39C2F5A91B906D4300529AA9 /* CSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5871B8FA0CE00529AA9 /* CSUser.swift */; };
-		39C2F5AA1B906D4300529AA9 /* CSBookDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5891B8FA40D00529AA9 /* CSBookDetails.swift */; };
+		39C2F5AA1B906D4300529AA9 /* CSBookInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5891B8FA40D00529AA9 /* CSBookInformation.swift */; };
 		39C2F5AB1B906D5600529AA9 /* CSDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5921B90527200529AA9 /* CSDataHandler.swift */; };
 		39C2F5AC1B906D5A00529AA9 /* CSScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */; };
 		39C2F5AE1B906D8D00529AA9 /* CSBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */; };
 		39C2F5B01B907EC000529AA9 /* CSBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */; };
 		39C2F5B31B90A2EE00529AA9 /* CSBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */; };
 		39C2F5B51B90A40A00529AA9 /* CSShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */; };
-		3C56024ED257E757C4D16FE2 /* Pods_CrowdShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9662742CB4EA45A56D43C7 /* Pods_CrowdShelf.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		94AA12EADE7D640FCBFAC49E /* Pods_CrowdShelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2799C75DF698F09ECCA8FD /* Pods_CrowdShelfTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6DCE9198D2EC7E8A42408369 /* Pods_CrowdShelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040035D2D8DB30B6C01FB456 /* Pods_CrowdShelfTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8AD4FCD156A21D9974A66A36 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD76C7589353231F11064D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A149270F8A04A6868E57F987 /* Pods_CrowdShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625F08271588B857F0011AFA /* Pods_CrowdShelf.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,10 +70,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05AEA34B1565A3C4AA87D425 /* Pods-CrowdShelfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.release.xcconfig"; sourceTree = "<group>"; };
-		390EAF251BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSGoogleBooksHandler.swift; path = Handlers/CSGoogleBooksHandler.swift; sourceTree = "<group>"; };
+		040035D2D8DB30B6C01FB456 /* Pods_CrowdShelfTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelfTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BDAE150A5E39A8004D0A2E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
+		390EAF251BAA0D5000D0DCEB /* CSDataHandler+GoogleBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CSDataHandler+GoogleBooks.swift"; path = "Handlers/CSDataHandler+GoogleBooks.swift"; sourceTree = "<group>"; };
 		39153A501B970F1E00D34293 /* CSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTextView.swift; path = Views/CSTextView.swift; sourceTree = "<group>"; };
 		39153A541B97406700D34293 /* CSCrowdShelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowdShelfViewController.swift; path = ViewControllers/CSCrowdShelfViewController.swift; sourceTree = "<group>"; };
+		392169141BAF702A0029A6C8 /* RLMWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMWrapper.swift; path = Models/RLMWrapper.swift; sourceTree = "<group>"; };
+		392169171BB083E70029A6C8 /* SerializableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SerializableObject.swift; path = Models/SerializableObject.swift; sourceTree = "<group>"; };
 		3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF881B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,19 +94,19 @@
 		395EDD241B8F56BC0012A465 /* CSCrowd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowd.swift; path = Models/CSCrowd.swift; sourceTree = "<group>"; };
 		39A0CAFD1B958B0D00321225 /* CSListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSListViewController.swift; path = ViewControllers/CSListViewController.swift; sourceTree = "<group>"; };
 		39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowdsViewController.swift; path = ViewControllers/CSCrowdsViewController.swift; sourceTree = "<group>"; };
+		39BFDEF31BACBA310058C2CF /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		39BFDEFA1BAD4D5E0058C2CF /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		39C2F5851B8F9AB800529AA9 /* CSBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBaseModel.swift; path = Models/CSBaseModel.swift; sourceTree = "<group>"; };
 		39C2F5871B8FA0CE00529AA9 /* CSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSUser.swift; path = Models/CSUser.swift; sourceTree = "<group>"; };
-		39C2F5891B8FA40D00529AA9 /* CSBookDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookDetails.swift; path = Models/CSBookDetails.swift; sourceTree = "<group>"; };
+		39C2F5891B8FA40D00529AA9 /* CSBookInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookInformation.swift; path = Models/CSBookInformation.swift; sourceTree = "<group>"; };
 		39C2F5921B90527200529AA9 /* CSDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSDataHandler.swift; path = Handlers/CSDataHandler.swift; sourceTree = "<group>"; };
 		39C2F5AD1B906D8D00529AA9 /* CSBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookViewController.swift; path = ViewControllers/CSBookViewController.swift; sourceTree = "<group>"; };
 		39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookCollectionViewCell.swift; path = CollectionViewCell/CSBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSShelfViewController.swift; path = ViewControllers/CSShelfViewController.swift; sourceTree = "<group>"; };
-		3D9662742CB4EA45A56D43C7 /* Pods_CrowdShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DD76C7589353231F11064D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84601E213D2377A8AB372FD8 /* Pods-CrowdShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf.debug.xcconfig"; sourceTree = "<group>"; };
-		93DD686B0A064D3CFD8F5833 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AE2799C75DF698F09ECCA8FD /* Pods_CrowdShelfTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelfTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB4479BCD7D29044F3F93950 /* Pods-CrowdShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf.release.xcconfig"; sourceTree = "<group>"; };
+		4E294301376EDE02D444AA75 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		625F08271588B857F0011AFA /* Pods_CrowdShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90135A804400F9D5CBD20212 /* Pods-CrowdShelfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +114,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C56024ED257E757C4D16FE2 /* Pods_CrowdShelf.framework in Frameworks */,
+				8AD4FCD156A21D9974A66A36 /* Pods.framework in Frameworks */,
+				A149270F8A04A6868E57F987 /* Pods_CrowdShelf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94AA12EADE7D640FCBFAC49E /* Pods_CrowdShelfTests.framework in Frameworks */,
+				6DCE9198D2EC7E8A42408369 /* Pods_CrowdShelfTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,8 +144,8 @@
 				3953BF861B8DC29B00E39CC9 /* CrowdShelf */,
 				3953BF9C1B8DC29B00E39CC9 /* CrowdShelfTests */,
 				3953BF851B8DC29B00E39CC9 /* Products */,
-				9BA01E40C1DD6A4ACBEB99AC /* Pods */,
 				4CA4BDD76803AE4B70C87B74 /* Frameworks */,
+				CD01AAD31CD597E3D6F27731 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				3953BF881B8DC29B00E39CC9 /* Info.plist */,
+				39BFDEF31BACBA310058C2CF /* Environment.swift */,
+				39BFDEFA1BAD4D5E0058C2CF /* Debug.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -206,7 +222,7 @@
 			children = (
 				3953BFAB1B8E230300E39CC9 /* CSLocalDataHandler.swift */,
 				39C2F5921B90527200529AA9 /* CSDataHandler.swift */,
-				390EAF251BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift */,
+				390EAF251BAA0D5000D0DCEB /* CSDataHandler+GoogleBooks.swift */,
 			);
 			name = Handlers;
 			sourceTree = "<group>";
@@ -224,9 +240,11 @@
 			children = (
 				395EDD221B8F55AE0012A465 /* CSBook.swift */,
 				395EDD241B8F56BC0012A465 /* CSCrowd.swift */,
-				39C2F5851B8F9AB800529AA9 /* CSBaseModel.swift */,
 				39C2F5871B8FA0CE00529AA9 /* CSUser.swift */,
-				39C2F5891B8FA40D00529AA9 /* CSBookDetails.swift */,
+				39C2F5891B8FA40D00529AA9 /* CSBookInformation.swift */,
+				39C2F5851B8F9AB800529AA9 /* CSBaseModel.swift */,
+				392169171BB083E70029A6C8 /* SerializableObject.swift */,
+				392169141BAF702A0029A6C8 /* RLMWrapper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -250,19 +268,19 @@
 			isa = PBXGroup;
 			children = (
 				41DD76C7589353231F11064D /* Pods.framework */,
-				3D9662742CB4EA45A56D43C7 /* Pods_CrowdShelf.framework */,
-				AE2799C75DF698F09ECCA8FD /* Pods_CrowdShelfTests.framework */,
+				625F08271588B857F0011AFA /* Pods_CrowdShelf.framework */,
+				040035D2D8DB30B6C01FB456 /* Pods_CrowdShelfTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9BA01E40C1DD6A4ACBEB99AC /* Pods */ = {
+		CD01AAD31CD597E3D6F27731 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				93DD686B0A064D3CFD8F5833 /* Pods-CrowdShelfTests.debug.xcconfig */,
-				05AEA34B1565A3C4AA87D425 /* Pods-CrowdShelfTests.release.xcconfig */,
-				84601E213D2377A8AB372FD8 /* Pods-CrowdShelf.debug.xcconfig */,
-				FB4479BCD7D29044F3F93950 /* Pods-CrowdShelf.release.xcconfig */,
+				0BDAE150A5E39A8004D0A2E5 /* Pods.debug.xcconfig */,
+				4E294301376EDE02D444AA75 /* Pods.release.xcconfig */,
+				2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */,
+				90135A804400F9D5CBD20212 /* Pods-CrowdShelfTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -274,12 +292,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3953BFA31B8DC29B00E39CC9 /* Build configuration list for PBXNativeTarget "CrowdShelf" */;
 			buildPhases = (
-				B2263FCAC2DD88C912F140EC /* Check Pods Manifest.lock */,
+				92BE9563D816D36768444B0D /* Check Pods Manifest.lock */,
 				3953BF801B8DC29B00E39CC9 /* Sources */,
 				3953BF811B8DC29B00E39CC9 /* Frameworks */,
 				3953BF821B8DC29B00E39CC9 /* Resources */,
-				A7BF24AD90E47DE71F309C71 /* Embed Pods Frameworks */,
-				60AE3112AB2200E4E72428FD /* Copy Pods Resources */,
+				C8743E1B3455DC67E4C7CBFA /* Embed Pods Frameworks */,
+				A7A7A5F6E8058F6F17E848F7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,12 +312,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3953BFA61B8DC29B00E39CC9 /* Build configuration list for PBXNativeTarget "CrowdShelfTests" */;
 			buildPhases = (
-				880586F77CEEAC0C4149B6F6 /* Check Pods Manifest.lock */,
+				F57775D5B7C39CCC2BAA7D9C /* Check Pods Manifest.lock */,
 				3953BF951B8DC29B00E39CC9 /* Sources */,
 				3953BF961B8DC29B00E39CC9 /* Frameworks */,
 				3953BF971B8DC29B00E39CC9 /* Resources */,
-				688357DB30F9982C26658C51 /* Embed Pods Frameworks */,
-				98B1EBFE9C8E796905AAEE94 /* Copy Pods Resources */,
+				3859F338EDAC59453B296F46 /* Embed Pods Frameworks */,
+				41200B7BFD86180EDADD72B5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -319,7 +337,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Øyvind Grimnes";
 				TargetAttributes = {
 					3953BF831B8DC29B00E39CC9 = {
@@ -372,22 +390,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		60AE3112AB2200E4E72428FD /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		688357DB30F9982C26658C51 /* Embed Pods Frameworks */ = {
+		3859F338EDAC59453B296F46 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -402,22 +405,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		880586F77CEEAC0C4149B6F6 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		98B1EBFE9C8E796905AAEE94 /* Copy Pods Resources */ = {
+		41200B7BFD86180EDADD72B5 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -432,7 +420,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A7BF24AD90E47DE71F309C71 /* Embed Pods Frameworks */ = {
+		92BE9563D816D36768444B0D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A7A7A5F6E8058F6F17E848F7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8743E1B3455DC67E4C7CBFA /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -447,7 +465,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrowdShelf/Pods-CrowdShelf-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B2263FCAC2DD88C912F140EC /* Check Pods Manifest.lock */ = {
+		F57775D5B7C39CCC2BAA7D9C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -473,16 +491,20 @@
 				39A0CAFE1B958B0D00321225 /* CSListViewController.swift in Sources */,
 				39153A551B97406700D34293 /* CSCrowdShelfViewController.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
-				39C2F58A1B8FA40D00529AA9 /* CSBookDetails.swift in Sources */,
+				39C2F58A1B8FA40D00529AA9 /* CSBookInformation.swift in Sources */,
 				39C2F5931B90527200529AA9 /* CSDataHandler.swift in Sources */,
 				3953BFAC1B8E230300E39CC9 /* CSLocalDataHandler.swift in Sources */,
-				390EAF261BAA0D5000D0DCEB /* CSGoogleBooksHandler.swift in Sources */,
+				390EAF261BAA0D5000D0DCEB /* CSDataHandler+GoogleBooks.swift in Sources */,
+				39BFDEFB1BAD4D5E0058C2CF /* Debug.swift in Sources */,
 				39C2F5881B8FA0CE00529AA9 /* CSUser.swift in Sources */,
 				39C2F5AE1B906D8D00529AA9 /* CSBookViewController.swift in Sources */,
 				39C2F5B51B90A40A00529AA9 /* CSShelfViewController.swift in Sources */,
+				392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */,
 				39153A511B970F1E00D34293 /* CSTextView.swift in Sources */,
+				392169181BB083E70029A6C8 /* SerializableObject.swift in Sources */,
 				395EDD251B8F56BC0012A465 /* CSCrowd.swift in Sources */,
 				39C2F5B31B90A2EE00529AA9 /* CSBookCollectionViewCell.swift in Sources */,
+				39BFDEF41BACBA310058C2CF /* Environment.swift in Sources */,
 				395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */,
 				39A0CB001B958D1D00321225 /* CSCrowdsViewController.swift in Sources */,
 				395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */,
@@ -493,6 +515,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				392169161BAF70410029A6C8 /* RLMWrapper.swift in Sources */,
 				39C2F5A61B906D4300529AA9 /* CSBook.swift in Sources */,
 				39C2F5A91B906D4300529AA9 /* CSUser.swift in Sources */,
 				39153A591B9778BA00D34293 /* CSCrowdShelfViewController.swift in Sources */,
@@ -502,15 +525,18 @@
 				395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */,
 				39C2F5A81B906D4300529AA9 /* CSBaseModel.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
-				390EAF271BAA0EEA00D0DCEB /* CSGoogleBooksHandler.swift in Sources */,
+				390EAF271BAA0EEA00D0DCEB /* CSDataHandler+GoogleBooks.swift in Sources */,
 				39153A5B1B9778C900D34293 /* CSBookCollectionViewCell.swift in Sources */,
 				39A0CB011B958DFC00321225 /* CSListViewController.swift in Sources */,
-				39C2F5AA1B906D4300529AA9 /* CSBookDetails.swift in Sources */,
+				39C2F5AA1B906D4300529AA9 /* CSBookInformation.swift in Sources */,
 				39153A571B9778B200D34293 /* CSShelfViewController.swift in Sources */,
 				39C2F5B01B907EC000529AA9 /* CSBookViewController.swift in Sources */,
 				395EDD1E1B8E61DE0012A465 /* CSLocalDataHandler.swift in Sources */,
+				392169191BB084210029A6C8 /* SerializableObject.swift in Sources */,
 				39C2F5A71B906D4300529AA9 /* CSCrowd.swift in Sources */,
 				39153A5A1B9778BD00D34293 /* AppDelegate.swift in Sources */,
+				39BFDEF51BACBBB50058C2CF /* Environment.swift in Sources */,
+				39BFDEFC1BAD4EE30058C2CF /* Debug.swift in Sources */,
 				39C2F5AC1B906D5A00529AA9 /* CSScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,6 +592,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -581,7 +608,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -619,7 +646,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -628,31 +655,33 @@
 		};
 		3953BFA41B8DC29B00E39CC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84601E213D2377A8AB372FD8 /* Pods-CrowdShelf.debug.xcconfig */;
+			baseConfigurationReference = 0BDAE150A5E39A8004D0A2E5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CrowdShelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skaptronderen.crowdshelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		3953BFA51B8DC29B00E39CC9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB4479BCD7D29044F3F93950 /* Pods-CrowdShelf.release.xcconfig */;
+			baseConfigurationReference = 4E294301376EDE02D444AA75 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CrowdShelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skaptronderen.crowdshelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 		3953BFA71B8DC29B00E39CC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93DD686B0A064D3CFD8F5833 /* Pods-CrowdShelfTests.debug.xcconfig */;
+			baseConfigurationReference = 2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -665,6 +694,7 @@
 				);
 				INFOPLIST_FILE = CrowdShelfTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.skaptronderen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdShelf.app/CrowdShelf";
 			};
@@ -672,7 +702,7 @@
 		};
 		3953BFA81B8DC29B00E39CC9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05AEA34B1565A3C4AA87D425 /* Pods-CrowdShelfTests.release.xcconfig */;
+			baseConfigurationReference = 90135A804400F9D5CBD20212 /* Pods-CrowdShelfTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -681,6 +711,7 @@
 				);
 				INFOPLIST_FILE = CrowdShelfTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.skaptronderen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdShelf.app/CrowdShelf";
 			};

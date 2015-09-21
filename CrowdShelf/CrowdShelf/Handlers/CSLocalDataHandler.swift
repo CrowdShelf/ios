@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 
 /**
@@ -125,56 +124,6 @@ public class CSLocalDataHandler {
     public class func getObjectForKey(key: String, fromFile fileName: String) -> AnyObject? {
         return CSLocalDataHandler.getDataFromFile(fileName)[key]
     }
-    
-    
-    
-//    MARK: - Local Storage
-    
-//    MARK: - Book Details
-    
-    /**
-    Get the details for an ISBN from cache
-    
-    - parameter     isbn:        international standard book number for a book
-    
-    - returns: 	An optional CSBookInformation object
-    */
-    
-    public class func detailsForBook(isbn: String) -> CSBookInformation? {
-        if let detailsDictionary = self.getObjectForKey(isbn, fromFile: CSLocalDataFile.BookDetail) as? [String: AnyObject] {
-            return CSBookInformation(json: JSON(detailsDictionary))
-        }
-        
-        return nil
-    }
-    
-    
-    /**
-    Add the details for an ISBN to cache
-    
-    - parameter     details:     book details to be cached
-    - parameter     isbn:        international standard book number for a book
-    
-    - returns: 	A boolean indicating the success of the operation
-    */
-    
-    public class func setDetails(details: CSBookInformation, forBook isbn: String) -> Bool {
-        return self.setObject(details.toDictionary(), forKey: isbn, inFile: CSLocalDataFile.BookDetail)
-    }
-    
-    
-    /**
-    Remove the details for an ISBN from cache
-    
-    - parameter     isbn:        international standard book number for a book
-    
-    - returns: 	A boolean indicating the success of the operation
-    */
-    
-    public class func removeDetailsForBook(isbn: String) -> Bool {
-        return self.setObject(nil, forKey: isbn, inFile: CSLocalDataFile.BookDetail)
-    }
-    
     
     
 //    MARK: - Helpers

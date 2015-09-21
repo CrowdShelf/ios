@@ -7,81 +7,30 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-public func ==(lhs: CSBook, rhs: CSBook) -> Bool {
-    return lhs.isbn == rhs.isbn
-}
 
 /// A class representing a book
-public class CSBook: CSBaseModel, Equatable {
+public class CSBook: CSBaseModel {
 
-    let isbn : String
-    let owner : String?
-    var avaliableForRent: Int
-    var rentedTo : [String]
-    var numberOfCopies: Int
+    dynamic var _id              = ""
+    dynamic var _rev             = ""
+    dynamic var isbn             = ""
+    dynamic var owner            = ""
+    dynamic var rentedTo         = ""
     
-    var details : CSBookInformation?
+    dynamic var details : CSBookInformation?
     
-    /// The bare-bones workhorse of the book initalizers
-    init(isbn: String, owner: String?, avaliableForRent: Int, rentedTo: [String], numberOfCopies: Int) {
-        self.isbn = isbn
-        self.owner = owner
-        self.avaliableForRent = avaliableForRent
-        self.rentedTo = rentedTo
-        self.numberOfCopies = numberOfCopies
+    override public var description: String {
+        if self.details != nil {
+            return "\(self.owner)'s '\(self.details!.title)'"
+        }
+        return "\(self.owner)'s book with ISBN \(self.isbn)"
     }
     
+//    Realm Object
     
-    /**
-    Create a new book instance with a provided owner
-    
-    - parameter     isbn:    international standard book number for a book
-    - parameter     owner:   username of the owner of the book
-    
-    - returns:   A new book instance
-    */
-    
-    convenience public init(isbn: String, owner: String?) {
-        self.init(isbn:             isbn,
-                  owner:            owner,
-                  avaliableForRent: 1,
-                  rentedTo:         [],
-                  numberOfCopies:   1)        
+    override public class func primaryKey() -> String {
+        return "_id"
     }
     
-    
-    /**
-    Create a new book instance populated with data from a JSON object. Useful when communicating with external systems
-    
-    - parameter     json:   json object containing data about a book
-    
-    - returns:   A new book instance
-    */
-
-    convenience required public init(json: JSON) {
-        self.init(isbn:             json["isbn"].stringValue,
-                  owner:            json["owner"].string,
-                  avaliableForRent: json["numAvailableForRent"].intValue,
-                  rentedTo:         json["rentedTo"].arrayObject as! [String],
-                  numberOfCopies:   json["numberOfCopies"].intValue)
-    }
-    
-    
-    /**
-    Create a dictionary containing all information the instance contains
-    
-    - returns:   A dictionary containing all information the instance contains
-    */
-    
-    override func toDictionary() -> [String : AnyObject] {
-        return [
-            "isbn": self.isbn,
-            "owner": self.owner!,
-            "numAvailableForRent": self.avaliableForRent,
-            "numberOfCopies": self.numberOfCopies,
-            "rentedTo": self.rentedTo
-        ]
-    }
 }

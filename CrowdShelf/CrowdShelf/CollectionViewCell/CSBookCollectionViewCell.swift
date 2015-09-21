@@ -12,20 +12,19 @@ class CSBookCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var coverImageView: UIImageView?
-    @IBOutlet weak var numberOfCopiesLabel: UILabel?
     
     
     var book : CSBook? {
         didSet {
             self.updateView()
-            
-            
-            CSDataHandler.informationForBook(self.book!.isbn, withCompletionHandler: { (information) -> Void in
-                self.book?.details = information
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.updateView()
-                })
-            })
+//            
+//            
+//            CSDataHandler.informationAboutBook(self.book!.isbn, withCompletionHandler: { (information) -> Void in
+//                self.book?.details = information
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    self.updateView()
+//                })
+//            })
             
         }
     }
@@ -38,12 +37,8 @@ class CSBookCollectionViewCell: UICollectionViewCell {
     }
     
     func updateView() {
-        self.coverImageView?.image = self.book?.details?.thumbnailImage
+        self.coverImageView?.image = self.book?.details?.thumbnail
         self.titleLabel?.text = self.book?.details?.title
-        
-        if self.book != nil {
-            self.numberOfCopiesLabel?.text = "\(self.book!.numberOfCopies)"
-        }
     }
     
 }

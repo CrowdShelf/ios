@@ -51,17 +51,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jq-PB-vfC">
-                                                    <rect key="frame" x="71" y="79" width="20" height="20"/>
-                                                    <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="EzC-jj-LSG"/>
-                                                        <constraint firstAttribute="height" constant="20" id="HRS-kn-EeI"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -69,16 +58,13 @@
                                         <constraints>
                                             <constraint firstItem="F6T-ap-r3s" firstAttribute="top" secondItem="nCe-Ex-7wZ" secondAttribute="topMargin" constant="-8" id="442-zo-azY"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="F6T-ap-r3s" secondAttribute="trailing" id="CnW-wV-pfq"/>
-                                            <constraint firstItem="F6T-ap-r3s" firstAttribute="trailing" secondItem="3jq-PB-vfC" secondAttribute="trailing" constant="1" id="aIJ-Gi-nA7"/>
                                             <constraint firstItem="F6T-ap-r3s" firstAttribute="leading" secondItem="nCe-Ex-7wZ" secondAttribute="leadingMargin" id="g3t-tw-emC"/>
                                             <constraint firstItem="PoA-Z0-Mbw" firstAttribute="top" secondItem="F6T-ap-r3s" secondAttribute="bottom" constant="1" id="sxG-kY-GXp"/>
                                             <constraint firstItem="PoA-Z0-Mbw" firstAttribute="trailing" secondItem="nCe-Ex-7wZ" secondAttribute="trailingMargin" constant="8" id="tuz-Sa-96e"/>
-                                            <constraint firstItem="F6T-ap-r3s" firstAttribute="bottom" secondItem="3jq-PB-vfC" secondAttribute="bottom" constant="1" id="v4W-NI-h6j"/>
                                             <constraint firstItem="PoA-Z0-Mbw" firstAttribute="leading" secondItem="nCe-Ex-7wZ" secondAttribute="leadingMargin" constant="-8" id="vJA-4V-sLD"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="coverImageView" destination="F6T-ap-r3s" id="Uqd-OR-u70"/>
-                                            <outlet property="numberOfCopiesLabel" destination="3jq-PB-vfC" id="hep-EB-Cd8"/>
                                             <outlet property="titleLabel" destination="PoA-Z0-Mbw" id="SoX-eG-D27"/>
                                             <segue destination="8vd-8z-IT4" kind="modal" identifier="ShowBook" id="mua-rp-U9x"/>
                                         </connections>
@@ -401,16 +387,6 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="padding" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnF-g0-Mrp">
-                                        <rect key="frame" x="114" y="147" width="25" height="25"/>
-                                        <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="gIT-7u-brJ"/>
-                                            <constraint firstAttribute="height" constant="25" id="yrU-le-vIq"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -419,7 +395,6 @@
                                     <constraint firstAttribute="height" constant="180" id="7zL-hY-6Kn"/>
                                     <constraint firstItem="i9U-Ez-HmK" firstAttribute="leading" secondItem="mvs-1O-bcu" secondAttribute="leading" constant="16" id="DdY-AD-krg"/>
                                     <constraint firstItem="O3d-G3-PUD" firstAttribute="leading" secondItem="i9U-Ez-HmK" secondAttribute="trailing" constant="8" id="HmL-eC-FQC"/>
-                                    <constraint firstItem="rnF-g0-Mrp" firstAttribute="bottom" secondItem="i9U-Ez-HmK" secondAttribute="bottom" id="KAG-dO-Gxe"/>
                                     <constraint firstItem="gyC-5O-Bvv" firstAttribute="leading" secondItem="i9U-Ez-HmK" secondAttribute="trailing" constant="8" id="KF7-N1-5Pp"/>
                                     <constraint firstItem="HJp-0a-Mu4" firstAttribute="leading" secondItem="i9U-Ez-HmK" secondAttribute="trailing" constant="8" id="KxQ-TG-jB4"/>
                                     <constraint firstItem="i9U-Ez-HmK" firstAttribute="top" secondItem="mvs-1O-bcu" secondAttribute="top" constant="8" id="U8j-RB-1kS"/>
@@ -427,7 +402,6 @@
                                     <constraint firstItem="8VP-qu-ZWa" firstAttribute="leading" secondItem="i9U-Ez-HmK" secondAttribute="trailing" constant="8" id="cWg-e3-c6J"/>
                                     <constraint firstItem="O3d-G3-PUD" firstAttribute="top" secondItem="8VP-qu-ZWa" secondAttribute="bottom" id="czh-Z3-KwY"/>
                                     <constraint firstItem="HJp-0a-Mu4" firstAttribute="top" secondItem="gyC-5O-Bvv" secondAttribute="bottom" constant="3" id="ekI-0k-mnC"/>
-                                    <constraint firstItem="rnF-g0-Mrp" firstAttribute="trailing" secondItem="i9U-Ez-HmK" secondAttribute="trailing" id="h1d-d6-Ux4"/>
                                     <constraint firstAttribute="trailing" secondItem="HJp-0a-Mu4" secondAttribute="trailing" constant="8" id="i9f-aH-ypu"/>
                                     <constraint firstItem="8VP-qu-ZWa" firstAttribute="top" secondItem="mvs-1O-bcu" secondAttribute="top" constant="8" id="iD0-Xv-cnh"/>
                                     <constraint firstAttribute="trailing" secondItem="8VP-qu-ZWa" secondAttribute="trailing" constant="8" id="k8l-6e-h1q"/>
@@ -494,7 +468,6 @@
                         <outlet property="authorsLabel" destination="O3d-G3-PUD" id="UhQ-u4-Iha"/>
                         <outlet property="coverImageView" destination="i9U-Ez-HmK" id="Y4a-MM-XNA"/>
                         <outlet property="descriptionTextView" destination="HJp-0a-Mu4" id="h6r-oT-ocO"/>
-                        <outlet property="numberOfCopiesLabel" destination="rnF-g0-Mrp" id="yH1-aA-NUH"/>
                         <outlet property="publisherLabel" destination="gyC-5O-Bvv" id="dKS-rU-xWx"/>
                         <outlet property="titleLabel" destination="8VP-qu-ZWa" id="syV-eU-3Gd"/>
                         <outletCollection property="buttons" destination="btr-xZ-Bc4" collectionClass="NSMutableArray" id="0An-PJ-Zg8"/>

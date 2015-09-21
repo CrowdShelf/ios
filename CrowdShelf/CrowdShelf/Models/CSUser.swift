@@ -6,23 +6,17 @@
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
 //
 
-import Foundation
-import SwiftyJSON
+import RealmSwift
 
 // FIXME: Ugly, temporary mimic of apples local user
 private var _localUser : CSUser?
 
-/// Dummy class until model is defined
 public class CSUser: CSBaseModel {
     
-    let username: String
-    var booksOwned: [CSBook]
-    var booksRented: [CSBook]
-    var crowds: [CSCrowd]
-    
-    var books: [CSBook] {
-        return self.booksOwned + self.booksRented
-    }
+    dynamic var username    = ""
+    var booksOwned          = List<CSBook>()
+    var booksRented         = List<CSBook>()
+    var crowds              = List<RLMWrapper>()
     
     /// The user that is currently authenticated
     class var localUser : CSUser? {
@@ -35,64 +29,25 @@ public class CSUser: CSBaseModel {
         }
     }
     
-    init(username: String, booksOwned: [CSBook], booksRented: [CSBook], crowds: [CSCrowd]) {
-        self.username = username
-        self.booksOwned = booksOwned
-        self.booksRented = booksRented
-        self.crowds = crowds
-        
-        super.init()
+//    MARK: Realm Object
+    
+    override public class func primaryKey() -> String {
+        return "username"
     }
     
+//    MARK: Serializable Object
     
-    /**
-    Create a new user instance
-    
-    - parameter     username:    username of the user
-    
-    - returns:   A new user instance
-    */
-    
-    convenience public init(username: String) {
-        self.init(username: username,
-                  booksOwned: [],
-                  booksRented: [],
-                  crowds: [])
+    override func serializedValueForProperty(property: String) -> AnyObject? {
+        switch property {
+        case "booksOwned":
+            return self.booksOwned.map {$0.serialize()}
+        case "booksRented":
+            return self.booksRented.map {$0.serialize()}
+        case "crowds":
+            return self.crowds.map {$0.serialize()}
+        default:
+            return nil
+        }
     }
-    
-    
-    /**
-    Create a new user instance populated with data from a JSON object. Useful when communicating with external systems
-    
-    - parameter     json:   json object containing data about a user
-    
-    - returns:   A new user instance
-    */
-    
-    convenience required public init(json: JSON) {
-        let booksOwned : [CSBook] = json["booksOwned"].arrayValue.map {CSBook(json: $0)}
-        let booksRented : [CSBook] = json["booksRented"].arrayValue.map {CSBook(json: $0)}
-        let crowds : [CSCrowd] = json["crowds"].arrayValue.map {CSCrowd(json: $0)}
-        
-        self.init(username:     json["username"].stringValue,
-                  booksOwned:   booksOwned,
-                  booksRented:  booksRented,
-                  crowds:       crowds)
-    }
-    
-    
-    /**
-    Create a dictionary containing all information the instance contains
-    
-    - returns:   A dictionary containing all information the instance contains
-    */
-    
-    override func toDictionary() -> [String : AnyObject] {
-        return [
-            "username": self.username,
-            "booksOwned": self.booksOwned.map {$0.toDictionary()},
-            "booksRented": self.booksRented.map {$0.toDictionary()},
-            "crowds": self.crowds.map {$0.toDictionary()}
-        ]
-    }
+
 }

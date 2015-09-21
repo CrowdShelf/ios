@@ -13,11 +13,7 @@ class CSCrowdShelfViewController: CSShelfViewController {
     
     var crowd: CSCrowd? {
         didSet {
-            if crowd != nil {
-                self.books = crowd!.members.flatMap {$0.books}
-            } else {
-                self.books = []
-            }
+            
             self.collectionView?.reloadData()
         }
     }

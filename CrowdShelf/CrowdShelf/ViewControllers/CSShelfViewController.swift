@@ -23,11 +23,32 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     }
     
     func loadBooks() {
-        if CSUser.localUser != nil {
-            self.books = CSUser.localUser!.books
+        
+        let value = [
+            "isbn": "9780262533058",
+            "owner": "oyvindkg",
+        ]
+        
+        self.books = [CSBook(value: value)]
+        for book in books {
+            CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
+                book.details = bookInformation
+                self.updateView()
+            })
         }
         
-        self.updateView()
+//        Use server by oncommenting this section
+//        CSDataHandler.getBooksWithCompletionHandler { (books) -> Void in
+//            self.books = books
+//            self.updateView()
+//            
+//            for book in books {
+//                CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
+//                    book.details = bookInformation
+//                    self.updateView()
+//                })
+//            }
+//        }
     }
     
     func updateView() {

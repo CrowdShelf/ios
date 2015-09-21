@@ -29,10 +29,10 @@ class CSCrowdsViewController: CSListViewController {
     }
     
     func loadCrowds() {
-        CSDataHandler.getCrowdsWithCompletionHandler { (crowds) -> Void in
-            self.listData = crowds
-            self.updateView()
-        }
+//        CSDataHandler.getCrowdsWithCompletionHandler { (crowds) -> Void in
+//            self.listData = crowds
+//            self.updateView()
+//        }
     }
     
 }
