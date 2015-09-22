@@ -23,7 +23,25 @@ class CSScannerViewController: UIViewController {
         super.viewDidLoad()
         
         self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.startScanner()
+        self.scannedCodes = Set<String>()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.stopScanner()
+    }
+    
+    func stopScanner() {
+        self.scanner?.stopScanning()
+    }
+    
+    func startScanner() {
         MTBBarcodeScanner.requestCameraPermissionWithSuccess { (success) -> Void in
             if success {
                 self.scanner?.startScanningWithResultBlock({ (codes) -> Void in
@@ -31,7 +49,6 @@ class CSScannerViewController: UIViewController {
                         if !self.scannedCodes.contains(code.stringValue) {
                             self.scannedCodes.insert(code.stringValue)
                             
-//                            Use an existing book if possible
                             let book = CSBook()
                             book.isbn = code.stringValue
                             self.performSegueWithIdentifier("ShowBook", sender: book)
@@ -40,12 +57,6 @@ class CSScannerViewController: UIViewController {
                 })
             }
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.scannedCodes = Set<String>()
     }
     
 //    MARK: - Navigation

@@ -22,7 +22,7 @@ public class CSBook: CSBaseModel {
     
     override public var description: String {
         if self.details != nil {
-            return "\(self.owner)'s '\(self.details!.title)'"
+            return "\(self.owner)'s '\(self.details!.title)' with ISBN \(self.isbn)"
         }
         return "\(self.owner)'s book with ISBN \(self.isbn)"
     }
