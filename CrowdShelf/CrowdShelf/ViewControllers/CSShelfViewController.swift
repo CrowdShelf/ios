@@ -7,12 +7,30 @@
 //
 
 import UIKit
+import RealmSwift
 
-class CSShelfViewController: UIViewController, UICollectionViewDataSource {
+enum CSShelfViewState: Int {
+    case OwnedBooks    = 0
+    case BorrowedBooks = 1
+}
+
+class CSShelfViewController: CSBaseViewController, UICollectionViewDataSource {
     
+    @IBOutlet weak var stateControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView?
     
     var books : [CSBook] = []
+    
+    var ownedBooks: [CSBook] {
+        return CSUser.localUser != nil ? self.books.filter({$0.owner == CSUser.localUser!._id}) : []
+    }
+    var borrowedBooks: [CSBook] {
+        return CSUser.localUser != nil ? self.books.filter({$0.owner != CSUser.localUser!._id}) : []
+    }
+    
+    var state: CSShelfViewState {
+        return CSShelfViewState(rawValue: self.stateControl.selectedSegmentIndex)!
+    }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,32 +41,24 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     }
     
     func loadBooks() {
-        
-        let value = [
-            "isbn": "9780262533058",
-            "owner": "oyvindkg",
-        ]
-        
-        self.books = [CSBook(value: value)]
-        for book in books {
-            CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
-                book.details = bookInformation
-                self.updateView()
-            })
+//        Use server by uncommenting this section
+        CSDataHandler.getBooksWithParameters(nil) { (books) -> Void in
+            self.books = books
+            self.updateView()
+            
+            for book in books {
+                CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
+                    do {
+                        try book.realm!.write {
+                            book.details = bookInformation.first
+                        }
+                        self.updateView()
+                    } catch {}
+                    
+                    
+                })
+            }
         }
-        
-//        Use server by oncommenting this section
-//        CSDataHandler.getBooksWithCompletionHandler { (books) -> Void in
-//            self.books = books
-//            self.updateView()
-//            
-//            for book in books {
-//                CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
-//                    book.details = bookInformation
-//                    self.updateView()
-//                })
-//            }
-//        }
     }
     
     func updateView() {
@@ -65,20 +75,28 @@ class CSShelfViewController: UIViewController, UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.books.count
+        return (self.state == .OwnedBooks ? self.ownedBooks : self.borrowedBooks).count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCell", forIndexPath: indexPath) as! CSBookCollectionViewCell
-        cell.book = self.books[indexPath.row]
+        cell.book = (self.state == .OwnedBooks ? self.ownedBooks : self.borrowedBooks)[indexPath.row]
         return cell
+    }
+    
+//    MARK: - Actions
+    
+    
+    @IBAction func stateChanged(sender: AnyObject) {
+        self.updateView()
     }
     
 //    MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBook" {
-            let bookVC = segue.destinationViewController as! CSBookViewController
+            let navigationVC = segue.destinationViewController as! UINavigationController
+            let bookVC = navigationVC.viewControllers.first as! CSBookViewController
             bookVC.book = (sender as! CSBookCollectionViewCell).book
         }
     }

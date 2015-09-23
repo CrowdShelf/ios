@@ -12,7 +12,10 @@ import RealmSwift
 
 
 /// A class representing detail about a book
-public class CSBookInformation: CSBaseModel {
+public class CSBookInformation: CSBaseModel, Listable {
+    
+    dynamic var providerID                  = ""
+    dynamic var provider                    = ""
     
     dynamic var isbn                        = ""
     dynamic var summary                     = ""
@@ -24,7 +27,13 @@ public class CSBookInformation: CSBaseModel {
     dynamic var averageRating: Float        = 0.0
     dynamic var thumbnailData: NSData       = NSData()
     dynamic var publishedDate: NSDate       = NSDate(timeIntervalSince1970: 0)
+    
     var authors                             = List<RLMWrapper>()
+    
+//    @objc var title : String { return self.title }
+    @objc var subtitle : String { return self.authors.map({$0.content as! String}).joinWithSeparator(", ") }
+    @objc var image : UIImage? { return self.thumbnail }
+    
     
     var thumbnail : UIImage? {
         return thumbnailData.length > 0 ? UIImage(data: thumbnailData) : nil

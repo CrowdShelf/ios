@@ -14,8 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let localUser = CSUser(value: ["username": "oyvindkg"])
-        CSUser.localUser = localUser
+//        let localUser = CSUser(value: [
+//            "username": "oyvindkg",
+//            "name": "Øyvind Grimnes",
+//            "email": "oyvindkg@yahoo.com",
+//            "_id": "5602a211a0913f110092352a"
+//        ])
+//        
+//        CSUser.localUser = localUser
+        
+        if let userValue = CSLocalDataHandler.getObjectForKey("user", fromFile: CSLocalDataFile.User) {
+            CSUser.localUser = CSUser(value: userValue)
+        }
+        
+        
 
         return true
     }

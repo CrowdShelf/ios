@@ -17,15 +17,6 @@ class CSBookCollectionViewCell: UICollectionViewCell {
     var book : CSBook? {
         didSet {
             self.updateView()
-//            
-//            
-//            CSDataHandler.informationAboutBook(self.book!.isbn, withCompletionHandler: { (information) -> Void in
-//                self.book?.details = information
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    self.updateView()
-//                })
-//            })
-            
         }
     }
     

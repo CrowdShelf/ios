@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class CSBookViewController: UIViewController {
+class CSBookViewController: CSBaseViewController {
     
 //    MARK: - Outlets
     
@@ -18,7 +19,7 @@ class CSBookViewController: UIViewController {
     
     @IBOutlet weak var coverImageView: UIImageView?
     
-    @IBOutlet weak var descriptionTextView: UITextView?
+    @IBOutlet weak var bookView: UIView!
     
     @IBOutlet var buttons: [UIButton]?
     
@@ -30,8 +31,16 @@ class CSBookViewController: UIViewController {
             
             if book?.details == nil {
                 CSDataHandler.informationAboutBook(book!.isbn, withCompletionHandler: { (information) -> Void in
-                    self.book?.details = information
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        if information.count > 1 {
+                            self.showListWithItems(information, andCompletionHandler: { (information) -> Void in
+                                self.book?.details = information.first as? CSBookInformation
+                                self.updateView()
+                            })
+                        } else {
+                            self.book?.details = information.first
+                        }
+                        
                         self.updateView()
                     })
                 })
@@ -47,6 +56,9 @@ class CSBookViewController: UIViewController {
         self.updateView()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateView", name: CSNotification.LocalUserUpdated, object: nil)
+        
+        self.coverImageView?.layer.borderWidth = 1
+        self.coverImageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
     }
     
     func updateView() {
@@ -54,11 +66,10 @@ class CSBookViewController: UIViewController {
         self.coverImageView?.image = self.book?.details?.thumbnail
         self.titleLabel?.text = self.book?.details?.title
         self.publisherLabel?.text = self.book?.details?.publisher
-        self.descriptionTextView?.text = self.book?.details?.summary
         
         
         if self.book?.details != nil {
-            self.authorsLabel?.text = self.book?.details?.authors.map {($0 as! RLMWrapper).stringValue!}.joinWithSeparator(", ")
+            self.authorsLabel?.text = self.book?.details?.authors.map {$0.stringValue!}.joinWithSeparator(", ")
         }
         
         if self.buttons != nil {
@@ -72,7 +83,13 @@ class CSBookViewController: UIViewController {
     @IBAction func addBookToShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
         
-        self.book!.owner = CSUser.localUser!.username
+        do {
+            let realm = try Realm()
+            try realm.write {
+                self.book!.owner = CSUser.localUser!._id
+            }
+        } catch {}
+        
         CSDataHandler.addBook(self.book!) { (isSuccess) -> Void in
             if isSuccess {
                 csprint(CS_DEBUG_BOOK_VIEW, "Successfully added book:", self.book)
@@ -87,7 +104,7 @@ class CSBookViewController: UIViewController {
     @IBAction func removeBookFromShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
         
-        CSDataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
+        CSDataHandler.removeBook(self.book!) { (isSuccess) -> Void in
             if isSuccess {
                 csprint(CS_DEBUG_BOOK_VIEW, "Successfully removed book:", self.book)
             } else {
@@ -95,10 +112,19 @@ class CSBookViewController: UIViewController {
             }
         }
         
-        self.updateView()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func close(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+//    MARK: Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowBookInformation" {
+            let bookInformationVC = segue.destinationViewController as! CSBookInformationViewController
+            bookInformationVC.bookInformation = self.book?.details
+        }
     }
 }

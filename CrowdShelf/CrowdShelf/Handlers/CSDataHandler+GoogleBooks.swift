@@ -29,31 +29,40 @@ extension CSDataHandler {
     
     */
     
-    class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([String: AnyObject]?) -> Void)) {
+    class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([CSBookInformation]) -> Void)) {
         
         let mapping = [
-            "authors": "items.volumeInfo.authors.@firstObject",
-            "publisher": "items.volumeInfo.publisher.@firstObject",
-            "summary": "items.volumeInfo.description.@firstObject",
-            "title": "items.volumeInfo.title.@firstObject",
-            "numberOfPages": "items.volumeInfo.pageCount.@firstObject",
-            "numberOfRatings": "items.volumeInfo.ratingsCount.@firstObject",
-            "averageRating": "items.volumeInfo.averageRating.@firstObject",
-            "thumbnailURLString": "items.volumeInfo.imageLinks.thumbnail.@firstObject"
+            "providerID": "id",
+            "authors": "volumeInfo.authors",
+            "publisher": "volumeInfo.publisher",
+            "summary": "volumeInfo.description",
+            "title": "volumeInfo.title",
+            "numberOfPages": "volumeInfo.pageCount",
+            "numberOfRatings": "volumeInfo.ratingsCount",
+            "averageRating": "volumeInfo.averageRating",
+            "thumbnailURLString": "volumeInfo.imageLinks.thumbnail"
         ]
         
         
         self.sendRequestWithRoute("https://www.googleapis.com/books/v1/volumes", usingMethod: .GET, andParameters: ["q": "isbn:\(isbn)"], parameterEncoding: .URL) { (result, isSuccess) -> Void in
             
+            var informationObjects: [CSBookInformation] = []
+            
             if let resultDictionary = result as? [String: AnyObject] {
-                
-                var value = self.dictionaryFromDictionary(resultDictionary, usingMapping: mapping)
-                value["isbn"] = isbn
-                
-                completionHandler(value)
-            } else {
-                completionHandler(nil)
+                if let itemArray = resultDictionary["items"] as? [[String: AnyObject]] {
+                    for itemInfo in itemArray {
+                        
+                        var value = self.dictionaryFromDictionary(itemInfo, usingMapping: mapping)
+                        value = self.realmCompatibleDictionaryFromDictionary(value)
+                        value["isbn"] = isbn
+                        value["provider"] = "google"
+                        informationObjects.append(CSBookInformation(value: value))
+                        
+                    }
+                }
             }
+            
+            completionHandler(informationObjects)
         }
     }
 }

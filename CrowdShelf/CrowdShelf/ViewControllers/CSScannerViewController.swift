@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 import MTBBarcodeScanner
 
-class CSScannerViewController: UIViewController {
+class CSScannerViewController: CSBaseViewController {
     
     @IBOutlet weak var scannerView: UIView!
     
@@ -28,13 +28,9 @@ class CSScannerViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.startScanner()
         self.scannedCodes = Set<String>()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.stopScanner()
+        
+        self.startScanner()
     }
     
     func stopScanner() {
@@ -51,7 +47,7 @@ class CSScannerViewController: UIViewController {
                             
                             let book = CSBook()
                             book.isbn = code.stringValue
-                            self.performSegueWithIdentifier("ShowBook", sender: book)
+                            self.retrieveInformationAboutBook(book)
                         }
                     }
                 })
@@ -59,11 +55,37 @@ class CSScannerViewController: UIViewController {
         }
     }
     
+    /// Get retrieve information about the ISBN. If there are multiple results, let the user choose the correct alternative. 
+    func retrieveInformationAboutBook(book: CSBook) {
+        CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                if information.count > 1 {
+                    
+                    self.showListWithItems(information, andCompletionHandler: { (information) -> Void in
+                        book.details = information.first as? CSBookInformation
+                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            if book.details != nil {
+                                self.performSegueWithIdentifier("ShowBook", sender: book)
+                            }
+                        })
+                    })
+                    
+                } else if information.count == 1 {
+                    book.details = information.first
+                    self.performSegueWithIdentifier("ShowBook", sender: book)
+                }
+                
+            })
+        })
+    }
+    
 //    MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBook" {
-            let bookVC = segue.destinationViewController as! CSBookViewController
+            let navigationVC = segue.destinationViewController as! UINavigationController
+            let bookVC = navigationVC.viewControllers.first as! CSBookViewController
             bookVC.book = sender as? CSBook
         }
     }

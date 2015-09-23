@@ -21,7 +21,7 @@ public class SerializableObject: Object {
         let mirror = Mirror(reflecting: self)
         
         for (key, child) in mirror.children {
-            if key == nil {
+            if key == nil || self.ignoreProperties().contains(key!) {
                 continue
             }
             
@@ -86,5 +86,9 @@ public class SerializableObject: Object {
     
     func serializedValueForProperty(property: String) -> AnyObject? {
         return nil
+    }
+    
+    public func ignoreProperties() -> Set<String> {
+        return []
     }
 }

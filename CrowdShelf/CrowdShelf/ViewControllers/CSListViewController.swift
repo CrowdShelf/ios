@@ -11,17 +11,19 @@ import UIKit
 @objc protocol Listable {
     var title : String {get}
     optional var subtitle: String {get}
-    optional var image : UIImage {get}
+    optional var image : UIImage? {get}
 }
 
-class CSListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CSListViewController: CSBaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var tableViewCellStyle: UITableViewCellStyle = .Subtitle
     
     /// Called when user selects a row
-    var completionHandler: ((Listable)->Void)?
+    var multipleSelection: Bool = false
+    var completionHandler: (([Listable])->Void)?
     var listData : [Listable] = [] {
         didSet {
             self.tableView?.reloadData()
@@ -35,6 +37,8 @@ class CSListViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView?.dataSource = self
         
         assert(self.tableView != nil, "Table view was not set for CSListViewController")
+        
+        self.doneButton.enabled = self.multipleSelection
     }
     
     func updateView() {
@@ -64,7 +68,7 @@ class CSListViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell?.textLabel?.text = listable.title
         cell?.detailTextLabel?.text = listable.subtitle
-        cell?.imageView?.image = listable.image
+        cell?.imageView?.image = listable.image!
         
         return cell!
     }
@@ -72,7 +76,23 @@ class CSListViewController: UIViewController, UITableViewDataSource, UITableView
 //    MARK: - Table View Delegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.completionHandler?(self.listData[indexPath.row])
+        
+        if !self.multipleSelection {
+            self.completionHandler?([self.listData[indexPath.row]])
+        }
     }
+    
+//    MARK: Actions
+    
+    @IBAction func cancel(sender: AnyObject) {
+        self.completionHandler?([])
+    }
+    
+    @IBAction func done(sender: AnyObject) {
+        let selectedItems = self.tableView!.indexPathsForSelectedRows!.map({self.listData[$0.row]})
+        completionHandler?(selectedItems)
+    }
+    
+    
     
 }
