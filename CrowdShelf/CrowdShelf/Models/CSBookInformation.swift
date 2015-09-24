@@ -30,9 +30,9 @@ public class CSBookInformation: CSBaseModel, Listable {
     
     var authors                             = List<RLMWrapper>()
     
-//    @objc var title : String { return self.title }
-    @objc var subtitle : String { return self.authors.map({$0.content as! String}).joinWithSeparator(", ") }
-    @objc var image : UIImage? { return self.thumbnail }
+//    Listable
+    var subtitle : String { return self.authors.map({$0.content as! String}).joinWithSeparator(", ") }
+    var image : UIImage? { return self.thumbnail }
     
     
     var thumbnail : UIImage? {
@@ -51,7 +51,7 @@ public class CSBookInformation: CSBaseModel, Listable {
 //    MARK: Serializable Object
     override func serializedValueForProperty(property: String) -> AnyObject? {
         if property == "authors" {
-            return self.authors.map {$0.serialize()}
+            return self.authors.map {$0.content}
         }
         
         return nil

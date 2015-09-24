@@ -12,7 +12,6 @@
 		39153A511B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A521B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A571B9778B200D34293 /* CSShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */; };
-		39153A581B9778B800D34293 /* CSCrowdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */; };
 		39153A5A1B9778BD00D34293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
 		39153A5B1B9778C900D34293 /* CSBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B21B90A2EE00529AA9 /* CSBookCollectionViewCell.swift */; };
 		392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169141BAF702A0029A6C8 /* RLMWrapper.swift */; settings = {ASSET_TAGS = (); }; };
@@ -35,7 +34,6 @@
 		399EFDF61BB2E0C900FC0664 /* CSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFDF51BB2E0C900FC0664 /* CSLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		399EFDF71BB2E0E000FC0664 /* CSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFDF51BB2E0C900FC0664 /* CSLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		39A0CAFE1B958B0D00321225 /* CSListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* CSListViewController.swift */; };
-		39A0CB001B958D1D00321225 /* CSCrowdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */; };
 		39A0CB011B958DFC00321225 /* CSListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* CSListViewController.swift */; };
 		39BFDEF41BACBA310058C2CF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BFDEF31BACBA310058C2CF /* Environment.swift */; settings = {ASSET_TAGS = (); }; };
 		39BFDEF51BACBBB50058C2CF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BFDEF31BACBA310058C2CF /* Environment.swift */; settings = {ASSET_TAGS = (); }; };
@@ -98,7 +96,6 @@
 		3978FE201BB32BF100DF742A /* CSBookInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookInformationViewController.swift; path = ViewControllers/CSBookInformationViewController.swift; sourceTree = "<group>"; };
 		399EFDF51BB2E0C900FC0664 /* CSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSLoginViewController.swift; path = ViewControllers/CSLoginViewController.swift; sourceTree = "<group>"; };
 		39A0CAFD1B958B0D00321225 /* CSListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSListViewController.swift; path = ViewControllers/CSListViewController.swift; sourceTree = "<group>"; };
-		39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowdsViewController.swift; path = ViewControllers/CSCrowdsViewController.swift; sourceTree = "<group>"; };
 		39BFDEF31BACBA310058C2CF /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		39BFDEFA1BAD4D5E0058C2CF /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		39C2F5851B8F9AB800529AA9 /* CSBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBaseModel.swift; path = Models/CSBaseModel.swift; sourceTree = "<group>"; };
@@ -218,7 +215,6 @@
 				395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */,
 				39C2F5B41B90A40A00529AA9 /* CSShelfViewController.swift */,
 				39A0CAFD1B958B0D00321225 /* CSListViewController.swift */,
-				39A0CAFF1B958D1D00321225 /* CSCrowdsViewController.swift */,
 				399EFDF51BB2E0C900FC0664 /* CSLoginViewController.swift */,
 				3978FE201BB32BF100DF742A /* CSBookInformationViewController.swift */,
 			);
@@ -516,7 +512,6 @@
 				39C2F5B31B90A2EE00529AA9 /* CSBookCollectionViewCell.swift in Sources */,
 				39BFDEF41BACBA310058C2CF /* Environment.swift in Sources */,
 				395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */,
-				39A0CB001B958D1D00321225 /* CSCrowdsViewController.swift in Sources */,
 				395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,7 +524,6 @@
 				39C2F5A61B906D4300529AA9 /* CSBook.swift in Sources */,
 				39C2F5A91B906D4300529AA9 /* CSUser.swift in Sources */,
 				39C2F5AB1B906D5600529AA9 /* CSDataHandler.swift in Sources */,
-				39153A581B9778B800D34293 /* CSCrowdsViewController.swift in Sources */,
 				39153A521B970F1E00D34293 /* CSTextView.swift in Sources */,
 				395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */,
 				39C2F5A81B906D4300529AA9 /* CSBaseModel.swift in Sources */,

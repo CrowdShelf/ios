@@ -48,14 +48,8 @@ class CSShelfViewController: CSBaseViewController, UICollectionViewDataSource {
             
             for book in books {
                 CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
-                    do {
-                        try book.realm!.write {
-                            book.details = bookInformation.first
-                        }
-                        self.updateView()
-                    } catch {}
-                    
-                    
+                    book.details = bookInformation.first
+                    self.updateView()
                 })
             }
         }

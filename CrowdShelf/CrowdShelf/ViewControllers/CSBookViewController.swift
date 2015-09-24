@@ -82,13 +82,8 @@ class CSBookViewController: CSBaseViewController {
     
     @IBAction func addBookToShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
-        
-        do {
-            let realm = try Realm()
-            try realm.write {
-                self.book!.owner = CSUser.localUser!._id
-            }
-        } catch {}
+
+        self.book!.owner = CSUser.localUser!._id
         
         CSDataHandler.addBook(self.book!) { (isSuccess) -> Void in
             if isSuccess {
@@ -104,7 +99,7 @@ class CSBookViewController: CSBaseViewController {
     @IBAction func removeBookFromShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
         
-        CSDataHandler.removeBook(self.book!) { (isSuccess) -> Void in
+        CSDataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
             if isSuccess {
                 csprint(CS_DEBUG_BOOK_VIEW, "Successfully removed book:", self.book)
             } else {

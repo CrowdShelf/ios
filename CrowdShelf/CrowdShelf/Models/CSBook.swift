@@ -12,12 +12,11 @@ import Foundation
 /// A class representing a book
 public class CSBook: CSBaseModel {
 
-    dynamic var _id              = "\(arc4random())"
-    dynamic var _rev             = ""
+    dynamic var _id              = "-1"
     dynamic var isbn             = ""
     dynamic var owner            = ""
     dynamic var rentedTo         = ""
-    dynamic var avaliableForRent = true
+    dynamic var availableForRent = true
     
     dynamic var details : CSBookInformation?
     
@@ -35,5 +34,13 @@ public class CSBook: CSBaseModel {
     
     public override func ignoreProperties() -> Set<String> {
         return ["details"]
+    }
+    
+    override func serializedValueForProperty(property: String) -> AnyObject? {
+        if property == "rentedTo" {
+            return self.rentedTo == "" ? NSNull() : self.rentedTo
+        }
+        
+        return nil
     }
 }

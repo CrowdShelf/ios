@@ -17,10 +17,6 @@ public class CSUser: CSBaseModel {
     dynamic var name        = ""
     dynamic var email       = ""
     dynamic var username    = ""
-//    
-//    var booksOwned          = List<CSBook>()
-//    var booksRented         = List<CSBook>()
-//    var crowds              = List<RLMWrapper>()
     
     /// The user that is currently authenticated
     class var localUser : CSUser? {
@@ -38,20 +34,5 @@ public class CSUser: CSBaseModel {
     override public class func primaryKey() -> String {
         return "username"
     }
-    
-//    MARK: Serializable Object
-    
-//    override func serializedValueForProperty(property: String) -> AnyObject? {
-//        switch property {
-//        case "booksOwned":
-//            return self.booksOwned.map {$0.serialize()}
-//        case "booksRented":
-//            return self.booksRented.map {$0.serialize()}
-//        case "crowds":
-//            return self.crowds.map {$0.serialize()}
-//        default:
-//            return nil
-//        }
-//    }
 
 }

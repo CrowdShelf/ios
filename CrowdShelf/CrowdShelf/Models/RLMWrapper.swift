@@ -20,7 +20,7 @@ A wrapper object used to wrap values not compatible with Realm
 
 */
 
-class RLMWrapper: SerializableObject {
+class RLMWrapper: Object {
     dynamic var content: AnyObject = ""
     
     var stringValue: String? {
@@ -54,9 +54,4 @@ class RLMWrapper: SerializableObject {
         super.init(realm: realm, schema: schema)
     }
     
-//    MARK: Serializable Object
-    
-    override func serialize() -> AnyObject {
-        return self.content
-    }
 }

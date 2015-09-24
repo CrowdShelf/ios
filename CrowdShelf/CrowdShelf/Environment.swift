@@ -17,6 +17,8 @@ enum CSEnvironment {
         switch self {
         case CSEnvironment.Development:
             return "https://crowdshelf-dev.herokuapp.com/api"
+        case CSEnvironment.Test:
+            return "https://crowdshelf.herokuapp.com/api"
         default:
             fatalError("Host not configured")
         }

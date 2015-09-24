@@ -13,10 +13,10 @@ public class SerializableObject: Object {
     /**
     Serialize the object
     
-    - returns:              An object representing the object
+    - returns:              A dictionary containing the data from the object
     */
     
-    public func serialize() -> AnyObject {
+    public func serialize() -> [String: AnyObject] {
         var dictionary: [String: AnyObject] = [:]
         let mirror = Mirror(reflecting: self)
         
@@ -29,13 +29,12 @@ public class SerializableObject: Object {
             
             if propertyValue == nil {
                 if let value = self.unwrap(child) as? AnyObject {
-                    
                     if let serializableValue = value as? SerializableObject {
                         propertyValue = serializableValue.serialize()
                     } else if let arrayValue = value as? [SerializableObject] {
                         propertyValue = arrayValue.map {$0.serialize()}
                     }
-                    
+
                     else if let dataValue = value as? NSData {
                         propertyValue = dataValue.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
                     } else if let dateValue = value as? NSDate {
@@ -46,7 +45,7 @@ public class SerializableObject: Object {
                 }
             }
             
-            dictionary[key!] = propertyValue
+            dictionary[key!] = propertyValue ?? NSNull()
         }
         
         return dictionary

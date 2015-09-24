@@ -22,15 +22,15 @@ class CSScannerViewController: CSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.layoutIfNeeded()
         self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
+        self.startScanner()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.scannedCodes = Set<String>()
-        
-        self.startScanner()
     }
     
     func stopScanner() {
@@ -45,9 +45,7 @@ class CSScannerViewController: CSBaseViewController {
                         if !self.scannedCodes.contains(code.stringValue) {
                             self.scannedCodes.insert(code.stringValue)
                             
-                            let book = CSBook()
-                            book.isbn = code.stringValue
-                            self.retrieveInformationAboutBook(book)
+                            self.retrieveInformationAboutISBN(code.stringValue)
                         }
                     }
                 })
@@ -56,19 +54,22 @@ class CSScannerViewController: CSBaseViewController {
     }
     
     /// Get retrieve information about the ISBN. If there are multiple results, let the user choose the correct alternative. 
-    func retrieveInformationAboutBook(book: CSBook) {
-        CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
+    func retrieveInformationAboutISBN(isbn: String) {
+        CSDataHandler.informationAboutBook(isbn, withCompletionHandler: { (information) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                let book = CSBook()
+                book.isbn = isbn
                 
                 if information.count > 1 {
                     
                     self.showListWithItems(information, andCompletionHandler: { (information) -> Void in
                         book.details = information.first as? CSBookInformation
-                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            if book.details != nil {
-                                self.performSegueWithIdentifier("ShowBook", sender: book)
-                            }
-                        })
+                        
+                        self.dismissViewControllerAnimated(false, completion: nil)
+                        if book.details != nil {
+                            self.performSegueWithIdentifier("ShowBook", sender: book)
+                        }
                     })
                     
                 } else if information.count == 1 {
