@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (2.0.1)
+  - Mixpanel (2.8.3):
+    - Mixpanel/Mixpanel (= 2.8.3)
+  - Mixpanel/Mixpanel (2.8.3)
   - MTBBarcodeScanner (1.6.1)
   - Realm (0.95.0):
     - Realm/Headers (= 0.95.0)
@@ -9,6 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
+  - Mixpanel
   - MTBBarcodeScanner (~> 1.6.1)
   - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
@@ -31,6 +35,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 1d8e208d616fbbfd2391b15eae766d07c96cdc49
+  Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
   MTBBarcodeScanner: beda75d4c1e2750405f62ee53f7a7ee40bf6825b
   Realm: 1c28007bd496af94dba8c76d50719164e706a521
   RealmSwift: 9864524dd99c2cb7b4643c29513ef8447fe63724

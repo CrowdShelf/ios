@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let userValue = CSLocalDataHandler.getObjectForKey("user", fromFile: CSLocalDataFile.User) {
             CSUser.localUser = CSUser(value: userValue)
         }
-        
+        Mixpanel.sharedInstanceWithToken("93ef1952b96d0faa696176aadc2fbed4")
+        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("App launched")
         
 
         return true

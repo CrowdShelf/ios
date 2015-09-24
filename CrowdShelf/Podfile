@@ -10,11 +10,12 @@ pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :branch =>
 target 'CrowdShelf' do
     pod 'MTBBarcodeScanner', '~> 1.6.1'
     pod 'Alamofire', '~> 2.0'
+    pod 'Mixpanel'
 end
 
 target 'CrowdShelfTests' do
     pod 'MTBBarcodeScanner', '~> 1.6.1'
     pod 'Alamofire', '~> 2.0'
-    
+    pod 'Mixpanel'
 end	
 

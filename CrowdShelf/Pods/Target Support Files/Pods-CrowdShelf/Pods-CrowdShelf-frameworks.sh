@@ -56,10 +56,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-CrowdShelf/RealmSwift.framework'
   install_framework 'Pods-CrowdShelf/Alamofire.framework'
   install_framework 'Pods-CrowdShelf/MTBBarcodeScanner.framework'
+  install_framework 'Pods-CrowdShelf/Mixpanel.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-CrowdShelf/Realm.framework'
   install_framework 'Pods-CrowdShelf/RealmSwift.framework'
   install_framework 'Pods-CrowdShelf/Alamofire.framework'
   install_framework 'Pods-CrowdShelf/MTBBarcodeScanner.framework'
+  install_framework 'Pods-CrowdShelf/Mixpanel.framework'
 fi
