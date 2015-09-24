@@ -255,7 +255,7 @@ public class CSDataHandler {
     */
     
     public class func createCrowd(crowd: CSCrowd, withCompletionHandler completionHandler: ((CSCrowd?)->Void)?) {
-        self.sendRequestWithSubRoute("/crowds", usingMethod: .POST, andParameters: crowd.serialize() as? [String : AnyObject], parameterEncoding: .JSON)  { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("/crowds", usingMethod: .POST, andParameters: crowd.serialize(), parameterEncoding: .JSON)  { (result, isSuccess) -> Void in
             if let value = result as? [String: AnyObject] {
                 completionHandler?(CSCrowd(value: self.realmCompatibleDictionaryFromDictionary(value)))
             } else {
@@ -358,11 +358,11 @@ public class CSDataHandler {
             if dictionary[key] is NSNull {
                 realCompatibleDictionary.removeValueForKey(key)
             } else if let arrayValue = dictionary[key] as? [AnyObject] {
-                if let _ = arrayValue as? [[String: AnyObject]] {
-                    continue
+                if let dictionaryArray = arrayValue as? [[String: AnyObject]] {
+                    realCompatibleDictionary[key] = dictionaryArray.map {self.realmCompatibleDictionaryFromDictionary($0)}
+                } else {
+                    realCompatibleDictionary[key] = arrayValue.map { ["content": $0] }
                 }
-                
-                realCompatibleDictionary[key] = arrayValue.map { ["content": $0] }
             } else {
                 realCompatibleDictionary[key] = dictionary[key]
             }
@@ -390,7 +390,6 @@ public class CSDataHandler {
                     dictionary[key] = value
                 }
             }
-            
         }
         
         return dictionary

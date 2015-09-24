@@ -15,18 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//        let localUser = CSUser(value: [
-//            "username": "oyvindkg",
-//            "name": "Øyvind Grimnes",
-//            "email": "oyvindkg@yahoo.com",
-//            "_id": "5602a211a0913f110092352a"
-//        ])
-//        
-//        CSUser.localUser = localUser
-        
+
+//        Get stored user object if possible
         if let userValue = CSLocalDataHandler.getObjectForKey("user", fromFile: CSLocalDataFile.User) {
             CSUser.localUser = CSUser(value: userValue)
         }
+        
         
         Mixpanel.sharedInstanceWithToken("93ef1952b96d0faa696176aadc2fbed4")
         let mixpanel: Mixpanel = Mixpanel.sharedInstance()

@@ -14,10 +14,6 @@ import Realm
 
 A wrapper object used to wrap values not compatible with Realm
 
-- parameter content:    The value to be wrapped
-
-- returns:              An RLMWrapper instance
-
 */
 
 class RLMWrapper: Object {
