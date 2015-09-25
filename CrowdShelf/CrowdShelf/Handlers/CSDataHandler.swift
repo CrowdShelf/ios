@@ -439,7 +439,7 @@ public class CSDataHandler {
     
     
     /**
-    The endpoint in the client application responsible for sending an asynchronous request and converting the response to a JSON object
+    The endpoint in the client application responsible for sending an asynchronous request and handle the response
     
     - parameter 	route:              route for the request
     - parameter     method:             HTTP method that should be used
@@ -457,16 +457,30 @@ public class CSDataHandler {
             
             csprint(CS_DEBUG_NETWORK, "Send request to URL:", route)
             
+                                        
+            var JSONResponseHandlerFailed = true
+                                        
             Alamofire.request(method, route, parameters: parameters, encoding: parameterEncoding, headers: ["Content-Type": "application/json"])
                 .responseJSON { (request, response, result) -> Void in
                     
-                    if result.isFailure {
-                        csprint(CS_DEBUG_NETWORK, "Request failed:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result.debugDescription)
-                    } else {
-                        csprint(CS_DEBUG_NETWORK, "Request successful:", request!)
+                    JSONResponseHandlerFailed = result.isFailure
+                    
+                    if !JSONResponseHandlerFailed {
+                        completionHandler?(result.value, result.isSuccess)
                     }
                     
-                    completionHandler?(result.value, result.isSuccess)
+            }.responseData { (request, response, result) -> Void in
+                
+                if result.isSuccess {
+                    csprint(CS_DEBUG_NETWORK, "Request successful:", request!)
+                } else {
+                    csprint(CS_DEBUG_NETWORK, "Request failed:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result.debugDescription)
+                }
+                
+                if JSONResponseHandlerFailed {
+                    completionHandler?(nil, result.isSuccess)
+                }
+                
             }
     }
 }
