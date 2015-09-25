@@ -22,6 +22,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jjn-pq-jru">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="58" maxX="0.0" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="8" id="bxh-t4-wYh">
                                     <size key="itemSize" width="90" height="130"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -84,14 +85,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYH-L4-x1e">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IZL-vU-VOD">
-                                        <rect key="frame" x="16" y="28" width="288" height="25"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IZL-vU-VOD">
+                                        <rect key="frame" x="16" y="26" width="288" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Jfq-0n-O5K"/>
                                         </constraints>
                                         <segments>
                                             <segment title="My books"/>
-                                            <segment title="Borrowed books"/>
+                                            <segment title="All books"/>
                                         </segments>
                                         <connections>
                                             <action selector="stateChanged:" destination="1Hz-dQ-H0K" eventType="valueChanged" id="KPj-5J-fpY"/>
@@ -506,7 +507,7 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dummyStars" translatesAutoresizingMaskIntoConstraints="NO" id="1xb-VA-WdU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyStars" translatesAutoresizingMaskIntoConstraints="NO" id="1xb-VA-WdU">
                                         <rect key="frame" x="98" y="82" width="150" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="cAS-86-ZeQ"/>
@@ -540,7 +541,7 @@
                                     <outletCollection property="gestureRecognizers" destination="r0j-ha-4fJ" appends="YES" id="kge-j9-0IM"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="8gU-Im-60Y">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="8gU-Im-60Y" userLabel="Disclosure Indicator Image">
                                 <rect key="frame" x="290" y="109" width="23" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="23" id="mlu-cM-yL8"/>
@@ -567,19 +568,32 @@
                                     <action selector="addBookToShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="Ow2-pD-qam"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The book is added to your shelf" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHW-w3-Exn" userLabel="Message Label">
+                                <rect key="frame" x="36" y="262" width="252" height="45"/>
+                                <color key="backgroundColor" red="0.32911308509999998" green="0.8485284448" blue="0.21010988380000001" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="COC-EH-g8J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="mvs-1O-bcu" secondAttribute="trailing" constant="-16" id="4Wv-Cx-lle"/>
                             <constraint firstItem="p3X-5N-AvN" firstAttribute="top" secondItem="cVe-om-WE9" secondAttribute="bottom" constant="8" id="6ro-Su-Fhm"/>
+                            <constraint firstItem="hHW-w3-Exn" firstAttribute="centerY" secondItem="yOh-6I-yL8" secondAttribute="centerY" id="Fld-Qn-fRl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p3X-5N-AvN" secondAttribute="trailing" constant="-16" id="GFn-s2-cgO"/>
                             <constraint firstItem="cVe-om-WE9" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="P9m-lu-c1z"/>
+                            <constraint firstItem="hHW-w3-Exn" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="20" id="QNx-L8-vLb"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="Qs0-c0-13B"/>
                             <constraint firstItem="8gU-Im-60Y" firstAttribute="leading" secondItem="mvs-1O-bcu" secondAttribute="trailing" constant="-30" id="RgB-bL-dSF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cVe-om-WE9" secondAttribute="trailing" constant="-16" id="Rs8-XM-IDu"/>
                             <constraint firstItem="t08-Pd-KBd" firstAttribute="top" secondItem="p3X-5N-AvN" secondAttribute="bottom" id="Vsl-4V-mOd"/>
                             <constraint firstItem="p3X-5N-AvN" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="cBd-iG-Asf"/>
                             <constraint firstItem="8gU-Im-60Y" firstAttribute="centerY" secondItem="mvs-1O-bcu" secondAttribute="centerY" id="i01-8v-SYZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hHW-w3-Exn" secondAttribute="trailing" constant="16" id="ot1-1g-K90"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="top" secondItem="Otv-za-Tuw" secondAttribute="bottom" id="y4C-3V-ECk"/>
                         </constraints>
                     </view>
@@ -593,6 +607,7 @@
                     <connections>
                         <outlet property="authorsLabel" destination="ItO-dn-GsP" id="dCA-BX-5Wa"/>
                         <outlet property="coverImageView" destination="i9U-Ez-HmK" id="Y4a-MM-XNA"/>
+                        <outlet property="messageLabel" destination="hHW-w3-Exn" id="NlH-DT-TdI"/>
                         <outlet property="publisherLabel" destination="NiB-Fu-RKq" id="q0w-3n-CYb"/>
                         <outlet property="titleLabel" destination="j95-g6-7ZE" id="uTl-s4-aA5"/>
                     </connections>
@@ -693,6 +708,6 @@
         <image name="shelf" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E8c-Wd-HfK"/>
+        <segue reference="mua-rp-U9x"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -29,6 +29,8 @@
 		395EDD201B8F09C00012A465 /* CSScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */; };
 		395EDD231B8F55AE0012A465 /* CSBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD221B8F55AE0012A465 /* CSBook.swift */; };
 		395EDD251B8F56BC0012A465 /* CSCrowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD241B8F56BC0012A465 /* CSCrowd.swift */; };
+		39737EBD1BB56ED4001AA6C6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39737EBC1BB56ED4001AA6C6 /* Utilities.swift */; settings = {ASSET_TAGS = (); }; };
+		39737EBE1BB56F6A001AA6C6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39737EBC1BB56ED4001AA6C6 /* Utilities.swift */; settings = {ASSET_TAGS = (); }; };
 		3978FE211BB32BF100DF742A /* CSBookInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978FE201BB32BF100DF742A /* CSBookInformationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3978FE221BB32BF100DF742A /* CSBookInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978FE201BB32BF100DF742A /* CSBookInformationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		399EFDF61BB2E0C900FC0664 /* CSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFDF51BB2E0C900FC0664 /* CSLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -93,6 +95,7 @@
 		395EDD1F1B8F09C00012A465 /* CSScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSScannerViewController.swift; path = ViewControllers/CSScannerViewController.swift; sourceTree = "<group>"; };
 		395EDD221B8F55AE0012A465 /* CSBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBook.swift; path = Models/CSBook.swift; sourceTree = "<group>"; };
 		395EDD241B8F56BC0012A465 /* CSCrowd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSCrowd.swift; path = Models/CSCrowd.swift; sourceTree = "<group>"; };
+		39737EBC1BB56ED4001AA6C6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3978FE201BB32BF100DF742A /* CSBookInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSBookInformationViewController.swift; path = ViewControllers/CSBookInformationViewController.swift; sourceTree = "<group>"; };
 		399EFDF51BB2E0C900FC0664 /* CSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSLoginViewController.swift; path = ViewControllers/CSLoginViewController.swift; sourceTree = "<group>"; };
 		39A0CAFD1B958B0D00321225 /* CSListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSListViewController.swift; path = ViewControllers/CSListViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 				3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */,
 				3953BF871B8DC29B00E39CC9 /* Supporting Files */,
 				39153A531B97150B00D34293 /* Views */,
+				39737EBC1BB56ED4001AA6C6 /* Utilities.swift */,
 			);
 			path = CrowdShelf;
 			sourceTree = "<group>";
@@ -346,7 +350,7 @@
 				TargetAttributes = {
 					3953BF831B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = BBH4XJDFZ7;
+						DevelopmentTeam = FXWNTJ4XVX;
 					};
 					3953BF981B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
@@ -503,6 +507,7 @@
 				390EAF261BAA0D5000D0DCEB /* CSDataHandler+GoogleBooks.swift in Sources */,
 				39BFDEFB1BAD4D5E0058C2CF /* Debug.swift in Sources */,
 				39C2F5881B8FA0CE00529AA9 /* CSUser.swift in Sources */,
+				39737EBD1BB56ED4001AA6C6 /* Utilities.swift in Sources */,
 				39C2F5AE1B906D8D00529AA9 /* CSBookViewController.swift in Sources */,
 				39C2F5B51B90A40A00529AA9 /* CSShelfViewController.swift in Sources */,
 				392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */,
@@ -543,6 +548,7 @@
 				39BFDEF51BACBBB50058C2CF /* Environment.swift in Sources */,
 				39BFDEFC1BAD4EE30058C2CF /* Debug.swift in Sources */,
 				39C2F5AC1B906D5A00529AA9 /* CSScannerViewController.swift in Sources */,
+				39737EBE1BB56F6A001AA6C6 /* Utilities.swift in Sources */,
 				39CB7B9F1BB3501000718345 /* CSBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,7 +623,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "462baa9b-1a2a-4adf-9a31-7c86abaa7435";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -655,7 +660,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "462baa9b-1a2a-4adf-9a31-7c86abaa7435";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

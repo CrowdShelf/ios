@@ -19,6 +19,7 @@ class CSBookViewController: CSBaseViewController {
     @IBOutlet weak var publisherLabel: UILabel?
     
     @IBOutlet weak var coverImageView: UIImageView?
+    @IBOutlet weak var messageLabel: UILabel!
     
     @IBOutlet weak var bookView: UIView!
     
@@ -60,6 +61,10 @@ class CSBookViewController: CSBaseViewController {
         
         self.coverImageView?.layer.borderWidth = 1
         self.coverImageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
+        
+        self.messageLabel.hidden = true;
+        self.messageLabel.layer.cornerRadius = 6;
+        self.messageLabel.layer.masksToBounds = true;
     }
     
     func updateView() {
@@ -81,12 +86,37 @@ class CSBookViewController: CSBaseViewController {
         
     }
     
+    func fadeView(view: UIView, fadeIn: Bool, completionHandler: ((Bool)->Void)?) {
+        view.alpha = fadeIn ? 0 : 1
+        view.hidden = false
+        UIView.animateWithDuration(0.4, animations: { () -> Void in
+            view.alpha = fadeIn ? 1 : 0
+            }) { (finished) -> Void in
+                view.hidden = !fadeIn
+                completionHandler?(finished)
+        }
+    }
+    
+    private func showMessage(message: String, error: Bool) {
+        self.messageLabel.text = message
+        self.messageLabel.backgroundColor = UIColor(red: error ? 0.8 : 0, green: error ? 0 : 0.8, blue: 0, alpha: 0.7)
+        
+        self.fadeView(self.messageLabel, fadeIn: true, completionHandler: { (_) -> Void in
+            Utilities.delayDispatchInQueue(dispatch_get_main_queue(), delay: 1, block: { () -> Void in
+                self.fadeView(self.messageLabel, fadeIn: false, completionHandler: nil)
+            })
+        })
+    }
+    
     @IBAction func addBookToShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
 
         self.book!.owner = CSUser.localUser!._id
         
         CSDataHandler.addBook(self.book!) { (isSuccess) -> Void in
+            
+            self.showMessage("Successfully added book", error: !isSuccess)
+            
             if isSuccess {
                 csprint(CS_DEBUG_BOOK_VIEW, "Successfully added book:", self.book)
             } else {
@@ -108,7 +138,11 @@ class CSBookViewController: CSBaseViewController {
     @IBAction func removeBookFromShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
         
+        
         CSDataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
+            
+            self.showMessage("Successfully removed book", error: !isSuccess)
+            
             if isSuccess {
                 csprint(CS_DEBUG_BOOK_VIEW, "Successfully removed book:", self.book)
             } else {
