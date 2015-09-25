@@ -23,6 +23,17 @@ enum CSEnvironment {
             fatalError("Host not configured")
         }
     }
+    
+    func MixpanelTracking() -> String {
+        switch self {
+        case CSEnvironment.Development:
+            return "93ef1952b96d0faa696176aadc2fbed4"
+        case CSEnvironment.Test:
+            return "9f321d1662e631f2995d9b8f050c4b44"
+        default:
+            fatalError("Host not configured")
+        }
+    }
 }
 
 let CS_ENVIRONMENT : CSEnvironment = .Development

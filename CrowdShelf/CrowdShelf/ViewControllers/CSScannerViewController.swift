@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Mixpanel
 import UIKit
 import MTBBarcodeScanner
 
@@ -77,6 +77,9 @@ class CSScannerViewController: CSBaseViewController {
                 
             })
         })
+        Mixpanel.sharedInstanceWithToken(CS_ENVIRONMENT.MixpanelTracking())
+        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("BookScanned")
     }
     
 //    MARK: - Navigation

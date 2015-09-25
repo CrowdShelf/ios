@@ -31,7 +31,7 @@ class CSLoginViewController: UIViewController {
             CSDataHandler.createUser(user, withCompletionHandler: { (user) -> Void in
 
                 if user != nil {
-                    CSLocalDataHandler.setObject(user!.serialize() as! [String: AnyObject], forKey: "user", inFile: CSLocalDataFile.User)
+                    CSLocalDataHandler.setObject(user!.serialize() , forKey: "user", inFile: CSLocalDataFile.User)
                     CSUser.localUser = user
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }

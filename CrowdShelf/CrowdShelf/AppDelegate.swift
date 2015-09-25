@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        Mixpanel.sharedInstanceWithToken("93ef1952b96d0faa696176aadc2fbed4")
+        Mixpanel.sharedInstanceWithToken(CS_ENVIRONMENT.MixpanelTracking())
         let mixpanel: Mixpanel = Mixpanel.sharedInstance()
         mixpanel.track("AppLaunched")
         

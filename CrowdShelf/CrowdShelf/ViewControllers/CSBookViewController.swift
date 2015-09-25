@@ -5,9 +5,10 @@
 //  Created by Øyvind Grimnes on 28/08/15.
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
 //
-
+import Mixpanel
 import UIKit
 import RealmSwift
+
 
 class CSBookViewController: CSBaseViewController {
     
@@ -124,6 +125,9 @@ class CSBookViewController: CSBaseViewController {
             
             self.updateView()
         }
+        Mixpanel.sharedInstanceWithToken(CS_ENVIRONMENT.MixpanelTracking())
+        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("BookAdded")
     }
     
     @IBAction func removeBookFromShelf(sender: AnyObject) {
