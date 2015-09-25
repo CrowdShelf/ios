@@ -95,9 +95,14 @@ class CSBookViewController: CSBaseViewController {
             
             self.updateView()
         }
+        
         Mixpanel.sharedInstanceWithToken(CS_ENVIRONMENT.MixpanelTracking())
         let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+//        let categories = self.book?.details?.categories.map {$0.content as! String}
+        
         mixpanel.track("BookAdded")
+
+        
     }
     
     @IBAction func removeBookFromShelf(sender: AnyObject) {
