@@ -19,18 +19,16 @@ class CSScannerViewController: CSBaseViewController {
     
     var scannedCodes = Set<String>()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.layoutIfNeeded()
-        self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
-        self.startScanner()
-    }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.scannedCodes = Set<String>()
+        if self.scanner == nil {
+            self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
+        }
+        self.startScanner()
     }
     
     func stopScanner() {

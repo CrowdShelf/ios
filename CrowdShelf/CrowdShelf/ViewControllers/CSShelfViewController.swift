@@ -24,8 +24,8 @@ class CSShelfViewController: CSBaseViewController, UICollectionViewDataSource {
     var ownedBooks: [CSBook] {
         return CSUser.localUser != nil ? self.books.filter({$0.owner == CSUser.localUser!._id}) : []
     }
-    var borrowedBooks: [CSBook] {
-        return CSUser.localUser != nil ? self.books.filter({$0.owner != CSUser.localUser!._id}) : []
+    var allBooks: [CSBook] {
+        return self.books
     }
     
     var state: CSShelfViewState {
@@ -69,12 +69,12 @@ class CSShelfViewController: CSBaseViewController, UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (self.state == .OwnedBooks ? self.ownedBooks : self.borrowedBooks).count
+        return (self.state == .OwnedBooks ? self.ownedBooks : self.allBooks).count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCell", forIndexPath: indexPath) as! CSBookCollectionViewCell
-        cell.book = (self.state == .OwnedBooks ? self.ownedBooks : self.borrowedBooks)[indexPath.row]
+        cell.book = (self.state == .OwnedBooks ? self.ownedBooks : self.allBooks)[indexPath.row]
         return cell
     }
     
