@@ -10,7 +10,7 @@
         <!--My shelf-->
         <scene sceneID="fsU-SU-29i">
             <objects>
-                <viewController storyboardIdentifier="ShelfViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Hz-dQ-H0K" customClass="CSShelfViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShelfViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Hz-dQ-H0K" customClass="ShelfViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rrl-qV-6fv"/>
                         <viewControllerLayoutGuide type="bottom" id="IO0-yA-z7U"/>
@@ -30,7 +30,7 @@
                                     <inset key="sectionInset" minX="8" minY="70" maxX="8" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookCell" id="nCe-Ex-7wZ" customClass="CSBookCollectionViewCell" customModule="CrowdShelf" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookCell" id="nCe-Ex-7wZ" customClass="BookCollectionViewCell" customModule="CrowdShelf" customModuleProvider="target">
                                         <rect key="frame" x="8" y="70" width="90" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -136,7 +136,7 @@
         <!--Scanner-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="ScannerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="CSScannerViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScannerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="ScannerViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -192,7 +192,7 @@
         <!--Login View Controller-->
         <scene sceneID="mrW-5k-pNq">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="big-vw-Q6f" customClass="CSLoginViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="big-vw-Q6f" customClass="LoginViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g68-5B-paL"/>
                         <viewControllerLayoutGuide type="bottom" id="smk-CT-MeM"/>
@@ -282,7 +282,7 @@
         <!--Introduction to Algorithms-->
         <scene sceneID="RoU-RX-M6U">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BUX-xh-gL1" customClass="CSBookInformationViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BUX-xh-gL1" customClass="BookInformationViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WjC-dp-Svg"/>
                         <viewControllerLayoutGuide type="bottom" id="IFh-4D-tmY"/>
@@ -455,7 +455,7 @@
         <!--Book-->
         <scene sceneID="PUT-hs-Ybe">
             <objects>
-                <viewController id="8vd-8z-IT4" customClass="CSBookViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8vd-8z-IT4" customClass="BookViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Otv-za-Tuw"/>
                         <viewControllerLayoutGuide type="bottom" id="t08-Pd-KBd"/>
@@ -630,7 +630,7 @@
         <!--List View Controller-->
         <scene sceneID="8x0-eN-uSa">
             <objects>
-                <viewController storyboardIdentifier="ListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="01L-ga-xI0" customClass="CSListViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="01L-ga-xI0" customClass="ListViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qdP-WM-qwM"/>
                         <viewControllerLayoutGuide type="bottom" id="1lH-ha-nXG"/>

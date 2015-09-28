@@ -9,12 +9,12 @@
 import UIKit
 
 
-class CSBaseViewController: UIViewController {
+class BaseViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if CSUser.localUser == nil {
+        if User.localUser == nil {
             self.showLogin()
         }
     }
@@ -22,7 +22,7 @@ class CSBaseViewController: UIViewController {
     func showLogin() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! CSLoginViewController
+        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
         self.presentViewController(loginVC, animated: true, completion: nil)
     }
@@ -31,7 +31,7 @@ class CSBaseViewController: UIViewController {
     func showListWithItems(items: [Listable], andCompletionHandler completionHandler: (([Listable]) -> Void)) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let listVC = storyboard.instantiateViewControllerWithIdentifier("ListViewController") as! CSListViewController
+        let listVC = storyboard.instantiateViewControllerWithIdentifier("ListViewController") as! ListViewController
         
         listVC.listData = items
         listVC.completionHandler = completionHandler

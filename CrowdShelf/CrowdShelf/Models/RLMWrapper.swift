@@ -33,6 +33,11 @@ class RLMWrapper: Object {
     
 //    MARK: Realm Object
     
+    init(_ content: AnyObject) {
+        self.content = content
+        super.init()
+    }
+    
     required init() {
         super.init()
     }
@@ -43,11 +48,6 @@ class RLMWrapper: Object {
     
     override init(value: AnyObject, schema: RLMSchema) {
         super.init(value: ["content": value], schema: schema)
-    }
-    
-    init(content: AnyObject) {
-        self.content = content
-        super.init()
     }
     
     override init(realm: RLMRealm, schema: RLMObjectSchema) {

@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 
-class CSBookViewController: CSBaseViewController {
+class BookViewController: BaseViewController {
     
 //    MARK: - Outlets
     
@@ -29,16 +29,16 @@ class CSBookViewController: CSBaseViewController {
     
 //    MARK: - Properties
     
-    var book : CSBook? {
+    var book : Book? {
         didSet {
             self.updateView()
             
             if book?.details == nil {
-                CSDataHandler.informationAboutBook(book!.isbn, withCompletionHandler: { (information) -> Void in
+                DataHandler.informationAboutBook(book!.isbn, withCompletionHandler: { (information) -> Void in
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         if information.count > 1 {
                             self.showListWithItems(information, andCompletionHandler: { (information) -> Void in
-                                self.book?.details = information.first as? CSBookInformation
+                                self.book?.details = information.first as? BookInformation
                                 self.updateView()
                             })
                         } else {
@@ -59,7 +59,7 @@ class CSBookViewController: CSBaseViewController {
         
         self.updateView()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateView", name: CSNotification.LocalUserUpdated, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateView", name: Notification.LocalUserUpdated, object: nil)
         
         self.coverImageView?.layer.borderWidth = 1
         self.coverImageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -84,7 +84,7 @@ class CSBookViewController: CSBaseViewController {
         
         if self.buttons != nil {
             for button in self.buttons! {
-                button.enabled = CSUser.localUser != nil
+                button.enabled = User.localUser != nil
             }
         }
         
@@ -115,10 +115,10 @@ class CSBookViewController: CSBaseViewController {
     @IBAction func addBookToShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
 
-        self.book!.owner = CSUser.localUser!._id
+        self.book!.owner = User.localUser!._id
         
         self.activityIndicator.startAnimating()
-        CSDataHandler.addBook(self.book!) { (isSuccess) -> Void in
+        DataHandler.addBook(self.book!) { (isSuccess) -> Void in
             self.activityIndicator.stopAnimating()
             self.showMessage("Successfully added book", error: !isSuccess)
             
@@ -139,7 +139,7 @@ class CSBookViewController: CSBaseViewController {
         csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
         
         self.activityIndicator.startAnimating()
-        CSDataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
+        DataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
             
             self.showMessage("Successfully removed book", error: !isSuccess)
             self.activityIndicator.stopAnimating()
@@ -161,7 +161,7 @@ class CSBookViewController: CSBaseViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBookInformation" {
-            let bookInformationVC = segue.destinationViewController as! CSBookInformationViewController
+            let bookInformationVC = segue.destinationViewController as! BookInformationViewController
             bookInformationVC.bookInformation = self.book?.details
         }
     }

@@ -17,16 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
 //        Get stored user object if possible
-        if let userValue = CSLocalDataHandler.getObjectForKey("user", fromFile: CSLocalDataFile.User) {
-            CSUser.localUser = CSUser(value: userValue)
+        if let userValue = LocalDataHandler.getObjectForKey("user", fromFile: LocalDataFile.User) {
+            User.localUser = User(value: userValue)
         }
-        
         
         Mixpanel.sharedInstanceWithToken(CS_ENVIRONMENT.MixpanelTracking())
         let mixpanel: Mixpanel = Mixpanel.sharedInstance()
         mixpanel.track("AppLaunched")
         
-
         return true
     }
 

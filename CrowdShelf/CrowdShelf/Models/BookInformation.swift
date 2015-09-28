@@ -12,7 +12,7 @@ import RealmSwift
 
 
 /// A class representing detail about a book
-public class CSBookInformation: CSBaseModel, Listable {
+public class BookInformation: BaseModel, Listable {
     
     dynamic var providerID                  = ""
     dynamic var provider                    = ""

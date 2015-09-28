@@ -9,7 +9,7 @@
 import UIKit
 
 
-class CSBookInformationViewController: CSBaseViewController {
+class BookInformationViewController: BaseViewController {
     
     @IBOutlet weak var authorsLabel: UILabel?
     @IBOutlet weak var publisherLabel: UILabel?
@@ -19,7 +19,7 @@ class CSBookInformationViewController: CSBaseViewController {
     @IBOutlet weak var summaryTextArea: UITextView?
     
     @IBOutlet weak var backgroundImage: UIImageView?
-    var bookInformation: CSBookInformation? {
+    var bookInformation: BookInformation? {
         didSet {
             self.updateView()
         }

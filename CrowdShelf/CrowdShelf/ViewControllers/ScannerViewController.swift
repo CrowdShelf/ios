@@ -11,7 +11,7 @@ import Mixpanel
 import UIKit
 import MTBBarcodeScanner
 
-class CSScannerViewController: CSBaseViewController {
+class ScannerViewController: BaseViewController {
     
     @IBOutlet weak var scannerView: UIView!
     
@@ -53,16 +53,16 @@ class CSScannerViewController: CSBaseViewController {
     
     /// Get retrieve information about the ISBN. If there are multiple results, let the user choose the correct alternative. 
     func retrieveInformationAboutISBN(isbn: String) {
-        CSDataHandler.informationAboutBook(isbn, withCompletionHandler: { (information) -> Void in
+        DataHandler.informationAboutBook(isbn, withCompletionHandler: { (information) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                let book = CSBook()
+                let book = Book()
                 book.isbn = isbn
                 
                 if information.count > 1 {
                     
                     self.showListWithItems(information, andCompletionHandler: { (information) -> Void in
-                        book.details = information.first as? CSBookInformation
+                        book.details = information.first as? BookInformation
                         
                         self.dismissViewControllerAnimated(false, completion: nil)
                         if book.details != nil {
@@ -87,8 +87,8 @@ class CSScannerViewController: CSBaseViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBook" {
             let navigationVC = segue.destinationViewController as! UINavigationController
-            let bookVC = navigationVC.viewControllers.first as! CSBookViewController
-            bookVC.book = sender as? CSBook
+            let bookVC = navigationVC.viewControllers.first as! BookViewController
+            bookVC.book = sender as? Book
         }
     }
 }

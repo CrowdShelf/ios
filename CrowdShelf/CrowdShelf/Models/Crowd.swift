@@ -9,7 +9,7 @@
 import RealmSwift
 
 /// A class representing a crowd
-public class CSCrowd: CSBaseModel, Listable {
+public class CSCrowd: BaseModel, Listable {
     
     dynamic var _id     = ""
     dynamic var name    = ""

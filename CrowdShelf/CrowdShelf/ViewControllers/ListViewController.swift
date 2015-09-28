@@ -14,7 +14,7 @@ import UIKit
     optional var image : UIImage? {get}
 }
 
-class CSListViewController: CSBaseViewController, UITableViewDataSource, UITableViewDelegate {
+class ListViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var doneButton: UIBarButtonItem!

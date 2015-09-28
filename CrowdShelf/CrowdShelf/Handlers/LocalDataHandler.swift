@@ -19,7 +19,7 @@ Predefined file names:
 - BookDetail
 */
 
-public struct CSLocalDataFile {
+public struct LocalDataFile {
     static let Book = "book"
     static let User = "user"
     static let Crowd = "crowd"
@@ -34,7 +34,7 @@ A class reponsible for managing a local key-value storage.
 :discussion: Files will be automatically created when needed. Initial values can be provided by a file in the main bundle with the same file name and type.
 */
 
-public class CSLocalDataHandler {
+public class LocalDataHandler {
     
     
 //    MARK: - Setters
@@ -51,7 +51,7 @@ public class CSLocalDataHandler {
     */
     
     public class func setObject(object : AnyObject?, forKey key: String, inFile fileName: String) -> Bool {
-        var data = CSLocalDataHandler.getDataFromFile(fileName)
+        var data = self.getDataFromFile(fileName)
         
         if object != nil {
             data[key] = object
@@ -122,7 +122,7 @@ public class CSLocalDataHandler {
     */
     
     public class func getObjectForKey(key: String, fromFile fileName: String) -> AnyObject? {
-        return CSLocalDataHandler.getDataFromFile(fileName)[key]
+        return self.getDataFromFile(fileName)[key]
     }
     
     

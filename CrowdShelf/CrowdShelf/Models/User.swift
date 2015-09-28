@@ -9,9 +9,9 @@
 import RealmSwift
 
 // FIXME: Ugly, temporary mimic of apples local user
-private var _localUser : CSUser?
+private var _localUser : User?
 
-public class CSUser: CSBaseModel {
+public class User: BaseModel {
 
     dynamic var _id         = ""
     dynamic var name        = ""
@@ -19,13 +19,13 @@ public class CSUser: CSBaseModel {
     dynamic var username    = ""
     
     /// The user that is currently authenticated
-    class var localUser : CSUser? {
+    class var localUser : User? {
         get {
             return _localUser
         }
         set {
             _localUser = newValue
-            NSNotificationCenter.defaultCenter().postNotificationName(CSNotification.LocalUserUpdated, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(Notification.LocalUserUpdated, object: nil)
         }
     }
     

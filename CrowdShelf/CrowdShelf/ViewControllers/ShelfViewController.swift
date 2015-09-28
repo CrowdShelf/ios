@@ -1,5 +1,5 @@
 //
-//  CSShelfViewController.swift
+//  ShelfViewController.swift
 //  CrowdShelf
 //
 //  Created by Øyvind Grimnes on 28/08/15.
@@ -9,45 +9,45 @@
 import UIKit
 import RealmSwift
 
-enum CSShelfViewState: Int {
+enum ShelfViewState: Int {
     case OwnedBooks    = 0
     case BorrowedBooks = 1
 }
 
-class CSShelfViewController: CSBaseViewController, UICollectionViewDataSource {
+class ShelfViewController: BaseViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var stateControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView?
     
-    var books : [CSBook] = []
+    var books : [Book] = []
     
-    var ownedBooks: [CSBook] {
-        return CSUser.localUser != nil ? self.books.filter({$0.owner == CSUser.localUser!._id}) : []
+    var ownedBooks: [Book] {
+        return User.localUser != nil ? self.books.filter({$0.owner == User.localUser!._id}) : []
     }
-    var allBooks: [CSBook] {
+    var allBooks: [Book] {
         return self.books
     }
     
-    var state: CSShelfViewState {
-        return CSShelfViewState(rawValue: self.stateControl.selectedSegmentIndex)!
+    var state: ShelfViewState {
+        return ShelfViewState(rawValue: self.stateControl.selectedSegmentIndex)!
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadBooks", name: CSNotification.LocalUserUpdated, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadBooks", name: Notification.LocalUserUpdated, object: nil)
         
         self.loadBooks()
     }
     
     func loadBooks() {
 //        Use server by uncommenting this section
-        CSDataHandler.getBooksWithParameters(nil) { (books) -> Void in
+        DataHandler.getBooksWithParameters(nil) { (books) -> Void in
             self.books = books
             self.updateView()
             
             for book in books {
-                CSDataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
+                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
                     book.details = bookInformation.first
                     self.updateView()
                 })
@@ -73,7 +73,7 @@ class CSShelfViewController: CSBaseViewController, UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCell", forIndexPath: indexPath) as! CSBookCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCell", forIndexPath: indexPath) as! BookCollectionViewCell
         cell.book = (self.state == .OwnedBooks ? self.ownedBooks : self.allBooks)[indexPath.row]
         return cell
     }
@@ -90,8 +90,8 @@ class CSShelfViewController: CSBaseViewController, UICollectionViewDataSource {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBook" {
             let navigationVC = segue.destinationViewController as! UINavigationController
-            let bookVC = navigationVC.viewControllers.first as! CSBookViewController
-            bookVC.book = (sender as! CSBookCollectionViewCell).book
+            let bookVC = navigationVC.viewControllers.first as! BookViewController
+            bookVC.book = (sender as! BookCollectionViewCell).book
         }
     }
     

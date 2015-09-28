@@ -1,5 +1,5 @@
 //
-//  CSDataHandler.swift
+//  DataHandler.swift
 //  CrowdShelf
 //
 //  Created by Øyvind Grimnes on 28/08/15.
@@ -17,13 +17,13 @@ Notifications posted for important events
     A user was authenticated or signed out
 
 */
-public struct CSNotification {
+public struct Notification {
     static let LocalUserUpdated = "localUserUpdated"
 }
 
 
 ///Responsible for brokering between the server and client
-public class CSDataHandler {
+public class DataHandler {
 
 //    MARK: - Book Information
     
@@ -38,23 +38,23 @@ public class CSDataHandler {
     
     */
     
-    public class func informationAboutBook(isbn: String, withCompletionHandler completionHandler: (([CSBookInformation])->Void)) {
+    public class func informationAboutBook(isbn: String, withCompletionHandler completionHandler: (([BookInformation])->Void)) {
         if isbn.characters.count != 10 && isbn.characters.count != 13 {
             return completionHandler([])
         }
         
         
         let cachedData = Realm.read {
-            $0.objectForPrimaryKey(CSBookInformation.self, key: isbn)
+            $0.objectForPrimaryKey(BookInformation.self, key: isbn)
         }
 
-        if let cachedInformation = cachedData as? CSBookInformation {
+        if let cachedInformation = cachedData as? BookInformation {
             completionHandler([cachedInformation])
             return
         }
         
         
-        self.informationFromGoogleAboutBook(isbn) { (bookInformationArray: [CSBookInformation]) -> Void in
+        self.informationFromGoogleAboutBook(isbn) { (bookInformationArray: [BookInformation]) -> Void in
             for bookInformation in bookInformationArray {
                 if let URL = NSURL(string: bookInformation.thumbnailURLString) {
                     if let thumbnailData = NSData(contentsOfURL: URL) {
@@ -94,7 +94,7 @@ public class CSDataHandler {
     
     */
     
-    public class func addBook(book: CSBook, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
+    public class func addBook(book: Book, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
         self.sendRequestWithSubRoute("/books", usingMethod: .POST, andParameters: book.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
@@ -124,10 +124,10 @@ public class CSDataHandler {
     
     */
     
-    public class func getBook(bookID: String, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
+    public class func getBook(bookID: String, withCompletionHandler completionHandler: ((Book?)->Void)) {
         self.sendRequestWithSubRoute("/books/\(bookID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let value = result as? [String: AnyObject] {
-                let book = CSBook(value: value)
+                let book = Book(value: value)
                 return completionHandler(book)
             }
             
@@ -144,12 +144,12 @@ public class CSDataHandler {
     
     */
     
-    public class func getBooksWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([CSBook])->Void)) {
+    public class func getBooksWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Book])->Void)) {
         self.sendRequestWithSubRoute("/books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
             
             if let resultDictionary = result as? [String: AnyObject] {
                 if let value = resultDictionary["books"] as? [[String: AnyObject]] {
-                    let books = value.map {CSBook(value: $0)}
+                    let books = value.map {Book(value: $0)}
                     return completionHandler(books)
                 }
             }
@@ -168,10 +168,10 @@ public class CSDataHandler {
     
     */
     
-    public class func getUser(userID: String, withCompletionHandler completionHandler: ((CSUser?)->Void)) {
+    public class func getUser(userID: String, withCompletionHandler completionHandler: ((User?)->Void)) {
         self.sendRequestWithSubRoute("/users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let resultDictionary = result as? [String: AnyObject] {
-                return completionHandler(CSUser(value: resultDictionary))
+                return completionHandler(User(value: resultDictionary))
             }
             
             completionHandler(nil)
@@ -186,7 +186,7 @@ public class CSDataHandler {
     
     */
     
-    public class func createUser(user: CSUser, withCompletionHandler completionHandler: ((CSUser?)->Void )) {
+    public class func createUser(user: User, withCompletionHandler completionHandler: ((User?)->Void )) {
         
 //        TODO: Fix on server and remove
         var parameters = user.serialize()
@@ -194,7 +194,7 @@ public class CSDataHandler {
         
         self.sendRequestWithSubRoute("/users", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             if let value = result as? [String: AnyObject] {
-                completionHandler(CSUser(value: value))
+                completionHandler(User(value: value))
             }
             
             completionHandler(nil)

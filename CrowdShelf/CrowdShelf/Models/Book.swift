@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A class representing a book
-public class CSBook: CSBaseModel {
+public class Book: BaseModel {
 
     dynamic var _id              = "-1"
     dynamic var isbn             = ""
@@ -18,7 +18,7 @@ public class CSBook: CSBaseModel {
     dynamic var rentedTo         = ""
     dynamic var availableForRent = true
     
-    dynamic var details : CSBookInformation?
+    dynamic var details : BookInformation?
     
     public override var description: String {
         return self.serialize().description

@@ -1,5 +1,5 @@
 //
-//  CSLoginViewController.swift
+//  LoginViewController.swift
 //  CrowdShelf
 //
 //  Created by Øyvind Grimnes on 23/09/15.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-class CSLoginViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -25,14 +25,14 @@ class CSLoginViewController: UIViewController {
             "email": self.emailField.text!,
             "name": self.nameField.text!,
         ]
-        let user = CSUser(value: value)
+        let user = User(value: value)
         
         if self.segmentedControl.selectedSegmentIndex == 1 {
-            CSDataHandler.createUser(user, withCompletionHandler: { (user) -> Void in
+            DataHandler.createUser(user, withCompletionHandler: { (user) -> Void in
 
                 if user != nil {
-                    CSLocalDataHandler.setObject(user!.serialize() , forKey: "user", inFile: CSLocalDataFile.User)
-                    CSUser.localUser = user
+                    LocalDataHandler.setObject(user!.serialize() , forKey: "user", inFile: LocalDataFile.User)
+                    User.localUser = user
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             })

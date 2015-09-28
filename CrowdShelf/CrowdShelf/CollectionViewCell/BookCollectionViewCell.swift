@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CSBookCollectionViewCell: UICollectionViewCell {
+class BookCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var coverImageView: UIImageView?
     
     
-    var book : CSBook? {
+    var book : Book? {
         didSet {
             self.updateView()
         }

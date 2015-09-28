@@ -19,7 +19,7 @@ import RealmSwift
 
 */
 
-extension CSDataHandler {
+extension DataHandler {
     
     /**
     Retrieve information about a book from Google based on its isbn
@@ -29,7 +29,7 @@ extension CSDataHandler {
     
     */
     
-    class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([CSBookInformation]) -> Void)) {
+    class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([BookInformation]) -> Void)) {
         
         let mapping = [
             "providerID"        : "id",
@@ -46,7 +46,7 @@ extension CSDataHandler {
         
         self.sendRequestWithRoute("https://www.googleapis.com/books/v1/volumes", usingMethod: .GET, andParameters: ["q": "isbn:\(isbn)"], parameterEncoding: .URL) { (result, isSuccess) -> Void in
             
-            var informationObjects: [CSBookInformation] = []
+            var informationObjects: [BookInformation] = []
             
             if let resultDictionary = result as? [String: AnyObject] {
                 if let itemArray = resultDictionary["items"] as? [[String: AnyObject]] {
@@ -56,7 +56,7 @@ extension CSDataHandler {
                         value["isbn"] = isbn
                         value["provider"] = "google"
                         
-                        informationObjects.append(CSBookInformation(value: value))
+                        informationObjects.append(BookInformation(value: value))
                         
                     }
                 }
