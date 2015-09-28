@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import Realm
 
 public class SerializableObject: Object {
     

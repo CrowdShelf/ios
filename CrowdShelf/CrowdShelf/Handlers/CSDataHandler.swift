@@ -39,29 +39,28 @@ public class CSDataHandler {
     */
     
     public class func informationAboutBook(isbn: String, withCompletionHandler completionHandler: (([CSBookInformation])->Void)) {
-        if isbn.characters.count < 10 {
+        if isbn.characters.count != 10 && isbn.characters.count != 13 {
             return completionHandler([])
         }
         
-        do {
-            if let bookInformation = try Realm().objectForPrimaryKey(CSBookInformation.self, key: isbn) {
-                return completionHandler([bookInformation])
-            }
-        } catch let error as NSError {
-            csprint(CS_DEBUG_REALM, "Failed to retrieve book information from Realm for isbn: \(isbn)", "\nError:", error.debugDescription)
+        
+        let cachedData = Realm.read {
+            $0.objectForPrimaryKey(CSBookInformation.self, key: isbn)
         }
+
+        if let cachedInformation = cachedData as? CSBookInformation {
+            completionHandler([cachedInformation])
+            return
+        }
+        
         
         self.informationFromGoogleAboutBook(isbn) { (bookInformationArray: [CSBookInformation]) -> Void in
             for bookInformation in bookInformationArray {
                 if let URL = NSURL(string: bookInformation.thumbnailURLString) {
                     if let thumbnailData = NSData(contentsOfURL: URL) {
-                        do {
-                            let realm = try Realm()
-                            try realm.write {
-                                bookInformation.thumbnailData = thumbnailData
-                            }
-                        } catch {
-                            
+                        
+                        Realm.write { realm -> Void in
+                            bookInformation.thumbnailData = thumbnailData
                         }
                         
                     }
@@ -74,19 +73,12 @@ public class CSDataHandler {
             
             completionHandler(bookInformationArray)
         }
+        
     }
     
     private class func cacheObjects(objects: [Object]) -> Bool {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(objects, update: true)
-            }
-            return true
-        }
-        catch let error as NSError {
-            csprint(CS_DEBUG_REALM, error.description)
-            return false
+        return Realm.write { (realm) -> Void in
+             realm.add(objects, update: true)
         }
     }
     
@@ -135,7 +127,7 @@ public class CSDataHandler {
     public class func getBook(bookID: String, withCompletionHandler completionHandler: ((CSBook?)->Void)) {
         self.sendRequestWithSubRoute("/books/\(bookID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let value = result as? [String: AnyObject] {
-                let book = CSBook(value: self.realmCompatibleDictionaryFromDictionary(value))
+                let book = CSBook(value: value)
                 return completionHandler(book)
             }
             
@@ -157,7 +149,7 @@ public class CSDataHandler {
             
             if let resultDictionary = result as? [String: AnyObject] {
                 if let value = resultDictionary["books"] as? [[String: AnyObject]] {
-                    let books = value.map {CSBook(value: self.realmCompatibleDictionaryFromDictionary($0))}
+                    let books = value.map {CSBook(value: $0)}
                     return completionHandler(books)
                 }
             }
@@ -179,7 +171,7 @@ public class CSDataHandler {
     public class func getUser(userID: String, withCompletionHandler completionHandler: ((CSUser?)->Void)) {
         self.sendRequestWithSubRoute("/users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let resultDictionary = result as? [String: AnyObject] {
-                return completionHandler(CSUser(value: self.realmCompatibleDictionaryFromDictionary(resultDictionary)))
+                return completionHandler(CSUser(value: resultDictionary))
             }
             
             completionHandler(nil)
@@ -209,9 +201,7 @@ public class CSDataHandler {
         }
     }
     
-    
-//    MARK: - NOT YET IMPLEMENTED -
-    
+        
     /**
     Add renter to owners book in database
     
@@ -243,134 +233,8 @@ public class CSDataHandler {
         }
     }
     
-//    MARK: - Crowds
-    
-    /**
-    Create a new crowd in the database. If successful, a crowd object with correct id is returned
-    
-    - parameter 	crowd:               a crowd object representing the new crowd
-    - parameter     completionHandler:   closure which will be called with the result of the request
-    
-    - returns: 	Void
-    */
-    
-    public class func createCrowd(crowd: CSCrowd, withCompletionHandler completionHandler: ((CSCrowd?)->Void)?) {
-        self.sendRequestWithSubRoute("/crowds", usingMethod: .POST, andParameters: crowd.serialize(), parameterEncoding: .JSON)  { (result, isSuccess) -> Void in
-            if let value = result as? [String: AnyObject] {
-                completionHandler?(CSCrowd(value: self.realmCompatibleDictionaryFromDictionary(value)))
-            } else {
-                completionHandler?(nil)
-            }
-        }
-    }
-    
-    /**
-    Get crowd for id from database
-    
-    - parameter 	crowdID:             id of the crowd
-    - parameter     completionHandler:   closure which will be called with the result of the request
-    
-    - returns: 	Void
-    */
-    
-    public class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((CSCrowd?)->Void)) {
-        
-        self.sendRequestWithSubRoute("/crowds/\(crowdID)", usingMethod: .GET, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
-            if let value = result as? [String: AnyObject] {
-                completionHandler(CSCrowd(value: self.realmCompatibleDictionaryFromDictionary(value)))
-            } else {
-                completionHandler(nil)
-            }
-        }
-    }
-    
-    /**
-    Get crowds form database
-    
-    - parameter     completionHandler:   closure which will be called with the result of the request
-    
-    - returns: 	Void
-    */
-    
-    public class func getCrowdsWithCompletionHandler(completionHandler: (([CSCrowd]) -> Void) ) {
-        self.sendRequestWithSubRoute("/crowds", usingMethod: .GET, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
-            
-            if let values = result as? [[String: AnyObject]] {
-                completionHandler(values.map { (value) -> CSCrowd in
-                    return CSCrowd(value: self.realmCompatibleDictionaryFromDictionary(value))
-                })
-            } else {
-                completionHandler([])
-            }
-        }
-    }
-    
-    /**
-    Add member to crowd
-    
-    - parameter 	username:            username of the member
-    - parameter     crowdID:             id of the crowd
-    - parameter     completionHandler:   closure which will be called with the result of the request
-    
-    */
-    
-    public class func addMember(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
-        self.sendRequestWithSubRoute("/crowds/\(crowdID)/members/\(username)", usingMethod: .PUT) { (result, isSuccess) -> Void in
-            completionHandler?(isSuccess)
-        }
-    }
-    
-    /**
-    Remove member from crowd
-    
-    - parameter 	username:            username of the member
-    - parameter     crowdID:             id of the crowd
-    - parameter     completionHandler:   closure which will be called with the result of the request
-    
-    */
-    
-    public class func removeMember(username: String, fromCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
-        
-        self.sendRequestWithSubRoute("/crowds/\(crowdID)/members/\(username)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
-            completionHandler?(isSuccess)
-        }
-    }
-    
-    
 //    MARK: - General
-    
-    //    TODO: Remove or improve this :)
-    
-    /**
-    
-    Should not be necessary? To be removed, or improved
-    
-    Prepares objects incompatible with realm to be wrapped by creating a dictionary with a key 'content' needed by the RLEWrapper initializer
-
-    - parameter dictionary: A dictionary to be made compatible in a realm objects initializer
-
-    */
-    
-    class func realmCompatibleDictionaryFromDictionary(dictionary: [String: AnyObject]) -> [String: AnyObject] {
-        var realCompatibleDictionary = [String:AnyObject]()
         
-        for key in dictionary.keys {
-            if dictionary[key] is NSNull {
-                realCompatibleDictionary.removeValueForKey(key)
-            } else if let arrayValue = dictionary[key] as? [AnyObject] {
-                if let dictionaryArray = arrayValue as? [[String: AnyObject]] {
-                    realCompatibleDictionary[key] = dictionaryArray.map {self.realmCompatibleDictionaryFromDictionary($0)}
-                } else {
-                    realCompatibleDictionary[key] = arrayValue.map { ["content": $0] }
-                }
-            } else {
-                realCompatibleDictionary[key] = dictionary[key]
-            }
-        }
-        
-        return realCompatibleDictionary
-    }
-    
     /**
     
     Extracts information from the results based on predefined, provider based key-value coded mapping. NSNull values are discarded

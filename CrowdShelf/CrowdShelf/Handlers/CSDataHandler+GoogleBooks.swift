@@ -32,14 +32,14 @@ extension CSDataHandler {
     class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([CSBookInformation]) -> Void)) {
         
         let mapping = [
-            "providerID": "id",
-            "authors": "volumeInfo.authors",
-            "publisher": "volumeInfo.publisher",
-            "summary": "volumeInfo.description",
-            "title": "volumeInfo.title",
-            "numberOfPages": "volumeInfo.pageCount",
-            "numberOfRatings": "volumeInfo.ratingsCount",
-            "averageRating": "volumeInfo.averageRating",
+            "providerID"        : "id",
+            "authors"           : "volumeInfo.authors",
+            "publisher"         : "volumeInfo.publisher",
+            "summary"           : "volumeInfo.description",
+            "title"             : "volumeInfo.title",
+            "numberOfPages"     : "volumeInfo.pageCount",
+            "numberOfRatings"   : "volumeInfo.ratingsCount",
+            "averageRating"     : "volumeInfo.averageRating",
             "thumbnailURLString": "volumeInfo.imageLinks.thumbnail"
         ]
         
@@ -53,9 +53,9 @@ extension CSDataHandler {
                     for itemInfo in itemArray {
                         
                         var value = self.dictionaryFromDictionary(itemInfo, usingMapping: mapping)
-                        value = self.realmCompatibleDictionaryFromDictionary(value)
                         value["isbn"] = isbn
                         value["provider"] = "google"
+                        
                         informationObjects.append(CSBookInformation(value: value))
                         
                     }

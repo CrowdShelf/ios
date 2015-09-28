@@ -59,18 +59,16 @@ class CSListViewController: CSBaseViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ListCell")
-        if cell == nil {
-            cell = UITableViewCell(style: self.tableViewCellStyle, reuseIdentifier: "ListCell")
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("ListCell")
+                        ?? UITableViewCell(style: self.tableViewCellStyle, reuseIdentifier: "ListCell")
         
         let listable = self.listData[indexPath.row]
         
-        cell?.textLabel?.text = listable.title
-        cell?.detailTextLabel?.text = listable.subtitle
-        cell?.imageView?.image = listable.image!
+        cell.textLabel?.text = listable.title
+        cell.detailTextLabel?.text = listable.subtitle
+        cell.imageView?.image = listable.image!
         
-        return cell!
+        return cell
     }
     
 //    MARK: - Table View Delegate
