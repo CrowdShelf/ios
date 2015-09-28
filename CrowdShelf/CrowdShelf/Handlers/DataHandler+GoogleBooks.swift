@@ -40,7 +40,8 @@ extension DataHandler {
             "numberOfPages"     : "volumeInfo.pageCount",
             "numberOfRatings"   : "volumeInfo.ratingsCount",
             "averageRating"     : "volumeInfo.averageRating",
-            "thumbnailURLString": "volumeInfo.imageLinks.thumbnail"
+            "thumbnailURLString": "volumeInfo.imageLinks.thumbnail",
+            "categories"        : "volumeInfo.categories"
         ]
         
         

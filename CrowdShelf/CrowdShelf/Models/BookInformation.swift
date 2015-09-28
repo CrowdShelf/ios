@@ -27,7 +27,7 @@ public class BookInformation: BaseModel, Listable {
     dynamic var averageRating: Float        = 0.0
     dynamic var thumbnailData: NSData       = NSData()
     dynamic var publishedDate: NSDate       = NSDate(timeIntervalSince1970: 0)
-    
+    var categories                          = List<RLMWrapper>()
     var authors                             = List<RLMWrapper>()
     
 //    Listable
