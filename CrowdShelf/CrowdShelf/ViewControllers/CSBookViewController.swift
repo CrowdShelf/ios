@@ -19,7 +19,9 @@ class CSBookViewController: CSBaseViewController {
     @IBOutlet weak var publisherLabel: UILabel?
     
     @IBOutlet weak var coverImageView: UIImageView?
+    
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var bookView: UIView!
     
@@ -65,6 +67,8 @@ class CSBookViewController: CSBaseViewController {
         self.messageLabel.hidden = true;
         self.messageLabel.layer.cornerRadius = 6;
         self.messageLabel.layer.masksToBounds = true;
+        
+        self.activityIndicator.stopAnimating()
     }
     
     func updateView() {
@@ -113,8 +117,9 @@ class CSBookViewController: CSBaseViewController {
 
         self.book!.owner = CSUser.localUser!._id
         
+        self.activityIndicator.startAnimating()
         CSDataHandler.addBook(self.book!) { (isSuccess) -> Void in
-            
+            self.activityIndicator.stopAnimating()
             self.showMessage("Successfully added book", error: !isSuccess)
             
             if isSuccess {
@@ -133,11 +138,11 @@ class CSBookViewController: CSBaseViewController {
     @IBAction func removeBookFromShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
         
-        
+        self.activityIndicator.startAnimating()
         CSDataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
             
             self.showMessage("Successfully removed book", error: !isSuccess)
-            
+            self.activityIndicator.stopAnimating()
             if isSuccess {
                 csprint(CS_DEBUG_BOOK_VIEW, "Successfully removed book:", self.book)
             } else {

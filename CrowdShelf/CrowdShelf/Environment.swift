@@ -20,7 +20,7 @@ enum CSEnvironment {
         case CSEnvironment.Test:
             return "https://crowdshelf.herokuapp.com/api"
         default:
-            fatalError("Host not configured")
+            fatalError("Host not set for environment")
         }
     }
     
@@ -31,7 +31,7 @@ enum CSEnvironment {
         case CSEnvironment.Test:
             return "9f321d1662e631f2995d9b8f050c4b44"
         default:
-            fatalError("Host not configured")
+            fatalError("Tracking token not set for environment")
         }
     }
 }
