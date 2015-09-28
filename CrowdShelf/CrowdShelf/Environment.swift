@@ -16,9 +16,9 @@ enum CSEnvironment {
     func hostString() -> String {
         switch self {
         case CSEnvironment.Development:
-            return "https://crowdshelf-dev.herokuapp.com/api"
+            return "https://crowdshelf-dev.herokuapp.com/api/"
         case CSEnvironment.Test:
-            return "https://crowdshelf.herokuapp.com/api"
+            return "https://crowdshelf.herokuapp.com/api/"
         default:
             fatalError("Host not set for environment")
         }

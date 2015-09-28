@@ -219,20 +219,20 @@
                                     <action selector="login:" destination="big-vw-Q6f" eventType="touchUpInside" id="ecj-eq-XW0"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="rNU-dj-rwd">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rNU-dj-rwd">
                                 <rect key="frame" x="16" y="48" width="288" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="rgI-wy-gBg"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Login" enabled="NO"/>
+                                    <segment title="Login"/>
                                     <segment title="Register"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChanged:" destination="big-vw-Q6f" eventType="valueChanged" id="xyy-2i-QaJ"/>
                                 </connections>
                             </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="142-Il-e45">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="142-Il-e45">
                                 <rect key="frame" x="16" y="142" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GWI-tI-ga9"/>
@@ -240,7 +240,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-fs-ZLH">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-fs-ZLH">
                                 <rect key="frame" x="16" y="180" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="voi-g4-6Xy"/>

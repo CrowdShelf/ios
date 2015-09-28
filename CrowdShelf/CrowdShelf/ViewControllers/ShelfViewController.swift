@@ -80,7 +80,6 @@ class ShelfViewController: BaseViewController, UICollectionViewDataSource {
     
 //    MARK: - Actions
     
-    
     @IBAction func stateChanged(sender: AnyObject) {
         self.updateView()
     }
