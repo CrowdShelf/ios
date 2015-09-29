@@ -20,13 +20,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iM2-Yp-OEC">
-                                <rect key="frame" x="0.0" y="219" width="320" height="130"/>
+                                <rect key="frame" x="0.0" y="215" width="320" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="LCI-Np-xMB"/>
                                 </constraints>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="8" id="wIk-4d-7TJ">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="wIk-4d-7TJ">
                                     <size key="itemSize" width="90" height="122"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -79,13 +79,13 @@
                                 </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7YV-Ln-P1m">
-                                <rect key="frame" x="0.0" y="386" width="320" height="130"/>
+                                <rect key="frame" x="0.0" y="384" width="320" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="iis-60-bK6"/>
                                 </constraints>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="8" id="dHL-pS-o1T">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dHL-pS-o1T">
                                     <size key="itemSize" width="90" height="122"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -138,76 +138,75 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hl-Mh-B4H">
-                                <rect key="frame" x="16" y="23" width="180" height="21"/>
+                                <rect key="frame" x="16" y="27" width="180" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="4YB-Zy-SRF"/>
                                     <constraint firstAttribute="height" constant="21" id="iPf-8Z-HdC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Borrowed books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTM-Jk-ewa">
-                                <rect key="frame" x="16" y="190" width="180" height="21"/>
+                                <rect key="frame" x="16" y="194" width="180" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="Wdb-TO-TEv"/>
                                     <constraint firstAttribute="height" constant="21" id="fk4-Or-qiA"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lent books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RI-qn-GtE">
-                                <rect key="frame" x="16" y="357" width="180" height="21"/>
+                                <rect key="frame" x="16" y="363" width="180" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="9Y7-Yq-BUM"/>
                                     <constraint firstAttribute="height" constant="21" id="Nyw-ZU-JaO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyr-wF-fPP">
-                                <rect key="frame" x="252" y="18" width="52" height="30"/>
+                                <rect key="frame" x="244" y="22" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="35A-4f-s25"/>
-                                    <constraint firstAttribute="width" constant="52" id="nRz-kr-saH"/>
+                                    <constraint firstAttribute="width" constant="60" id="nRz-kr-saH"/>
                                 </constraints>
-                                <state key="normal" title="showAll"/>
+                                <state key="normal" title="show all"/>
                                 <connections>
                                     <action selector="showAllBooks:" destination="1Hz-dQ-H0K" eventType="touchUpInside" id="X7u-Ta-3jx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzz-Tc-MyB">
-                                <rect key="frame" x="252" y="185" width="52" height="30"/>
+                                <rect key="frame" x="244" y="189" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7r0-OK-rTe"/>
-                                    <constraint firstAttribute="width" constant="52" id="kOw-Lh-DqP"/>
+                                    <constraint firstAttribute="width" constant="60" id="kOw-Lh-DqP"/>
                                 </constraints>
-                                <state key="normal" title="showAll"/>
+                                <state key="normal" title="show all"/>
                                 <connections>
                                     <action selector="showAllBooks:" destination="1Hz-dQ-H0K" eventType="touchUpInside" id="gnM-be-W6p"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xv6-6r-aez">
-                                <rect key="frame" x="252" y="352" width="52" height="30"/>
+                                <rect key="frame" x="244" y="358" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7CR-qj-3FJ"/>
-                                    <constraint firstAttribute="width" constant="52" id="fLc-Po-hkW"/>
+                                    <constraint firstAttribute="width" constant="60" id="fLc-Po-hkW"/>
                                 </constraints>
-                                <state key="normal" title="showAll"/>
+                                <state key="normal" title="show all"/>
                                 <connections>
                                     <action selector="showAllBooks:" destination="1Hz-dQ-H0K" eventType="touchUpInside" id="670-MM-3IN"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jjn-pq-jru">
-                                <rect key="frame" x="0.0" y="52" width="320" height="130"/>
+                                <rect key="frame" x="0.0" y="48" width="320" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="dT0-2f-AhE"/>
                                 </constraints>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="8" id="bxh-t4-wYh">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="bxh-t4-wYh">
                                     <size key="itemSize" width="90" height="122"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -263,7 +262,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Dyr-wF-fPP" firstAttribute="trailing" secondItem="0TO-ib-Qoc" secondAttribute="trailingMargin" id="3vf-G9-Kwc"/>
-                            <constraint firstItem="Jjn-pq-jru" firstAttribute="top" secondItem="rrl-qV-6fv" secondAttribute="bottom" constant="32" id="4wq-JJ-xLY"/>
+                            <constraint firstItem="Jjn-pq-jru" firstAttribute="top" secondItem="rrl-qV-6fv" secondAttribute="bottom" constant="28" id="4wq-JJ-xLY"/>
                             <constraint firstItem="7YV-Ln-P1m" firstAttribute="leading" secondItem="0TO-ib-Qoc" secondAttribute="leadingMargin" constant="-16" id="7yh-u9-Obm"/>
                             <constraint firstItem="2hl-Mh-B4H" firstAttribute="leading" secondItem="0TO-ib-Qoc" secondAttribute="leadingMargin" id="Es7-cq-xif"/>
                             <constraint firstAttribute="centerX" secondItem="Jjn-pq-jru" secondAttribute="centerX" id="Hpr-sZ-eax"/>
@@ -274,15 +273,15 @@
                             <constraint firstItem="iM2-Yp-OEC" firstAttribute="leading" secondItem="0TO-ib-Qoc" secondAttribute="leadingMargin" constant="-16" id="SGj-iV-Ug9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iM2-Yp-OEC" secondAttribute="trailing" constant="-16" id="T9R-ZL-qry"/>
                             <constraint firstItem="9RI-qn-GtE" firstAttribute="leading" secondItem="0TO-ib-Qoc" secondAttribute="leadingMargin" id="Xlp-3T-9Fy"/>
-                            <constraint firstItem="OTM-Jk-ewa" firstAttribute="top" secondItem="Jjn-pq-jru" secondAttribute="bottom" constant="8" id="aIZ-jx-zgm"/>
-                            <constraint firstItem="iM2-Yp-OEC" firstAttribute="top" secondItem="OTM-Jk-ewa" secondAttribute="bottom" constant="8" id="cI8-I4-MHu"/>
-                            <constraint firstItem="Jjn-pq-jru" firstAttribute="top" secondItem="2hl-Mh-B4H" secondAttribute="bottom" constant="8" id="dcA-kc-3W8"/>
+                            <constraint firstItem="OTM-Jk-ewa" firstAttribute="top" secondItem="Jjn-pq-jru" secondAttribute="bottom" constant="16" id="aIZ-jx-zgm"/>
+                            <constraint firstItem="iM2-Yp-OEC" firstAttribute="top" secondItem="OTM-Jk-ewa" secondAttribute="bottom" id="cI8-I4-MHu"/>
+                            <constraint firstItem="Jjn-pq-jru" firstAttribute="top" secondItem="2hl-Mh-B4H" secondAttribute="bottom" id="dcA-kc-3W8"/>
                             <constraint firstItem="Gzz-Tc-MyB" firstAttribute="centerY" secondItem="OTM-Jk-ewa" secondAttribute="centerY" id="foy-d0-NPd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Gzz-Tc-MyB" secondAttribute="trailing" id="nCZ-J7-axj"/>
                             <constraint firstItem="Dyr-wF-fPP" firstAttribute="centerY" secondItem="2hl-Mh-B4H" secondAttribute="centerY" id="qHb-8K-SJ1"/>
                             <constraint firstItem="Xv6-6r-aez" firstAttribute="centerY" secondItem="9RI-qn-GtE" secondAttribute="centerY" id="ttV-9R-DeJ"/>
-                            <constraint firstItem="7YV-Ln-P1m" firstAttribute="top" secondItem="9RI-qn-GtE" secondAttribute="bottom" constant="8" id="uT1-XO-hQA"/>
-                            <constraint firstItem="9RI-qn-GtE" firstAttribute="top" secondItem="iM2-Yp-OEC" secondAttribute="bottom" constant="8" id="wiI-Ly-0QP"/>
+                            <constraint firstItem="7YV-Ln-P1m" firstAttribute="top" secondItem="9RI-qn-GtE" secondAttribute="bottom" id="uT1-XO-hQA"/>
+                            <constraint firstItem="9RI-qn-GtE" firstAttribute="top" secondItem="iM2-Yp-OEC" secondAttribute="bottom" constant="18" id="wiI-Ly-0QP"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My shelf" image="shelf" id="fja-BK-egk"/>

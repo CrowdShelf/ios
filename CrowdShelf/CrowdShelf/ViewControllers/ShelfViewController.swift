@@ -61,14 +61,19 @@ class ShelfViewController: BaseViewController, UICollectionViewDataSource, UICol
     
     func loadBooks() {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Loading books..", inView: self.view)
-        DataHandler.getBooksWithParameters(nil) { (books) -> Void in
+        
+        DataHandler.getBooksWithParameters(nil, useCache: true) { (books) -> Void in
             self.books = books
             self.updateView()
             
             for book in books {
                 DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
                     activityIndicatorView.stop()
-                    book.details = bookInformation.first
+                    
+                    Realm.write { realm -> Void in
+                        book.details = bookInformation.first
+                    }
+                    
                     self.updateView()
                 })
             }

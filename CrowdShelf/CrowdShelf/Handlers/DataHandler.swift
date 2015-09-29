@@ -94,9 +94,20 @@ public class DataHandler {
     
     */
     
-    public class func addBook(book: Book, withCompletionHandler completionHandler: ((Bool) -> Void)?) {        
+    public class func addBook(book: Book, withCompletionHandler completionHandler: ((Book?) -> Void)?) {
         self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: book.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
-            completionHandler?(isSuccess)
+            if result == nil {
+                completionHandler?(nil)
+                return
+            }
+            
+            let book = Book(value: result as! [String: AnyObject])
+            
+            Realm.write {
+                $0.add(book, update: true)
+            }
+
+            completionHandler?(book)
         }
     }
     
@@ -112,6 +123,13 @@ public class DataHandler {
     public class func removeBook(bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
         self.sendRequestWithSubRoute("books/\(bookID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
+            
+            if isSuccess {
+                Realm.write {
+                    let book = $0.objectForPrimaryKey(Book.self, key: bookID)
+                    $0.delete(book!)
+                }
+            }
         }
     }
     
@@ -144,12 +162,26 @@ public class DataHandler {
     
     */
     
-    public class func getBooksWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Book])->Void)) {
+    private class func booksFromCacheForQueries(parameters: [String: AnyObject]?) -> [Book] {
+        let booksFromCache = Realm.read {
+            return Array($0.objects(Book.self).filter {!$0.invalidated})
+            } as? [Book]
+        
+        return booksFromCache ?? []
+    }
+    
+    public class func getBooksWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
+        
         self.sendRequestWithSubRoute("books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
             
             if let resultDictionary = result as? [String: AnyObject] {
                 if let value = resultDictionary["books"] as? [[String: AnyObject]] {
                     let books = value.map {Book(value: $0)}
+                    
+                    Realm.write {
+                        $0.add(books, update: true)
+                    }
+                    
                     return completionHandler(books)
                 }
             }

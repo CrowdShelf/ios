@@ -68,24 +68,28 @@ class BookViewController: BaseViewController {
         }
     }
     
-    @IBAction func addBookToShelf(sender: AnyObject) {
+    func newBook() -> Book {
         let newBook = Book()
         newBook.owner = User.localUser!._id
         newBook.details = self.book?.details
         newBook.isbn = self.book!.isbn
         
-        self.book = newBook
+        return newBook
+    }
+    
+    @IBAction func addBookToShelf(sender: AnyObject) {
+        self.book = self.newBook()
         
         csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
         
-        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Searching for information", inView: self.view)
+        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Adding book", inView: self.view)
         
-        DataHandler.addBook(self.book!) { (isSuccess) -> Void in
+        DataHandler.addBook(self.book!) { (book) -> Void in
             activityIndicatorView.stop()
             
-            let message = isSuccess ? "Successfully added book" : "Failed to add book"
+            let message = book != nil ? "Successfully added book" : "Failed to add book"
             
-            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).show()
+            MessagePopupView(message: message, messageStyle: book != nil ? .Success : .Error).show()
             
             csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
             
@@ -93,24 +97,23 @@ class BookViewController: BaseViewController {
         }
         
         Analytics.addEvent("BookAdded")
-         
-
-        
     }
     
     @IBAction func removeBookFromShelf(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
         
-        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Searching for information", inView: self.view)
+        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Removing book", inView: self.view)
         
         DataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
             activityIndicatorView.stop()
             
             let message = isSuccess ? "Successfully removed book" : "Failed to remove book"
             csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
+            
+            if isSuccess {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func close(sender: AnyObject) {
