@@ -20,8 +20,6 @@ class BookViewController: BaseViewController {
     
     @IBOutlet weak var coverImageView: UIImageView?
     
-    @IBOutlet weak var messageLabel: UILabel!
-    
 //    MARK: - Properties
     
     var book : Book? {
@@ -58,10 +56,6 @@ class BookViewController: BaseViewController {
         
         self.coverImageView?.layer.borderWidth = 1
         self.coverImageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
-        
-        self.messageLabel.hidden = true;
-        self.messageLabel.layer.cornerRadius = 6;
-        self.messageLabel.layer.masksToBounds = true;
     }
     
     func updateView() {
@@ -76,32 +70,11 @@ class BookViewController: BaseViewController {
         }
     }
     
-    func fadeView(view: UIView, fadeIn: Bool, completionHandler: ((Bool)->Void)?) {
-        view.alpha = fadeIn ? 0 : 1
-        view.hidden = false
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            view.alpha = fadeIn ? 1 : 0
-            }) { (finished) -> Void in
-                view.hidden = !fadeIn
-                completionHandler?(finished)
-        }
-    }
-    
-    private func showMessage(message: String, error: Bool) {
-        self.messageLabel.text = message
-        self.messageLabel.backgroundColor = UIColor(red: error ? 0.8 : 0, green: error ? 0 : 0.8, blue: 0, alpha: 0.7)
-        
-        self.fadeView(self.messageLabel, fadeIn: true, completionHandler: { (_) -> Void in
-            Utilities.delayDispatchInQueue(dispatch_get_main_queue(), delay: 1, block: { () -> Void in
-                self.fadeView(self.messageLabel, fadeIn: false, completionHandler: nil)
-            })
-        })
-    }
-    
     @IBAction func addBookToShelf(sender: AnyObject) {
         let newBook = Book()
         newBook.owner = User.localUser!._id
         newBook.details = self.book?.details
+        newBook.isbn = self.book!.isbn
         
         self.book = newBook
         
@@ -114,7 +87,8 @@ class BookViewController: BaseViewController {
             
             let message = isSuccess ? "Successfully added book" : "Failed to add book"
             
-            self.showMessage(message, error: !isSuccess)
+            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).show()
+            
             csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
             
             self.updateView()
@@ -133,12 +107,11 @@ class BookViewController: BaseViewController {
         csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Searching for information", inView: self.view)
+        
         DataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
             activityIndicatorView.stop()
             
             let message = isSuccess ? "Successfully removed book" : "Failed to remove book"
-
-            self.showMessage(message, error: !isSuccess)
             csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
         }
         
@@ -179,7 +152,7 @@ class BookViewController: BaseViewController {
                     DataHandler.addRenter(owner._id, toBook: ownerMapping[owner._id]!.first!._id, withCompletionHandler: { (isSuccess) -> Void in
                         csprint(CS_DEBUG_BOOK_VIEW, "Successfully borrowed book:", self.book)
                         
-                        self.showMessage("Book borrowed", error: isSuccess)
+                        MessagePopupView(message: "Book borrowed", messageStyle: isSuccess ? .Success : .Error).show()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     })
                 })
@@ -190,7 +163,7 @@ class BookViewController: BaseViewController {
     @IBAction func returnBook(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Returning book:", self.book)
         
-        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Searching for information", inView: self.view)
+        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         DataHandler.getBooksWithParameters(["isbn":self.book!.isbn, "rentedTo": User.localUser!._id]) { (books) -> Void in
             var ownerMapping: [String: [Book]] = [:]
             
@@ -217,7 +190,7 @@ class BookViewController: BaseViewController {
                     DataHandler.removeRenter(User.localUser!._id, fromBook: ownerMapping[owner._id]!.first!._id, withCompletionHandler: { (isSuccess) -> Void in
                         csprint(CS_DEBUG_BOOK_VIEW, "Successfully returned book:", self.book)
                         
-                        self.showMessage("Book returned", error: isSuccess)
+                        MessagePopupView(message: "Book returned", messageStyle: isSuccess ? .Success : .Error).show()
                         self.dismissViewControllerAnimated(true, completion: nil)
                     })
                 })

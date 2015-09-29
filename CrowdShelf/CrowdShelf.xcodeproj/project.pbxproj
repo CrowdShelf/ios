@@ -20,6 +20,8 @@
 		392169191BB084210029A6C8 /* SerializableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169171BB083E70029A6C8 /* SerializableObject.swift */; settings = {ASSET_TAGS = (); }; };
 		392E42CD1BBADBAA0080CCBD /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42CC1BBADBAA0080CCBD /* ActivityIndicatorView.swift */; settings = {ASSET_TAGS = (); }; };
 		392E42CE1BBADBAA0080CCBD /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42CC1BBADBAA0080CCBD /* ActivityIndicatorView.swift */; settings = {ASSET_TAGS = (); }; };
+		392E42D01BBAE8D20080CCBD /* MessagePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42CF1BBAE8D20080CCBD /* MessagePopupView.swift */; settings = {ASSET_TAGS = (); }; };
+		392E42D11BBAE8D20080CCBD /* MessagePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42CF1BBAE8D20080CCBD /* MessagePopupView.swift */; settings = {ASSET_TAGS = (); }; };
 		393EB6521BB9348F00580C34 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393EB6511BB9348F00580C34 /* Realm+Extensions.swift */; settings = {ASSET_TAGS = (); }; };
 		393EB6531BB9348F00580C34 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393EB6511BB9348F00580C34 /* Realm+Extensions.swift */; settings = {ASSET_TAGS = (); }; };
 		3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
@@ -86,6 +88,7 @@
 		392169141BAF702A0029A6C8 /* RLMWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMWrapper.swift; path = Models/RLMWrapper.swift; sourceTree = "<group>"; };
 		392169171BB083E70029A6C8 /* SerializableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SerializableObject.swift; path = Models/SerializableObject.swift; sourceTree = "<group>"; };
 		392E42CC1BBADBAA0080CCBD /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorView.swift; path = Views/ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		392E42CF1BBAE8D20080CCBD /* MessagePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagePopupView.swift; path = Views/MessagePopupView.swift; sourceTree = "<group>"; };
 		393EB6511BB9348F00580C34 /* Realm+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Realm+Extensions.swift"; path = "Handlers/Realm+Extensions.swift"; sourceTree = "<group>"; };
 		3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF881B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 			children = (
 				39153A501B970F1E00D34293 /* CSTextView.swift */,
 				392E42CC1BBADBAA0080CCBD /* ActivityIndicatorView.swift */,
+				392E42CF1BBAE8D20080CCBD /* MessagePopupView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -520,6 +524,7 @@
 				39C2F5B51B90A40A00529AA9 /* ShelfViewController.swift in Sources */,
 				392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */,
 				392E42CD1BBADBAA0080CCBD /* ActivityIndicatorView.swift in Sources */,
+				392E42D01BBAE8D20080CCBD /* MessagePopupView.swift in Sources */,
 				39153A511B970F1E00D34293 /* CSTextView.swift in Sources */,
 				392169181BB083E70029A6C8 /* SerializableObject.swift in Sources */,
 				395EDD251B8F56BC0012A465 /* Crowd.swift in Sources */,
@@ -536,6 +541,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				392169161BAF70410029A6C8 /* RLMWrapper.swift in Sources */,
+				392E42D11BBAE8D20080CCBD /* MessagePopupView.swift in Sources */,
 				39C2F5A61B906D4300529AA9 /* Book.swift in Sources */,
 				39C2F5A91B906D4300529AA9 /* User.swift in Sources */,
 				39C2F5AB1B906D5600529AA9 /* DataHandler.swift in Sources */,

@@ -568,16 +568,6 @@
                                     <action selector="addBookToShelf:" destination="8vd-8z-IT4" eventType="touchUpInside" id="Ow2-pD-qam"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The book is added to your shelf" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHW-w3-Exn" userLabel="Message Label">
-                                <rect key="frame" x="36" y="262" width="252" height="45"/>
-                                <color key="backgroundColor" red="0.32911308509999998" green="0.8485284448" blue="0.21010988380000001" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="COC-EH-g8J"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8P-OS-OCp">
                                 <rect key="frame" x="0.0" y="420" width="320" height="44"/>
                                 <constraints>
@@ -593,11 +583,9 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="mvs-1O-bcu" secondAttribute="trailing" constant="-16" id="4Wv-Cx-lle"/>
                             <constraint firstItem="p3X-5N-AvN" firstAttribute="top" secondItem="cVe-om-WE9" secondAttribute="bottom" constant="8" id="6ro-Su-Fhm"/>
-                            <constraint firstItem="hHW-w3-Exn" firstAttribute="centerY" secondItem="yOh-6I-yL8" secondAttribute="centerY" id="Fld-Qn-fRl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p3X-5N-AvN" secondAttribute="trailing" constant="-16" id="GFn-s2-cgO"/>
                             <constraint firstItem="Y8P-OS-OCp" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="JDS-Cn-CnS"/>
                             <constraint firstItem="cVe-om-WE9" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="P9m-lu-c1z"/>
-                            <constraint firstItem="hHW-w3-Exn" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="20" id="QNx-L8-vLb"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="Qs0-c0-13B"/>
                             <constraint firstItem="8gU-Im-60Y" firstAttribute="leading" secondItem="mvs-1O-bcu" secondAttribute="trailing" constant="-30" id="RgB-bL-dSF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cVe-om-WE9" secondAttribute="trailing" constant="-16" id="Rs8-XM-IDu"/>
@@ -605,13 +593,12 @@
                             <constraint firstItem="t08-Pd-KBd" firstAttribute="top" secondItem="p3X-5N-AvN" secondAttribute="bottom" id="Vsl-4V-mOd"/>
                             <constraint firstItem="p3X-5N-AvN" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="cBd-iG-Asf"/>
                             <constraint firstItem="8gU-Im-60Y" firstAttribute="centerY" secondItem="mvs-1O-bcu" secondAttribute="centerY" id="i01-8v-SYZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hHW-w3-Exn" secondAttribute="trailing" constant="16" id="ot1-1g-K90"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y8P-OS-OCp" secondAttribute="trailing" constant="-16" id="spo-0u-x2i"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="top" secondItem="Otv-za-Tuw" secondAttribute="bottom" id="y4C-3V-ECk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Book" id="jY4-YV-ob0">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ils-KZ-Lei">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ils-KZ-Lei">
                             <connections>
                                 <action selector="close:" destination="8vd-8z-IT4" id="YOS-mt-YJb"/>
                             </connections>
@@ -620,7 +607,6 @@
                     <connections>
                         <outlet property="authorsLabel" destination="ItO-dn-GsP" id="dCA-BX-5Wa"/>
                         <outlet property="coverImageView" destination="i9U-Ez-HmK" id="Y4a-MM-XNA"/>
-                        <outlet property="messageLabel" destination="hHW-w3-Exn" id="NlH-DT-TdI"/>
                         <outlet property="publisherLabel" destination="NiB-Fu-RKq" id="q0w-3n-CYb"/>
                         <outlet property="titleLabel" destination="j95-g6-7ZE" id="uTl-s4-aA5"/>
                     </connections>
