@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 /// A class representing a book
-public class Book: BaseModel {
+public class Book: BaseModel, Collectable {
 
     dynamic var _id              = "-1"
     dynamic var isbn             = ""
@@ -19,6 +19,9 @@ public class Book: BaseModel {
     dynamic var availableForRent = true
     
     dynamic var details : BookInformation?
+    
+    var title: String { return self.details?.title ?? "<no data>" }
+    var image: UIImage? { return self.details?.thumbnail }
     
     public override var description: String {
         return self.serialize().description

@@ -20,7 +20,6 @@ class BaseViewController: UIViewController {
     }
     
     func showLogin() {
-        
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
@@ -28,7 +27,7 @@ class BaseViewController: UIViewController {
     }
     
     
-    func showListWithItems(items: [Listable], andCompletionHandler completionHandler: (([Listable]) -> Void)) {
+    func showListWithItems(items: [Listable], andCompletionHandler completionHandler: (([Listable]) -> Void)) -> ListViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let listVC = storyboard.instantiateViewControllerWithIdentifier("ListViewController") as! ListViewController
@@ -37,6 +36,36 @@ class BaseViewController: UIViewController {
         listVC.completionHandler = completionHandler
         
         self.presentViewController(listVC, animated: true, completion: nil)
+        
+        return listVC
+    }
+    
+    func showCollectionWithItems(items: [Collectable], andCompletionHandler completionHandler: (([Collectable]) -> Void)) -> CollectionViewController {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let listVC = storyboard.instantiateViewControllerWithIdentifier("CollectionViewController") as! CollectionViewController
+        
+        listVC.collectionData = items
+        listVC.completionHandler = completionHandler
+        
+        self.presentViewController(listVC, animated: true, completion: nil)
+        
+        return listVC
+    }
+    
+//    MARK: Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowBook" {
+            let navigationVC = segue.destinationViewController as! UINavigationController
+            let bookVC = navigationVC.viewControllers.first as! BookViewController
+            
+            if let collectableCell = sender as? CollectableCell {
+                bookVC.book = collectableCell.collectable as? Book
+            } else if let book = sender as? Book {
+                bookVC.book = book
+            }
+        }
     }
     
 }

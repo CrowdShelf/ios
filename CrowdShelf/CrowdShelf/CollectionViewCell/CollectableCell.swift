@@ -8,13 +8,13 @@
 
 import UIKit
 
-class BookCollectionViewCell: UICollectionViewCell {
+class CollectableCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel?
-    @IBOutlet weak var coverImageView: UIImageView?
+    @IBOutlet weak var imageView: UIImageView?
     
     
-    var book : Book? {
+    var collectable : Collectable? {
         didSet {
             self.updateView()
         }
@@ -23,13 +23,13 @@ class BookCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.coverImageView?.layer.borderWidth = 1
-        self.coverImageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.imageView?.layer.borderWidth = 1
+        self.imageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
     }
     
     func updateView() {
-        self.coverImageView?.image = self.book?.details?.thumbnail
-        self.titleLabel?.text = self.book?.details?.title
+        self.imageView?.image = self.collectable?.image
+        self.titleLabel?.text = self.collectable?.title
     }
     
 }

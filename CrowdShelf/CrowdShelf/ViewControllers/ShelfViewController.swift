@@ -9,27 +9,46 @@
 import UIKit
 import RealmSwift
 
-enum ShelfViewState: Int {
-    case OwnedBooks    = 0
-    case BorrowedBooks = 1
+enum ShelfType: Int {
+    case Owned    = 1
+    case Borrowed
+    case Lent
 }
 
-class ShelfViewController: BaseViewController, UICollectionViewDataSource {
+class ShelfViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var stateControl: UISegmentedControl!
-    @IBOutlet weak var collectionView: UICollectionView?
+    @IBOutlet weak var ownedBooksCollectionView: UICollectionView!
+    @IBOutlet weak var borrowedBooksCollectionView: UICollectionView!
+    @IBOutlet weak var lentBooksCollectionView: UICollectionView!
+    
+    @IBOutlet weak var showAllLentBooksButton: UIButton!
+    @IBOutlet weak var showAllBorrowedBooksButton: UIButton!
+    @IBOutlet weak var showAllOwnedBooksButton: UIButton!
+    
+    @IBOutlet var collectionViews: [UICollectionView]!
     
     var books : [Book] = []
     
     var ownedBooks: [Book] {
         return User.localUser != nil ? self.books.filter({$0.owner == User.localUser!._id}) : []
     }
-    var allBooks: [Book] {
-        return self.books
+    var borrowedBooks: [Book] {
+        return User.localUser != nil ? self.books.filter({$0.rentedTo == User.localUser!._id}) : []
     }
-    
-    var state: ShelfViewState {
-        return ShelfViewState(rawValue: self.stateControl.selectedSegmentIndex)!
+    var lentBooks: [Book] {
+        return User.localUser != nil ? self.books.filter({$0.owner == User.localUser!._id && $0.rentedTo != ""}) : []
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.ownedBooksCollectionView.tag = ShelfType.Owned.rawValue
+        self.borrowedBooksCollectionView.tag = ShelfType.Borrowed.rawValue
+        self.lentBooksCollectionView.tag = ShelfType.Lent.rawValue
+        
+        self.showAllOwnedBooksButton.tag = ShelfType.Owned.rawValue
+        self.showAllBorrowedBooksButton.tag = ShelfType.Borrowed.rawValue
+        self.showAllLentBooksButton.tag = ShelfType.Lent.rawValue
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -41,7 +60,6 @@ class ShelfViewController: BaseViewController, UICollectionViewDataSource {
     }
     
     func loadBooks() {
-//        Use server by uncommenting this section
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Loading books..", inView: self.view)
         DataHandler.getBooksWithParameters(nil) { (books) -> Void in
             self.books = books
@@ -59,9 +77,8 @@ class ShelfViewController: BaseViewController, UICollectionViewDataSource {
     
     func updateView() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.collectionView?.reloadData()
+            self.collectionViews.forEach {$0.reloadData()}
         })
-        
     }
 
 //    MARK: - Collection View Cell Data Source
@@ -71,13 +88,30 @@ class ShelfViewController: BaseViewController, UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (self.state == .OwnedBooks ? self.ownedBooks : self.allBooks).count
+        return self.booksForShelf(collectionView.tag).count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCell", forIndexPath: indexPath) as! BookCollectionViewCell
-        cell.book = (self.state == .OwnedBooks ? self.ownedBooks : self.allBooks)[indexPath.row]
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCell", forIndexPath: indexPath) as! CollectableCell
+        cell.collectable = self.booksForShelf(collectionView.tag)[indexPath.row]
         return cell
+    }
+    
+    private func booksForShelf(shelfTag: Int) -> [Book] {
+        switch ShelfType(rawValue: shelfTag)! {
+        case .Owned:
+            return self.ownedBooks
+        case .Borrowed:
+            return self.borrowedBooks
+        case .Lent:
+            return self.lentBooks
+        }
+    }
+    
+//    MARK: Collection View Delegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("ShowBook", sender: self.booksForShelf(collectionView.tag)[indexPath.row])
     }
     
 //    MARK: - Actions
@@ -86,13 +120,19 @@ class ShelfViewController: BaseViewController, UICollectionViewDataSource {
         self.updateView()
     }
     
+    @IBAction func showAllBooks(sender: UIButton) {
+        self.performSegueWithIdentifier("ShowAllBooks", sender: sender)
+    }
+    
 //    MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowBook" {
-            let navigationVC = segue.destinationViewController as! UINavigationController
-            let bookVC = navigationVC.viewControllers.first as! BookViewController
-            bookVC.book = (sender as! BookCollectionViewCell).book
+        super.prepareForSegue(segue, sender: sender)
+        
+        if segue.identifier == "ShowAllBooks" {
+            let booksVC = segue.destinationViewController as! BookCollectionViewController
+            
+            booksVC.collectionData = self.booksForShelf(sender!.tag)
         }
     }
     

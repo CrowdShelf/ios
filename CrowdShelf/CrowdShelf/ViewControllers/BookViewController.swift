@@ -63,7 +63,6 @@ class BookViewController: BaseViewController {
         self.titleLabel?.text = self.book?.details?.title
         self.publisherLabel?.text = self.book?.details?.publisher
         
-        
         if self.book?.details != nil {
             self.authorsLabel?.text = self.book?.details?.authors.map {$0.stringValue!}.joinWithSeparator(", ")
         }
