@@ -5,7 +5,6 @@
 //  Created by Øyvind Grimnes on 28/08/15.
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
 //
-import Mixpanel
 import UIKit
 import RealmSwift
 
@@ -131,11 +130,8 @@ class BookViewController: BaseViewController {
             self.updateView()
         }
         
-        Mixpanel.sharedInstanceWithToken(CS_ENVIRONMENT.MixpanelTracking())
-        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
-//        let categories = self.book?.details?.categories.map {$0.content as! String}
-        
-        mixpanel.track("BookAdded")
+        Analytics.addEvent("BookAdded")
+         
 
         
     }
