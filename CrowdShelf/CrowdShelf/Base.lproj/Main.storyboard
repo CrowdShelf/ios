@@ -578,9 +578,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2kd-w2-GKz">
-                                <rect key="frame" x="150" y="274" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8P-OS-OCp">
                                 <rect key="frame" x="0.0" y="420" width="320" height="44"/>
                                 <constraints>
@@ -594,10 +591,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2kd-w2-GKz" firstAttribute="centerX" secondItem="yOh-6I-yL8" secondAttribute="centerX" id="3o2-mQ-1uh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mvs-1O-bcu" secondAttribute="trailing" constant="-16" id="4Wv-Cx-lle"/>
                             <constraint firstItem="p3X-5N-AvN" firstAttribute="top" secondItem="cVe-om-WE9" secondAttribute="bottom" constant="8" id="6ro-Su-Fhm"/>
-                            <constraint firstItem="2kd-w2-GKz" firstAttribute="centerY" secondItem="yOh-6I-yL8" secondAttribute="centerY" id="BrW-aR-9de"/>
                             <constraint firstItem="hHW-w3-Exn" firstAttribute="centerY" secondItem="yOh-6I-yL8" secondAttribute="centerY" id="Fld-Qn-fRl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p3X-5N-AvN" secondAttribute="trailing" constant="-16" id="GFn-s2-cgO"/>
                             <constraint firstItem="Y8P-OS-OCp" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="JDS-Cn-CnS"/>
@@ -623,7 +618,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="2kd-w2-GKz" id="6eG-gD-Iuc"/>
                         <outlet property="authorsLabel" destination="ItO-dn-GsP" id="dCA-BX-5Wa"/>
                         <outlet property="coverImageView" destination="i9U-Ez-HmK" id="Y4a-MM-XNA"/>
                         <outlet property="messageLabel" destination="hHW-w3-Exn" id="NlH-DT-TdI"/>

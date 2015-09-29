@@ -94,11 +94,8 @@ public class DataHandler {
     
     */
     
-    public class func addBook(book: Book, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        var parameters = book.serialize()
-        parameters["rentedTo"] = ""
-        
-        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+    public class func addBook(book: Book, withCompletionHandler completionHandler: ((Bool) -> Void)?) {        
+        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: book.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -255,9 +252,9 @@ public class DataHandler {
     
     */
     
-    public class func addRenter(renter: String, toBook bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
+    public class func addRenter(renterID: String, toBook bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
         
-        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renter)", usingMethod: .PUT, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renterID)", usingMethod: .PUT, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -271,8 +268,8 @@ public class DataHandler {
     
     */
     
-    public class func removeRenter(renter: String, fromBook bookID: String, withOwner username: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(username)", usingMethod: .DELETE, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+    public class func removeRenter(renterID: String, fromBook bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
+        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renterID)", usingMethod: .DELETE, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -382,13 +379,13 @@ public class DataHandler {
             }.responseData { (request, response, result) -> Void in
                 
                 if result.isSuccess {
-                    csprint(CS_DEBUG_NETWORK, "Request successful:", request!)
+                    csprint(CS_DEBUG_NETWORK, "Request successful:", request!, "\nStatus code:", response?.statusCode ?? "none")
                 } else {
                     csprint(CS_DEBUG_NETWORK, "Request failed:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result.debugDescription)
                 }
                 
                 if JSONResponseHandlerFailed {
-                    completionHandler?(nil, result.isSuccess)
+                    completionHandler?(nil, result.isSuccess && response!.statusCode == 200)
                 }
                 
             }

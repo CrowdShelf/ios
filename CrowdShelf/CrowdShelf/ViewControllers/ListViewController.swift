@@ -66,7 +66,10 @@ class ListViewController: BaseViewController, UITableViewDataSource, UITableView
         
         cell.textLabel?.text = listable.title
         cell.detailTextLabel?.text = listable.subtitle
-        cell.imageView?.image = listable.image!
+        
+        if listable.image != nil {
+            cell.imageView?.image = listable.image!
+        }
         
         return cell
     }

@@ -53,8 +53,11 @@ class ScannerViewController: BaseViewController {
     
     /// Get retrieve information about the ISBN. If there are multiple results, let the user choose the correct alternative. 
     func retrieveInformationAboutISBN(isbn: String) {
+        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Searching for information", inView: self.view)
+        
         DataHandler.informationAboutBook(isbn, withCompletionHandler: { (information) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                activityIndicatorView.stop()
                 
                 let book = Book()
                 book.isbn = isbn
