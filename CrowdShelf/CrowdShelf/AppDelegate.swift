@@ -21,9 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             User.localUser = User(value: userValue)
         }
         
-        Mixpanel.sharedInstanceWithToken(CS_ENVIRONMENT.MixpanelTracking())
-        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
-        mixpanel.track("AppLaunched")
+        Analytics.addEvent("AppLaunched")
         
         return true
     }

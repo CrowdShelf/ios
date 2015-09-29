@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948259A1BBAAFAB00662F32 /* Analytics.swift */; settings = {ASSET_TAGS = (); }; };
+		0948259C1BBAB35D00662F32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948259A1BBAAFAB00662F32 /* Analytics.swift */; settings = {ASSET_TAGS = (); }; };
 		390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
 		390EAF271BAA0EEA00D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
 		39153A511B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
@@ -81,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		040035D2D8DB30B6C01FB456 /* Pods_CrowdShelfTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelfTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0948259A1BBAAFAB00662F32 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		0BDAE150A5E39A8004D0A2E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
 		390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+GoogleBooks.swift"; path = "Handlers/DataHandler+GoogleBooks.swift"; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 				39C2F5851B8F9AB800529AA9 /* BaseModel.swift */,
 				392169171BB083E70029A6C8 /* SerializableObject.swift */,
 				392169141BAF702A0029A6C8 /* RLMWrapper.swift */,
+				0948259A1BBAAFAB00662F32 /* Analytics.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -520,6 +524,7 @@
 				39BFDEFB1BAD4D5E0058C2CF /* Debug.swift in Sources */,
 				39C2F5881B8FA0CE00529AA9 /* User.swift in Sources */,
 				39737EBD1BB56ED4001AA6C6 /* Utilities.swift in Sources */,
+				0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */,
 				39C2F5AE1B906D8D00529AA9 /* BookViewController.swift in Sources */,
 				39C2F5B51B90A40A00529AA9 /* ShelfViewController.swift in Sources */,
 				392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */,
@@ -559,6 +564,7 @@
 				392E42CE1BBADBAA0080CCBD /* ActivityIndicatorView.swift in Sources */,
 				3978FE221BB32BF100DF742A /* BookInformationViewController.swift in Sources */,
 				392169191BB084210029A6C8 /* SerializableObject.swift in Sources */,
+				0948259C1BBAB35D00662F32 /* Analytics.swift in Sources */,
 				39C2F5A71B906D4300529AA9 /* Crowd.swift in Sources */,
 				39153A5A1B9778BD00D34293 /* AppDelegate.swift in Sources */,
 				399EFDF71BB2E0E000FC0664 /* LoginViewController.swift in Sources */,
