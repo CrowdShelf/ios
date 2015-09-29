@@ -95,7 +95,10 @@ public class DataHandler {
     */
     
     public class func addBook(book: Book, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: book.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        var parameters = book.serialize()
+        parameters["rentedTo"] = ""
+        
+        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }

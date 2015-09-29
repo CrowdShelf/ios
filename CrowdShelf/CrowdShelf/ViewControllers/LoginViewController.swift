@@ -46,6 +46,7 @@ class LoginViewController: UIViewController {
                     return
                 }
                 
+                LocalDataHandler.setObject(user!.serialize() , forKey: "user", inFile: LocalDataFile.User)
                 User.localUser = user
                 self.dismissViewControllerAnimated(true, completion: nil)
             }

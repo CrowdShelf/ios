@@ -162,6 +162,9 @@ class BookViewController: BaseViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func borrow(sender: AnyObject) {
+        
+    }
 //    MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
