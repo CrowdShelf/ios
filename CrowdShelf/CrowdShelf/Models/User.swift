@@ -11,7 +11,7 @@ import RealmSwift
 // FIXME: Ugly, temporary mimic of apples local user
 private var _localUser : User?
 
-public class User: BaseModel {
+public class User: BaseModel, Listable {
 
     dynamic var _id         = ""
     dynamic var name        = ""
@@ -28,6 +28,10 @@ public class User: BaseModel {
             NSNotificationCenter.defaultCenter().postNotificationName(Notification.LocalUserUpdated, object: nil)
         }
     }
+    
+//    Listable
+    var title: String { return username }
+    var subtitle: String { return email }
     
 //    MARK: Realm Object
     
