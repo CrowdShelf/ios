@@ -16,7 +16,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    @IBAction func segmentChanged(sender: AnyObject) {
+    @IBAction func segmentChanged(sender: UISegmentedControl) {
+        self.emailField.hidden = sender.selectedSegmentIndex == 0
+        self.nameField.hidden = sender.selectedSegmentIndex == 0
     }
     
     @IBAction func login(sender: AnyObject) {
@@ -36,6 +38,18 @@ class LoginViewController: UIViewController {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             })
+        } else {
+            DataHandler.loginWithUsername(self.usernameField.text!) { user -> Void in
+                if user == nil {
+                    self.segmentedControl.selectedSegmentIndex = 1
+                    self.segmentChanged(self.segmentedControl)
+                    return
+                }
+                
+                LocalDataHandler.setObject(user!.serialize() , forKey: "user", inFile: LocalDataFile.User)
+                User.localUser = user
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
 }

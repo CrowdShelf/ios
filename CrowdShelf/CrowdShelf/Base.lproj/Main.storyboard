@@ -219,20 +219,20 @@
                                     <action selector="login:" destination="big-vw-Q6f" eventType="touchUpInside" id="ecj-eq-XW0"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="rNU-dj-rwd">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rNU-dj-rwd">
                                 <rect key="frame" x="16" y="48" width="288" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="rgI-wy-gBg"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Login" enabled="NO"/>
+                                    <segment title="Login"/>
                                     <segment title="Register"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChanged:" destination="big-vw-Q6f" eventType="valueChanged" id="xyy-2i-QaJ"/>
                                 </connections>
                             </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="142-Il-e45">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="142-Il-e45">
                                 <rect key="frame" x="16" y="142" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GWI-tI-ga9"/>
@@ -240,7 +240,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-fs-ZLH">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n5Z-fs-ZLH">
                                 <rect key="frame" x="16" y="180" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="voi-g4-6Xy"/>
@@ -581,6 +581,16 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2kd-w2-GKz">
                                 <rect key="frame" x="150" y="274" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8P-OS-OCp">
+                                <rect key="frame" x="0.0" y="420" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Iy2-hY-LUK"/>
+                                </constraints>
+                                <state key="normal" title="Borrow"/>
+                                <connections>
+                                    <action selector="borrow:" destination="8vd-8z-IT4" eventType="touchUpInside" id="YGS-sN-1ds"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -590,15 +600,18 @@
                             <constraint firstItem="2kd-w2-GKz" firstAttribute="centerY" secondItem="yOh-6I-yL8" secondAttribute="centerY" id="BrW-aR-9de"/>
                             <constraint firstItem="hHW-w3-Exn" firstAttribute="centerY" secondItem="yOh-6I-yL8" secondAttribute="centerY" id="Fld-Qn-fRl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p3X-5N-AvN" secondAttribute="trailing" constant="-16" id="GFn-s2-cgO"/>
+                            <constraint firstItem="Y8P-OS-OCp" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="JDS-Cn-CnS"/>
                             <constraint firstItem="cVe-om-WE9" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="P9m-lu-c1z"/>
                             <constraint firstItem="hHW-w3-Exn" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="20" id="QNx-L8-vLb"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="Qs0-c0-13B"/>
                             <constraint firstItem="8gU-Im-60Y" firstAttribute="leading" secondItem="mvs-1O-bcu" secondAttribute="trailing" constant="-30" id="RgB-bL-dSF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cVe-om-WE9" secondAttribute="trailing" constant="-16" id="Rs8-XM-IDu"/>
+                            <constraint firstItem="cVe-om-WE9" firstAttribute="top" secondItem="Y8P-OS-OCp" secondAttribute="bottom" constant="8" id="UIZ-Xq-Mhm"/>
                             <constraint firstItem="t08-Pd-KBd" firstAttribute="top" secondItem="p3X-5N-AvN" secondAttribute="bottom" id="Vsl-4V-mOd"/>
                             <constraint firstItem="p3X-5N-AvN" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="cBd-iG-Asf"/>
                             <constraint firstItem="8gU-Im-60Y" firstAttribute="centerY" secondItem="mvs-1O-bcu" secondAttribute="centerY" id="i01-8v-SYZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hHW-w3-Exn" secondAttribute="trailing" constant="16" id="ot1-1g-K90"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y8P-OS-OCp" secondAttribute="trailing" constant="-16" id="spo-0u-x2i"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="top" secondItem="Otv-za-Tuw" secondAttribute="bottom" id="y4C-3V-ECk"/>
                         </constraints>
                     </view>
@@ -714,6 +727,6 @@
         <image name="shelf" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mua-rp-U9x"/>
+        <segue reference="E8c-Wd-HfK"/>
     </inferredMetricsTieBreakers>
 </document>

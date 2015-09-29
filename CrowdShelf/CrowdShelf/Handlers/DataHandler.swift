@@ -95,7 +95,10 @@ public class DataHandler {
     */
     
     public class func addBook(book: Book, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        self.sendRequestWithSubRoute("/books", usingMethod: .POST, andParameters: book.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        var parameters = book.serialize()
+        parameters["rentedTo"] = ""
+        
+        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -110,7 +113,7 @@ public class DataHandler {
     */
     
     public class func removeBook(bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        self.sendRequestWithSubRoute("/books/\(bookID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books/\(bookID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -125,7 +128,7 @@ public class DataHandler {
     */
     
     public class func getBook(bookID: String, withCompletionHandler completionHandler: ((Book?)->Void)) {
-        self.sendRequestWithSubRoute("/books/\(bookID)", usingMethod: .GET) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books/\(bookID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let value = result as? [String: AnyObject] {
                 let book = Book(value: value)
                 return completionHandler(book)
@@ -145,7 +148,7 @@ public class DataHandler {
     */
     
     public class func getBooksWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Book])->Void)) {
-        self.sendRequestWithSubRoute("/books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
             
             if let resultDictionary = result as? [String: AnyObject] {
                 if let value = resultDictionary["books"] as? [[String: AnyObject]] {
@@ -161,7 +164,48 @@ public class DataHandler {
     //    MARK: - Users
     
     /**
-    Get user with the provided username if it exists
+    Login as user with the provided username if it exists
+    
+    - parameter 	username:            screen name of the user
+    - parameter     completionHandler:   closure which will be called with the result of the request
+    
+    */
+    
+    public class func loginWithUsername(username: String, withCompletionHandler completionHandler: ((User?)->Void)) {
+        self.usersWithCompletionHandler { (users) -> Void in
+            for user in users {
+                if user.username == username {
+                    return completionHandler(user)
+                }
+            }
+            
+            completionHandler(nil)
+        }
+    }
+    
+    /**
+    Get all users from the database
+    
+    - parameter     completionHandler:   closure which will be called with the result of the request
+    
+    */
+    
+    public class func usersWithCompletionHandler(completionHandler: (([User])->Void)) {
+        self.sendRequestWithSubRoute("users", usingMethod: .GET) { (result, isSuccess) -> Void in
+            if isSuccess {
+                if let resultDictionary = result as? [String: AnyObject] {
+                    if let usersArray = resultDictionary["users"] as? [[String: AnyObject]] {
+                        return completionHandler(usersArray.map {User(value: $0)})
+                    }
+                }
+            }
+            
+            completionHandler([])
+        }
+    }
+    
+    /**
+    Get user with the provided ID if it exists
     
     - parameter 	userID:              ID of the user
     - parameter     completionHandler:   closure which will be called with the result of the request
@@ -169,7 +213,7 @@ public class DataHandler {
     */
     
     public class func getUser(userID: String, withCompletionHandler completionHandler: ((User?)->Void)) {
-        self.sendRequestWithSubRoute("/users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let resultDictionary = result as? [String: AnyObject] {
                 return completionHandler(User(value: resultDictionary))
             }
@@ -192,7 +236,7 @@ public class DataHandler {
         var parameters = user.serialize()
         parameters.removeValueForKey("_id")
         
-        self.sendRequestWithSubRoute("/users", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("users", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             if let value = result as? [String: AnyObject] {
                 completionHandler(User(value: value))
             }
@@ -228,7 +272,7 @@ public class DataHandler {
     */
     
     public class func removeRenter(renter: String, fromBook bookID: String, withOwner username: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        self.sendRequestWithSubRoute("/books/\(bookID)/renter/\(username)", usingMethod: .DELETE, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(username)", usingMethod: .DELETE, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -331,6 +375,8 @@ public class DataHandler {
                     
                     if !JSONResponseHandlerFailed {
                         completionHandler?(result.value, result.isSuccess)
+                    } else {
+                        csprint(CS_DEBUG_NETWORK, "Response JSON failed for request:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result.debugDescription)
                     }
                     
             }.responseData { (request, response, result) -> Void in
