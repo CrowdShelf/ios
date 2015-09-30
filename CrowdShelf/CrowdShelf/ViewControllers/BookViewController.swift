@@ -95,8 +95,9 @@ class BookViewController: BaseViewController {
             
             self.updateView()
         }
-        
+       
         Analytics.addEvent("BookAdded")
+        Analytics.addBookProperties(self.book!)
     }
     
     @IBAction func removeBookFromShelf(sender: AnyObject) {

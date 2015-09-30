@@ -678,7 +678,7 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyStars" translatesAutoresizingMaskIntoConstraints="NO" id="1xb-VA-WdU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dummyStars" translatesAutoresizingMaskIntoConstraints="NO" id="1xb-VA-WdU">
                                         <rect key="frame" x="98" y="82" width="150" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="cAS-86-ZeQ"/>
