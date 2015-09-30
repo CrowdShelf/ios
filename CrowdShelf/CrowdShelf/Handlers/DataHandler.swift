@@ -162,14 +162,6 @@ public class DataHandler {
     
     */
     
-    private class func booksFromCacheForQueries(parameters: [String: AnyObject]?) -> [Book] {
-        let booksFromCache = Realm.read {
-            return Array($0.objects(Book.self).filter {!$0.invalidated})
-            } as? [Book]
-        
-        return booksFromCache ?? []
-    }
-    
     public class func getBooksWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
         
         self.sendRequestWithSubRoute("books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
@@ -347,31 +339,13 @@ public class DataHandler {
     
     class func sendRequestWithSubRoute(subRoute: String,
                                        usingMethod method: Alamofire.Method,
-                                       andParameters parameters: [String: AnyObject]?,
-                                       parameterEncoding: ParameterEncoding,
+                                       andParameters parameters: [String: AnyObject]? = nil,
+                                       parameterEncoding: ParameterEncoding = .URL,
                                        withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
                 
         let route = CS_ENVIRONMENT.hostString() + subRoute
                            
         self.sendRequestWithRoute(route, usingMethod: method, andParameters: parameters, parameterEncoding: parameterEncoding, withCompletionHandler: completionHandler)
-    }
-    
-    /**
-    Sends a request to a sub path of the enviroments host root. A shorthand for use without parameters
-    
-    - parameter 	subRoute:            subpath for the request from the environments host root
-    - parameter     method:              HTTP method that should be used
-    - parameter     completionHandler:   closure which will be called with the result of the request
-    
-    */
-    
-    class func sendRequestWithSubRoute(subRoute: String,
-        usingMethod method: Alamofire.Method,
-        withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
-            
-            let route = CS_ENVIRONMENT.hostString() + subRoute
-            
-            self.sendRequestWithRoute(route, usingMethod: method, andParameters: nil, parameterEncoding: ParameterEncoding.URL, withCompletionHandler: completionHandler)
     }
     
     
