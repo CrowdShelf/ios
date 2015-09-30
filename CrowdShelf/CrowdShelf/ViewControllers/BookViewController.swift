@@ -30,7 +30,10 @@ class BookViewController: BaseViewController {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         if information.count > 1 {
                             self.showListWithItems(information, andCompletionHandler: { (information) -> Void in
-                                self.book?.details = information.first as? BookInformation
+                                Realm.write { realm -> Void in
+                                    self.book?.details = information.first as? BookInformation
+                                }
+                                
                                 self.updateView()
                             })
                         } else {

@@ -374,8 +374,8 @@ public class DataHandler {
             Alamofire.request(method, route, parameters: parameters, encoding: parameterEncoding, headers: ["Content-Type": "application/json"])
                 .responseJSON { (request, response, result) -> Void in
                     
-                    JSONResponseHandlerFailed = result.isFailure
-                    
+                    JSONResponseHandlerFailed = result.isFailure || response!.statusCode != 200
+
                     if !JSONResponseHandlerFailed {
                         completionHandler?(result.value, result.isSuccess)
                     } else {

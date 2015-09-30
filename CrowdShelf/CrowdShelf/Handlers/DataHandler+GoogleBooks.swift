@@ -28,7 +28,7 @@ extension DataHandler {
     
     */
     
-    class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([BookInformation]) -> Void)) {
+    internal class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([BookInformation]) -> Void)) {
         
         let mapping = [
             "providerID"        : "id",

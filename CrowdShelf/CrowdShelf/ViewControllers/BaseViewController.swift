@@ -17,6 +17,14 @@ class BaseViewController: UIViewController {
         if User.localUser == nil {
             self.showLogin()
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginIfLoggedOut", name: Notification.LocalUserUpdated, object: nil)
+    }
+    
+    func showLoginIfLoggedOut() {
+        if User.localUser == nil {
+            self.showLogin()
+        }
     }
     
     func showLogin() {

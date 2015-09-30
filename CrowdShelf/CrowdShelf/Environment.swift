@@ -8,6 +8,12 @@
 
 import Foundation
 
+
+
+let CS_ENVIRONMENT : CSEnvironment = .Development
+
+
+
 enum CSEnvironment {
     case Development
     case Production
@@ -35,5 +41,3 @@ enum CSEnvironment {
         }
     }
 }
-
-let CS_ENVIRONMENT : CSEnvironment = .Development

@@ -9,126 +9,133 @@
 import UIKit
 import RealmSwift
 
-enum ShelfType: Int {
-    case Owned    = 1
-    case Borrowed
-    case Lent
+enum ShelfType: String {
+    case Owned      = "My books"
+    case Borrowed   = "Borrowed books"
+    case Lent       = "Lent books"
+    
+    static let allValues: [ShelfType] = [.Owned, .Borrowed, .Lent]
+
 }
 
-class ShelfViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTableViewCellDelegate {
+
+    @IBOutlet weak var tableView: UITableView?
     
-    @IBOutlet weak var ownedBooksCollectionView: UICollectionView!
-    @IBOutlet weak var borrowedBooksCollectionView: UICollectionView!
-    @IBOutlet weak var lentBooksCollectionView: UICollectionView!
-    
-    @IBOutlet weak var showAllLentBooksButton: UIButton!
-    @IBOutlet weak var showAllBorrowedBooksButton: UIButton!
-    @IBOutlet weak var showAllOwnedBooksButton: UIButton!
-    
-    @IBOutlet var collectionViews: [UICollectionView]!
-    
-    var books : [Book] = []
-    
-    var ownedBooks: [Book] {
-        return User.localUser != nil ? self.books.filter({$0.owner == User.localUser!._id}) : []
-    }
-    var borrowedBooks: [Book] {
-        return User.localUser != nil ? self.books.filter({$0.rentedTo == User.localUser!._id}) : []
-    }
-    var lentBooks: [Book] {
-        return User.localUser != nil ? self.books.filter({$0.owner == User.localUser!._id && $0.rentedTo != ""}) : []
-    }
+    var shelves : [ShelfType: Shelf] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.ownedBooksCollectionView.tag = ShelfType.Owned.rawValue
-        self.borrowedBooksCollectionView.tag = ShelfType.Borrowed.rawValue
-        self.lentBooksCollectionView.tag = ShelfType.Lent.rawValue
-        
-        self.showAllOwnedBooksButton.tag = ShelfType.Owned.rawValue
-        self.showAllBorrowedBooksButton.tag = ShelfType.Borrowed.rawValue
-        self.showAllLentBooksButton.tag = ShelfType.Lent.rawValue
+        ShelfType.allValues.forEach {
+            self.shelves[$0] = Shelf(name: $0.rawValue)
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadBooks", name: Notification.LocalUserUpdated, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadShelves", name: Notification.LocalUserUpdated, object: nil)
         
-        self.loadBooks()
+        if User.localUser != nil {
+            self.loadShelves()
+        }
     }
     
-    func loadBooks() {
-        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Loading books..", inView: self.view)
+    func loadShelves() {
+        if User.localUser == nil {
+            return
+        }
         
-        DataHandler.getBooksWithParameters(nil, useCache: true) { (books) -> Void in
-            self.books = books
-            self.updateView()
-            
+        ShelfType.allValues.forEach { self.loadShelf($0) }
+    }
+    
+    private func loadShelf(shelf: ShelfType) {
+        let parameters = self.parametersForShelf(shelf)
+        
+//        TODO: Filter before retrieving information
+        DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
+            var booksUpdated = 0
             for book in books {
-                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (bookInformation) -> Void in
-                    activityIndicatorView.stop()
+                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
                     
                     Realm.write { realm -> Void in
-                        book.details = bookInformation.first
+                        book.details = information.first
                     }
                     
-                    self.updateView()
+                    booksUpdated++
+                    
+                    if booksUpdated == books.count {
+                        self.shelves[shelf]?.books = self.filterBooks(books, forShelf: shelf)
+                        self.updateView()
+                    }
                 })
             }
         }
     }
     
-    func updateView() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.collectionViews.forEach {$0.reloadData()}
-        })
-    }
-
-//    MARK: - Collection View Cell Data Source
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.booksForShelf(collectionView.tag).count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCell", forIndexPath: indexPath) as! CollectableCell
-        cell.collectable = self.booksForShelf(collectionView.tag)[indexPath.row]
-        return cell
-    }
-    
-    private func booksForShelf(shelfTag: Int) -> [Book] {
-        switch ShelfType(rawValue: shelfTag)! {
-        case .Owned:
-            return self.ownedBooks
-        case .Borrowed:
-            return self.borrowedBooks
+    private func filterBooks(books: [Book], forShelf shelf: ShelfType) -> [Book] {
+        switch shelf {
         case .Lent:
-            return self.lentBooks
+            return books.filter {$0.rentedTo != ""}
+        default:
+            return books
         }
     }
     
-//    MARK: Collection View Delegate
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("ShowBook", sender: self.booksForShelf(collectionView.tag)[indexPath.row])
+    private func parametersForShelf(shelf: ShelfType) -> [String: AnyObject]? {
+//        TODO: Fix lent
+        switch shelf {
+        case .Owned:
+            return ["owner": User.localUser!._id]
+        case .Borrowed:
+            return ["rentedTo": User.localUser!._id]
+        case .Lent:
+            return ["owner": User.localUser!._id]
+        }
     }
     
-//    MARK: - Actions
+    func updateView() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView?.reloadData()
+        })
+    }
+
+//    MARK: - Table View Data Source
     
-    @IBAction func stateChanged(sender: AnyObject) {
-        self.updateView()
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
-    @IBAction func showAllBooks(sender: UIButton) {
-        self.performSegueWithIdentifier("ShowAllBooks", sender: sender)
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.shelves.count
     }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ShelfCell") as! ShelfTableViewCell
+        cell.delegate = self
+        
+        let shelf = ShelfType.allValues[indexPath.row]
+        cell.shelf = self.shelves[shelf]
+        
+        return cell
+    }
+    
+//    MARK: - Shelf Table View Cell Delegate
+    
+    func showAllBooksForShelfTableViewCell(shelfTableViewCell: ShelfTableViewCell) {
+        self.performSegueWithIdentifier("ShowAllBooks", sender: shelfTableViewCell)
+    }
+    
+    func shelfTableViewCell(shelfTableViewCell: ShelfTableViewCell, didSelectBook book: Book) {
+        self.performSegueWithIdentifier("ShowBook", sender: book)
+    }
+    
+    
+    @IBAction func logOut(sender: AnyObject) {
+        LocalDataHandler.setObject(nil, forKey: "user", inFile: LocalDataFile.User)
+        User.localUser = nil
+    }
 //    MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -136,8 +143,7 @@ class ShelfViewController: BaseViewController, UICollectionViewDataSource, UICol
         
         if segue.identifier == "ShowAllBooks" {
             let booksVC = segue.destinationViewController as! BookCollectionViewController
-            
-            booksVC.collectionData = self.booksForShelf(sender!.tag)
+            booksVC.collectionData = (sender as! ShelfTableViewCell).shelf!.books
         }
     }
     
