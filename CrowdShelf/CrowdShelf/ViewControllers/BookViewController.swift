@@ -129,13 +129,13 @@ class BookViewController: BaseViewController {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         
         DataHandler.getBooksWithParameters(["isbn":self.book!.isbn]) { (books) -> Void in
-            var ownerMapping: [String: [Book]] = [:]
             
-            for book in books {
-                if ownerMapping[book.owner] == nil {
-                    ownerMapping[book.owner] = [book]
+            var ownerMapping: [String: [Book]] = [:]
+            books.forEach {
+                if ownerMapping[$0.owner] == nil {
+                    ownerMapping[$0.owner] = [$0]
                 } else {
-                    ownerMapping[book.owner]?.append(book)
+                    ownerMapping[$0.owner]?.append($0)
                 }
             }
             
@@ -166,19 +166,24 @@ class BookViewController: BaseViewController {
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         DataHandler.getBooksWithParameters(["isbn":self.book!.isbn, "rentedTo": User.localUser!._id]) { (books) -> Void in
-            var ownerMapping: [String: [Book]] = [:]
             
-            for book in books {
-                if ownerMapping[book.owner] == nil {
-                    ownerMapping[book.owner] = [book]
+            var ownerMapping: [String: [Book]] = [:]
+            books.forEach {
+                if ownerMapping[$0.owner] == nil {
+                    ownerMapping[$0.owner] = [$0]
                 } else {
-                    ownerMapping[book.owner]?.append(book)
+                    ownerMapping[$0.owner]?.append($0)
                 }
             }
             
             DataHandler.usersWithCompletionHandler { users -> Void in
                 activityIndicatorView.stop()
                 let owners = users.filter {ownerMapping.keys.contains($0._id)}
+                
+                if owners.count == 0 {
+                    MessagePopupView(message: "You are not borrowing this book", messageStyle: .Error).show()
+                    return
+                }
                 
                 self.showListWithItems(owners, andCompletionHandler: { (selectedOwners) -> Void in
                     

@@ -542,7 +542,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyStars" translatesAutoresizingMaskIntoConstraints="NO" id="1xb-VA-WdU">
-                                        <rect key="frame" x="98" y="82" width="150" height="28"/>
+                                        <rect key="frame" x="98" y="82.5" width="150" height="27.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="cAS-86-ZeQ"/>
                                             <constraint firstAttribute="width" secondItem="1xb-VA-WdU" secondAttribute="height" multiplier="11:2" id="wIT-x3-7YY"/>
@@ -607,9 +607,19 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Iy2-hY-LUK"/>
                                 </constraints>
+                                <state key="normal" title="Return"/>
+                                <connections>
+                                    <action selector="returnBook:" destination="8vd-8z-IT4" eventType="touchUpInside" id="EJI-sq-SaW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1f-tL-AVG">
+                                <rect key="frame" x="0.0" y="368" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="wHG-sx-FGM"/>
+                                </constraints>
                                 <state key="normal" title="Borrow"/>
                                 <connections>
-                                    <action selector="borrow:" destination="8vd-8z-IT4" eventType="touchUpInside" id="YGS-sN-1ds"/>
+                                    <action selector="borrow:" destination="8vd-8z-IT4" eventType="touchUpInside" id="ssw-wg-WC5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -626,9 +636,12 @@
                             <constraint firstItem="cVe-om-WE9" firstAttribute="top" secondItem="Y8P-OS-OCp" secondAttribute="bottom" constant="8" id="UIZ-Xq-Mhm"/>
                             <constraint firstItem="t08-Pd-KBd" firstAttribute="top" secondItem="p3X-5N-AvN" secondAttribute="bottom" id="Vsl-4V-mOd"/>
                             <constraint firstItem="p3X-5N-AvN" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="cBd-iG-Asf"/>
+                            <constraint firstItem="Y8P-OS-OCp" firstAttribute="top" secondItem="g1f-tL-AVG" secondAttribute="bottom" constant="8" id="fM2-HJ-vL6"/>
                             <constraint firstItem="8gU-Im-60Y" firstAttribute="centerY" secondItem="mvs-1O-bcu" secondAttribute="centerY" id="i01-8v-SYZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g1f-tL-AVG" secondAttribute="trailing" constant="-16" id="rFh-HM-uej"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y8P-OS-OCp" secondAttribute="trailing" constant="-16" id="spo-0u-x2i"/>
                             <constraint firstItem="mvs-1O-bcu" firstAttribute="top" secondItem="Otv-za-Tuw" secondAttribute="bottom" id="y4C-3V-ECk"/>
+                            <constraint firstItem="g1f-tL-AVG" firstAttribute="leading" secondItem="yOh-6I-yL8" secondAttribute="leadingMargin" constant="-16" id="zQq-eH-GsF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Book" id="jY4-YV-ob0">
