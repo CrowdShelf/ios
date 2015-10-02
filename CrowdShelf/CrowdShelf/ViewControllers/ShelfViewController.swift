@@ -15,7 +15,28 @@ enum ShelfType: String {
     case Lent       = "Lent books"
     
     static let allValues: [ShelfType] = [.Owned, .Borrowed, .Lent]
-
+    
+    func parameters() -> [String: AnyObject]? {
+        switch self {
+        case .Owned:
+            return ["owner": User.localUser!._id]
+        case .Borrowed:
+            return ["rentedTo": User.localUser!._id]
+        case .Lent:
+            return ["owner": User.localUser!._id]
+        }
+    }
+    
+    func filter() -> ((Book) -> Bool) {
+        switch self {
+        case .Owned:
+            return {$0.owner == User.localUser!._id}
+        case .Borrowed:
+            return {$0.rentedTo == User.localUser!._id}
+        case .Lent:
+            return {$0.rentedTo != "" && $0.owner == User.localUser!._id}
+        }
+    }
 }
 
 class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTableViewCellDelegate {
@@ -27,19 +48,17 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadShelves", name: Notification.LocalUserUpdated, object: nil)
+        
         ShelfType.allValues.forEach {
-            self.shelves[$0] = Shelf(name: $0.rawValue)
+            self.shelves[$0] = Shelf(type: $0)
         }
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadShelves", name: Notification.LocalUserUpdated, object: nil)
-        
-        if User.localUser != nil {
-            self.loadShelves()
-        }
+        self.loadShelves()
     }
     
     func loadShelves() {
@@ -51,10 +70,8 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
     }
     
     private func loadShelf(shelf: ShelfType) {
-        let parameters = self.parametersForShelf(shelf)
-        
 //        TODO: Filter before retrieving information
-        DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
+        DataHandler.getBooksWithParameters(shelf.parameters()) { (books) -> Void in
             var booksUpdated = 0
             for book in books {
                 DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
@@ -66,7 +83,7 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
                     booksUpdated++
                     
                     if booksUpdated == books.count {
-                        self.shelves[shelf]?.books = self.filterBooks(books, forShelf: shelf)
+                        self.shelves[shelf]?.books = books.filter(shelf.filter())
                         self.updateView()
                     }
                 })
@@ -80,18 +97,6 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
             return books.filter {$0.rentedTo != ""}
         default:
             return books
-        }
-    }
-    
-    private func parametersForShelf(shelf: ShelfType) -> [String: AnyObject]? {
-//        TODO: Fix lent
-        switch shelf {
-        case .Owned:
-            return ["owner": User.localUser!._id]
-        case .Borrowed:
-            return ["rentedTo": User.localUser!._id]
-        case .Lent:
-            return ["owner": User.localUser!._id]
         }
     }
     
@@ -136,6 +141,7 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
         LocalDataHandler.setObject(nil, forKey: "user", inFile: LocalDataFile.User)
         User.localUser = nil
     }
+    
 //    MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -143,7 +149,7 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
         
         if segue.identifier == "ShowAllBooks" {
             let booksVC = segue.destinationViewController as! BookCollectionViewController
-            booksVC.collectionData = (sender as! ShelfTableViewCell).shelf!.books
+            booksVC.shelf = (sender as! ShelfTableViewCell).shelf
         }
     }
     

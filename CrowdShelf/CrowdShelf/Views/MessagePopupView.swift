@@ -73,20 +73,25 @@ class MessagePopupView: UILabel {
     }
     
     func show() {
-        let view = UIApplication.sharedApplication().keyWindow!
-        
-        self.backgroundColor = self.style.color().colorWithAlphaComponent(0.7)
-        
-        view.addSubview(self)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: .AlignAllBaseline, metrics: nil, views: ["label":self]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-300-[label(44)]", options: .AlignAllCenterY, metrics: nil, views: ["label":self]))
-
-        self.fadeViewIn(true, completionHandler: { (_) -> Void in
-            Utilities.delayDispatchInQueue(dispatch_get_main_queue(), delay: 0.6, block: { () -> Void in
-                self.fadeViewIn(false, completionHandler: { (_) -> Void in
-                    self.removeFromSuperview()
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let view = UIApplication.sharedApplication().keyWindow!
+            
+            self.backgroundColor = self.style.color().colorWithAlphaComponent(0.7)
+            
+            view.addSubview(self)
+            
+            /* Add constraints */
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: .AlignAllBaseline, metrics: nil, views: ["label":self]))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-300-[label(44)]", options: .AlignAllCenterY, metrics: nil, views: ["label":self]))
+            
+            /* Fade in and out */
+            self.fadeViewIn(true, completionHandler: { (_) -> Void in
+                Utilities.delayDispatchInQueue(dispatch_get_main_queue(), delay: 0.8, block: { () -> Void in
+                    self.fadeViewIn(false, completionHandler: { (_) -> Void in
+                        self.removeFromSuperview()
+                    })
                 })
             })
-        })
+        }
     }
 }

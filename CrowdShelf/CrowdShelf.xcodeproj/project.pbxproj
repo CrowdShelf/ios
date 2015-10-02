@@ -11,6 +11,8 @@
 		0948259C1BBAB35D00662F32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948259A1BBAAFAB00662F32 /* Analytics.swift */; settings = {ASSET_TAGS = (); }; };
 		390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
 		390EAF271BAA0EEA00D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
+		390F2C061BBE7B18003E21E7 /* DataHandler+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */; settings = {ASSET_TAGS = (); }; };
+		390F2C071BBE7B18003E21E7 /* DataHandler+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */; settings = {ASSET_TAGS = (); }; };
 		39153A511B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A521B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
 		39153A571B9778B200D34293 /* ShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B41B90A40A00529AA9 /* ShelfViewController.swift */; };
@@ -93,6 +95,7 @@
 		0BDAE150A5E39A8004D0A2E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
 		390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+GoogleBooks.swift"; path = "Handlers/DataHandler+GoogleBooks.swift"; sourceTree = "<group>"; };
+		390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+Convenience.swift"; path = "Handlers/DataHandler+Convenience.swift"; sourceTree = "<group>"; };
 		39153A501B970F1E00D34293 /* CSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTextView.swift; path = Views/CSTextView.swift; sourceTree = "<group>"; };
 		392169141BAF702A0029A6C8 /* RLMWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMWrapper.swift; path = Models/RLMWrapper.swift; sourceTree = "<group>"; };
 		392169171BB083E70029A6C8 /* SerializableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SerializableObject.swift; path = Models/SerializableObject.swift; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 			children = (
 				3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */,
 				39C2F5921B90527200529AA9 /* DataHandler.swift */,
+				390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */,
 				390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */,
 			);
 			name = Handlers;
@@ -535,6 +539,7 @@
 				39C2F5861B8F9AB800529AA9 /* BaseModel.swift in Sources */,
 				39A0CAFE1B958B0D00321225 /* ListViewController.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
+				390F2C061BBE7B18003E21E7 /* DataHandler+Convenience.swift in Sources */,
 				392E42D31BBAF9DA0080CCBD /* CollectionViewController.swift in Sources */,
 				39CB7B9E1BB3501000718345 /* BaseViewController.swift in Sources */,
 				392E42DA1BBBE0AC0080CCBD /* ShelfTableViewCell.swift in Sources */,
@@ -593,6 +598,7 @@
 				39C2F5A71B906D4300529AA9 /* Crowd.swift in Sources */,
 				39153A5A1B9778BD00D34293 /* AppDelegate.swift in Sources */,
 				399EFDF71BB2E0E000FC0664 /* LoginViewController.swift in Sources */,
+				390F2C071BBE7B18003E21E7 /* DataHandler+Convenience.swift in Sources */,
 				39BFDEF51BACBBB50058C2CF /* Environment.swift in Sources */,
 				392E42D41BBAF9DA0080CCBD /* CollectionViewController.swift in Sources */,
 				39BFDEFC1BAD4EE30058C2CF /* Debug.swift in Sources */,

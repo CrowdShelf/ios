@@ -48,19 +48,6 @@ class BaseViewController: UIViewController {
         return listVC
     }
     
-    func showCollectionWithItems(items: [Collectable], andCompletionHandler completionHandler: (([Collectable]) -> Void)) -> CollectionViewController {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let listVC = storyboard.instantiateViewControllerWithIdentifier("CollectionViewController") as! CollectionViewController
-        
-        listVC.collectionData = items
-        listVC.completionHandler = completionHandler
-        
-        self.presentViewController(listVC, animated: true, completion: nil)
-        
-        return listVC
-    }
-    
 //    MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -37,7 +37,9 @@ class BookViewController: BaseViewController {
                                 self.updateView()
                             })
                         } else {
-                            self.book?.details = information.first
+                            Realm.write { realm -> Void in
+                                self.book?.details = information.first
+                            }
                         }
                         
                         self.updateView()
@@ -90,10 +92,10 @@ class BookViewController: BaseViewController {
         DataHandler.addBook(self.book!) { (book) -> Void in
             activityIndicatorView.stop()
             
+            self.book = book
+            
             let message = book != nil ? "Successfully added book" : "Failed to add book"
-            
             MessagePopupView(message: message, messageStyle: book != nil ? .Success : .Error).show()
-            
             csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
             
             self.updateView()
@@ -112,6 +114,7 @@ class BookViewController: BaseViewController {
             
             let message = isSuccess ? "Successfully removed book" : "Failed to remove book"
             csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
+            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).show()
             
             if isSuccess {
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -128,79 +131,94 @@ class BookViewController: BaseViewController {
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         
-        DataHandler.getBooksWithParameters(["isbn":self.book!.isbn]) { (books) -> Void in
+        /* Retrieve users in possession of the book */
+        DataHandler.ownersOfBooksWithParameters(["isbn": self.book!.isbn, "availableForRent": true]) { (owners) -> Void in
+            activityIndicatorView.stop()
             
-            var ownerMapping: [String: [Book]] = [:]
-            books.forEach {
-                if ownerMapping[$0.owner] == nil {
-                    ownerMapping[$0.owner] = [$0]
-                } else {
-                    ownerMapping[$0.owner]?.append($0)
-                }
+            /* Abort is no users are in possession of the book */
+            if owners.count == 0 {
+                MessagePopupView(message: "You cant borrow this book", messageStyle: .Error).show()
+                return
             }
             
-            DataHandler.usersWithCompletionHandler { users -> Void in
-                activityIndicatorView.stop()
-                let owners = users.filter {ownerMapping.keys.contains($0._id)}
+            /* Borrow book if only one user is in possession of the book */
+            if owners.count == 1 {
+                self.borrowBookFromUser(owners.first!._id)
+                return
+            }
+            
+            /* Present a list of all users in possession of the book */
+            self.showListWithItems(owners, andCompletionHandler: { (selectedOwners) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
                 
-                self.showListWithItems(owners, andCompletionHandler: { (selectedOwners) -> Void in
-                    if selectedOwners.isEmpty {
-                        csprint(CS_DEBUG_BOOK_VIEW, "Canceled borrow book:", self.book)
-                        return self.dismissViewControllerAnimated(true, completion: nil)
-                    }
-                    
-                    let owner = selectedOwners.first as! User
-                    DataHandler.addRenter(owner._id, toBook: ownerMapping[owner._id]!.first!._id, withCompletionHandler: { (isSuccess) -> Void in
-                        csprint(CS_DEBUG_BOOK_VIEW, "Successfully borrowed book:", self.book)
-                        
-                        MessagePopupView(message: "Book borrowed", messageStyle: isSuccess ? .Success : .Error).show()
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    })
-                })
-            }
+                if selectedOwners.isEmpty {
+                    csprint(CS_DEBUG_BOOK_VIEW, "Canceled borrow book:", self.book)
+                    return
+                }
+                
+                let owner = selectedOwners.first as! User
+                self.borrowBookFromUser(owner._id)
+            })
+            
         }
+    }
+    
+    private func borrowBookFromUser(userID: String) {
+        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Borrowing book..", inView: self.view)
+        
+        DataHandler.addRenter(User.localUser!._id, toTitle: self.book!.isbn, withOwner: userID, withCompletionHandler: { (isSuccess) -> Void in
+            activityIndicatorView.stop()
+            
+            let message = isSuccess ? "Sucessfully borrowed book" : "Failed to borrow book"
+            csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
+            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).show()
+        })
     }
     
     @IBAction func returnBook(sender: AnyObject) {
         csprint(CS_DEBUG_BOOK_VIEW, "Returning book:", self.book)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
-        DataHandler.getBooksWithParameters(["isbn":self.book!.isbn, "rentedTo": User.localUser!._id]) { (books) -> Void in
+        
+        DataHandler.ownersOfBooksWithParameters(["isbn":self.book!.isbn, "rentedTo": User.localUser!._id]) { (owners) -> Void in
+            activityIndicatorView.stop()
             
-            var ownerMapping: [String: [Book]] = [:]
-            books.forEach {
-                if ownerMapping[$0.owner] == nil {
-                    ownerMapping[$0.owner] = [$0]
-                } else {
-                    ownerMapping[$0.owner]?.append($0)
-                }
+            /* Abort is no users are in possession of the book */
+            if owners.count == 0 {
+                MessagePopupView(message: "You are not borrowing this book", messageStyle: .Error).show()
+                return
             }
             
-            DataHandler.usersWithCompletionHandler { users -> Void in
-                activityIndicatorView.stop()
-                let owners = users.filter {ownerMapping.keys.contains($0._id)}
+            /* Borrow book if only one user is in possession of the book */
+            if owners.count == 1 {
+                self.returnBookToUser(owners.first!._id)
+                return
+            }
+            
+            /* Present a list of all users in possession of the book */
+            self.showListWithItems(owners, andCompletionHandler: { (selectedOwners) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
                 
-                if owners.count == 0 {
-                    MessagePopupView(message: "You are not borrowing this book", messageStyle: .Error).show()
+                if selectedOwners.isEmpty {
+                    csprint(CS_DEBUG_BOOK_VIEW, "Canceled borrow book:", self.book)
                     return
                 }
                 
-                self.showListWithItems(owners, andCompletionHandler: { (selectedOwners) -> Void in
-                    
-                    if selectedOwners.isEmpty {
-                        csprint(CS_DEBUG_BOOK_VIEW, "Canceled return book:", self.book)
-                        return self.dismissViewControllerAnimated(true, completion: nil)
-                    }
-                    
-                    let owner = selectedOwners.first as! User
-                    DataHandler.removeRenter(User.localUser!._id, fromBook: ownerMapping[owner._id]!.first!._id, withCompletionHandler: { (isSuccess) -> Void in
-                        csprint(CS_DEBUG_BOOK_VIEW, "Successfully returned book:", self.book)
-                        
-                        MessagePopupView(message: "Book returned", messageStyle: isSuccess ? .Success : .Error).show()
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    })
-                })
-            }
+                let owner = selectedOwners.first as! User
+                self.returnBookToUser(owner._id)
+            })
+        }
+    }
+    
+    private func returnBookToUser(userID: String) {
+        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Returning book..", inView: self.view)
+        
+        DataHandler.removeRenter(User.localUser!._id, fromTitle: self.book!.isbn, withOwner: userID) { (isSuccess) -> Void in
+            activityIndicatorView.stop()
+            
+            let message = isSuccess ? "Sucessfully returned book" : "Failed to return book"
+            csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
+            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).show()
         }
     }
     

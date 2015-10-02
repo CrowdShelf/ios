@@ -7,8 +7,35 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BookCollectionViewController: CollectionViewController {
+    
+    var shelf: Shelf? {
+        didSet {
+            self.collectionData = shelf?.books ?? []
+            self.updateView()
+        }
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DataHandler.getBooksWithParameters(self.shelf?.type.parameters()) { (books) -> Void in
+            self.shelf?.books = books.filter(self.shelf!.type.filter())
+            
+            for book in self.collectionData as! [Book] {
+                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
+                    Realm.write { realm -> Void in
+                        book.details = information.first
+                    }
+                    
+                    self.updateView()
+                })
+            }
+            
+        }
+    }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("ShowBook", sender: self.collectionData[indexPath.row])
@@ -17,4 +44,5 @@ class BookCollectionViewController: CollectionViewController {
     override func done(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
 }
