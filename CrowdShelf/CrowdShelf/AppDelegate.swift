@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Mixpanel
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Analytics.addEvent("AppLaunched")
+        
         
         return true
     }

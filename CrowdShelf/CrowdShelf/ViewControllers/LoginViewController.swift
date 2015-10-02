@@ -50,6 +50,7 @@ class LoginViewController: UIViewController {
                 User.localUser = user
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
+            
         }
     }
 }
