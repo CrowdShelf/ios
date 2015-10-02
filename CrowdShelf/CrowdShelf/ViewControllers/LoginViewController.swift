@@ -29,9 +29,11 @@ class LoginViewController: UIViewController {
         ]
         let user = User(value: value)
         
+        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Logging in..", inView: self.view)
         if self.segmentedControl.selectedSegmentIndex == 1 {
             DataHandler.createUser(user, withCompletionHandler: { (user) -> Void in
-
+                activityIndicatorView.stop()
+                
                 if user != nil {
                     LocalDataHandler.setObject(user!.serialize() , forKey: "user", inFile: LocalDataFile.User)
                     User.localUser = user
@@ -40,6 +42,8 @@ class LoginViewController: UIViewController {
             })
         } else {
             DataHandler.loginWithUsername(self.usernameField.text!) { user -> Void in
+                activityIndicatorView.stop()
+                
                 if user == nil {
                     self.segmentedControl.selectedSegmentIndex = 1
                     self.segmentChanged(self.segmentedControl)

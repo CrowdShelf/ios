@@ -16,6 +16,7 @@ enum ShelfType: String {
     
     static let allValues: [ShelfType] = [.Owned, .Borrowed, .Lent]
     
+    /** Parameters used for filtering on the server. Not necessary, but reduces tha size of the transaction */
     func parameters() -> [String: AnyObject]? {
         switch self {
         case .Owned:
@@ -27,14 +28,15 @@ enum ShelfType: String {
         }
     }
     
+    /** Filter used for filtering locally */
     func filter() -> ((Book) -> Bool) {
         switch self {
         case .Owned:
-            return {$0.owner == User.localUser!._id}
+            return {User.localUser != nil && $0.owner == User.localUser!._id}
         case .Borrowed:
-            return {$0.rentedTo == User.localUser!._id}
+            return {User.localUser != nil && $0.rentedTo == User.localUser!._id}
         case .Lent:
-            return {$0.rentedTo != "" && $0.owner == User.localUser!._id}
+            return {User.localUser != nil && $0.rentedTo != "" && $0.owner == User.localUser!._id}
         }
     }
 }

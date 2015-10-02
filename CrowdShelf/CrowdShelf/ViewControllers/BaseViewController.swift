@@ -22,7 +22,7 @@ class BaseViewController: UIViewController {
     }
     
     func showLoginIfLoggedOut() {
-        if User.localUser == nil {
+        if User.localUser == nil && self.isViewLoaded() && self.view.window != nil {
             self.showLogin()
         }
     }
