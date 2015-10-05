@@ -15,10 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+        Analytics.initialize()
 //        Get stored user object if possible
         if let userValue = LocalDataHandler.getObjectForKey("user", fromFile: LocalDataFile.User) {
             User.localUser = User(value: userValue)
+            Analytics.initializeUser(User.localUser!._id)
         }
         
         Analytics.addEvent("AppLaunched")
