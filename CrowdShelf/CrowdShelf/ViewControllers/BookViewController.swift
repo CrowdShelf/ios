@@ -161,6 +161,7 @@ class BookViewController: BaseViewController {
             })
             
         }
+        Analytics.addEvent("BorrowBook")
     }
     
     private func borrowBookFromUser(userID: String) {
@@ -208,6 +209,7 @@ class BookViewController: BaseViewController {
                 self.returnBookToUser(owner._id)
             })
         }
+        Analytics.addEvent("ReturnBook")
     }
     
     private func returnBookToUser(userID: String) {
