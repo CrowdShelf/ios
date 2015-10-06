@@ -39,7 +39,7 @@ class BookInformationViewController: BaseViewController {
         self.authorsLabel?.text = self.bookInformation?.authors.map({$0.content as! String}).joinWithSeparator(", ")
         self.publisherLabel?.text = self.bookInformation?.publisher
         self.isbnLabel?.text = self.bookInformation?.isbn
-        self.pageCountLabel?.text = "\(self.bookInformation!.numberOfPages)"
+        self.pageCountLabel?.text = "\(self.bookInformation?.numberOfPages ?? 0)"
         self.thumbnailImage?.image = self.bookInformation?.thumbnail
         self.backgroundImage?.image = self.bookInformation?.thumbnail
         self.summaryTextArea?.text = self.bookInformation?.summary

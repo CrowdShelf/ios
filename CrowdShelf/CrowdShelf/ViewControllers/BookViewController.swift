@@ -83,13 +83,12 @@ class BookViewController: BaseViewController {
     }
     
     @IBAction func addBookToShelf(sender: AnyObject) {
-        self.book = self.newBook()
         
         csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Adding book", inView: self.view)
         
-        DataHandler.addBook(self.book!) { (book) -> Void in
+        DataHandler.addBook(self.newBook()) { (book) -> Void in
             activityIndicatorView.stop()
             
             self.book = book

@@ -9,52 +9,16 @@
 import UIKit
 import RealmSwift
 
-enum ShelfType: String {
-    case Owned      = "My books"
-    case Borrowed   = "Borrowed books"
-    case Lent       = "Lent books"
-    
-    static let allValues: [ShelfType] = [.Owned, .Borrowed, .Lent]
-    
-    /** Parameters used for filtering on the server. Not necessary, but reduces tha size of the transaction */
-    func parameters() -> [String: AnyObject]? {
-        switch self {
-        case .Owned:
-            return ["owner": User.localUser!._id]
-        case .Borrowed:
-            return ["rentedTo": User.localUser!._id]
-        case .Lent:
-            return ["owner": User.localUser!._id]
-        }
-    }
-    
-    /** Filter used for filtering locally */
-    func filter() -> ((Book) -> Bool) {
-        switch self {
-        case .Owned:
-            return {User.localUser != nil && $0.owner == User.localUser!._id}
-        case .Borrowed:
-            return {User.localUser != nil && $0.rentedTo == User.localUser!._id}
-        case .Lent:
-            return {User.localUser != nil && $0.rentedTo != "" && $0.owner == User.localUser!._id}
-        }
-    }
-}
-
 class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView?
     
-    var shelves : [ShelfType: Shelf] = [:]
+    var shelves : [Shelf] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadShelves", name: Notification.LocalUserUpdated, object: nil)
-        
-        ShelfType.allValues.forEach {
-            self.shelves[$0] = Shelf(type: $0)
-        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -68,12 +32,22 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
             return
         }
         
-        ShelfType.allValues.forEach { self.loadShelf($0) }
+        let ownedShelf = Shelf(name: "Owned books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.owner == User.localUser!._id}
+        
+        let borrowedShelf = Shelf(name: "Lent books", parameters: ["rentedTo": User.localUser!._id]) {User.localUser != nil && $0.rentedTo == User.localUser!._id}
+        
+        let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.rentedTo != "" && $0.owner == User.localUser!._id}
+        
+        self.shelves = [ownedShelf, borrowedShelf, lentShelf]
+        
+        self.shelves.enumerate().forEach {loadShelf($0.index)}
     }
     
-    private func loadShelf(shelf: ShelfType) {
+    private func loadShelf(shelfIndex: Int) {
 //        TODO: Filter before retrieving information
-        DataHandler.getBooksWithParameters(shelf.parameters()) { (books) -> Void in
+        var shelf = self.shelves[shelfIndex] 
+        
+        DataHandler.getBooksWithParameters(shelf.parameters) { (books) -> Void in
             var booksUpdated = 0
             for book in books {
                 DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
@@ -85,20 +59,11 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
                     booksUpdated++
                     
                     if booksUpdated == books.count {
-                        self.shelves[shelf]?.books = books.filter(shelf.filter())
+                        shelf.books = books.filter(shelf.filter)
                         self.updateView()
                     }
                 })
             }
-        }
-    }
-    
-    private func filterBooks(books: [Book], forShelf shelf: ShelfType) -> [Book] {
-        switch shelf {
-        case .Lent:
-            return books.filter {$0.rentedTo != ""}
-        default:
-            return books
         }
     }
     
@@ -122,9 +87,8 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
         let cell = tableView.dequeueReusableCellWithIdentifier("ShelfCell") as! ShelfTableViewCell
         cell.delegate = self
         
-        let shelf = ShelfType.allValues[indexPath.row]
-        cell.shelf = self.shelves[shelf]
-        
+        cell.shelf = self.shelves[indexPath.row]
+
         return cell
     }
     

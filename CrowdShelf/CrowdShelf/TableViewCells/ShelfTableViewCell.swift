@@ -8,33 +8,19 @@
 
 import UIKit
 
-struct Shelf {
-    let type: ShelfType
-    
-    /// All books in the shelf. Could contain invalidated objects
-    private var allBooks: [Book] = []
+class Shelf {
+    let name: String
+    let filter: ((Book)->Bool)
+    let parameters: [String: AnyObject]?
     
     /// All valid books in the shelf
-    var books: [Book] {
-        get {
-            /* Not sure if this should filter the content using the type filter, but it does force the returned books to match the shelf type. Which is probably a good thing? */
-            return self.allBooks.filter(self.type.filter())
-                                .filter {!$0.invalidated}
-                                .sort {$0.0.isbn > $0.1.isbn}
-        }
-        set { self.allBooks = newValue }
+    var books: [Book] = []
+    
+    init(name: String, parameters: [String: AnyObject]?, filter: ((Book)->Bool)) {
+        self.filter = filter
+        self.parameters = parameters
+        self.name = name
     }
-    
-    var name: String {
-        return type.rawValue
-    }
-    
-    init(type: ShelfType, books: [Book] = []) {
-        self.type = type
-        self.books = books
-    }
-    
-    
 }
 
 protocol ShelfTableViewCellDelegate {

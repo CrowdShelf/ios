@@ -21,8 +21,8 @@ class BookCollectionViewController: CollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        DataHandler.getBooksWithParameters(self.shelf?.type.parameters()) { (books) -> Void in
-            self.shelf?.books = books.filter(self.shelf!.type.filter())
+        DataHandler.getBooksWithParameters(self.shelf?.parameters) { (books) -> Void in
+            self.shelf?.books = books.filter(self.shelf!.filter)
             
             for book in self.collectionData as! [Book] {
                 DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in

@@ -167,14 +167,24 @@ public class DataHandler {
         self.sendRequestWithSubRoute("books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
             
             if let resultDictionary = result as? [String: AnyObject] {
-                if let value = resultDictionary["books"] as? [[String: AnyObject]] {
-                    let books = value.map {Book(value: $0)}
+                if let valueArray = resultDictionary["books"] as? [[String: AnyObject]] {
+                    let books = valueArray.map {Book(value: $0)}
                     
                     Realm.write {
                         $0.add(books, update: true)
                     }
                     
                     return completionHandler(books)
+                }
+                
+//                FIXME: Added to prevent error caused by incorrect format received from server
+                else if let value = resultDictionary["books"] as? [String:AnyObject] {
+                    let book = Book(value: value)
+                    Realm.write {
+                        $0.add(book, update: true)
+                    }
+                    completionHandler([book])
+                    
                 }
             }
             
