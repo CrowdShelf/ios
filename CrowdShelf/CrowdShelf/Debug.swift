@@ -35,3 +35,4 @@ let CS_DEBUG_REALM      : Bool = true
 
 //MARK: View Controllers
 let CS_DEBUG_BOOK_VIEW  : Bool = true
+let CS_DEBUG_CROWDS_VIEW       = true

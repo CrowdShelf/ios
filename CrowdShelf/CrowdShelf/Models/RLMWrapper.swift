@@ -16,7 +16,7 @@ A wrapper object used to wrap values not compatible with Realm
 
 */
 
-class RLMWrapper: Object {
+class RLMWrapper: Object, StringLiteralConvertible {
     dynamic var content: AnyObject = ""
     
     var stringValue: String? {
@@ -54,4 +54,15 @@ class RLMWrapper: Object {
         super.init(realm: realm, schema: schema)
     }
     
+    internal required init(unicodeScalarLiteral value: String) {
+        super.init(value: ["content": value])
+    }
+
+    internal required init(extendedGraphemeClusterLiteral value: String) {
+        super.init(value: ["content": value])
+    }
+    
+    required internal init(stringLiteral value: String) {
+        super.init(value: ["content": value])
+    }
 }

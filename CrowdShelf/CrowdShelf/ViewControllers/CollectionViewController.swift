@@ -57,7 +57,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if !self.multipleSelection {
-            self.completionHandler?([self.collectionData[indexPath.row]])
+            self.completionHandler?([self.collectionViewDataSource!.dataForIndexPath(indexPath) as! Collectable])
         }
     }
     

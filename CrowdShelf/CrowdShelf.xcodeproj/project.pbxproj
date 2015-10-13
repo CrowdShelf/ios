@@ -44,6 +44,8 @@
 		395AE1701BCD21380090B74C /* CollectionViewArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		395AE1721BCD25D50090B74C /* Shelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE1711BCD25D50090B74C /* Shelf.swift */; settings = {ASSET_TAGS = (); }; };
 		395AE1731BCD25D50090B74C /* Shelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE1711BCD25D50090B74C /* Shelf.swift */; settings = {ASSET_TAGS = (); }; };
+		395AE1761BCD2C670090B74C /* CrowdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE1751BCD2C670090B74C /* CrowdsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		395AE1771BCD2C670090B74C /* CrowdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE1751BCD2C670090B74C /* CrowdsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1B1B8E61150012A465 /* LocalDataHandlerTest.swift */; };
 		395EDD1E1B8E61DE0012A465 /* LocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */; };
 		395EDD201B8F09C00012A465 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD1F1B8F09C00012A465 /* ScannerViewController.swift */; };
@@ -121,6 +123,7 @@
 		3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDataHandler.swift; path = Handlers/LocalDataHandler.swift; sourceTree = "<group>"; };
 		395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewArrayDataSource.swift; path = Helpers/CollectionViewArrayDataSource.swift; sourceTree = "<group>"; };
 		395AE1711BCD25D50090B74C /* Shelf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shelf.swift; path = Models/Shelf.swift; sourceTree = "<group>"; };
+		395AE1751BCD2C670090B74C /* CrowdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdsViewController.swift; path = ViewControllers/CrowdsViewController.swift; sourceTree = "<group>"; };
 		395EDD1B1B8E61150012A465 /* LocalDataHandlerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDataHandlerTest.swift; path = Handlers/LocalDataHandlerTest.swift; sourceTree = "<group>"; };
 		395EDD1F1B8F09C00012A465 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScannerViewController.swift; path = ViewControllers/ScannerViewController.swift; sourceTree = "<group>"; };
 		395EDD221B8F55AE0012A465 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Book.swift; path = Models/Book.swift; sourceTree = "<group>"; };
@@ -266,6 +269,7 @@
 				399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */,
 				3978FE201BB32BF100DF742A /* BookInformationViewController.swift */,
 				392E42D51BBB2DCB0080CCBD /* BookCollectionViewController.swift */,
+				395AE1751BCD2C670090B74C /* CrowdsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -553,6 +557,7 @@
 			files = (
 				399EFDF61BB2E0C900FC0664 /* LoginViewController.swift in Sources */,
 				39C2F5861B8F9AB800529AA9 /* BaseModel.swift in Sources */,
+				395AE1761BCD2C670090B74C /* CrowdsViewController.swift in Sources */,
 				39A0CAFE1B958B0D00321225 /* ListViewController.swift in Sources */,
 				3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */,
 				390F2C061BBE7B18003E21E7 /* DataHandler+Convenience.swift in Sources */,
@@ -593,6 +598,7 @@
 			files = (
 				392169161BAF70410029A6C8 /* RLMWrapper.swift in Sources */,
 				392E42D11BBAE8D20080CCBD /* MessagePopupView.swift in Sources */,
+				395AE1771BCD2C670090B74C /* CrowdsViewController.swift in Sources */,
 				39C2F5A61B906D4300529AA9 /* Book.swift in Sources */,
 				39C2F5A91B906D4300529AA9 /* User.swift in Sources */,
 				39C2F5AB1B906D5600529AA9 /* DataHandler.swift in Sources */,

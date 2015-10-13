@@ -76,13 +76,13 @@ class MessagePopupView: UILabel {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let view = UIApplication.sharedApplication().keyWindow!
             
-            self.backgroundColor = self.style.color().colorWithAlphaComponent(0.7)
+            self.backgroundColor = self.style.color().colorWithAlphaComponent(0.85)
             
             view.addSubview(self)
             
             /* Add constraints */
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: .AlignAllBaseline, metrics: nil, views: ["label":self]))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-300-[label(44)]", options: .AlignAllCenterY, metrics: nil, views: ["label":self]))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-72-[label(44)]", options: .AlignAllCenterY, metrics: nil, views: ["label":self]))
             
             /* Fade in and out */
             self.fadeViewIn(true, completionHandler: { (_) -> Void in

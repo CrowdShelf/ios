@@ -308,6 +308,24 @@ public class DataHandler {
         }
     }
     
+//    MARK: - Crowds
+    
+    public class func getCrowdsWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Crowd]) -> Void)) {
+        
+        self.sendRequestWithSubRoute("crowds", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+            
+            if let resultDictionary = result as? [String: AnyObject] {
+                if let resultsArray = resultDictionary["crowds"] as? [[String: AnyObject]] {
+                    return completionHandler(resultsArray.map {Crowd(value: $0)})
+                }
+            }
+            
+            
+            completionHandler([])
+        }
+        
+    }
+    
 //    MARK: - General
         
     /**
