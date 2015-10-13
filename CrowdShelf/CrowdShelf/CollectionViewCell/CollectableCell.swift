@@ -14,7 +14,7 @@ enum CollectableCellImageViewStyle: Int {
 }
 
 class CollectableCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var imageView: UIImageView?
     

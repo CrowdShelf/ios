@@ -18,6 +18,8 @@
 		39153A571B9778B200D34293 /* ShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B41B90A40A00529AA9 /* ShelfViewController.swift */; };
 		39153A5A1B9778BD00D34293 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
 		39153A5B1B9778C900D34293 /* CollectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B21B90A2EE00529AA9 /* CollectableCell.swift */; };
+		391B92471BCD8FCD0051A24B /* TableViewArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		391B92481BCD94520051A24B /* TableViewArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169141BAF702A0029A6C8 /* RLMWrapper.swift */; settings = {ASSET_TAGS = (); }; };
 		392169161BAF70410029A6C8 /* RLMWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169141BAF702A0029A6C8 /* RLMWrapper.swift */; settings = {ASSET_TAGS = (); }; };
 		392169181BB083E70029A6C8 /* SerializableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169171BB083E70029A6C8 /* SerializableObject.swift */; settings = {ASSET_TAGS = (); }; };
@@ -103,6 +105,7 @@
 		390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+GoogleBooks.swift"; path = "Handlers/DataHandler+GoogleBooks.swift"; sourceTree = "<group>"; };
 		390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+Convenience.swift"; path = "Handlers/DataHandler+Convenience.swift"; sourceTree = "<group>"; };
 		39153A501B970F1E00D34293 /* CSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTextView.swift; path = Views/CSTextView.swift; sourceTree = "<group>"; };
+		391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewArrayDataSource.swift; path = Handlers/TableViewArrayDataSource.swift; sourceTree = "<group>"; };
 		392169141BAF702A0029A6C8 /* RLMWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMWrapper.swift; path = Models/RLMWrapper.swift; sourceTree = "<group>"; };
 		392169171BB083E70029A6C8 /* SerializableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SerializableObject.swift; path = Models/SerializableObject.swift; sourceTree = "<group>"; };
 		392E42CC1BBADBAA0080CCBD /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorView.swift; path = Views/ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -277,6 +280,7 @@
 		3953BFAA1B8E224000E39CC9 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				0948259A1BBAAFAB00662F32 /* Analytics.swift */,
 				3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */,
 				39C2F5921B90527200529AA9 /* DataHandler.swift */,
 				390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */,
@@ -289,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */,
+				391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -311,7 +316,6 @@
 				39C2F5851B8F9AB800529AA9 /* BaseModel.swift */,
 				392169171BB083E70029A6C8 /* SerializableObject.swift */,
 				392169141BAF702A0029A6C8 /* RLMWrapper.swift */,
-				0948259A1BBAAFAB00662F32 /* Analytics.swift */,
 				395AE1711BCD25D50090B74C /* Shelf.swift */,
 			);
 			name = Models;
@@ -567,6 +571,7 @@
 				392E42DA1BBBE0AC0080CCBD /* ShelfTableViewCell.swift in Sources */,
 				39C2F58A1B8FA40D00529AA9 /* BookInformation.swift in Sources */,
 				3978FE211BB32BF100DF742A /* BookInformationViewController.swift in Sources */,
+				391B92471BCD8FCD0051A24B /* TableViewArrayDataSource.swift in Sources */,
 				39C2F5931B90527200529AA9 /* DataHandler.swift in Sources */,
 				395AE1721BCD25D50090B74C /* Shelf.swift in Sources */,
 				3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */,
@@ -608,6 +613,7 @@
 				39C2F5A81B906D4300529AA9 /* BaseModel.swift in Sources */,
 				392E42DB1BBBE0AC0080CCBD /* ShelfTableViewCell.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
+				391B92481BCD94520051A24B /* TableViewArrayDataSource.swift in Sources */,
 				390EAF271BAA0EEA00D0DCEB /* DataHandler+GoogleBooks.swift in Sources */,
 				39153A5B1B9778C900D34293 /* CollectableCell.swift in Sources */,
 				39A0CB011B958DFC00321225 /* ListViewController.swift in Sources */,

@@ -20,12 +20,12 @@ class Analytics{
     }
 
     
-    //Adds a spesific mixpanel event, eventName, to a function
+    /// Adds a spesific mixpanel event, eventName, to a function
     class func addEvent(eventName: String){
         Mixpanel.sharedInstance().track(eventName)
     }
     
-    //Adds an event with properties
+    /// Adds an event with properties
     class func addBookProperties(book: Book){
         let categories = book.details?.categories.map {$0.content as! String}
         let list:NSArray = categories!

@@ -9,14 +9,24 @@
 import UIKit
 import RealmSwift
 
-class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTableViewCellDelegate {
+class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView?
     
     var shelves : [Shelf] = []
+    var tableViewDataSource: TableViewArrayDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableViewDataSource = TableViewArrayDataSource(items: self.shelves, cellReuseIdentifier: "ShelfCell") { (cell, item) -> Void in
+            // FIXME: Bad way to detect book selection in cell
+            let shelfCell = cell as! ShelfTableViewCell
+            shelfCell.shelf = item as? Shelf
+            shelfCell.delegate = self
+        }
+        
+        self.tableView?.dataSource = self.tableViewDataSource
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadShelves", name: Notification.LocalUserUpdated, object: nil)
     }
@@ -33,31 +43,29 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
         }
         
         let ownedShelf = Shelf(name: "Owned books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.owner == User.localUser!._id}
-        
         let borrowedShelf = Shelf(name: "Lent books", parameters: ["rentedTo": User.localUser!._id]) {User.localUser != nil && $0.rentedTo == User.localUser!._id}
-        
         let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.rentedTo != "" && $0.owner == User.localUser!._id}
         
+        
         self.shelves = [ownedShelf, borrowedShelf, lentShelf]
+        self.tableViewDataSource?.items = self.shelves
         
         self.shelves.enumerate().forEach {loadShelf($0.index)}
     }
     
     private func loadShelf(shelfIndex: Int) {
-//        TODO: Filter before retrieving information
-        var shelf = self.shelves[shelfIndex] 
+        let shelf = self.shelves[shelfIndex]
         
         DataHandler.getBooksWithParameters(shelf.parameters) { (books) -> Void in
             var booksUpdated = 0
+
             for book in books {
                 DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
-                    
                     Realm.write { realm -> Void in
                         book.details = information.first
                     }
                     
                     booksUpdated++
-                    
                     if booksUpdated == books.count {
                         shelf.books = books.filter(shelf.filter)
                         self.updateView()
@@ -72,28 +80,10 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
             self.tableView?.reloadData()
         })
     }
-
-//    MARK: - Table View Data Source
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.shelves.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ShelfCell") as! ShelfTableViewCell
-        cell.delegate = self
-        
-        cell.shelf = self.shelves[indexPath.row]
-
-        return cell
-    }
     
 //    MARK: - Shelf Table View Cell Delegate
     
+//    TODO: This shouldnt be here
     func showAllBooksForShelfTableViewCell(shelfTableViewCell: ShelfTableViewCell) {
         self.performSegueWithIdentifier("ShowAllBooks", sender: shelfTableViewCell)
     }
@@ -102,7 +92,9 @@ class ShelfViewController: BaseViewController, UITableViewDataSource, ShelfTable
         self.performSegueWithIdentifier("ShowBook", sender: book)
     }
     
+//    MARK: - Actions
     
+//    TODO: Extract logout functionality
     @IBAction func logOut(sender: AnyObject) {
         LocalDataHandler.setObject(nil, forKey: "user", inFile: LocalDataFile.User)
         User.localUser = nil

@@ -10,14 +10,15 @@ import Foundation
 import UIKit
 
 class CollectionViewArrayDataSource: NSObject, UICollectionViewDataSource {
-    typealias ConfigurationClosure = ((UICollectionViewCell, AnyObject)->Void)
+    
+    typealias CellConfigurationClosure = ((UICollectionViewCell, AnyObject)->Void)
 
     var data: [AnyObject]
     
     var cellReuseIdentifier: String
-    var configurationHandler: ConfigurationClosure
+    var configurationHandler: CellConfigurationClosure
     
-    init(data: [AnyObject] = [], cellReuseIdentifier: String, configurationHandler: ConfigurationClosure) {
+    init(data: [AnyObject] = [], cellReuseIdentifier: String, configurationHandler: CellConfigurationClosure) {
         self.cellReuseIdentifier = cellReuseIdentifier
         self.configurationHandler = configurationHandler
         self.data = data
@@ -29,6 +30,8 @@ class CollectionViewArrayDataSource: NSObject, UICollectionViewDataSource {
         }
         return self.data[indexPath.row]
     }
+    
+//    MARK: - Collection View Data Source
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if let sections = self.data as? [[AnyObject]] {

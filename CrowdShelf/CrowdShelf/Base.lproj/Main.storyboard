@@ -134,9 +134,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="1Hz-dQ-H0K" id="bOe-WD-RHE"/>
-                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Il4-uO-wio">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
@@ -1020,6 +1017,6 @@
         <image name="shelf" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eF4-vb-qZc"/>
+        <segue reference="AW7-ct-1VW"/>
     </inferredMetricsTieBreakers>
 </document>
