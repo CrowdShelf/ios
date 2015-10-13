@@ -14,7 +14,7 @@ import UIKit
     optional var subtitle: String {get}
 }
 
-class CollectionViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class CollectionViewController: BaseViewController, UICollectionViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView?
     @IBOutlet weak var doneButton: UIBarButtonItem?
@@ -22,9 +22,11 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     var multipleSelection: Bool = false
     
     var completionHandler: (([Collectable])->Void)?
+    var collectionViewDataSource: CollectionViewArrayDataSource?
     
     var collectionData : [Collectable] = [] {
         didSet {
+            self.collectionViewDataSource?.data = self.collectionData
             self.collectionView?.reloadData()
         }
     }
@@ -32,8 +34,13 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.collectionViewDataSource = CollectionViewArrayDataSource(data: self.collectionData, cellReuseIdentifier: "CollectableCell") {
+            ($0 as! CollectableCell).collectable = $1 as? Collectable
+        }
+        
+        self.collectionView?.dataSource = self.collectionViewDataSource
         self.collectionView?.delegate = self
-        self.collectionView?.dataSource = self
+        
         
         assert(self.collectionView != nil, "Collection view was not set for CollectionViewController")
         
@@ -45,25 +52,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
             self.collectionView?.reloadData()
         })
     }
-    
-//    MARK: Collection View Data Source
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.collectionData.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectableCell", forIndexPath: indexPath) as! CollectableCell
-        
-        cell.collectable = self.collectionData[indexPath.row]
-        
-        return cell
-    }
-    
+
 //    MARK: Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

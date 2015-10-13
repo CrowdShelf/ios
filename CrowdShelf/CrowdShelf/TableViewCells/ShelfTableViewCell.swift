@@ -8,33 +8,20 @@
 
 import UIKit
 
-class Shelf {
-    let name: String
-    let filter: ((Book)->Bool)
-    let parameters: [String: AnyObject]?
-    
-    /// All valid books in the shelf
-    var books: [Book] = []
-    
-    init(name: String, parameters: [String: AnyObject]?, filter: ((Book)->Bool)) {
-        self.filter = filter
-        self.parameters = parameters
-        self.name = name
-    }
-}
-
 protocol ShelfTableViewCellDelegate {
     func showAllBooksForShelfTableViewCell(shelfTableViewCell: ShelfTableViewCell)
     func shelfTableViewCell(shelfTableViewCell: ShelfTableViewCell, didSelectBook book: Book)
 }
 
-class ShelfTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
 
     var shelf: Shelf? {
         didSet {
             self.updateView()
         }
     }
+    
+    var collectionViewDataSource: CollectionViewArrayDataSource?
     
     var delegate: ShelfTableViewCellDelegate?
     
@@ -43,39 +30,29 @@ class ShelfTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     @IBOutlet weak var showAllButton: UIButton?
     
     override func awakeFromNib() {
-        self.collectionView?.dataSource = self
-        self.collectionView?.delegate = self
+        
+        self.collectionViewDataSource = CollectionViewArrayDataSource(cellReuseIdentifier: "BookCell") {
+            ($0 as! CollectableCell).collectable = $1 as? Collectable
+        }
+        
+        self.collectionView!.dataSource = self.collectionViewDataSource
+        self.collectionView!.delegate = self
         
         self.updateView()
     }
     
     private func updateView() {
+        self.collectionViewDataSource?.data = self.shelf?.books ?? []
         self.collectionView?.reloadData()
+        
         self.titleLabel?.text = self.shelf?.name
-
         self.showAllButton?.hidden = self.shelf?.books.isEmpty ?? true
-    }
-    
-//    MARK: Collection View Data Source
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.shelf != nil ? self.shelf!.books.count : 0
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCell", forIndexPath: indexPath) as! CollectableCell
-        cell.collectable = self.shelf!.books[indexPath.row]
-        return cell
     }
     
 //    MARK: Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.delegate?.shelfTableViewCell(self, didSelectBook: self.shelf!.books[indexPath.row])
+        self.delegate?.shelfTableViewCell(self, didSelectBook: self.collectionViewDataSource?.dataForIndexPath(indexPath) as! Book)
     }
     
 //    MARK: Actions

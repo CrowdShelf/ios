@@ -8,11 +8,30 @@
 
 import UIKit
 
+enum CollectableCellImageViewStyle: Int {
+    case Square
+    case Round
+}
+
 class CollectableCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var imageView: UIImageView?
     
+    var imageViewStyle: CollectableCellImageViewStyle = .Square {
+        didSet {
+            let layer = self.imageView?.layer
+            
+            switch self.imageViewStyle {
+            case .Round:
+                layer?.cornerRadius = self.imageView!.frame.height/2
+                layer?.masksToBounds = true
+            case .Square:
+                layer?.masksToBounds = false
+                layer?.cornerRadius = 0
+            }
+        }
+    }
     
     var collectable : Collectable? {
         didSet {

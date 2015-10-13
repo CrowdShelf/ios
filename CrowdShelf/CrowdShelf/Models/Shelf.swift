@@ -1,0 +1,25 @@
+//
+//  Shelf.swift
+//  CrowdShelf
+//
+//  Created by Øyvind Grimnes on 13/10/15.
+//  Copyright © 2015 Øyvind Grimnes. All rights reserved.
+//
+
+import Foundation
+
+
+class Shelf {
+    let name: String
+    let filter: ((Book)->Bool)
+    let parameters: [String: AnyObject]?
+    
+    /// All valid books in the shelf
+    var books: [Book] = []
+    
+    init(name: String, parameters: [String: AnyObject]?, filter: ((Book)->Bool)) {
+        self.filter = filter
+        self.parameters = parameters
+        self.name = name
+    }
+}
