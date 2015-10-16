@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewArrayDataSource: NSObject, UITableViewDataSource {
     
-    typealias CellConfigurationHandler = ((UITableViewCell, AnyObject) -> Void)
+    typealias CellConfigurationHandler = ((cell: UITableViewCell, item: AnyObject) -> Void)
     
     var items: [AnyObject]
     var cellReuseIdentifier: String
@@ -51,7 +51,7 @@ class TableViewArrayDataSource: NSObject, UITableViewDataSource {
         
         assert(cell != nil, "No cell was registered with the reuse identifier: \(cellReuseIdentifier)")
         
-        self.cellConfigurationHandler(cell!, self.itemForIndexPath(indexPath)!)
+        self.cellConfigurationHandler(cell: cell!, item: self.itemForIndexPath(indexPath)!)
         
         return cell!
     }

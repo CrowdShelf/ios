@@ -11,29 +11,39 @@ import RealmSwift
 
 class CrowdsViewController: CollectionViewController {
     
-    var crowds: [Crowd] = [] {
-        didSet {
-            self.collectionData = crowds
+    var crowds: [Crowd] {
+        set {
+            self.collectionData = newValue
+        }
+        get {
+            return self.collectionData as? [Crowd] ?? []
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.completionHandler = {
-            csprint(CS_DEBUG_CROWDS_VIEW, "Selected:  \($0)")
-        }
-        
-        self.collectionViewDataSource?.configurationHandler = {
+        self.collectionViewDataSource.configurationHandler = {
             let cell = $0 as! CollectableCell
             cell.imageViewStyle = .Round
             cell.collectable = $1 as? Collectable
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         DataHandler.getCrowdsWithParameters(nil) { (crowds) -> Void in
-            self.collectionData = crowds
+            self.crowds = crowds
             self.collectionView?.reloadData()
         }
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowCrowdBookCollection" {
+            let crowdBookCollectionVC = segue.destinationViewController as! CrowdBookCollectionViewController
+            crowdBookCollectionVC.crowd = (sender as! CollectableCell).collectable as! Crowd
+        }
+    }
 }

@@ -7,9 +7,32 @@
 //
 
 import Foundation
-
+import RealmSwift
 
 extension DataHandler {
+    
+    public class func getBooksWithInformationWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
+        
+        DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
+            if books.isEmpty {
+                return completionHandler([])
+            }
+            
+            var booksUpdated = 0
+            for book in books {
+                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
+                    Realm.write { realm -> Void in
+                        book.details = information.first
+                    }
+                    
+                    booksUpdated++
+                    if booksUpdated == books.count {
+                        completionHandler(books)
+                    }
+                })
+            }
+        }
+    }
     
     /**
     Retrieves a list of all users that own a book matching the parameters

@@ -29,16 +29,16 @@ class BaseViewController: UIViewController {
     
     func showLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! SelectionViewController
         
         self.presentViewController(loginVC, animated: true, completion: nil)
     }
     
     
-    func showListWithItems(items: [Listable], andCompletionHandler completionHandler: (([Listable]) -> Void)) -> ListViewController {
+    func showListWithItems(items: [Listable], andCompletionHandler completionHandler: (([Listable]) -> Void)) -> SelectionViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let listVC = storyboard.instantiateViewControllerWithIdentifier("ListViewController") as! ListViewController
+        let listVC = storyboard.instantiateViewControllerWithIdentifier("ListViewController") as! SelectionViewController
         
         listVC.listData = items
         listVC.completionHandler = completionHandler

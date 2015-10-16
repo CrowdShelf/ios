@@ -76,8 +76,10 @@ class ScannerViewController: BaseViewController {
                 } else if information.count == 1 {
                     book.details = information.first
                     self.performSegueWithIdentifier("ShowBook", sender: book)
+                } else {
+                    MessagePopupView(message: "Could not find the book", messageStyle: .Error).showInView(self.view)
                 }
-                
+            
             })
         })
         Analytics.addEvent("BookScanned")

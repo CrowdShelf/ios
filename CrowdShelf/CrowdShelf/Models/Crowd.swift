@@ -18,7 +18,7 @@ public class Crowd: BaseModel, Listable, Collectable {
     
     @objc var title : String { return name }
     @objc var subtitle : String { return owner }
-    var image: UIImage? = UIImage()
+    var image: UIImage?
     
 //    MARK: Realm Object
     

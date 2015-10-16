@@ -17,19 +17,11 @@ class CollectableCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var imageView: UIImageView?
+    @IBOutlet weak var initialLabel: UILabel?
     
     var imageViewStyle: CollectableCellImageViewStyle = .Square {
         didSet {
-            let layer = self.imageView?.layer
-            
-            switch self.imageViewStyle {
-            case .Round:
-                layer?.cornerRadius = self.imageView!.frame.height/2
-                layer?.masksToBounds = true
-            case .Square:
-                layer?.masksToBounds = false
-                layer?.cornerRadius = 0
-            }
+            configureImageView()
         }
     }
     
@@ -41,14 +33,35 @@ class CollectableCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.imageView?.layer.borderWidth = 1
-        self.imageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
     }
     
     func updateView() {
         self.imageView?.image = self.collectable?.image
         self.titleLabel?.text = self.collectable?.title
+                
+        if self.collectable?.title.characters.first != nil {
+            self.initialLabel?.text = String(self.collectable!.title.characters.first!).uppercaseString
+        } else {
+            self.initialLabel?.text = ""
+        }
+        
+        self.initialLabel?.hidden = self.collectable?.image != nil
+    }
+    
+    func configureImageView() {
+        let layer = self.imageView?.layer
+        
+        layer?.borderWidth = 1
+        layer?.borderColor = UIColor.lightGrayColor().CGColor
+        
+        switch self.imageViewStyle {
+        case .Round:
+            layer?.cornerRadius = self.imageView!.frame.height/2
+            layer?.masksToBounds = true
+        case .Square:
+            layer?.masksToBounds = false
+            layer?.cornerRadius = 0
+        }
     }
     
 }

@@ -22,21 +22,25 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
     var multipleSelection: Bool = false
     
     var completionHandler: (([Collectable])->Void)?
-    var collectionViewDataSource: CollectionViewArrayDataSource?
     
-    var collectionData : [Collectable] = [] {
-        didSet {
-            self.collectionViewDataSource?.data = self.collectionData
+    var collectionViewDataSource: CollectionViewArrayDataSource = {
+        return CollectionViewArrayDataSource(cellReuseIdentifier: "CollectableCell") {
+            ($0 as! CollectableCell).collectable = $1 as? Collectable
+        }
+    }()
+    
+    var collectionData : [Collectable] {
+        set {
+            self.collectionViewDataSource.data = newValue
             self.collectionView?.reloadData()
+        }
+        get {
+            return self.collectionViewDataSource.data as? [Collectable] ?? []
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.collectionViewDataSource = CollectionViewArrayDataSource(data: self.collectionData, cellReuseIdentifier: "CollectableCell") {
-            ($0 as! CollectableCell).collectable = $1 as? Collectable
-        }
         
         self.collectionView?.dataSource = self.collectionViewDataSource
         self.collectionView?.delegate = self
@@ -57,7 +61,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if !self.multipleSelection {
-            self.completionHandler?([self.collectionViewDataSource!.dataForIndexPath(indexPath) as! Collectable])
+            self.completionHandler?([self.collectionViewDataSource.dataForIndexPath(indexPath) as! Collectable])
         }
     }
     

@@ -72,17 +72,15 @@ class MessagePopupView: UILabel {
         }
     }
     
-    func show() {
+    func showInView(view: UIView) {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            let view = UIApplication.sharedApplication().keyWindow!
-            
             self.backgroundColor = self.style.color().colorWithAlphaComponent(0.85)
             
             view.addSubview(self)
             
             /* Add constraints */
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: .AlignAllBaseline, metrics: nil, views: ["label":self]))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-72-[label(44)]", options: .AlignAllCenterY, metrics: nil, views: ["label":self]))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[label(44)]-(16)-|", options: .AlignAllCenterY, metrics: nil, views: ["label":self]))
             
             /* Fade in and out */
             self.fadeViewIn(true, completionHandler: { (_) -> Void in

@@ -32,13 +32,12 @@ public struct LocalDataFile {
 A class reponsible for managing a local key-value storage.
 
 :discussion: Files will be automatically created when needed. Initial values can be provided by a file in the main bundle with the same file name and type.
+
 */
 
 public class LocalDataHandler {
     
-    
 //    MARK: - Setters
-    
     
     /**
     Change the value for the provided key in a file
