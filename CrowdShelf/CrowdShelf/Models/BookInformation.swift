@@ -31,7 +31,7 @@ public class BookInformation: BaseModel, Listable {
     var authors                             = List<RLMWrapper>()
     
 //    Listable
-    var subtitle : String { return self.authors.map({$0.content as! String}).joinWithSeparator(", ") }
+    var subtitle : String? { return self.authors.map({$0.content as! String}).joinWithSeparator(", ") }
     var image : UIImage? { return self.thumbnail }
     
     

@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import Alamofire
+import CryptoSwift
 
 /**
 Notifications posted for important events
@@ -225,8 +226,21 @@ public class DataHandler {
         self.sendRequestWithSubRoute("users", usingMethod: .GET) { (result, isSuccess) -> Void in
             if isSuccess {
                 if let resultDictionary = result as? [String: AnyObject] {
-                    if let usersArray = resultDictionary["users"] as? [[String: AnyObject]] {
-                        return completionHandler(usersArray.map {User(value: $0)})
+                    if let resultsArray = resultDictionary["users"] as? [[String: AnyObject]] {
+                        let usersArray = resultsArray.map {User(value: $0)}
+                        
+                        let group = dispatch_group_create()
+                        usersArray.forEach { (user) -> Void in
+                            dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+                                if let data = NSData(contentsOfURL: NSURL(string: "http://www.gravatar.com/avatar/\(user.email.md5())?d=404")!) {
+                                    user.image = UIImage(data: data)
+                                }
+                            })
+                        }
+                        
+                        dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 10*Int64(NSEC_PER_SEC)))
+                        
+                        return completionHandler(usersArray)
                     }
                 }
             }
@@ -246,7 +260,17 @@ public class DataHandler {
     public class func getUser(userID: String, withCompletionHandler completionHandler: ((User?)->Void)) {
         self.sendRequestWithSubRoute("users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let resultDictionary = result as? [String: AnyObject] {
-                return completionHandler(User(value: resultDictionary))
+                let user = User(value: resultDictionary)
+                
+                let emailHash = user.email.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                                          .lowercaseString
+                                          .md5()
+                
+                if let data = NSData(contentsOfURL: NSURL(string: "http://www.gravatar.com/avatar/\(emailHash)?d=404")!) {
+                    user.image = UIImage(data: data)
+                }
+                
+                return completionHandler(user)
             }
             
             completionHandler(nil)
@@ -323,7 +347,24 @@ public class DataHandler {
             
             completionHandler([])
         }
-        
+    }
+    
+    
+    public class func addUser(userID: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)) {
+        self.sendRequestWithSubRoute("crowds/\(crowdID)/members/\(userID)", usingMethod: .PUT) { (result, isSuccess) -> Void in
+            completionHandler(isSuccess)
+        }
+    }
+    
+    public class func removeUser(userID: String, fromCrowd crowd: Crowd, withCompletionHandler completionHandler: ((Bool)->Void)?) {
+        self.sendRequestWithSubRoute("crowds/\(crowd._id)/members/\(userID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
+            if isSuccess {
+                Realm.write { realm -> Void in
+                    crowd.realm?.delete(crowd.members.filter {$0.stringValue! == userID}.first!)
+                }
+            }
+            completionHandler?(isSuccess)
+        }
     }
     
 //    MARK: - General
@@ -352,7 +393,7 @@ public class DataHandler {
         return dictionary
     }
     
-//    MARK: - Private
+//    MARK: - Internal
 
     /**
     Sends a request to a sub path of the enviroments host root
@@ -365,7 +406,7 @@ public class DataHandler {
     
     */
     
-    class func sendRequestWithSubRoute(subRoute: String,
+    internal class func sendRequestWithSubRoute(subRoute: String,
                                        usingMethod method: Alamofire.Method,
                                        andParameters parameters: [String: AnyObject]? = nil,
                                        parameterEncoding: ParameterEncoding = .URL,
@@ -388,7 +429,7 @@ public class DataHandler {
     
     */
     
-    class func sendRequestWithRoute(route: String,
+    internal class func sendRequestWithRoute(route: String,
                                     usingMethod method: Alamofire.Method,
                                     andParameters parameters: [String: AnyObject]?,
                                     parameterEncoding: ParameterEncoding,

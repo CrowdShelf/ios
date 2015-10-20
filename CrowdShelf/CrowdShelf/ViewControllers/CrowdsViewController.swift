@@ -39,11 +39,15 @@ class CrowdsViewController: CollectionViewController {
         }
     }
     
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("ShowCrowd", sender: collectionView.cellForItemAtIndexPath(indexPath)!)
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowCrowdBookCollection" {
-            let crowdBookCollectionVC = segue.destinationViewController as! CrowdBookCollectionViewController
-            crowdBookCollectionVC.crowd = (sender as! CollectableCell).collectable as! Crowd
+        if segue.identifier == "ShowCrowd" {
+            let crowdVC = segue.destinationViewController as! CrowdViewController
+            crowdVC.crowd = (sender as! CollectableCell).collectable as? Crowd
         }
     }
 }

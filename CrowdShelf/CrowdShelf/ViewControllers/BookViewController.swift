@@ -17,7 +17,7 @@ class BookViewController: BaseViewController {
     @IBOutlet weak var authorsLabel: UILabel?
     @IBOutlet weak var publisherLabel: UILabel?
     
-    @IBOutlet weak var coverImageView: UIImageView?
+    @IBOutlet weak var coverImageView: AlternativeInfoImageView?
     
 //    MARK: - Properties
     
@@ -57,9 +57,6 @@ class BookViewController: BaseViewController {
         self.updateView()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateView", name: Notification.LocalUserUpdated, object: nil)
-        
-        self.coverImageView?.layer.borderWidth = 1
-        self.coverImageView?.layer.borderColor = UIColor.lightGrayColor().CGColor
     }
     
     func updateView() {
@@ -67,7 +64,7 @@ class BookViewController: BaseViewController {
         self.coverImageView?.image = self.book?.details?.thumbnail
         self.titleLabel?.text = self.book?.details?.title
         self.publisherLabel?.text = self.book?.details?.publisher
-        
+        self.coverImageView?.alternativeInfo = self.book?.title.initials
         if self.book?.details != nil {
             self.authorsLabel?.text = self.book?.details?.authors.map {$0.stringValue!}.joinWithSeparator(", ")
         }

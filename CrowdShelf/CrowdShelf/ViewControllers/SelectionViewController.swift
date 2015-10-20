@@ -10,7 +10,7 @@ import UIKit
 
 @objc protocol Listable {
     var title : String {get}
-    optional var subtitle: String {get}
+    var subtitle: String? {get}
     optional var image : UIImage? {get}
 }
 
@@ -26,7 +26,7 @@ class SelectionViewController: BaseViewController, UITableViewDelegate {
     var completionHandler: (([Listable])->Void)?
     
     lazy var tableViewDataSource: TableViewArrayDataSource = { [unowned self] in
-        return TableViewArrayDataSource(cellReuseIdentifier: "ListCell") { (cell, item) -> Void in
+        return TableViewArrayDataSource(cellReuseIdentifier: ListTableViewCell.cellReuseIdentifier) { (cell, item, _) -> Void in
             (cell as! ListTableViewCell).listable = item as? Listable
         }
     }()
@@ -44,6 +44,8 @@ class SelectionViewController: BaseViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView?.registerCellForClass(ListTableViewCell)
         
         self.tableView?.delegate = self
         self.tableView?.dataSource = self.tableViewDataSource

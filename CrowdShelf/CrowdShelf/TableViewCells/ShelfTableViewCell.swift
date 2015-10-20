@@ -49,7 +49,9 @@ class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
     
     override func awakeFromNib() {
         
-        self.collectionViewDataSource = CollectionViewArrayDataSource(cellReuseIdentifier: "BookCell") {
+        collectionView?.registerCellForClass(CollectableCell)
+        
+        self.collectionViewDataSource = CollectionViewArrayDataSource(cellReuseIdentifier: CollectableCell.cellReuseIdentifier) {
             ($0 as! CollectableCell).collectable = $1 as? Collectable
         }
         

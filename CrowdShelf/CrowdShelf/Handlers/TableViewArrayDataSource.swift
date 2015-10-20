@@ -10,11 +10,12 @@ import UIKit
 
 class TableViewArrayDataSource: NSObject, UITableViewDataSource {
     
-    typealias CellConfigurationHandler = ((cell: UITableViewCell, item: AnyObject) -> Void)
+    typealias CellConfigurationHandler = ((cell: UITableViewCell, item: AnyObject, indexPath: NSIndexPath) -> Void)
     
     var items: [AnyObject]
     var cellReuseIdentifier: String
     var cellConfigurationHandler: CellConfigurationHandler
+    var sectionTitles: [String?] = []
     
     init(items: [AnyObject] = [], cellReuseIdentifier: String, cellConfigurationHandler: CellConfigurationHandler) {
         self.items = items
@@ -51,8 +52,12 @@ class TableViewArrayDataSource: NSObject, UITableViewDataSource {
         
         assert(cell != nil, "No cell was registered with the reuse identifier: \(cellReuseIdentifier)")
         
-        self.cellConfigurationHandler(cell: cell!, item: self.itemForIndexPath(indexPath)!)
+        self.cellConfigurationHandler(cell: cell!, item: self.itemForIndexPath(indexPath)!, indexPath: indexPath)
         
         return cell!
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section > 0 && section < sectionTitles.count ? sectionTitles[section] : nil
     }
 }

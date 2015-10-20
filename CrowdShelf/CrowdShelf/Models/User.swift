@@ -18,6 +18,8 @@ public class User: BaseModel, Listable {
     dynamic var email       = ""
     dynamic var username    = ""
     
+    var image: UIImage?
+    
     /// The user that is currently authenticated
     class var localUser : User? {
         get {
@@ -29,11 +31,14 @@ public class User: BaseModel, Listable {
         }
     }
     
-//    Listable
     var title: String { return username }
-    var subtitle: String { return email }
+    var subtitle: String? { return email }
     
 //    MARK: Realm Object
+    
+    override public static func ignoredProperties() -> [String] {
+        return ["image"]
+    }
     
     override public class func primaryKey() -> String {
         return "username"

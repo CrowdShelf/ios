@@ -1,17 +1,19 @@
 PODS:
-  - Alamofire (2.0.1)
-  - Mixpanel (2.8.3):
-    - Mixpanel/Mixpanel (= 2.8.3)
-  - Mixpanel/Mixpanel (2.8.3)
+  - Alamofire (2.0.2)
+  - CryptoSwift (0.1.1)
+  - Mixpanel (2.9.0):
+    - Mixpanel/Mixpanel (= 2.9.0)
+  - Mixpanel/Mixpanel (2.9.0)
   - MTBBarcodeScanner (1.6.1)
-  - Realm (0.95.0):
-    - Realm/Headers (= 0.95.0)
-  - Realm/Headers (0.95.0)
-  - RealmSwift (0.95.0):
-    - Realm (= 0.95.0)
+  - Realm (0.95.2):
+    - Realm/Headers (= 0.95.2)
+  - Realm/Headers (0.95.2)
+  - RealmSwift (0.95.2):
+    - Realm (= 0.95.2)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
+  - CryptoSwift (~> 0.1.1)
   - Mixpanel
   - MTBBarcodeScanner (~> 1.6.1)
   - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
@@ -27,17 +29,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Realm:
-    :commit: e4397aa856088322c41b9b1c6c76fc30f1938c55
+    :commit: 25333bd09ef7ae33d44a2e6d66b1b9945fc56bb6
     :git: https://github.com/realm/realm-cocoa.git
   RealmSwift:
-    :commit: e4397aa856088322c41b9b1c6c76fc30f1938c55
+    :commit: 25333bd09ef7ae33d44a2e6d66b1b9945fc56bb6
     :git: https://github.com/realm/realm-cocoa.git
 
 SPEC CHECKSUMS:
-  Alamofire: 1d8e208d616fbbfd2391b15eae766d07c96cdc49
-  Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
+  Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
+  CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
+  Mixpanel: 42ae6168effc48481d957f7883dd8514a398738d
   MTBBarcodeScanner: beda75d4c1e2750405f62ee53f7a7ee40bf6825b
-  Realm: 1c28007bd496af94dba8c76d50719164e706a521
-  RealmSwift: 9864524dd99c2cb7b4643c29513ef8447fe63724
+  Realm: d8eff7690b3f64b9735c738547ec21e5786e6b13
+  RealmSwift: d59af58ee52301069b69468fab018919b591b0c1
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

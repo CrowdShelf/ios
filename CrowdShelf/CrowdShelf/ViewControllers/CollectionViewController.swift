@@ -11,7 +11,7 @@ import UIKit
 @objc protocol Collectable {
     var title : String {get}
     var image : UIImage? {get}
-    optional var subtitle: String {get}
+    optional var subtitle: String? {get}
 }
 
 class CollectionViewController: BaseViewController, UICollectionViewDelegate {
@@ -24,7 +24,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
     var completionHandler: (([Collectable])->Void)?
     
     var collectionViewDataSource: CollectionViewArrayDataSource = {
-        return CollectionViewArrayDataSource(cellReuseIdentifier: "CollectableCell") {
+        return CollectionViewArrayDataSource(cellReuseIdentifier: CollectableCell.cellReuseIdentifier) {
             ($0 as! CollectableCell).collectable = $1 as? Collectable
         }
     }()
@@ -47,6 +47,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
         
         
         assert(self.collectionView != nil, "Collection view was not set for CollectionViewController")
+        self.collectionView?.registerCellForClass(CollectableCell)
         
         self.doneButton?.enabled = self.multipleSelection
     }

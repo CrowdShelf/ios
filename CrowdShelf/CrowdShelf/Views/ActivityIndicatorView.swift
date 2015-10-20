@@ -43,14 +43,16 @@ class ActivityIndicatorView: UIView {
     }
     
     func startInView(view: UIView, withMessage message: String?) {
-        view.addSubview(self)
-        
-        self.messageLabel.text = message
-        
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: nil, views: ["view": self]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: nil, views: ["view": self]))
-        
-        self.activityIndicator.startAnimating()
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            view.addSubview(self)
+            
+            self.messageLabel.text = message
+            
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: nil, views: ["view": self]))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: nil, views: ["view": self]))
+            
+            self.activityIndicator.startAnimating()
+        }
     }
     
     func startInView(view: UIView) {

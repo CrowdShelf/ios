@@ -19,7 +19,7 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableViewDataSource = TableViewArrayDataSource(items: self.shelves, cellReuseIdentifier: "ShelfCell") { (cell, item) -> Void in
+        self.tableViewDataSource = TableViewArrayDataSource(items: self.shelves, cellReuseIdentifier: "ShelfCell") { (cell, item, _) -> Void in
             // FIXME: Bad way to detect book selection in cell
             let shelfCell = cell as! ShelfTableViewCell
             shelfCell.shelf = item as? Shelf
@@ -43,7 +43,7 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         }
         
         let ownedShelf = Shelf(name: "Owned books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.owner == User.localUser!._id}
-        let borrowedShelf = Shelf(name: "Lent books", parameters: ["rentedTo": User.localUser!._id]) {User.localUser != nil && $0.rentedTo == User.localUser!._id}
+        let borrowedShelf = Shelf(name: "Borrowed books", parameters: ["rentedTo": User.localUser!._id]) {User.localUser != nil && $0.rentedTo == User.localUser!._id}
         let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.rentedTo != "" && $0.owner == User.localUser!._id}
         
         

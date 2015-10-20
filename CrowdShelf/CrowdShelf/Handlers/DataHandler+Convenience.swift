@@ -11,6 +11,40 @@ import RealmSwift
 
 extension DataHandler {
     
+    public class func addUserWithUsername(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((String?, Bool)->Void)?) {
+        
+        self.loginWithUsername(username) { (user) -> Void in
+            if user == nil {
+                completionHandler?(nil, false)
+                return
+            }
+            
+            self.sendRequestWithSubRoute("crowds/\(crowdID)/members/\(user!._id)", usingMethod: .PUT) { (result, isSuccess) -> Void in
+                completionHandler?(user!._id, isSuccess)
+            }
+        }
+        
+        
+    }
+    
+    public class func getMembersOfCrowd(crowd: Crowd, withCompletionHandler completionHandler: (([User]->Void))) {
+        var users: [User] = []
+        var results = 0
+        
+        crowd.members.forEach {
+            DataHandler.getUser($0.content as! String, withCompletionHandler: { (user) -> Void in
+                results++
+                if user != nil {
+                    users.append(user!)
+                }
+                
+                if results == crowd.members.count {
+                    completionHandler(users)
+                }
+            })
+        }
+    }
+    
     public class func getBooksWithInformationWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
         
         DataHandler.getBooksWithParameters(parameters) { (books) -> Void in

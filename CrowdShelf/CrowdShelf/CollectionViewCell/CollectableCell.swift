@@ -16,8 +16,7 @@ enum CollectableCellImageViewStyle: Int {
 class CollectableCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel?
-    @IBOutlet weak var imageView: UIImageView?
-    @IBOutlet weak var initialLabel: UILabel?
+    @IBOutlet weak var imageView: AlternativeInfoImageView?
     
     var imageViewStyle: CollectableCellImageViewStyle = .Square {
         didSet {
@@ -39,13 +38,7 @@ class CollectableCell: UICollectionViewCell {
         self.imageView?.image = self.collectable?.image
         self.titleLabel?.text = self.collectable?.title
                 
-        if self.collectable?.title.characters.first != nil {
-            self.initialLabel?.text = String(self.collectable!.title.characters.first!).uppercaseString
-        } else {
-            self.initialLabel?.text = ""
-        }
-        
-        self.initialLabel?.hidden = self.collectable?.image != nil
+        self.imageView?.alternativeInfo = self.collectable?.title.initials
     }
     
     func configureImageView() {

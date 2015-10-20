@@ -10,8 +10,15 @@
 		0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948259A1BBAAFAB00662F32 /* Analytics.swift */; settings = {ASSET_TAGS = (); }; };
 		390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
 		390F2C061BBE7B18003E21E7 /* DataHandler+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */; settings = {ASSET_TAGS = (); }; };
-		39153A511B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
-		39153A521B970F1E00D34293 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39153A501B970F1E00D34293 /* CSTextView.swift */; };
+		39152D6B1BD508D8004EC737 /* TableViewSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D6A1BD508D8004EC737 /* TableViewSelectionDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		39152D6D1BD512FB004EC737 /* CrowdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D6C1BD512FB004EC737 /* CrowdViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		39152D6F1BD51A24004EC737 /* AlternativeInfoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D6E1BD51A24004EC737 /* AlternativeInfoImageView.swift */; settings = {ASSET_TAGS = (); }; };
+		39152D711BD51D7D004EC737 /* MinimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D701BD51D7D004EC737 /* MinimalTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		39152D731BD51E68004EC737 /* ReturnTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D721BD51E68004EC737 /* ReturnTextFieldDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		39152D7B1BD5342A004EC737 /* String+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D7A1BD5342A004EC737 /* String+Initials.swift */; settings = {ASSET_TAGS = (); }; };
+		39152D7D1BD571E1004EC737 /* CollectableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39152D7C1BD571E1004EC737 /* CollectableCell.xib */; settings = {ASSET_TAGS = (); }; };
+		39152D7F1BD574DD004EC737 /* UITableView+ReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D7E1BD574DD004EC737 /* UITableView+ReuseCell.swift */; settings = {ASSET_TAGS = (); }; };
+		39152D821BD5A3B2004EC737 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39152D811BD5A3B2004EC737 /* ListTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		391B92471BCD8FCD0051A24B /* TableViewArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169141BAF702A0029A6C8 /* RLMWrapper.swift */; settings = {ASSET_TAGS = (); }; };
 		392169181BB083E70029A6C8 /* SerializableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169171BB083E70029A6C8 /* SerializableObject.swift */; settings = {ASSET_TAGS = (); }; };
@@ -29,6 +36,7 @@
 		3953BF941B8DC29B00E39CC9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */; };
 		3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */; };
 		3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */; };
+		39548E721BD64B1B00C49E3A /* ListTableViewCell+Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39548E711BD64B1B00C49E3A /* ListTableViewCell+Button.swift */; settings = {ASSET_TAGS = (); }; };
 		395AE16F1BCD21380090B74C /* CollectionViewArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		395AE1721BCD25D50090B74C /* Shelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE1711BCD25D50090B74C /* Shelf.swift */; settings = {ASSET_TAGS = (); }; };
 		395AE1761BCD2C670090B74C /* CrowdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE1751BCD2C670090B74C /* CrowdsViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -53,9 +61,9 @@
 		39C2F5B31B90A2EE00529AA9 /* CollectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B21B90A2EE00529AA9 /* CollectableCell.swift */; };
 		39C2F5B51B90A40A00529AA9 /* ShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C2F5B41B90A40A00529AA9 /* ShelfViewController.swift */; };
 		39CB7B9E1BB3501000718345 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CB7B9D1BB3501000718345 /* BaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		6DCE9198D2EC7E8A42408369 /* Pods_CrowdShelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040035D2D8DB30B6C01FB456 /* Pods_CrowdShelfTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		8AD4FCD156A21D9974A66A36 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD76C7589353231F11064D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A149270F8A04A6868E57F987 /* Pods_CrowdShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625F08271588B857F0011AFA /* Pods_CrowdShelf.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6DCE9198D2EC7E8A42408369 /* Pods_CrowdShelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040035D2D8DB30B6C01FB456 /* Pods_CrowdShelfTests.framework */; };
+		8AD4FCD156A21D9974A66A36 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD76C7589353231F11064D /* Pods.framework */; };
+		A149270F8A04A6868E57F987 /* Pods_CrowdShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625F08271588B857F0011AFA /* Pods_CrowdShelf.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +83,17 @@
 		2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
 		390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+GoogleBooks.swift"; path = "Handlers/DataHandler+GoogleBooks.swift"; sourceTree = "<group>"; };
 		390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+Convenience.swift"; path = "Handlers/DataHandler+Convenience.swift"; sourceTree = "<group>"; };
-		39153A501B970F1E00D34293 /* CSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSTextView.swift; path = Views/CSTextView.swift; sourceTree = "<group>"; };
+		39152D6A1BD508D8004EC737 /* TableViewSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewSelectionDelegate.swift; path = Helpers/TableViewSelectionDelegate.swift; sourceTree = "<group>"; };
+		39152D6C1BD512FB004EC737 /* CrowdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdViewController.swift; path = ViewControllers/CrowdViewController.swift; sourceTree = "<group>"; };
+		39152D6E1BD51A24004EC737 /* AlternativeInfoImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlternativeInfoImageView.swift; path = Views/AlternativeInfoImageView.swift; sourceTree = "<group>"; };
+		39152D701BD51D7D004EC737 /* MinimalTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinimalTextField.swift; path = Views/MinimalTextField.swift; sourceTree = "<group>"; };
+		39152D721BD51E68004EC737 /* ReturnTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReturnTextFieldDelegate.swift; path = Helpers/ReturnTextFieldDelegate.swift; sourceTree = "<group>"; };
+		39152D761BD52442004EC737 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
+		39152D781BD5273E004EC737 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		39152D7A1BD5342A004EC737 /* String+Initials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Initials.swift"; path = "Helpers/String+Initials.swift"; sourceTree = "<group>"; };
+		39152D7C1BD571E1004EC737 /* CollectableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CollectableCell.xib; path = CollectionViewCell/CollectableCell.xib; sourceTree = "<group>"; };
+		39152D7E1BD574DD004EC737 /* UITableView+ReuseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+ReuseCell.swift"; path = "Helpers/UITableView+ReuseCell.swift"; sourceTree = "<group>"; };
+		39152D811BD5A3B2004EC737 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListTableViewCell.xib; path = TableViewCells/ListTableViewCell.xib; sourceTree = "<group>"; };
 		391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewArrayDataSource.swift; path = Handlers/TableViewArrayDataSource.swift; sourceTree = "<group>"; };
 		392169141BAF702A0029A6C8 /* RLMWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RLMWrapper.swift; path = Models/RLMWrapper.swift; sourceTree = "<group>"; };
 		392169171BB083E70029A6C8 /* SerializableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SerializableObject.swift; path = Models/SerializableObject.swift; sourceTree = "<group>"; };
@@ -97,6 +115,7 @@
 		3953BF9E1B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdShelfTests.swift; sourceTree = "<group>"; };
 		3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDataHandler.swift; path = Handlers/LocalDataHandler.swift; sourceTree = "<group>"; };
+		39548E711BD64B1B00C49E3A /* ListTableViewCell+Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ListTableViewCell+Button.swift"; path = "Extensions/ListTableViewCell+Button.swift"; sourceTree = "<group>"; };
 		395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewArrayDataSource.swift; path = Helpers/CollectionViewArrayDataSource.swift; sourceTree = "<group>"; };
 		395AE1711BCD25D50090B74C /* Shelf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shelf.swift; path = Models/Shelf.swift; sourceTree = "<group>"; };
 		395AE1751BCD2C670090B74C /* CrowdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdsViewController.swift; path = ViewControllers/CrowdsViewController.swift; sourceTree = "<group>"; };
@@ -146,12 +165,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39152D801BD5A372004EC737 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */,
+				39152D7A1BD5342A004EC737 /* String+Initials.swift */,
+				39152D7E1BD574DD004EC737 /* UITableView+ReuseCell.swift */,
+				393EB6511BB9348F00580C34 /* Realm+Extensions.swift */,
+				39548E711BD64B1B00C49E3A /* ListTableViewCell+Button.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		39153A531B97150B00D34293 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				39153A501B970F1E00D34293 /* CSTextView.swift */,
 				392E42CC1BBADBAA0080CCBD /* ActivityIndicatorView.swift */,
 				392E42CF1BBAE8D20080CCBD /* MessagePopupView.swift */,
+				39152D6E1BD51A24004EC737 /* AlternativeInfoImageView.swift */,
+				39152D701BD51D7D004EC737 /* MinimalTextField.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -161,6 +193,7 @@
 			children = (
 				395AE1751BCD2C670090B74C /* CrowdsViewController.swift */,
 				39231D621BCE66C5007E02D7 /* CrowdBookCollectionViewController.swift */,
+				39152D6C1BD512FB004EC737 /* CrowdViewController.swift */,
 			);
 			name = Crowd;
 			sourceTree = "<group>";
@@ -196,6 +229,7 @@
 			children = (
 				392E42D91BBBE0AC0080CCBD /* ShelfTableViewCell.swift */,
 				39231D691BCE6E11007E02D7 /* ListTableViewCell.swift */,
+				39152D811BD5A3B2004EC737 /* ListTableViewCell.xib */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -223,20 +257,19 @@
 		3953BF861B8DC29B00E39CC9 /* CrowdShelf */ = {
 			isa = PBXGroup;
 			children = (
+				39152D801BD5A372004EC737 /* Extensions */,
 				395AE1741BCD2B940090B74C /* Helpers */,
 				392E42D81BBBE0570080CCBD /* TableViewCells */,
 				39C2F5B11B90A27D00529AA9 /* CollectionViewCells */,
 				395EDD211B8F55650012A465 /* Models */,
 				3953BFAA1B8E224000E39CC9 /* Handlers */,
+				39153A531B97150B00D34293 /* Views */,
 				3953BFA91B8E223300E39CC9 /* ViewControllers */,
 				3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */,
 				3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */,
 				3953BF901B8DC29B00E39CC9 /* Images.xcassets */,
 				3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */,
 				3953BF871B8DC29B00E39CC9 /* Supporting Files */,
-				39153A531B97150B00D34293 /* Views */,
-				393EB6511BB9348F00580C34 /* Realm+Extensions.swift */,
-				39737EBC1BB56ED4001AA6C6 /* Utilities.swift */,
 			);
 			path = CrowdShelf;
 			sourceTree = "<group>";
@@ -292,7 +325,6 @@
 				0948259A1BBAAFAB00662F32 /* Analytics.swift */,
 				3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */,
 				39C2F5921B90527200529AA9 /* DataHandler.swift */,
-				390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */,
 				390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */,
 			);
 			name = Handlers;
@@ -301,8 +333,11 @@
 		395AE1741BCD2B940090B74C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				39737EBC1BB56ED4001AA6C6 /* Utilities.swift */,
 				395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */,
 				391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */,
+				39152D6A1BD508D8004EC737 /* TableViewSelectionDelegate.swift */,
+				39152D721BD51E68004EC737 /* ReturnTextFieldDelegate.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -341,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				39C2F5B21B90A2EE00529AA9 /* CollectableCell.swift */,
+				39152D7C1BD571E1004EC737 /* CollectableCell.xib */,
 			);
 			name = CollectionViewCells;
 			sourceTree = "<group>";
@@ -348,6 +384,8 @@
 		4CA4BDD76803AE4B70C87B74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39152D781BD5273E004EC737 /* Security.framework */,
+				39152D761BD52442004EC737 /* libcommonCrypto.tbd */,
 				41DD76C7589353231F11064D /* Pods.framework */,
 				625F08271588B857F0011AFA /* Pods_CrowdShelf.framework */,
 				040035D2D8DB30B6C01FB456 /* Pods_CrowdShelfTests.framework */,
@@ -457,7 +495,9 @@
 			files = (
 				3953BF8F1B8DC29B00E39CC9 /* Main.storyboard in Resources */,
 				3953BF941B8DC29B00E39CC9 /* LaunchScreen.xib in Resources */,
+				39152D7D1BD571E1004EC737 /* CollectableCell.xib in Resources */,
 				3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */,
+				39152D821BD5A3B2004EC737 /* ListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +610,7 @@
 			files = (
 				399EFDF61BB2E0C900FC0664 /* LoginViewController.swift in Sources */,
 				39C2F5861B8F9AB800529AA9 /* BaseModel.swift in Sources */,
+				39152D6F1BD51A24004EC737 /* AlternativeInfoImageView.swift in Sources */,
 				39231D6A1BCE6E11007E02D7 /* ListTableViewCell.swift in Sources */,
 				395AE1761BCD2C670090B74C /* CrowdsViewController.swift in Sources */,
 				39A0CAFE1B958B0D00321225 /* SelectionViewController.swift in Sources */,
@@ -581,26 +622,32 @@
 				39CB7B9E1BB3501000718345 /* BaseViewController.swift in Sources */,
 				395AE16F1BCD21380090B74C /* CollectionViewArrayDataSource.swift in Sources */,
 				392E42DA1BBBE0AC0080CCBD /* ShelfTableViewCell.swift in Sources */,
+				39152D731BD51E68004EC737 /* ReturnTextFieldDelegate.swift in Sources */,
 				39C2F58A1B8FA40D00529AA9 /* BookInformation.swift in Sources */,
 				3978FE211BB32BF100DF742A /* BookInformationViewController.swift in Sources */,
 				391B92471BCD8FCD0051A24B /* TableViewArrayDataSource.swift in Sources */,
+				39152D7F1BD574DD004EC737 /* UITableView+ReuseCell.swift in Sources */,
 				39C2F5931B90527200529AA9 /* DataHandler.swift in Sources */,
 				395AE1721BCD25D50090B74C /* Shelf.swift in Sources */,
 				3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */,
+				39152D7B1BD5342A004EC737 /* String+Initials.swift in Sources */,
 				390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */,
 				39BFDEFB1BAD4D5E0058C2CF /* Debug.swift in Sources */,
 				39C2F5881B8FA0CE00529AA9 /* User.swift in Sources */,
 				39737EBD1BB56ED4001AA6C6 /* Utilities.swift in Sources */,
 				0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */,
+				39152D711BD51D7D004EC737 /* MinimalTextField.swift in Sources */,
+				39152D6B1BD508D8004EC737 /* TableViewSelectionDelegate.swift in Sources */,
 				39C2F5AE1B906D8D00529AA9 /* BookViewController.swift in Sources */,
 				39C2F5B51B90A40A00529AA9 /* ShelfViewController.swift in Sources */,
 				392169151BAF702A0029A6C8 /* RLMWrapper.swift in Sources */,
 				392E42CD1BBADBAA0080CCBD /* ActivityIndicatorView.swift in Sources */,
 				392E42D01BBAE8D20080CCBD /* MessagePopupView.swift in Sources */,
-				39153A511B970F1E00D34293 /* CSTextView.swift in Sources */,
 				392169181BB083E70029A6C8 /* SerializableObject.swift in Sources */,
+				39548E721BD64B1B00C49E3A /* ListTableViewCell+Button.swift in Sources */,
 				395EDD251B8F56BC0012A465 /* Crowd.swift in Sources */,
 				39C2F5B31B90A2EE00529AA9 /* CollectableCell.swift in Sources */,
+				39152D6D1BD512FB004EC737 /* CrowdViewController.swift in Sources */,
 				393EB6521BB9348F00580C34 /* Realm+Extensions.swift in Sources */,
 				39BFDEF41BACBA310058C2CF /* Environment.swift in Sources */,
 				395EDD231B8F55AE0012A465 /* Book.swift in Sources */,
@@ -613,7 +660,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39153A521B970F1E00D34293 /* CSTextView.swift in Sources */,
 				395EDD1C1B8E61150012A465 /* LocalDataHandlerTest.swift in Sources */,
 				3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */,
 				39BFDEF51BACBBB50058C2CF /* Environment.swift in Sources */,
@@ -741,6 +787,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CrowdShelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.skaptronderen.crowdshelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "462baa9b-1a2a-4adf-9a31-7c86abaa7435";
@@ -755,6 +805,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CrowdShelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.skaptronderen.crowdshelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "462baa9b-1a2a-4adf-9a31-7c86abaa7435";

@@ -17,7 +17,7 @@ public class Crowd: BaseModel, Listable, Collectable {
     var members         = List<RLMWrapper>()
     
     @objc var title : String { return name }
-    @objc var subtitle : String { return owner }
+    @objc var subtitle : String? { return owner }
     var image: UIImage?
     
 //    MARK: Realm Object
