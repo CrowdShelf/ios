@@ -23,8 +23,31 @@ extension DataHandler {
                 completionHandler?(user!._id, isSuccess)
             }
         }
-        
-        
+    }
+    
+    public class func getBooksFromUsersCrowds(userID: String, isbn: String, withCompletionHandler completionHandler: (([Book])->Void)) {
+        DataHandler.getCrowdsWithParameters(nil) { (crowds) -> Void in
+            
+            /* All users in the user's crowds */
+            var userIDs = Set<RLMWrapper>()
+            crowds.forEach({ (crowd) -> () in
+                userIDs.unionInPlace(crowd.members)
+            })
+            
+            var allBooks: [Book] = []
+            var count = 0
+            for userID in userIDs {
+                DataHandler.getBooksWithParameters(["owner":userID.stringValue!, "isbn":isbn], andCompletionHandler: { (books) -> Void in
+                    allBooks = allBooks + books
+                    
+                    count++
+                    if count == userIDs.count {
+                        completionHandler(allBooks)
+                    }
+                })
+            }
+            
+        }
     }
     
     public class func getMembersOfCrowd(crowd: Crowd, withCompletionHandler completionHandler: (([User]->Void))) {

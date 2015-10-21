@@ -229,17 +229,6 @@ public class DataHandler {
                     if let resultsArray = resultDictionary["users"] as? [[String: AnyObject]] {
                         let usersArray = resultsArray.map {User(value: $0)}
                         
-                        let group = dispatch_group_create()
-                        usersArray.forEach { (user) -> Void in
-                            dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-                                if let data = NSData(contentsOfURL: NSURL(string: "http://www.gravatar.com/avatar/\(user.email.md5())?d=404")!) {
-                                    user.image = UIImage(data: data)
-                                }
-                            })
-                        }
-                        
-                        dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 10*Int64(NSEC_PER_SEC)))
-                        
                         return completionHandler(usersArray)
                     }
                 }
@@ -261,14 +250,6 @@ public class DataHandler {
         self.sendRequestWithSubRoute("users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let resultDictionary = result as? [String: AnyObject] {
                 let user = User(value: resultDictionary)
-                
-                let emailHash = user.email.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                                          .lowercaseString
-                                          .md5()
-                
-                if let data = NSData(contentsOfURL: NSURL(string: "http://www.gravatar.com/avatar/\(emailHash)?d=404")!) {
-                    user.image = UIImage(data: data)
-                }
                 
                 return completionHandler(user)
             }

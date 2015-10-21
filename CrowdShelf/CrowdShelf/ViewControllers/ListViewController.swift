@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ListViewController: UIViewController {
+class ListViewController: BaseViewController {
     
     class Button: Listable {
         enum ButtonStyle {
@@ -17,32 +17,37 @@ class ListViewController: UIViewController {
             
             var titleColor: UIColor {
                 switch self {
-                case .Normal:
-                    return UIView().tintColor
                 case .Danger:
                     return UIColor.redColor()
-                case .None:
+                case .None, .Normal:
                     return UIColor.blackColor()
                 }
             }
             
             var subtitleColor: UIColor {
                 switch self {
-                case .Normal:
-                    return UIView().tintColor
                 case .Danger:
                     return UIColor.redColor()
+                case .None, .Normal:
+                    return UIColor.blackColor()
+                }
+            }
+            
+            var imageTintColor: UIColor {
+                switch self {
+                case .Danger:
+                    return UIColor.redColor()
+                case .Normal:
+                    return UIView().tintColor
                 case .None:
-                    return UIColor.lightGrayColor()
+                    return UIColor.blackColor()
                 }
             }
             
             var imageBorderColor: UIColor {
                 switch self {
-                case .Danger, .Normal:
+                case .Danger, .Normal, .None:
                     return UIColor.clearColor()
-                case .None:
-                    return UIColor.lightGrayColor()
                 }
             }
         }
@@ -66,6 +71,7 @@ class ListViewController: UIViewController {
         return TableViewArrayDataSource(cellReuseIdentifier: ListTableViewCell.cellReuseIdentifier) { (cell, item, indexPath) -> Void in
             
             let listCell = cell as? ListTableViewCell
+            listCell?.showSubtitle = false
             listCell?.listable = item as? Listable
             listCell?.configureForButtonStyle((item as? Button)?.buttonStyle ?? .None)
             listCell?.accessoryType = self.accessoryTypeForIndexPath(indexPath)

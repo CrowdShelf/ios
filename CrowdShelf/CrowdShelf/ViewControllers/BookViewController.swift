@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 
-class BookViewController: BaseViewController {
+class BookViewController: ListViewController {
     
 //    MARK: - Outlets
     
@@ -24,28 +24,6 @@ class BookViewController: BaseViewController {
     var book : Book? {
         didSet {
             self.updateView()
-            
-            if book?.details == nil {
-                DataHandler.informationAboutBook(book!.isbn, withCompletionHandler: { (information) -> Void in
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        if information.count > 1 {
-                            self.showListWithItems(information, andCompletionHandler: { (information) -> Void in
-                                Realm.write { realm -> Void in
-                                    self.book?.details = information.first as? BookInformation
-                                }
-                                
-                                self.updateView()
-                            })
-                        } else {
-                            Realm.write { realm -> Void in
-                                self.book?.details = information.first
-                            }
-                        }
-                        
-                        self.updateView()
-                    })
-                })
-            }
         }
     }
     
@@ -54,32 +32,59 @@ class BookViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let borrowBookButton = Button(title: "Borrow book", image: UIImage(named: "add"), buttonStyle: .Normal)
+        let returnBookButton = Button(title: "Return book", image: UIImage(named: "remove"), buttonStyle: .Normal)
+        let addBookButton = Button(title: "Add book", image: UIImage(named: "add"), buttonStyle: .Normal)
+        let removeBookButton = Button(title: "Remove book", image: UIImage(named: "remove"), buttonStyle: .Normal)
+        
+        self.tableViewDataSource.items = [[borrowBookButton,returnBookButton,addBookButton,removeBookButton], []]
+        self.tableView?.reloadData()
+        
         self.updateView()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateView", name: Notification.LocalUserUpdated, object: nil)
-    }
-    
-    func updateView() {
         
-        self.coverImageView?.image = self.book?.details?.thumbnail
-        self.titleLabel?.text = self.book?.details?.title
-        self.publisherLabel?.text = self.book?.details?.publisher
-        self.coverImageView?.alternativeInfo = self.book?.title.initials
-        if self.book?.details != nil {
-            self.authorsLabel?.text = self.book?.details?.authors.map {$0.stringValue!}.joinWithSeparator(", ")
+        tableViewDelegate.selectionHandler = { [unowned self] (_, indexPath, selected) -> Void in
+            if indexPath.section == 0 {
+                switch indexPath.row {
+                case 0:
+                    self.borrow()
+                case 1:
+                    self.returnBook()
+                case 2:
+                    self.addBookToShelf()
+                case 3:
+                    self.removeBookFromShelf()
+                default:
+                    break
+                }
+            }
+        }
+        
+        DataHandler.getBooksFromUsersCrowds(User.localUser!._id, isbn: self.book!.isbn) { (books) -> Void in
+            self.tableViewDataSource.items[1] = books
+            self.tableView?.reloadData()
         }
     }
     
+    func updateView() {
+        coverImageView?.image           = book?.details?.thumbnail
+        titleLabel?.text                = book?.details?.title
+        publisherLabel?.text            = book?.details?.publisher
+        coverImageView?.alternativeInfo = book?.title.initials
+        authorsLabel?.text              = book?.details?.authorsString
+    }
+    
     func newBook() -> Book {
-        let newBook = Book()
-        newBook.owner = User.localUser!._id
+        let newBook     = Book()
+        newBook.owner   = User.localUser!._id
         newBook.details = self.book?.details
-        newBook.isbn = self.book!.isbn
+        newBook.isbn    = self.book!.isbn
         
         return newBook
     }
     
-    @IBAction func addBookToShelf(sender: AnyObject) {
+    func addBookToShelf() {
         
         csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
         
@@ -101,7 +106,7 @@ class BookViewController: BaseViewController {
         Analytics.addBookProperties(self.book!)
     }
     
-    @IBAction func removeBookFromShelf(sender: AnyObject) {
+    func removeBookFromShelf() {
         csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Removing book", inView: self.view)
@@ -123,7 +128,7 @@ class BookViewController: BaseViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func borrow(sender: AnyObject) {
+    func borrow() {
         csprint(CS_DEBUG_BOOK_VIEW, "Borrowing book:", self.book)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
@@ -156,7 +161,6 @@ class BookViewController: BaseViewController {
                 let owner = selectedOwners.first as! User
                 self.borrowBookFromUser(owner._id)
             })
-            
         }
         Analytics.addEvent("BorrowBook")
     }
@@ -173,7 +177,7 @@ class BookViewController: BaseViewController {
         })
     }
     
-    @IBAction func returnBook(sender: AnyObject) {
+    func returnBook() {
         csprint(CS_DEBUG_BOOK_VIEW, "Returning book:", self.book)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)

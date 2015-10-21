@@ -15,7 +15,7 @@ extension ListTableViewCell {
         self.iconImageView?.borderColor = buttonStyle.imageBorderColor
         self.titleLabel?.textColor = buttonStyle.titleColor
         self.subtitleLabel?.textColor = buttonStyle.subtitleColor
-        self.iconImageView?.tintColor = buttonStyle.titleColor
+        self.iconImageView?.tintColor = buttonStyle.imageTintColor
     }
     
 }

@@ -31,6 +31,26 @@ class TableViewArrayDataSource: NSObject, UITableViewDataSource {
         return items[indexPath.row]
     }
     
+    func addItem(item: AnyObject, forIndexPath indexPath: NSIndexPath) {
+        if let existingItems = self.items[indexPath.section] as? [AnyObject] {
+            var updatedItems = existingItems
+            updatedItems.insert(item, atIndex: indexPath.row)
+            self.items[indexPath.section] = updatedItems
+        } else {
+            self.items.insert(items, atIndex: indexPath.row)
+        }
+    }
+    
+    func removeItemForIndexPath(indexPath: NSIndexPath) {
+        if let existingItems = self.items[indexPath.section] as? [AnyObject] {
+            var updatedItems = existingItems
+            updatedItems.removeAtIndex(indexPath.row)
+            self.items[indexPath.section] = updatedItems
+        } else {
+            self.items.removeAtIndex(indexPath.row)
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let sections = items as? [[AnyObject]] {
             return sections.count

@@ -12,7 +12,7 @@ import RealmSwift
 
 
 /// A class representing detail about a book
-public class BookInformation: BaseModel, Listable {
+public class BookInformation: BaseModel, Listable, Collectable {
     
     dynamic var providerID                  = ""
     dynamic var provider                    = ""
@@ -55,5 +55,11 @@ public class BookInformation: BaseModel, Listable {
         }
         
         return nil
+    }
+}
+
+extension BookInformation {
+    var authorsString: String? {
+        return self.authors.map {$0.stringValue!}.joinWithSeparator(", ")
     }
 }

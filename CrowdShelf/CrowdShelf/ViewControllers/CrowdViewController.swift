@@ -39,9 +39,9 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
                     return self.performSegueWithIdentifier("ShowCrowdShelf", sender: self)
                 }
                 
-                if indexPath.section == 2 && indexPath.row == 0 {
+                if indexPath.section == 1 && indexPath.row == 0 {
                     self.addMember()
-                } else if indexPath.section == 1 && indexPath.row == 0 {
+                } else if indexPath.section == 2 && indexPath.row == 0 {
                     self.leaveCrowd()
                 }
             }
@@ -52,14 +52,18 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         self.nameField?.delegate = nameFieldDelegate
     }
     
+    func newCrowd() -> Crowd {
+        let crowd = Crowd()
+        crowd.members.append(RLMWrapper(User.localUser!._id))
+        crowd.name = "New Group"
+        return crowd
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         if self.crowd == nil {
-            let crowd = Crowd()
-            crowd.members.append(RLMWrapper(User.localUser!._id))
-            crowd.name = "New Group"
-            self.crowd = crowd
+            self.crowd = newCrowd()
         }
     }
     
@@ -95,9 +99,23 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         DataHandler.removeUser(User.localUser!._id, fromCrowd: crowd!) { (isSuccess) -> Void in
             activityIndicatorView.stop()
             if isSuccess {
-                self.retrieveUsers()
+                let indexOfRemovedUser = self.indexOfUser(User.localUser!._id)!
+                let indexPath = NSIndexPath(forRow: indexOfRemovedUser, inSection: 1)
+                self.tableViewDataSource.removeItemForIndexPath(indexPath)
+                self.tableView?.reloadData()
             }
         }
+    }
+    
+    func indexOfUser(userID: String) -> Int? {
+        let index = (tableViewDataSource.items[1] as! [Listable]).indexOf({ (item) -> Bool in
+            if let user = item as? User {
+                return user._id == userID
+            }
+            return false
+        })
+        
+        return index != nil ? Int(index!) : nil
     }
     
     internal func updateItemsWithListables(listables: [Listable]) {
@@ -109,7 +127,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         
         let leaveButton = Button(
             title:      "Leave group",
-            image:      UIImage(named: "add"),
+            image:      UIImage(named: "remove"),
             buttonStyle: .Danger
         )
         
@@ -120,7 +138,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         
         let lastSection: [AnyObject] = [newMemberButton]+listables
         
-        tableViewDataSource.items = [[shelfButton], [leaveButton], lastSection]
+        tableViewDataSource.items = [[shelfButton], lastSection, [leaveButton]]
         tableView?.reloadData()
     }
     
@@ -137,10 +155,13 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
                 if isSuccess {
                     self.crowd?.members.insert(RLMWrapper(userID!), atIndex: 0)
                     
-                    self.retrieveUsers()
+                    DataHandler.getUser(userID!, withCompletionHandler: { (user) -> Void in
+                        activityIndicatorView.stop()
+                        
+                        self.tableViewDataSource.addItem(user!, forIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                        self.tableView?.reloadData()
+                    })
                 }
-                
-                activityIndicatorView.stop()
                 
                 print(isSuccess ? "Added member" : "Failed to add member")
             })

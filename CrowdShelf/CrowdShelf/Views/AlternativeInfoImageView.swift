@@ -59,6 +59,7 @@ class AlternativeInfoImageView: UIImageView {
         set {
             super.image = newValue
             self.alternativeInfoLabel?.hidden = newValue != nil
+            self.backgroundColor = newValue != nil ? UIColor.clearColor() : UIColor(white: 0.97, alpha: 1)
         }
         get {
             return super.image

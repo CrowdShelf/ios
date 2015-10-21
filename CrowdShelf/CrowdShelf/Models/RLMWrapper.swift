@@ -16,9 +16,13 @@ A wrapper object used to wrap values not compatible with Realm
 
 */
 
-class RLMWrapper: Object, StringLiteralConvertible {
+func ==(leftSide: RLMWrapper, rightSide: RLMWrapper) -> Bool {
+    return leftSide.content.isEqual(rightSide.content)
+}
+
+class RLMWrapper: Object, StringLiteralConvertible, Equatable, Hashable {
     dynamic var content: AnyObject = ""
-    
+
     var stringValue: String? {
         return self.content as? String
     }

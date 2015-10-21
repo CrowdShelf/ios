@@ -16,6 +16,12 @@ class ListTableViewCell: UITableViewCell {
         }
     }
     
+    var showSubtitle: Bool = false {
+        didSet {
+            updateView()
+        }
+    }
+    
     @IBOutlet weak var iconImageView: AlternativeInfoImageView?
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var subtitleLabel: UILabel?
@@ -33,12 +39,14 @@ class ListTableViewCell: UITableViewCell {
     
     func updateView() {
         titleLabel?.text = listable?.title
-        subtitleLabel?.text = (listable?.subtitle) ?? ""
+        subtitleLabel?.text = (listable?.subtitle) ?? nil
         iconImageView?.alternativeInfo = listable?.title.initials
         iconImageView?.image = listable?.image ?? nil
         
-        titleLabelAlignCenterYConstraint?.active = listable?.subtitle == nil
-        titleLabelTopSpaceConstrant?.active = listable?.subtitle != nil
+        subtitleLabel?.hidden = !showSubtitle
+        
+        titleLabelAlignCenterYConstraint?.active = !showSubtitle || subtitleLabel?.text == nil
+        titleLabelTopSpaceConstrant?.active = showSubtitle && subtitleLabel?.text != nil
         
         self.layoutIfNeeded()
     }

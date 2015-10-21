@@ -10,7 +10,7 @@ import UIKit
 
 
 /// A class representing a book
-public class Book: BaseModel, Collectable {
+public class Book: BaseModel, Collectable, Listable {
 
     dynamic var _id              = "-1"
     dynamic var isbn             = ""
@@ -20,7 +20,8 @@ public class Book: BaseModel, Collectable {
     
     dynamic var details : BookInformation?
     
-    var title: String { return self.details?.title ?? "<no data>" }
+    var title: String { return owner }
+    var subtitle: String? { return rentedTo }
     var image: UIImage? { return self.details?.thumbnail }
     
     public override var description: String {
