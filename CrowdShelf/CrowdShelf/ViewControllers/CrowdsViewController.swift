@@ -26,7 +26,7 @@ class CrowdsViewController: CollectionViewController {
         self.collectionViewDataSource.configurationHandler = {
             let cell = $0 as! CollectableCell
             cell.imageViewStyle = .Round
-            cell.imageView?.showBorder = false
+            cell.imageView?.showBorder = true
             cell.collectable = $1 as? Collectable
         }
     }
@@ -39,7 +39,7 @@ class CrowdsViewController: CollectionViewController {
     
     func loadCrowds() {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Looking for crowds", inView: self.view)
-        DataHandler.getCrowdsWithParameters(nil) { (crowds) -> Void in
+        DataHandler.getCrowdsWithParameters(["member":User.localUser!._id]) { (crowds) -> Void in
             self.crowds = crowds
             self.collectionView?.reloadData()
             activityIndicatorView.stop()

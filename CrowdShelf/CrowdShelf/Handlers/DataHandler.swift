@@ -330,10 +330,31 @@ public class DataHandler {
         }
     }
     
+    public class func createCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Crowd?)-> Void)) {
+        self.sendRequestWithSubRoute("crowds", usingMethod: .POST, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+            if isSuccess {
+                return completionHandler(Crowd(value: result as! [String: AnyObject]))
+            }
+            completionHandler(nil)
+        }
+    }
     
-    public class func addUser(userID: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)) {
+    public class func updateCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Bool)-> Void)?) {
+        self.sendRequestWithSubRoute("crowds/\(crowd._id)", usingMethod: .PUT, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+            completionHandler?(isSuccess)
+        }
+    }
+    
+    public class func deleteCrowd(crowdID: String, withCompletionHandler completionHandler: ((Bool)-> Void)?) {
+        self.sendRequestWithSubRoute("crowds/\(crowdID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
+            completionHandler?(isSuccess)
+        }
+    }
+    
+    
+    public class func addUser(userID: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
         self.sendRequestWithSubRoute("crowds/\(crowdID)/members/\(userID)", usingMethod: .PUT) { (result, isSuccess) -> Void in
-            completionHandler(isSuccess)
+            completionHandler?(isSuccess)
         }
     }
     

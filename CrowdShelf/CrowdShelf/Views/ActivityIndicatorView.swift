@@ -33,8 +33,6 @@ class ActivityIndicatorView: UIView {
         self.addSubview(self.messageLabel)
         self.addSubview(self.activityIndicator)
         
-        self.backgroundColor = UIColor(white: 1, alpha: 0.8)
-        
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[indicator]|", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: nil, views: ["indicator": self.activityIndicator]))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-250-[indicator(40)]", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: nil, views: ["indicator": self.activityIndicator]))
         

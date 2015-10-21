@@ -25,31 +25,6 @@ extension DataHandler {
         }
     }
     
-    public class func getBooksFromUsersCrowds(userID: String, isbn: String, withCompletionHandler completionHandler: (([Book])->Void)) {
-        DataHandler.getCrowdsWithParameters(nil) { (crowds) -> Void in
-            
-            /* All users in the user's crowds */
-            var userIDs = Set<RLMWrapper>()
-            crowds.forEach({ (crowd) -> () in
-                userIDs.unionInPlace(crowd.members)
-            })
-            
-            var allBooks: [Book] = []
-            var count = 0
-            for userID in userIDs {
-                DataHandler.getBooksWithParameters(["owner":userID.stringValue!, "isbn":isbn], andCompletionHandler: { (books) -> Void in
-                    allBooks = allBooks + books
-                    
-                    count++
-                    if count == userIDs.count {
-                        completionHandler(allBooks)
-                    }
-                })
-            }
-            
-        }
-    }
-    
     public class func getMembersOfCrowd(crowd: Crowd, withCompletionHandler completionHandler: (([User]->Void))) {
         var users: [User] = []
         var results = 0
@@ -99,17 +74,26 @@ extension DataHandler {
     */
     
     public class func ownersOfBooksWithParameters(parameters: [String: AnyObject]?, withCompletionHandler completionHandler: (([User]) -> Void) ) {
-        DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
-            if books.isEmpty {
-                return completionHandler([])
+        
+        DataHandler.getCrowdsWithParameters(["member": User.localUser!._id]) { (userCrowds) -> Void in
+            
+            var memberIDs = Set<String>()
+            userCrowds.forEach { crowd in
+                memberIDs.unionInPlace(crowd.members.map{$0.stringValue!})
             }
             
-            let ownerIDs: Set<String> = Set(books.map {$0.owner})
-            
-            DataHandler.usersWithCompletionHandler { users -> Void in
-                let owners = users.filter {ownerIDs.contains($0._id)}
+            DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
+                if books.isEmpty {
+                    return completionHandler([])
+                }
                 
-                completionHandler(owners)
+                let ownerIDs: Set<String> = Set(books.map {$0.owner})
+                
+                DataHandler.usersWithCompletionHandler { users -> Void in
+                    let owners = users.filter {ownerIDs.contains($0._id) && memberIDs.contains($0._id)}
+                    
+                    completionHandler(owners)
+                }
             }
         }
     }

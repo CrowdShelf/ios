@@ -20,10 +20,10 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         super.viewDidLoad()
         
         self.tableViewDataSource = TableViewArrayDataSource(items: self.shelves, cellReuseIdentifier: "ShelfCell") { (cell, item, _) -> Void in
-            // FIXME: Bad way to detect book selection in cell
             let shelfCell = cell as! ShelfTableViewCell
             shelfCell.shelf = item as? Shelf
-            shelfCell.delegate = self
+            shelfCell.delegate = self           // FIXME: Bad way to detect book selection in cell
+
         }
         
         self.tableView?.dataSource = self.tableViewDataSource

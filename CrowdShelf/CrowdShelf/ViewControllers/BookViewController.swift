@@ -37,7 +37,7 @@ class BookViewController: ListViewController {
         let addBookButton = Button(title: "Add book", image: UIImage(named: "add"), buttonStyle: .Normal)
         let removeBookButton = Button(title: "Remove book", image: UIImage(named: "remove"), buttonStyle: .Normal)
         
-        self.tableViewDataSource.items = [[borrowBookButton,returnBookButton,addBookButton,removeBookButton], []]
+        self.tableViewDataSource.items = [[borrowBookButton,returnBookButton,addBookButton,removeBookButton]]
         self.tableView?.reloadData()
         
         self.updateView()
@@ -60,11 +60,6 @@ class BookViewController: ListViewController {
                 }
             }
         }
-        
-        DataHandler.getBooksFromUsersCrowds(User.localUser!._id, isbn: self.book!.isbn) { (books) -> Void in
-            self.tableViewDataSource.items[1] = books
-            self.tableView?.reloadData()
-        }
     }
     
     func updateView() {
@@ -78,7 +73,6 @@ class BookViewController: ListViewController {
     func newBook() -> Book {
         let newBook     = Book()
         newBook.owner   = User.localUser!._id
-        newBook.details = self.book?.details
         newBook.isbn    = self.book!.isbn
         
         return newBook
@@ -93,7 +87,12 @@ class BookViewController: ListViewController {
         DataHandler.addBook(self.newBook()) { (book) -> Void in
             activityIndicatorView.stop()
             
+            Realm.write { realm in
+                book?.details = self.book?.details
+            }
+            
             self.book = book
+            
             
             let message = book != nil ? "Successfully added book" : "Failed to add book"
             MessagePopupView(message: message, messageStyle: book != nil ? .Success : .Error).showInView(self.view)

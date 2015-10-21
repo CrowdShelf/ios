@@ -23,6 +23,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
     
     lazy var nameFieldDelegate: ReturnTextFieldDelegate = {
         return ReturnTextFieldDelegate { (textField) -> Void in
+            self.crowd?.name = textField.text!
+            
+            DataHandler.updateCrowd(self.crowd!, withCompletionHandler: nil)
+            
             textField.resignFirstResponder()
             self.updateView()
         }
@@ -56,6 +60,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         let crowd = Crowd()
         crowd.members.append(RLMWrapper(User.localUser!._id))
         crowd.name = "New Group"
+        crowd.owner = User.localUser!._id
         return crowd
     }
     
@@ -64,6 +69,11 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         
         if self.crowd == nil {
             self.crowd = newCrowd()
+            DataHandler.createCrowd(self.crowd!, withCompletionHandler: { (crowd) -> Void in
+                if crowd != nil {
+                    self.crowd = crowd
+                }
+            })
         }
     }
     
@@ -75,17 +85,17 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
     
     func updateView() {
         nameField?.text = crowd?.name
-        membersLabel?.text = "\((crowd?.members.count ?? 1)-1) members"
+        membersLabel?.text = "\((crowd?.members.count ?? 0)) members"
         iconImageView?.image = crowd?.image
         iconImageView?.alternativeInfo = crowd?.name.initials
     }
     
     override func accessoryTypeForIndexPath(indexPath: NSIndexPath) -> UITableViewCellAccessoryType {
-        if (indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 0 {
-            return .None
+        if indexPath.section == 0 {
+            return .DisclosureIndicator
         }
 
-        return .DisclosureIndicator
+        return .None
     }
     
     internal func addMember() {
@@ -99,10 +109,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         DataHandler.removeUser(User.localUser!._id, fromCrowd: crowd!) { (isSuccess) -> Void in
             activityIndicatorView.stop()
             if isSuccess {
-                let indexOfRemovedUser = self.indexOfUser(User.localUser!._id)!
-                let indexPath = NSIndexPath(forRow: indexOfRemovedUser, inSection: 1)
-                self.tableViewDataSource.removeItemForIndexPath(indexPath)
-                self.tableView?.reloadData()
+                self.navigationController?.popViewControllerAnimated(true)
             }
         }
     }
@@ -161,9 +168,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
                         self.tableViewDataSource.addItem(user!, forIndexPath: NSIndexPath(forRow: 1, inSection: 1))
                         self.tableView?.reloadData()
                     })
+                } else {
+                    activityIndicatorView.stop()
+                    MessagePopupView(message: "Failed add member", messageStyle: .Error).showInView(self.view)
                 }
-                
-                print(isSuccess ? "Added member" : "Failed to add member")
             })
         }
     }
@@ -175,4 +183,13 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         }
     }
     
+    @IBAction func deleteCrowd(sender: AnyObject) {
+        DataHandler.deleteCrowd(self.crowd!._id) { (isSuccess) -> Void in
+            if isSuccess {
+                self.navigationController?.popViewControllerAnimated(true)
+            } else {
+                MessagePopupView(message: "Failed to delete crowd", messageStyle: .Error).showInView(self.view)
+            }
+        }
+    }
 }

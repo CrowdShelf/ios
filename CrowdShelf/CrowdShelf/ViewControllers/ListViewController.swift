@@ -46,8 +46,10 @@ class ListViewController: BaseViewController {
             
             var imageBorderColor: UIColor {
                 switch self {
-                case .Danger, .Normal, .None:
+                case .Danger, .Normal:
                     return UIColor.clearColor()
+                case .None:
+                    return UIColor.lightGrayColor()
                 }
             }
         }

@@ -562,7 +562,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ORI-Xx-LUY" secondAttribute="trailing" constant="-16" id="eKK-1o-yVO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Crowd" id="BDI-Uc-UWI"/>
+                    <navigationItem key="navigationItem" title="Crowd" id="BDI-Uc-UWI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="3F0-0l-7S7">
+                            <color key="tintColor" red="0.97254901959999995" green="0.29411764709999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="deleteCrowd:" destination="Kcj-5x-49a" id="Ppb-J0-2KS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="iconImageView" destination="Nhi-W0-TDq" id="wF6-Nn-scl"/>
@@ -843,7 +850,7 @@
             </objects>
             <point key="canvasLocation" x="1128" y="777"/>
         </scene>
-        <!--Book View Controller-->
+        <!--Book-->
         <scene sceneID="XZ6-oi-i6T">
             <objects>
                 <viewController id="jqT-Z1-xdv" customClass="BookViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
@@ -921,18 +928,9 @@
                                                 <constraint firstAttribute="width" secondItem="EK4-wD-Y8j" secondAttribute="height" multiplier="11:2" id="lND-To-J9r"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="5aK-4d-xDx" userLabel="Disclosure Indicator Image">
-                                            <rect key="frame" x="289" y="49" width="23" height="22"/>
-                                            <animations/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="22" id="acB-lY-16w"/>
-                                                <constraint firstAttribute="width" constant="23" id="qhh-zH-mTL"/>
-                                            </constraints>
-                                        </imageView>
                                     </subviews>
                                     <animations/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="OCb-OZ-aLR" firstAttribute="top" secondItem="EK4-wD-Y8j" secondAttribute="bottom" constant="9" id="0ad-zW-Ehb"/>
@@ -949,9 +947,7 @@
                                         <constraint firstAttribute="trailing" secondItem="CPc-MH-kMb" secondAttribute="trailing" constant="40" id="UcM-Ay-67h"/>
                                         <constraint firstAttribute="bottom" secondItem="8C8-AF-SW9" secondAttribute="bottom" constant="8" id="awi-1j-z81"/>
                                         <constraint firstItem="8C8-AF-SW9" firstAttribute="top" secondItem="ZX5-Ep-4sg" secondAttribute="top" constant="8" id="eow-xz-yzq"/>
-                                        <constraint firstItem="5aK-4d-xDx" firstAttribute="centerY" secondItem="ZX5-Ep-4sg" secondAttribute="centerY" id="g1H-7D-cpP"/>
                                         <constraint firstItem="EK4-wD-Y8j" firstAttribute="leading" secondItem="8C8-AF-SW9" secondAttribute="trailing" constant="4" id="gZy-DK-plp"/>
-                                        <constraint firstAttribute="trailing" secondItem="5aK-4d-xDx" secondAttribute="trailing" constant="8" id="nUz-S3-RzI"/>
                                         <constraint firstAttribute="trailing" secondItem="OCb-OZ-aLR" secondAttribute="trailing" id="p7f-uw-bCa"/>
                                         <constraint firstItem="8C8-AF-SW9" firstAttribute="leading" secondItem="ZX5-Ep-4sg" secondAttribute="leading" constant="16" id="qBJ-Lt-les"/>
                                         <constraint firstAttribute="height" constant="120" id="tos-jd-j6k"/>
@@ -983,7 +979,7 @@
                             <constraint firstItem="g26-12-ieV" firstAttribute="leading" secondItem="z0O-F1-vqZ" secondAttribute="leadingMargin" constant="-16" id="kAt-va-tMp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="e6b-D5-YrK">
+                    <navigationItem key="navigationItem" title="Book" id="e6b-D5-YrK">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="Jk0-Pb-h1U">
                             <connections>
                                 <action selector="close:" destination="jqT-Z1-xdv" id="W4W-V8-vTp"/>
@@ -1011,12 +1007,11 @@
     <resources>
         <image name="barcode" width="50" height="50"/>
         <image name="crowd" width="50" height="50"/>
-        <image name="disclosure" width="452" height="464"/>
         <image name="dummyStars" width="1158" height="224"/>
         <image name="shelf" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="eF4-vb-qZc"/>
         <segue reference="zYk-KH-Iu8"/>
-        <segue reference="NIh-y9-wHx"/>
     </inferredMetricsTieBreakers>
 </document>

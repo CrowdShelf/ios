@@ -29,4 +29,18 @@ public class Crowd: BaseModel, Listable, Collectable {
     override public class func primaryKey() -> String {
         return "_id"
     }
+    
+    
+    
+    override func serializedValueForProperty(property: String) -> AnyObject? {
+        if property == "members" {
+            return self.members.map {$0.stringValue!}
+        }
+        
+        return nil
+    }
+    
+    public override func ignoreProperties() -> Set<String> {
+        return ["image"]
+    }
 }

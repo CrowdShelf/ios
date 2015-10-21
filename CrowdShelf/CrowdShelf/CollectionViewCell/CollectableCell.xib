@@ -24,9 +24,6 @@
                             <constraint firstAttribute="height" constant="85" id="Upy-d3-2E4"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="showBorder" value="NO"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
