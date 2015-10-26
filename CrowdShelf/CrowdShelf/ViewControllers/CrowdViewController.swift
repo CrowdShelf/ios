@@ -46,6 +46,9 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
                 if indexPath.section == 1 && indexPath.row == 0 {
                     self.addMember()
                 } else if indexPath.section == 2 && indexPath.row == 0 {
+                    if self.crowd?._id == "" {
+                        self.createCrowd()
+                    }
                     self.leaveCrowd()
                 }
             }
@@ -70,11 +73,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         
         if self.crowd == nil {
             self.crowd = newCrowd()
-            DataHandler.createCrowd(self.crowd!, withCompletionHandler: { (crowd) -> Void in
-                if crowd != nil {
-                    self.crowd = crowd
-                }
-            })
+            
         }
     }
     
@@ -82,6 +81,14 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         DataHandler.getMembersOfCrowd(crowd!) {[unowned self] (users) -> Void in
             self.updateItemsWithListables(users)
         }
+    }
+    /// Creates a new crowd with name and members defined by the user
+    func createCrowd(){
+        DataHandler.createCrowd(self.crowd!, withCompletionHandler: { (crowd) -> Void in
+            if crowd != nil {
+                self.crowd = crowd
+            }
+        })
     }
     
     func updateView() {
@@ -134,12 +141,21 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
             title:      "Shelf",
             image:      UIImage(named: "shelf")
         )
-        
-        let leaveButton = Button(
-            title:      "Leave group",
-            image:      UIImage(named: "remove"),
-            buttonStyle: .Danger
-        )
+        // If it is a new group; Let the user create a group
+        // Else the button lets you leave the group
+        let leaveButton:Button
+        if self.crowd?._id == ""{
+            leaveButton = Button(
+                title:      "Create group",
+                image:      UIImage(named: "add")
+            )
+        }else {
+            leaveButton = Button(
+                title:      "Leave group",
+                image:      UIImage(named: "remove"),
+                buttonStyle: .Danger
+            )
+        }
         
         let newMemberButton = Button(
             title:     "Add member",
@@ -185,8 +201,8 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
             crowdShelfVC.crowd = self.crowd
         }
     }
-    
-    @IBAction func deleteCrowd(sender: AnyObject) {
+    /// When user press done button in 
+    @IBAction func done(sender: AnyObject) {
         DataHandler.deleteCrowd(self.crowd!._id) { (isSuccess) -> Void in
             if isSuccess {
                 self.navigationController?.popViewControllerAnimated(true)
@@ -196,4 +212,5 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
             }
         }
     }
+    
 }
