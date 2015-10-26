@@ -54,11 +54,11 @@ class BaseViewController: UIViewController {
         if segue.identifier == "ShowBook" {
             let navigationVC = segue.destinationViewController as! UINavigationController
             let bookVC = navigationVC.viewControllers.first as! BookViewController
-            
+            print(sender)
             if let collectableCell = sender as? CollectableCell {
-                bookVC.book = collectableCell.collectable as? Book
-            } else if let book = sender as? Book {
-                bookVC.book = book
+                bookVC.bookInformation = collectableCell.collectable as? BookInformation
+            } else if let book = sender as? BookInformation {
+                bookVC.bookInformation = book
             }
         }
     }

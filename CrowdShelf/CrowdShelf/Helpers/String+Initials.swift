@@ -16,7 +16,9 @@ extension String {
         
         var initials = ""
         for word in self.componentsSeparatedByString(" ") {
-            initials.append(word.characters.first!)
+            if let firstCharacter = word.characters.first {
+                initials.append(firstCharacter)
+            }
         }
         
         return initials.uppercaseString

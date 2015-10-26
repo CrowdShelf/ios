@@ -84,14 +84,4 @@ class ScannerViewController: BaseViewController {
         })
         Analytics.addEvent("BookScanned")
     }
-    
-//    MARK: - Navigation
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowBook" {
-            let navigationVC = segue.destinationViewController as! UINavigationController
-            let bookVC = navigationVC.viewControllers.first as! BookViewController
-            bookVC.book = sender as? Book
-        }
-    }
 }

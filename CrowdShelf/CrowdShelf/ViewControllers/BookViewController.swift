@@ -21,7 +21,7 @@ class BookViewController: ListViewController {
     
 //    MARK: - Properties
     
-    var book : Book? {
+    var bookInformation : BookInformation? {
         didSet {
             self.updateView()
         }
@@ -63,63 +63,57 @@ class BookViewController: ListViewController {
     }
     
     func updateView() {
-        coverImageView?.image           = book?.details?.thumbnail
-        titleLabel?.text                = book?.details?.title
-        publisherLabel?.text            = book?.details?.publisher
-        coverImageView?.alternativeInfo = book?.title.initials
-        authorsLabel?.text              = book?.details?.authorsString
+        coverImageView?.image           = bookInformation?.thumbnail
+        titleLabel?.text                = bookInformation?.title
+        publisherLabel?.text            = bookInformation?.publisher
+        coverImageView?.alternativeInfo = bookInformation?.title.initials
+        authorsLabel?.text              = bookInformation?.authorsString
     }
     
     func newBook() -> Book {
         let newBook     = Book()
         newBook.owner   = User.localUser!._id
-        newBook.isbn    = self.book!.isbn
+        newBook.isbn    = self.bookInformation!.isbn
         
         return newBook
     }
     
     func addBookToShelf() {
         
-        csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.book)
+        csprint(CS_DEBUG_BOOK_VIEW, "Adding book:", self.bookInformation)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Adding book", inView: self.view)
         
         DataHandler.addBook(self.newBook()) { (book) -> Void in
             activityIndicatorView.stop()
             
-            Realm.write { realm in
-                book?.details = self.book?.details
-            }
-            
-            self.book = book
-            
-            
             let message = book != nil ? "Successfully added book" : "Failed to add book"
             MessagePopupView(message: message, messageStyle: book != nil ? .Success : .Error).showInView(self.view)
-            csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
+            csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation)
             
             self.updateView()
         }
        
         Analytics.addEvent("BookAdded")
-        Analytics.addBookProperties(self.book!)
+        Analytics.addBookProperties(self.bookInformation!)
     }
     
     func removeBookFromShelf() {
-        csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.book)
+        csprint(CS_DEBUG_BOOK_VIEW, "Removing book:", self.bookInformation)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Removing book", inView: self.view)
         
-        DataHandler.removeBook(self.book!._id) { (isSuccess) -> Void in
+        DataHandler.removeBookForUser(User.localUser!._id, withISBN: self.bookInformation!.isbn) { (isSuccess) -> Void in
             activityIndicatorView.stop()
             
             let message = isSuccess ? "Successfully removed book" : "Failed to remove book"
-            csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
+            csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation?.isbn)
             MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).showInView(self.view)
             
             if isSuccess {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
+
         }
     }
     
@@ -128,12 +122,12 @@ class BookViewController: ListViewController {
     }
     
     func borrow() {
-        csprint(CS_DEBUG_BOOK_VIEW, "Borrowing book:", self.book)
+        csprint(CS_DEBUG_BOOK_VIEW, "Borrowing book:", self.bookInformation)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         
         /* Retrieve users in possession of the book */
-        DataHandler.ownersOfBooksWithParameters(["isbn": self.book!.isbn, "availableForRent": true]) { (owners) -> Void in
+        DataHandler.ownersOfBooksWithParameters(["isbn": self.bookInformation!.isbn, "availableForRent": true]) { (owners) -> Void in
             activityIndicatorView.stop()
             
             /* Abort is no users are in possession of the book */
@@ -153,7 +147,7 @@ class BookViewController: ListViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
                 
                 if selectedOwners.isEmpty {
-                    csprint(CS_DEBUG_BOOK_VIEW, "Canceled borrow book:", self.book)
+                    csprint(CS_DEBUG_BOOK_VIEW, "Canceled borrow book:", self.bookInformation)
                     return
                 }
                 
@@ -167,21 +161,21 @@ class BookViewController: ListViewController {
     private func borrowBookFromUser(userID: String) {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Borrowing book..", inView: self.view)
         
-        DataHandler.addRenter(User.localUser!._id, toTitle: self.book!.isbn, withOwner: userID, withCompletionHandler: { (isSuccess) -> Void in
+        DataHandler.addRenter(User.localUser!._id, toTitle: self.bookInformation!.isbn, withOwner: userID, withCompletionHandler: { (isSuccess) -> Void in
             activityIndicatorView.stop()
             
             let message = isSuccess ? "Sucessfully borrowed book" : "Failed to borrow book"
-            csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
+            csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation)
             MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).showInView(self.view)
         })
     }
     
     func returnBook() {
-        csprint(CS_DEBUG_BOOK_VIEW, "Returning book:", self.book)
+        csprint(CS_DEBUG_BOOK_VIEW, "Returning book:", self.bookInformation)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         
-        DataHandler.ownersOfBooksWithParameters(["isbn":self.book!.isbn, "rentedTo": User.localUser!._id]) { (owners) -> Void in
+        DataHandler.ownersOfBooksWithParameters(["isbn":self.bookInformation!.isbn, "rentedTo": User.localUser!._id]) { (owners) -> Void in
             activityIndicatorView.stop()
             
             /* Abort is no users are in possession of the book */
@@ -201,7 +195,7 @@ class BookViewController: ListViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
                 
                 if selectedOwners.isEmpty {
-                    csprint(CS_DEBUG_BOOK_VIEW, "Canceled borrow book:", self.book)
+                    csprint(CS_DEBUG_BOOK_VIEW, "Canceled borrow book:", self.bookInformation)
                     return
                 }
                 
@@ -215,11 +209,11 @@ class BookViewController: ListViewController {
     private func returnBookToUser(userID: String) {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Returning book..", inView: self.view)
         
-        DataHandler.removeRenter(User.localUser!._id, fromTitle: self.book!.isbn, withOwner: userID) { (isSuccess) -> Void in
+        DataHandler.removeRenter(User.localUser!._id, fromTitle: self.bookInformation!.isbn, withOwner: userID) { (isSuccess) -> Void in
             activityIndicatorView.stop()
             
             let message = isSuccess ? "Sucessfully returned book" : "Failed to return book"
-            csprint(CS_DEBUG_BOOK_VIEW, message, self.book)
+            csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation)
             MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).showInView(self.view)
         }
     }
@@ -229,7 +223,7 @@ class BookViewController: ListViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBookInformation" {
             let bookInformationVC = segue.destinationViewController as! BookInformationViewController
-            bookInformationVC.bookInformation = self.book?.details
+            bookInformationVC.bookInformation = self.bookInformation
         }
     }
 }

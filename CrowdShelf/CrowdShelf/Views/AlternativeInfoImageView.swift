@@ -86,6 +86,7 @@ class AlternativeInfoImageView: UIImageView {
         infoLabel.textColor = UIColor.grayColor()
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         infoLabel.adjustsFontSizeToFitWidth = true
+        infoLabel.lineBreakMode = .ByClipping
         infoLabel.minimumScaleFactor = 0.4
         infoLabel.baselineAdjustment = .AlignCenters
         

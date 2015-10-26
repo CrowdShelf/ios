@@ -46,6 +46,7 @@
 		395EDD251B8F56BC0012A465 /* Crowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395EDD241B8F56BC0012A465 /* Crowd.swift */; };
 		39737EBD1BB56ED4001AA6C6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39737EBC1BB56ED4001AA6C6 /* Utilities.swift */; settings = {ASSET_TAGS = (); }; };
 		3978FE211BB32BF100DF742A /* BookInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978FE201BB32BF100DF742A /* BookInformationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		39986DA41BDE574A00616DFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39986DA31BDE574A00616DFB /* SearchViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		399EFDF61BB2E0C900FC0664 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		39A0CAFE1B958B0D00321225 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* SelectionViewController.swift */; };
 		39A655F21BD1199D0075CB81 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A655F11BD1199D0075CB81 /* ListViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -125,6 +126,7 @@
 		395EDD241B8F56BC0012A465 /* Crowd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Crowd.swift; path = Models/Crowd.swift; sourceTree = "<group>"; };
 		39737EBC1BB56ED4001AA6C6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3978FE201BB32BF100DF742A /* BookInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookInformationViewController.swift; path = ViewControllers/BookInformationViewController.swift; sourceTree = "<group>"; };
+		39986DA31BDE574A00616DFB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ViewControllers/Search/SearchViewController.swift; sourceTree = "<group>"; };
 		399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		39A0CAFD1B958B0D00321225 /* SelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionViewController.swift; path = ViewControllers/SelectionViewController.swift; sourceTree = "<group>"; };
 		39A655F11BD1199D0075CB81 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = ViewControllers/ListViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 		3953BFA91B8E223300E39CC9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				39986DA21BDE571600616DFB /* Search */,
 				39231D651BCE6CA4007E02D7 /* Crowd */,
 				39231D661BCE6CB8007E02D7 /* Book */,
 				39231D671BCE6CDE007E02D7 /* Shelf */,
@@ -363,6 +366,14 @@
 				392169141BAF702A0029A6C8 /* RLMWrapper.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		39986DA21BDE571600616DFB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				39986DA31BDE574A00616DFB /* SearchViewController.swift */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		39A0CB051B95D2BB00321225 /* ViewControllers */ = {
@@ -644,6 +655,7 @@
 				392E42CD1BBADBAA0080CCBD /* ActivityIndicatorView.swift in Sources */,
 				392E42D01BBAE8D20080CCBD /* MessagePopupView.swift in Sources */,
 				392169181BB083E70029A6C8 /* SerializableObject.swift in Sources */,
+				39986DA41BDE574A00616DFB /* SearchViewController.swift in Sources */,
 				39548E721BD64B1B00C49E3A /* ListTableViewCell+Button.swift in Sources */,
 				395EDD251B8F56BC0012A465 /* Crowd.swift in Sources */,
 				39C2F5B31B90A2EE00529AA9 /* CollectableCell.swift in Sources */,

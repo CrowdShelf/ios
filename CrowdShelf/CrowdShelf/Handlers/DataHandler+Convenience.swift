@@ -11,6 +11,16 @@ import RealmSwift
 
 extension DataHandler {
     
+    public class func removeBookForUser(userID: String, withISBN ISBN: String, completionHandler: ((Bool)->Void)?) {
+        DataHandler.getBooksWithParameters(["owner": userID, "isbn":ISBN]) { (books) -> Void in
+            if let book = books.first {
+                DataHandler.removeBook(book._id, withCompletionHandler: { (isSuccess) -> Void in
+                    completionHandler?(isSuccess)
+                })
+            }
+        }
+    }
+    
     public class func addUserWithUsername(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((String?, Bool)->Void)?) {
         
         self.loginWithUsername(username) { (user) -> Void in
@@ -50,17 +60,13 @@ extension DataHandler {
                 return completionHandler([])
             }
             
-            var booksUpdated = 0
             for book in books {
                 DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
                     Realm.write { realm -> Void in
                         book.details = information.first
                     }
                     
-                    booksUpdated++
-                    if booksUpdated == books.count {
-                        completionHandler(books)
-                    }
+                    completionHandler(books)
                 })
             }
         }

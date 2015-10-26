@@ -30,20 +30,6 @@ extension DataHandler {
     
     internal class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([BookInformation]) -> Void)) {
         
-        let mapping = [
-            "providerID"        : "id",
-            "authors"           : "volumeInfo.authors",
-            "publisher"         : "volumeInfo.publisher",
-            "summary"           : "volumeInfo.description",
-            "title"             : "volumeInfo.title",
-            "numberOfPages"     : "volumeInfo.pageCount",
-            "numberOfRatings"   : "volumeInfo.ratingsCount",
-            "averageRating"     : "volumeInfo.averageRating",
-            "thumbnailURLString": "volumeInfo.imageLinks.thumbnail",
-            "categories"        : "volumeInfo.categories"
-        ]
-        
-        
         self.sendRequestWithRoute("https://www.googleapis.com/books/v1/volumes", usingMethod: .GET, andParameters: ["q": "isbn:\(isbn)"], parameterEncoding: .URL) { (result, isSuccess) -> Void in
             
             var informationObjects: [BookInformation] = []
@@ -52,8 +38,7 @@ extension DataHandler {
                 if let itemArray = resultDictionary["items"] as? [[String: AnyObject]] {
                     for itemInfo in itemArray {
                         
-                        var value = self.dictionaryFromDictionary(itemInfo, usingMapping: mapping)
-                        value["isbn"] = isbn
+                        var value = self.dictionaryFromDictionary(itemInfo, usingMapping: mapping())
                         value["provider"] = "google"
                         
                         informationObjects.append(BookInformation(value: value))
@@ -64,5 +49,42 @@ extension DataHandler {
             
             completionHandler(informationObjects)
         }
+    }
+    
+    internal class func resultsFromGoogleForQuery(query: String, withCompletionHandler completionHandler: (([BookInformation]) -> Void)) {
+        
+        self.sendRequestWithRoute("https://www.googleapis.com/books/v1/volumes", usingMethod: .GET, andParameters: ["q": "\(query)"], parameterEncoding: .URL) { (result, isSuccess) -> Void in
+            
+            var informationObjects: [BookInformation] = []
+            
+            if let resultDictionary = result as? [String: AnyObject] {
+                if let itemArray = resultDictionary["items"] as? [[String: AnyObject]] {
+                    itemArray.forEach({ (itemInfo) -> () in
+                        var value = self.dictionaryFromDictionary(itemInfo, usingMapping: mapping())
+                        value["provider"] = "google"
+                        
+                        informationObjects.append(BookInformation(value: value))
+                    })
+                }
+            }
+
+            completionHandler(informationObjects)
+        }
+    }
+    
+    internal class func mapping() -> [String: String] {
+        return [
+            "providerID"        : "id",
+            "authors"           : "volumeInfo.authors",
+            "publisher"         : "volumeInfo.publisher",
+            "summary"           : "volumeInfo.description",
+            "title"             : "volumeInfo.title",
+            "numberOfPages"     : "volumeInfo.pageCount",
+            "numberOfRatings"   : "volumeInfo.ratingsCount",
+            "averageRating"     : "volumeInfo.averageRating",
+            "thumbnailURLString": "volumeInfo.imageLinks.thumbnail",
+            "categories"        : "volumeInfo.categories",
+            "isbn"              : "volumeInfo.industryIdentifiers.identifier.@firstObject"
+        ]
     }
 }

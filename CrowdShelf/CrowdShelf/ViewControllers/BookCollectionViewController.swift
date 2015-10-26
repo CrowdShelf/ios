@@ -38,7 +38,8 @@ class BookCollectionViewController: CollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("ShowBook", sender: self.collectionData[indexPath.row])
+        let book = self.collectionData[indexPath.row] as? Book
+        self.performSegueWithIdentifier("ShowBook", sender: book?.details)
     }
     
     override func done(sender: AnyObject) {

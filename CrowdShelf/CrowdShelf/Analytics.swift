@@ -26,9 +26,9 @@ class Analytics{
     }
     
     /// Adds an event with properties
-    class func addBookProperties(book: Book){
-        let categories = book.details?.categories.map {$0.content as! String}
-        let list:NSArray = categories!
+    class func addBookProperties(bookInformation: BookInformation){
+        let categories = bookInformation.categories.map {$0.content as! String}
+        let list:NSArray = categories
          Mixpanel.sharedInstance().people.append(["Categories":  list])
     }
     

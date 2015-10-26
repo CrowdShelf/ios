@@ -28,6 +28,34 @@ public class DataHandler {
 
 //    MARK: - Book Information
     
+    public class func resultsForQuery(query: String, withCompletionHandler completionHandler: (([BookInformation])->Void)) {
+        if query.characters.count < 2 {
+            return completionHandler([])
+        }
+        
+        self.resultsFromGoogleForQuery(query) { (bookInformationArray) -> Void in
+            
+            for bookInformation in bookInformationArray {
+                if let URL = NSURL(string: bookInformation.thumbnailURLString) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                        if let thumbnailData = NSData(contentsOfURL: URL) {
+                            
+                            Realm.write { realm -> Void in
+                                bookInformation.thumbnailData = thumbnailData
+                            }
+                            
+                            completionHandler(bookInformationArray)
+                        }
+                    })
+                }
+            }
+            
+//            completionHandler(bookInformationArray)
+        }
+    }
+    
+    
+    
     /**
     
     Retrieve information about a book
@@ -74,7 +102,6 @@ public class DataHandler {
             
             completionHandler(bookInformationArray)
         }
-        
     }
     
     private class func cacheObjects(objects: [Object]) -> Bool {

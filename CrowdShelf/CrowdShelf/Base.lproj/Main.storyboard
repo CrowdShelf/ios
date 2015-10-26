@@ -168,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="777"/>
+            <point key="canvasLocation" x="78" y="777"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zzL-nk-dmD">
@@ -184,6 +184,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="1Hz-dQ-H0K" kind="relationship" relationship="viewControllers" id="iFj-F2-VEf"/>
+                        <segue destination="V8K-gR-AvX" kind="relationship" relationship="viewControllers" id="qBR-cZ-RYB"/>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="gCC-YM-RDF"/>
                         <segue destination="yDa-ZK-hJj" kind="relationship" relationship="viewControllers" id="r9v-3a-end"/>
                     </connections>
@@ -581,7 +582,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLy-Aq-v5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2000" y="777"/>
+            <point key="canvasLocation" x="2532" y="777"/>
         </scene>
         <!--Book Collection View Controller-->
         <scene sceneID="UAb-Xh-2m9">
@@ -781,7 +782,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWF-r5-tfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="777"/>
+            <point key="canvasLocation" x="2128" y="777"/>
         </scene>
         <!--Crowd shelf-->
         <scene sceneID="X14-Vi-j4Z">
@@ -828,7 +829,53 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7x-LB-IPJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2441" y="777"/>
+            <point key="canvasLocation" x="2973" y="777"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="JqW-dV-VWJ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Coh-1w-Fzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="USC-04-TNl">
+                    <connections>
+                        <outlet property="delegate" destination="eJR-EY-DrN" id="AUW-53-tZA"/>
+                        <outlet property="searchContentsController" destination="eJR-EY-DrN" id="EOy-V9-ZfC"/>
+                        <outlet property="searchResultsDataSource" destination="eJR-EY-DrN" id="nEi-Z6-J2g"/>
+                        <outlet property="searchResultsDelegate" destination="eJR-EY-DrN" id="H7B-GS-QmI"/>
+                    </connections>
+                </searchDisplayController>
+                <viewController id="eJR-EY-DrN" customClass="SearchViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X7a-Bt-jOC"/>
+                        <viewControllerLayoutGuide type="bottom" id="bej-Om-PW2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dxi-Mv-BmH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VZZ-rJ-KMf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="VZZ-rJ-KMf" secondAttribute="trailing" constant="-16" id="6aW-U6-QIh"/>
+                            <constraint firstItem="bej-Om-PW2" firstAttribute="top" secondItem="VZZ-rJ-KMf" secondAttribute="bottom" id="8WJ-R2-zUv"/>
+                            <constraint firstItem="VZZ-rJ-KMf" firstAttribute="leading" secondItem="Dxi-Mv-BmH" secondAttribute="leadingMargin" constant="-16" id="Rp8-jK-a7g"/>
+                            <constraint firstItem="VZZ-rJ-KMf" firstAttribute="top" secondItem="Dxi-Mv-BmH" secondAttribute="topMargin" id="nSc-hj-nAN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="aQW-DI-yJL"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="USC-04-TNl" id="UN4-AV-NYS"/>
+                        <outlet property="tableView" destination="VZZ-rJ-KMf" id="kIt-KG-Z11"/>
+                        <segue destination="5fy-Sp-5Y7" kind="modal" identifier="ShowBook" id="CED-GD-45v"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="985" y="771"/>
         </scene>
         <!--Crowds-->
         <scene sceneID="Ysd-DR-yCV">
@@ -848,7 +895,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fx-fN-uaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128" y="777"/>
+            <point key="canvasLocation" x="1660" y="777"/>
         </scene>
         <!--Book-->
         <scene sceneID="XZ6-oi-i6T">
@@ -1003,6 +1050,26 @@
             </objects>
             <point key="canvasLocation" x="767" y="1833"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nVm-am-U7a">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V8K-gR-AvX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="flw-cp-7su"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TR8-zE-JWI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eJR-EY-DrN" kind="relationship" relationship="rootViewController" id="qZe-vm-9dG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aSA-4b-HYE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573" y="771"/>
+        </scene>
     </scenes>
     <resources>
         <image name="barcode" width="50" height="50"/>
@@ -1011,7 +1078,7 @@
         <image name="shelf" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eF4-vb-qZc"/>
+        <segue reference="CED-GD-45v"/>
         <segue reference="zYk-KH-Iu8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -89,7 +89,7 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
     }
     
     func shelfTableViewCell(shelfTableViewCell: ShelfTableViewCell, didSelectBook book: Book) {
-        self.performSegueWithIdentifier("ShowBook", sender: book)
+        self.performSegueWithIdentifier("ShowBook", sender: book.details!)
     }
     
 //    MARK: - Actions
