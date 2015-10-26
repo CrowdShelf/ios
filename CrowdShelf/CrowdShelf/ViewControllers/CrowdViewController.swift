@@ -61,6 +61,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         crowd.members.append(RLMWrapper(User.localUser!._id))
         crowd.name = "New Group"
         crowd.owner = User.localUser!._id
+        Analytics.addEvent("CreateCrowd")
         return crowd
     }
     
@@ -102,6 +103,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         let alertView = UIAlertView(title: "Add member", message: "Please provide a valid user name", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
         alertView.alertViewStyle = .PlainTextInput
         alertView.show()
+        Analytics.addEvent("AddMember")
     }
     
     internal func leaveCrowd() {
@@ -110,6 +112,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
             activityIndicatorView.stop()
             if isSuccess {
                 self.navigationController?.popViewControllerAnimated(true)
+                Analytics.addEvent("LeaveCrowd")
             }
         }
     }
@@ -187,6 +190,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         DataHandler.deleteCrowd(self.crowd!._id) { (isSuccess) -> Void in
             if isSuccess {
                 self.navigationController?.popViewControllerAnimated(true)
+                Analytics.addEvent("DeleteCrowd")
             } else {
                 MessagePopupView(message: "Failed to delete crowd", messageStyle: .Error).showInView(self.view)
             }
