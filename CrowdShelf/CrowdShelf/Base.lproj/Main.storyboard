@@ -567,14 +567,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ORI-Xx-LUY" secondAttribute="trailing" constant="-16" id="eKK-1o-yVO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Crowd" id="BDI-Uc-UWI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="3F0-0l-7S7">
-                            <color key="tintColor" red="0.97254901959999995" green="0.29411764709999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="deleteCrowd:" destination="Kcj-5x-49a" id="Ppb-J0-2KS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Crowd" id="BDI-Uc-UWI"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="iconImageView" destination="Nhi-W0-TDq" id="wF6-Nn-scl"/>
@@ -959,7 +952,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyStars" translatesAutoresizingMaskIntoConstraints="NO" id="EK4-wD-Y8j">
-                                            <rect key="frame" x="98" y="82" width="150" height="27.5"/>
+                                            <rect key="frame" x="98" y="82" width="150" height="28"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="KTb-N3-M75"/>
@@ -994,18 +987,6 @@
                                         <outletCollection property="gestureRecognizers" destination="41y-Jc-Igk" appends="YES" id="tWs-F7-oGx"/>
                                     </connections>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7TE-HQ-HfD">
-                                        <rect key="frame" x="0.0" y="233.5" width="320" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7TE-HQ-HfD" id="7Dm-7j-mcB">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <animations/>

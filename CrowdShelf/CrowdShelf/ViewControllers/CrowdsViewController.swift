@@ -41,9 +41,6 @@ class CrowdsViewController: CollectionViewController {
     }
     
     override func updateContent() {
-        super.updateContent()
-        
-        
         DataHandler.getCrowdsWithParameters(["member":User.localUser!._id]) { (crowds) -> Void in
             self.crowds = crowds
             self.collectionView?.reloadData()
