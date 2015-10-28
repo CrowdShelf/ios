@@ -9,80 +9,41 @@
 import UIKit
 
 
+protocol ListViewControllerDelegate {
+    func listViewController(listViewController: ListViewController, performActionForIndexPath indexPath: NSIndexPath)
+}
+
+@objc protocol ListViewControllerDataSource {
+    optional func listViewController(listViewController: ListViewController, accessoryTypeForIndexPath indexPath: NSIndexPath) -> UITableViewCellAccessoryType
+    optional func listViewController(listViewController: ListViewController, shouldShowSubtitleForCellAtIndexPath indexPath: NSIndexPath) -> Bool
+}
+
 class ListViewController: BaseViewController {
     
-    class Button: Listable {
-        enum ButtonStyle {
-            case Normal, Danger, None
-            
-            var titleColor: UIColor {
-                switch self {
-                case .Danger:
-                    return UIColor.redColor()
-                case .None, .Normal:
-                    return UIColor.blackColor()
-                }
-            }
-            
-            var subtitleColor: UIColor {
-                switch self {
-                case .Danger:
-                    return UIColor.redColor()
-                case .None, .Normal:
-                    return UIColor.blackColor()
-                }
-            }
-            
-            var imageTintColor: UIColor {
-                switch self {
-                case .Danger:
-                    return UIColor.redColor()
-                case .Normal:
-                    return UIView().tintColor
-                case .None:
-                    return UIColor.blackColor()
-                }
-            }
-            
-            var imageBorderColor: UIColor {
-                switch self {
-                case .Danger, .Normal:
-                    return UIColor.clearColor()
-                case .None:
-                    return UIColor.lightGrayColor()
-                }
-            }
-        }
-        
-        @objc var title: String
-        @objc var subtitle: String?
-        @objc var image: UIImage?
-        var buttonStyle: ButtonStyle
-        
-        init(title: String, subtitle: String? = nil, image: UIImage? = nil, buttonStyle: ButtonStyle = .Normal) {
-            self.title = title
-            self.subtitle = subtitle
-            self.image = image
-            self.buttonStyle = buttonStyle
-        }
-    }
-    
     @IBOutlet var tableView: UITableView?
+    
+    var delegate: ListViewControllerDelegate?
+    var dataSource: ListViewControllerDataSource?
     
     lazy var tableViewDataSource: TableViewArrayDataSource = {
         return TableViewArrayDataSource(cellReuseIdentifier: ListTableViewCell.cellReuseIdentifier) { (cell, item, indexPath) -> Void in
             
             let listCell = cell as? ListTableViewCell
-            listCell?.showSubtitle = false
             listCell?.listable = item as? Listable
-            listCell?.configureForButtonStyle((item as? Button)?.buttonStyle ?? .None)
-            listCell?.accessoryType = self.accessoryTypeForIndexPath(indexPath)
             
+            listCell?.configureForButtonStyle((item as? Button)?.buttonStyle ?? .None)
+            
+            listCell?.accessoryType = self.dataSource?.listViewController?(self, accessoryTypeForIndexPath: indexPath) ?? .None
+            listCell?.showSubtitle = self.dataSource?.listViewController?(self, shouldShowSubtitleForCellAtIndexPath: indexPath) ?? false
         }
     }()
     
     lazy var tableViewDelegate: TableViewSelectionDelegate = {
-        return TableViewSelectionDelegate { (_, indexPath, selected) -> Void in }
+        return TableViewSelectionDelegate { (_, indexPath, selected) -> Void in
+            if selected {
+                self.delegate?.listViewController(self, performActionForIndexPath: indexPath)
+            }
+        }
     }()
     
     override func viewDidLoad() {
@@ -94,9 +55,5 @@ class ListViewController: BaseViewController {
         tableView!.delegate = tableViewDelegate
         
         tableView!.reloadData()
-    }
-    
-    func accessoryTypeForIndexPath(indexPath: NSIndexPath) -> UITableViewCellAccessoryType {
-        return .None
     }
 }

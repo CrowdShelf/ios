@@ -9,10 +9,12 @@
 import UIKit
 import RealmSwift
 
-
+public func ==(lhs: BookInformation, rhs: BookInformation) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+}
 
 /// A class representing detail about a book
-public class BookInformation: BaseModel, Listable {
+public class BookInformation: BaseModel, Listable, Collectable, Hashable {
     
     dynamic var providerID                  = ""
     dynamic var provider                    = ""

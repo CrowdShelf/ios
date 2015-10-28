@@ -23,6 +23,7 @@ class CrowdsViewController: CollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.collectionViewDataSource.configurationHandler = {
             let cell = $0 as! CollectableCell
             cell.imageViewStyle = .Round
@@ -34,15 +35,19 @@ class CrowdsViewController: CollectionViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadCrowds()
+        if collectionData.isEmpty {
+            updateContent()
+        }
     }
     
-    func loadCrowds() {
-        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Looking for crowds", inView: self.view)
+    override func updateContent() {
+        super.updateContent()
+        
+        
         DataHandler.getCrowdsWithParameters(["member":User.localUser!._id]) { (crowds) -> Void in
             self.crowds = crowds
             self.collectionView?.reloadData()
-            activityIndicatorView.stop()
+            self.refreshControl.endRefreshing()
         }
     }
     

@@ -17,9 +17,15 @@ class Shelf {
     /// All valid books in the shelf
     var books: [Book] = []
     
+    var titles: [BookInformation] {
+        let titles = books.filter{$0.details != nil}.map {$0.details!}
+        let uniqueTitles = Set(titles)
+        return Array(uniqueTitles)
+    }
+    
     init(name: String, parameters: [String: AnyObject]?, filter: ((Book)->Bool)) {
-        self.filter = filter
+        self.filter     = filter
         self.parameters = parameters
-        self.name = name
+        self.name       = name
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 protocol ShelfTableViewCellDelegate {
     func showAllBooksForShelfTableViewCell(shelfTableViewCell: ShelfTableViewCell)
-    func shelfTableViewCell(shelfTableViewCell: ShelfTableViewCell, didSelectBook book: Book)
+    func shelfTableViewCell(shelfTableViewCell: ShelfTableViewCell, didSelectTitle title: BookInformation)
 }
 
 class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
@@ -62,7 +62,7 @@ class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
     }
     
     private func updateView() {
-        self.collectionViewDataSource?.data = self.shelf?.books ?? []
+        self.collectionViewDataSource?.data = self.shelf?.titles ?? []
         self.collectionView?.reloadData()
         
         self.titleLabel?.text = self.shelf?.name
@@ -72,7 +72,7 @@ class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
 //    MARK: Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.delegate?.shelfTableViewCell(self, didSelectBook: self.collectionViewDataSource?.dataForIndexPath(indexPath) as! Book)
+        self.delegate?.shelfTableViewCell(self, didSelectTitle: self.collectionViewDataSource?.dataForIndexPath(indexPath) as! BookInformation)
     }
     
 //    MARK: Actions

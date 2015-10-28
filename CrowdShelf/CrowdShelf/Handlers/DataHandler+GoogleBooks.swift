@@ -40,6 +40,7 @@ extension DataHandler {
                         
                         var value = self.dictionaryFromDictionary(itemInfo, usingMapping: mapping())
                         value["provider"] = "google"
+                        value["isbn"] = self.isbnFromItemInfoDictionary(itemInfo)
                         
                         informationObjects.append(BookInformation(value: value))
                         
@@ -62,6 +63,7 @@ extension DataHandler {
                     itemArray.forEach({ (itemInfo) -> () in
                         var value = self.dictionaryFromDictionary(itemInfo, usingMapping: mapping())
                         value["provider"] = "google"
+                        value["isbn"] = self.isbnFromItemInfoDictionary(itemInfo)
                         
                         informationObjects.append(BookInformation(value: value))
                     })
@@ -70,6 +72,22 @@ extension DataHandler {
 
             completionHandler(informationObjects)
         }
+    }
+    
+    private class func isbnFromItemInfoDictionary(dictionary: [String: AnyObject]) -> String? {
+        if let volumeInfo = dictionary["volumeInfo"] as? [String: AnyObject] {
+            if let industryIdentifiers = volumeInfo["industryIdentifiers"] as? [[String: String]] {
+               
+                for identifier in industryIdentifiers {
+                    if identifier["type"] == "ISBN_10" || identifier["type"] == "ISBN_13" {
+                        return identifier["identifier"]
+                    }
+                }
+            
+            }
+        }
+        
+        return nil
     }
     
     internal class func mapping() -> [String: String] {

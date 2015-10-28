@@ -11,7 +11,7 @@ import Foundation
 
 extension ListTableViewCell {
     
-    func configureForButtonStyle(buttonStyle: ListViewController.Button.ButtonStyle) {
+    func configureForButtonStyle(buttonStyle: Button.ButtonStyle) {
         self.iconImageView?.borderColor = buttonStyle.imageBorderColor
         self.titleLabel?.textColor = buttonStyle.titleColor
         self.subtitleLabel?.textColor = buttonStyle.subtitleColor

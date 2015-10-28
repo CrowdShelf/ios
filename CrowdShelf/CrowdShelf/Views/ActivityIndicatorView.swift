@@ -29,6 +29,7 @@ class ActivityIndicatorView: UIView {
         self.messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.messageLabel.textAlignment = NSTextAlignment.Center
+        backgroundColor = UIColor.whiteColor()
         
         self.addSubview(self.messageLabel)
         self.addSubview(self.activityIndicator)

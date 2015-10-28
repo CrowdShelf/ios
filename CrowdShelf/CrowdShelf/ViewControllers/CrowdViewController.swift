@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CrowdViewController: ListViewController, UIAlertViewDelegate {
+class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewControllerDataSource, ListViewControllerDelegate {
     
     var crowd: Crowd? {
         didSet {
@@ -35,22 +35,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.dataSource = self
+        self.delegate = self
+        
         self.updateView()
-        
-        self.tableViewDelegate.selectionHandler = {[unowned self] (_, indexPath, selected) -> Void in
-            if selected {
-                if indexPath.section == 0 && indexPath.row == 0 {
-                    return self.performSegueWithIdentifier("ShowCrowdShelf", sender: self)
-                }
-                
-                if indexPath.section == 1 && indexPath.row == 0 {
-                    self.addMember()
-                } else if indexPath.section == 2 && indexPath.row == 0 {
-                    self.leaveCrowd()
-                }
-            }
-        }
-        
         self.updateItemsWithListables([])
         
         self.nameField?.delegate = nameFieldDelegate
@@ -61,6 +49,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         crowd.members.append(RLMWrapper(User.localUser!._id))
         crowd.name = "New Group"
         crowd.owner = User.localUser!._id
+        Analytics.addEvent("CreateCrowd")
         return crowd
     }
     
@@ -90,18 +79,11 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         iconImageView?.alternativeInfo = crowd?.name.initials
     }
     
-    override func accessoryTypeForIndexPath(indexPath: NSIndexPath) -> UITableViewCellAccessoryType {
-        if indexPath.section == 0 {
-            return .DisclosureIndicator
-        }
-
-        return .None
-    }
-    
     internal func addMember() {
         let alertView = UIAlertView(title: "Add member", message: "Please provide a valid user name", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
         alertView.alertViewStyle = .PlainTextInput
         alertView.show()
+        Analytics.addEvent("AddMember")
     }
     
     internal func leaveCrowd() {
@@ -110,6 +92,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
             activityIndicatorView.stop()
             if isSuccess {
                 self.navigationController?.popViewControllerAnimated(true)
+                Analytics.addEvent("LeaveCrowd")
             }
         }
     }
@@ -176,6 +159,8 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         }
     }
     
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowCrowdShelf" {
             let crowdShelfVC = segue.destinationViewController as! CrowdBookCollectionViewController
@@ -183,13 +168,54 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate {
         }
     }
     
+    
+    
     @IBAction func deleteCrowd(sender: AnyObject) {
         DataHandler.deleteCrowd(self.crowd!._id) { (isSuccess) -> Void in
             if isSuccess {
                 self.navigationController?.popViewControllerAnimated(true)
+                Analytics.addEvent("DeleteCrowd")
             } else {
                 MessagePopupView(message: "Failed to delete crowd", messageStyle: .Error).showInView(self.view)
             }
         }
     }
+    
+    
+    
+    
+//    MARK: List View Data Source
+    
+    func listViewController(listViewController: ListViewController, accessoryTypeForIndexPath indexPath: NSIndexPath) -> UITableViewCellAccessoryType {
+        if indexPath.section == 0 {
+            return .DisclosureIndicator
+        }
+        
+        return .None
+    }
+    
+    func listViewController(listViewController: ListViewController, shouldShowSubtitleForCellAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
+//    MARK: List View Delegate
+    
+    func listViewController(listViewController: ListViewController, performActionForIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                self.performSegueWithIdentifier("ShowCrowdShelf", sender: self)
+            }
+        }
+        else if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                self.addMember()
+            }
+        }
+        else if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                self.leaveCrowd()
+            }
+        }
+    }
+    
 }

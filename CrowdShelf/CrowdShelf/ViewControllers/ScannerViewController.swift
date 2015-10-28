@@ -20,15 +20,14 @@ class ScannerViewController: BaseViewController {
     var scannedCodes = Set<String>()
     
 
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        self.scannedCodes = Set<String>()
-        if self.scanner == nil {
-            self.scanner = MTBBarcodeScanner(previewView: self.scannerView)
+        scannedCodes = Set<String>()
+        if scanner == nil {
+            scanner = MTBBarcodeScanner(previewView: scannerView)
         }
-        self.startScanner()
+        startScanner()
     }
     
     func stopScanner() {
@@ -47,6 +46,28 @@ class ScannerViewController: BaseViewController {
                         }
                     }
                 })
+            }
+        }
+    }
+    
+    @IBAction func toggleLight(sender: AnyObject) {
+        let avDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        
+        if avDevice.hasTorch {
+
+            do {
+                try avDevice.lockForConfiguration()
+
+                if avDevice.torchActive {
+                    avDevice.torchMode = AVCaptureTorchMode.Off
+                } else {
+                    try avDevice.setTorchModeOnWithLevel(1.0)
+                }
+
+                avDevice.unlockForConfiguration()
+            }
+            catch let error as NSError {
+                print(error.debugDescription)
             }
         }
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="InS-OY-1C2" customClass="ListTableViewCell" customModule="CrowdShelf" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="InS-OY-1C2" id="TBk-Mx-5eR">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="InS-OY-1C2" id="TBk-Mx-5eR">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -29,8 +29,13 @@
                                 <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="B3p-w7-hEl"/>
+                            </mask>
+                        </variation>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAT-XF-SdG">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAT-XF-SdG">
                         <rect key="frame" x="58.5" y="8" width="253.5" height="18"/>
                         <animations/>
                         <constraints>
@@ -40,7 +45,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xso-Sj-yck">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xso-Sj-yck">
                         <rect key="frame" x="58.5" y="28.5" width="253.5" height="13"/>
                         <animations/>
                         <constraints>
@@ -53,16 +58,23 @@
                 </subviews>
                 <animations/>
                 <constraints>
+                    <constraint firstItem="mfj-Rs-c9Q" firstAttribute="top" secondItem="TBk-Mx-5eR" secondAttribute="topMargin" id="0xd-1q-tv7"/>
                     <constraint firstItem="xso-Sj-yck" firstAttribute="leading" secondItem="mfj-Rs-c9Q" secondAttribute="trailing" constant="16" id="4dc-xc-zts"/>
                     <constraint firstItem="CAT-XF-SdG" firstAttribute="trailing" secondItem="TBk-Mx-5eR" secondAttribute="trailingMargin" id="7uC-Qk-fwW"/>
                     <constraint firstItem="CAT-XF-SdG" firstAttribute="centerY" secondItem="TBk-Mx-5eR" secondAttribute="centerY" id="8Rb-5N-b4a"/>
                     <constraint firstItem="mfj-Rs-c9Q" firstAttribute="centerY" secondItem="TBk-Mx-5eR" secondAttribute="centerY" id="9Pn-WX-VHi"/>
                     <constraint firstItem="CAT-XF-SdG" firstAttribute="top" secondItem="TBk-Mx-5eR" secondAttribute="topMargin" id="Hb6-m1-aYM"/>
                     <constraint firstItem="mfj-Rs-c9Q" firstAttribute="leading" secondItem="TBk-Mx-5eR" secondAttribute="leadingMargin" id="Jpd-k7-wqy"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="mfj-Rs-c9Q" secondAttribute="bottom" constant="-1" id="V9S-aV-V51"/>
                     <constraint firstItem="CAT-XF-SdG" firstAttribute="leading" secondItem="mfj-Rs-c9Q" secondAttribute="trailing" constant="16" id="YPO-g3-61x"/>
                     <constraint firstAttribute="bottomMargin" secondItem="xso-Sj-yck" secondAttribute="bottom" id="cQa-qL-Uq1"/>
                     <constraint firstItem="xso-Sj-yck" firstAttribute="trailing" secondItem="TBk-Mx-5eR" secondAttribute="trailingMargin" id="zya-4T-q9p"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="9Pn-WX-VHi"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <animations/>
             <connections>

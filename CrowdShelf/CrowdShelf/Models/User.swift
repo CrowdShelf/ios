@@ -36,6 +36,10 @@ public class User: BaseModel, Listable {
     
 //    MARK: Realm Object
     
+    public override func ignoreProperties() -> Set<String> {
+        return ["image"]
+    }
+    
     override public static func ignoredProperties() -> [String] {
         return ["image"]
     }

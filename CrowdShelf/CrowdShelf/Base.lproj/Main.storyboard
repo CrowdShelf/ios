@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mxW-2f-Nzp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mxW-2f-Nzp">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -20,12 +20,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="175" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="603-0F-HoX">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShelfCell" rowHeight="175" id="dbK-qQ-b0O" customClass="ShelfTableViewCell" customModule="CrowdShelf" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="175"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dbK-qQ-b0O" id="Hyl-Sd-nUP">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
@@ -91,76 +91,81 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Il4-uO-wio">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="wba-iz-ie0"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="My shelf" id="zxm-aU-JQD">
-                                        <barButtonItem key="leftBarButtonItem" title="Log out" id="4kf-0m-11Z">
-                                            <connections>
-                                                <action selector="logOut:" destination="1Hz-dQ-H0K" id="bEH-hg-0hO"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IO0-yA-z7U" firstAttribute="top" secondItem="603-0F-HoX" secondAttribute="bottom" id="2O7-Kl-6VQ"/>
                             <constraint firstItem="603-0F-HoX" firstAttribute="leading" secondItem="0TO-ib-Qoc" secondAttribute="leadingMargin" constant="-16" id="cjM-rf-sR9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Il4-uO-wio" secondAttribute="trailing" constant="-16" id="ea2-TJ-8HK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="603-0F-HoX" secondAttribute="trailing" constant="-16" id="nWe-Xb-YXz"/>
-                            <constraint firstItem="Il4-uO-wio" firstAttribute="top" secondItem="0TO-ib-Qoc" secondAttribute="topMargin" id="rHr-FP-CY3"/>
-                            <constraint firstItem="Il4-uO-wio" firstAttribute="leading" secondItem="0TO-ib-Qoc" secondAttribute="leadingMargin" constant="-16" id="tOC-94-g4K"/>
-                            <constraint firstItem="603-0F-HoX" firstAttribute="top" secondItem="0TO-ib-Qoc" secondAttribute="topMargin" constant="64" id="tgh-Mk-U2U"/>
+                            <constraint firstItem="603-0F-HoX" firstAttribute="top" secondItem="0TO-ib-Qoc" secondAttribute="topMargin" id="tgh-Mk-U2U"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My shelf" image="shelf" id="fja-BK-egk"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="My shelf" id="bpn-pk-sCg">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="GEd-Ud-HVh">
+                            <connections>
+                                <action selector="logOut:" destination="1Hz-dQ-H0K" id="tIP-kd-JmL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="603-0F-HoX" id="b1S-wN-YjD"/>
-                        <segue destination="N4g-th-j1A" kind="modal" identifier="ShowAllBooks" id="bGK-nV-vjE"/>
+                        <segue destination="N4g-th-j1A" kind="push" identifier="ShowAllBooks" id="bGK-nV-vjE"/>
                         <segue destination="5fy-Sp-5Y7" kind="modal" identifier="ShowBook" id="AW7-ct-1VW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNt-Gk-3O8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-418" y="777"/>
+            <point key="canvasLocation" x="-278" y="777"/>
         </scene>
-        <!--Scanner-->
+        <!--Scan barcode-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="ScannerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="ScannerViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScannerViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="ScannerViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PcA-VF-ZBc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <animations/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scannerIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="izr-Xm-of8">
+                                <rect key="frame" x="30" y="194" width="260" height="180"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="izr-Xm-of8" secondAttribute="height" multiplier="13:9" id="SOg-yO-n5A"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="izr-Xm-of8" secondAttribute="trailing" constant="14" id="7Tf-Y3-E5D"/>
                             <constraint firstItem="PcA-VF-ZBc" firstAttribute="bottom" secondItem="kh9-bI-dsS" secondAttribute="bottomMargin" id="9m3-ln-she"/>
+                            <constraint firstItem="izr-Xm-of8" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Ek0-YD-VI9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PcA-VF-ZBc" secondAttribute="trailing" constant="-16" id="HbH-Dz-Jgz"/>
                             <constraint firstItem="PcA-VF-ZBc" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="v5c-vh-toS"/>
+                            <constraint firstItem="izr-Xm-of8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="14" id="wUj-vE-gAe"/>
                             <constraint firstItem="PcA-VF-ZBc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="zxU-be-kKt"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Scanner" image="barcode" id="Qj1-Bh-thh"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Scan barcode" id="UvD-7o-cFM">
+                        <barButtonItem key="rightBarButtonItem" title="Light" id="g6g-3D-NpK">
+                            <connections>
+                                <action selector="toggleLight:" destination="vXZ-lx-hvc" id="BGF-u0-0qb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="scannerView" destination="PcA-VF-ZBc" id="3LF-ad-zae"/>
                         <segue destination="5fy-Sp-5Y7" kind="modal" identifier="ShowBook" id="E8c-Wd-HfK"/>
@@ -168,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="777"/>
+            <point key="canvasLocation" x="1687" y="777"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zzL-nk-dmD">
@@ -183,9 +188,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="1Hz-dQ-H0K" kind="relationship" relationship="viewControllers" id="iFj-F2-VEf"/>
+                        <segue destination="JDC-UX-uPU" kind="relationship" relationship="viewControllers" id="iFj-F2-VEf"/>
                         <segue destination="V8K-gR-AvX" kind="relationship" relationship="viewControllers" id="qBR-cZ-RYB"/>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="gCC-YM-RDF"/>
                         <segue destination="yDa-ZK-hJj" kind="relationship" relationship="viewControllers" id="r9v-3a-end"/>
                     </connections>
                 </tabBarController>
@@ -287,7 +291,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZAO-ht-3o7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-365" y="-116"/>
+            <point key="canvasLocation" x="523" y="-932"/>
         </scene>
         <!--Introduction to Algorithms-->
         <scene sceneID="RoU-RX-M6U">
@@ -582,7 +586,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLy-Aq-v5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2532" y="777"/>
+            <point key="canvasLocation" x="3064" y="777"/>
         </scene>
         <!--Book Collection View Controller-->
         <scene sceneID="UAb-Xh-2m9">
@@ -593,54 +597,35 @@
                         <viewControllerLayoutGuide type="bottom" id="PYE-F8-C7V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QQi-OH-fxL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qkU-e2-Wv1">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qkU-e2-Wv1">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="58" maxX="0.0" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="8" id="AkB-4J-0KW">
                                     <size key="itemSize" width="90" height="130"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="8" minY="70" maxX="8" maxY="8"/>
+                                    <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="N4g-th-j1A" id="BqL-nj-zFg"/>
                                 </connections>
                             </collectionView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMT-Xz-xV7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="EoL-0A-2NC"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Books" id="GrQ-5Y-CaZ">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Bqu-f3-qu8">
-                                            <connections>
-                                                <action selector="done:" destination="N4g-th-j1A" id="Ekr-Fb-xBH"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jMT-Xz-xV7" firstAttribute="top" secondItem="QQi-OH-fxL" secondAttribute="topMargin" id="0Ot-TG-Xhl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qkU-e2-Wv1" secondAttribute="trailing" constant="-16" id="82w-WY-zTG"/>
                             <constraint firstItem="qkU-e2-Wv1" firstAttribute="leading" secondItem="QQi-OH-fxL" secondAttribute="leadingMargin" constant="-16" id="9q3-Vu-go5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jMT-Xz-xV7" secondAttribute="trailing" constant="-16" id="AIO-iN-YgM"/>
-                            <constraint firstItem="jMT-Xz-xV7" firstAttribute="leading" secondItem="QQi-OH-fxL" secondAttribute="leadingMargin" constant="-16" id="f4e-7Z-11O"/>
                             <constraint firstItem="qkU-e2-Wv1" firstAttribute="top" secondItem="QQi-OH-fxL" secondAttribute="topMargin" id="gG4-8Z-RUL"/>
                             <constraint firstItem="PYE-F8-C7V" firstAttribute="top" secondItem="qkU-e2-Wv1" secondAttribute="bottom" id="qd3-aT-cfu"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="T8S-lx-8HA"/>
                     <connections>
                         <outlet property="collectionView" destination="qkU-e2-Wv1" id="yyz-pE-bXs"/>
                         <segue destination="5fy-Sp-5Y7" kind="modal" identifier="ShowBook" id="eF4-vb-qZc"/>
@@ -648,7 +633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ykx-Ic-qe9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-418" y="1833"/>
+            <point key="canvasLocation" x="214" y="777"/>
         </scene>
         <!--Selection View Controller-->
         <scene sceneID="8x0-eN-uSa">
@@ -711,7 +696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewb-xI-c2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-727" y="-116"/>
+            <point key="canvasLocation" x="161" y="-932"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kZz-f5-YBR">
@@ -745,7 +730,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vw4-uO-yNu">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vw4-uO-yNu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -782,7 +767,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWF-r5-tfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2128" y="777"/>
+            <point key="canvasLocation" x="2660" y="777"/>
         </scene>
         <!--Crowd shelf-->
         <scene sceneID="X14-Vi-j4Z">
@@ -796,7 +781,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dcc-iX-LWu">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dcc-iX-LWu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -829,20 +814,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7x-LB-IPJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2973" y="777"/>
+            <point key="canvasLocation" x="3505" y="777"/>
         </scene>
         <!--Search-->
         <scene sceneID="JqW-dV-VWJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Coh-1w-Fzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="USC-04-TNl">
-                    <connections>
-                        <outlet property="delegate" destination="eJR-EY-DrN" id="AUW-53-tZA"/>
-                        <outlet property="searchContentsController" destination="eJR-EY-DrN" id="EOy-V9-ZfC"/>
-                        <outlet property="searchResultsDataSource" destination="eJR-EY-DrN" id="nEi-Z6-J2g"/>
-                        <outlet property="searchResultsDelegate" destination="eJR-EY-DrN" id="H7B-GS-QmI"/>
-                    </connections>
-                </searchDisplayController>
                 <viewController id="eJR-EY-DrN" customClass="SearchViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X7a-Bt-jOC"/>
@@ -852,7 +828,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VZZ-rJ-KMf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VZZ-rJ-KMf">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -867,15 +843,30 @@
                             <constraint firstItem="VZZ-rJ-KMf" firstAttribute="top" secondItem="Dxi-Mv-BmH" secondAttribute="topMargin" id="nSc-hj-nAN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="aQW-DI-yJL"/>
+                    <navigationItem key="navigationItem" title="Search" id="aQW-DI-yJL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="QCI-f5-4oG">
+                            <connections>
+                                <segue destination="vXZ-lx-hvc" kind="push" id="hb6-bH-bOA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="USC-04-TNl" id="UN4-AV-NYS"/>
                         <outlet property="tableView" destination="VZZ-rJ-KMf" id="kIt-KG-Z11"/>
                         <segue destination="5fy-Sp-5Y7" kind="modal" identifier="ShowBook" id="CED-GD-45v"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Coh-1w-Fzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="USC-04-TNl">
+                    <connections>
+                        <outlet property="delegate" destination="eJR-EY-DrN" id="AUW-53-tZA"/>
+                        <outlet property="searchContentsController" destination="eJR-EY-DrN" id="EOy-V9-ZfC"/>
+                        <outlet property="searchResultsDataSource" destination="eJR-EY-DrN" id="nEi-Z6-J2g"/>
+                        <outlet property="searchResultsDelegate" destination="eJR-EY-DrN" id="H7B-GS-QmI"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="985" y="771"/>
+            <point key="canvasLocation" x="1278" y="777"/>
         </scene>
         <!--Crowds-->
         <scene sceneID="Ysd-DR-yCV">
@@ -895,7 +886,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fx-fN-uaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1660" y="777"/>
+            <point key="canvasLocation" x="2192" y="777"/>
         </scene>
         <!--Book-->
         <scene sceneID="XZ6-oi-i6T">
@@ -1068,17 +1059,38 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSA-4b-HYE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="573" y="771"/>
+            <point key="canvasLocation" x="866" y="777"/>
+        </scene>
+        <!--My shelf-->
+        <scene sceneID="cGa-o2-tqO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JDC-UX-uPU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My shelf" image="shelf" id="fja-BK-egk"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i0G-Lf-25c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1Hz-dQ-H0K" kind="relationship" relationship="rootViewController" id="scT-N1-ZEw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gcz-kV-dSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-810" y="777"/>
         </scene>
     </scenes>
     <resources>
         <image name="barcode" width="50" height="50"/>
         <image name="crowd" width="50" height="50"/>
         <image name="dummyStars" width="1158" height="224"/>
+        <image name="scannerIndicator" width="361" height="249"/>
         <image name="shelf" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CED-GD-45v"/>
+        <segue reference="E8c-Wd-HfK"/>
         <segue reference="zYk-KH-Iu8"/>
     </inferredMetricsTieBreakers>
 </document>

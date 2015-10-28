@@ -20,6 +20,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
     @IBOutlet weak var doneButton: UIBarButtonItem?
     
     var multipleSelection: Bool = false
+    var refreshControl: UIRefreshControl = UIRefreshControl()
     
     var completionHandler: (([Collectable])->Void)?
     
@@ -42,14 +43,21 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        assert(self.collectionView != nil, "Collection view was not set for CollectionViewController")
+        
         self.collectionView?.dataSource = self.collectionViewDataSource
         self.collectionView?.delegate = self
         
-        
-        assert(self.collectionView != nil, "Collection view was not set for CollectionViewController")
         self.collectionView?.registerCellForClass(CollectableCell)
         
         self.doneButton?.enabled = self.multipleSelection
+        
+        refreshControl.addTarget(self, action: "updateContent", forControlEvents: .ValueChanged)
+        collectionView?.addSubview(refreshControl)
+    }
+    
+    func updateContent() {
+        refreshControl.endRefreshing()
     }
     
     func updateView() {

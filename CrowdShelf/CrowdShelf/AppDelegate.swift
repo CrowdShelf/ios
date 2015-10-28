@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Analytics.initialize()
 //        Get stored user object if possible
         if let userValue = LocalDataHandler.getObjectForKey("user", fromFile: LocalDataFile.User) {
+            print(userValue)
             User.localUser = User(value: userValue)
             Analytics.initializeUser(User.localUser!._id)
         }

@@ -50,7 +50,7 @@ public class DataHandler {
                 }
             }
             
-//            completionHandler(bookInformationArray)
+            completionHandler(bookInformationArray)
         }
     }
     

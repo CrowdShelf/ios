@@ -19,10 +19,19 @@ class BookCollectionViewController: CollectionViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        collectionView?.alwaysBounceVertical = false
+        
         super.viewWillAppear(animated)
+        
+        updateContent()
+    }
+    
+    override func updateContent() {
+        super.updateContent()
         
         DataHandler.getBooksWithParameters(self.shelf?.parameters) { (books) -> Void in
             self.shelf?.books = books.filter(self.shelf!.filter)
+            self.updateView()
             
             for book in self.collectionData as! [Book] {
                 DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
@@ -34,7 +43,13 @@ class BookCollectionViewController: CollectionViewController {
                 })
             }
             
+            self.refreshControl.endRefreshing()
         }
+    }
+
+    override func updateView() {
+        super.updateView()
+        self.title = self.shelf?.name
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

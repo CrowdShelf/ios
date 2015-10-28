@@ -16,20 +16,27 @@ class CrowdBookCollectionViewController: CollectionViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        loadBooks()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if collectionData.isEmpty {
+            updateContent()
+        }
     }
     
-    func loadBooks() {
+    override func updateContent() {
+        refreshControl.beginRefreshing()
+        
         self.collectionData = []
         
-        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Retrieving books", inView: self.view)
+        var memberBooks: [String: [Book]] = [:]
         
         for wrappedMemberID in self.crowd!.members {
             DataHandler.getBooksWithInformationWithParameters(["owner":wrappedMemberID.content], andCompletionHandler: { (books) -> Void in
-                activityIndicatorView.stop()
-                self.collectionData = self.collectionData + books
+                memberBooks[wrappedMemberID.stringValue!] = books
+                self.collectionData = memberBooks.values.flatMap {$0}
+                self.collectionView?.reloadData()
+                self.refreshControl.endRefreshing()
             })
         }
     }
