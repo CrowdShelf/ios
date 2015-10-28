@@ -19,6 +19,11 @@ class ScannerViewController: BaseViewController {
     
     var scannedCodes = Set<String>()
     
+    var lightOn = false {
+        didSet {
+            updateLight()
+        }
+    }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -51,19 +56,23 @@ class ScannerViewController: BaseViewController {
     }
     
     @IBAction func toggleLight(sender: AnyObject) {
+        lightOn = !lightOn
+    }
+    
+    private func updateLight() {
         let avDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
         if avDevice.hasTorch {
-
+            
             do {
                 try avDevice.lockForConfiguration()
-
-                if avDevice.torchActive {
-                    avDevice.torchMode = AVCaptureTorchMode.Off
-                } else {
+                
+                if lightOn {
                     try avDevice.setTorchModeOnWithLevel(1.0)
+                } else {
+                    avDevice.torchMode = AVCaptureTorchMode.Off
                 }
-
+                
                 avDevice.unlockForConfiguration()
             }
             catch let error as NSError {
@@ -104,5 +113,9 @@ class ScannerViewController: BaseViewController {
             })
         })
         Analytics.addEvent("BookScanned")
+    }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        lightOn = false
     }
 }

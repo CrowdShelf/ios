@@ -181,7 +181,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
 //    MARK: List View Data Source
     
     func listViewController(listViewController: ListViewController, accessoryTypeForIndexPath indexPath: NSIndexPath) -> UITableViewCellAccessoryType {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && crowd?._id != "" {
             return .DisclosureIndicator
         }
         

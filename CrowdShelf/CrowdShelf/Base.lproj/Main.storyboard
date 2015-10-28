@@ -481,9 +481,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3b-tB-2Io" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1161" y="1833"/>
+            <point key="canvasLocation" x="1161" y="2249"/>
         </scene>
-        <!--Crowd-->
+        <!--Group-->
         <scene sceneID="atQ-4z-myn">
             <objects>
                 <viewController id="Kcj-5x-49a" customClass="CrowdViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
@@ -564,7 +564,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ORI-Xx-LUY" secondAttribute="trailing" constant="-16" id="eKK-1o-yVO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Crowd" id="BDI-Uc-UWI"/>
+                    <navigationItem key="navigationItem" title="Group" id="BDI-Uc-UWI"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="iconImageView" destination="Nhi-W0-TDq" id="wF6-Nn-scl"/>
@@ -706,9 +706,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKk-iR-b7N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="329" y="1833"/>
+            <point key="canvasLocation" x="329" y="2249"/>
         </scene>
-        <!--Crowds-->
+        <!--Groups-->
         <scene sceneID="tSj-t4-J3r">
             <objects>
                 <viewController storyboardIdentifier="CrowdsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="esR-ot-OLL" customClass="CrowdsViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
@@ -743,7 +743,7 @@
                             <constraint firstItem="hGj-31-piv" firstAttribute="top" secondItem="vw4-uO-yNu" secondAttribute="bottom" id="mJA-2O-pVD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Crowds" id="YDK-1G-xpy">
+                    <navigationItem key="navigationItem" title="Groups" id="YDK-1G-xpy">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rc9-b2-dkW">
                             <connections>
                                 <segue destination="Kcj-5x-49a" kind="push" id="6tb-sK-qHc"/>
@@ -759,7 +759,7 @@
             </objects>
             <point key="canvasLocation" x="2660" y="777"/>
         </scene>
-        <!--Crowd shelf-->
+        <!--Group shelf-->
         <scene sceneID="X14-Vi-j4Z">
             <objects>
                 <viewController storyboardIdentifier="CrowdBookCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mrQ-V4-k9q" customClass="CrowdBookCollectionViewController" customModule="CrowdShelf" customModuleProvider="target" sceneMemberID="viewController">
@@ -796,7 +796,7 @@
                             <constraint firstItem="Dcc-iX-LWu" firstAttribute="top" secondItem="1eB-Md-4b2" secondAttribute="topMargin" id="gg0-dr-slQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Crowd shelf" id="gSa-gf-zSW"/>
+                    <navigationItem key="navigationItem" title="Group shelf" id="gSa-gf-zSW"/>
                     <connections>
                         <outlet property="collectionView" destination="Dcc-iX-LWu" id="Iah-dc-vLn"/>
                         <segue destination="5fy-Sp-5Y7" kind="modal" identifier="ShowBook" id="NIh-y9-wHx"/>
@@ -831,7 +831,7 @@
                                             <animations/>
                                             <segments>
                                                 <segment title="All"/>
-                                                <segment title="In my crowds"/>
+                                                <segment title="In my groups"/>
                                             </segments>
                                             <connections>
                                                 <action selector="filterChanged:" destination="eJR-EY-DrN" eventType="valueChanged" id="SOD-H3-ilL"/>
@@ -848,13 +848,26 @@
                                     </constraints>
                                 </view>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results for search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nu2-k4-lJd">
+                                <rect key="frame" x="0.0" y="190" width="320" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="AP7-zq-zOy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Nu2-k4-lJd" firstAttribute="leading" secondItem="Dxi-Mv-BmH" secondAttribute="leadingMargin" constant="-16" id="49B-TQ-G4c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VZZ-rJ-KMf" secondAttribute="trailing" constant="-16" id="6aW-U6-QIh"/>
                             <constraint firstItem="bej-Om-PW2" firstAttribute="top" secondItem="VZZ-rJ-KMf" secondAttribute="bottom" id="8WJ-R2-zUv"/>
+                            <constraint firstItem="Nu2-k4-lJd" firstAttribute="top" secondItem="Dxi-Mv-BmH" secondAttribute="topMargin" constant="190" id="DoA-dl-Hah"/>
                             <constraint firstItem="VZZ-rJ-KMf" firstAttribute="leading" secondItem="Dxi-Mv-BmH" secondAttribute="leadingMargin" constant="-16" id="Rp8-jK-a7g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nu2-k4-lJd" secondAttribute="trailing" constant="-16" id="WRe-6s-SNj"/>
                             <constraint firstItem="VZZ-rJ-KMf" firstAttribute="top" secondItem="Dxi-Mv-BmH" secondAttribute="topMargin" id="nSc-hj-nAN"/>
                         </constraints>
                     </view>
@@ -866,6 +879,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noResultsLabel" destination="Nu2-k4-lJd" id="TvQ-WQ-PP0"/>
                         <outlet property="searchDisplayController" destination="USC-04-TNl" id="UN4-AV-NYS"/>
                         <outlet property="tableView" destination="VZZ-rJ-KMf" id="kIt-KG-Z11"/>
                         <segue destination="5fy-Sp-5Y7" kind="modal" identifier="ShowBook" id="CED-GD-45v"/>
@@ -883,11 +897,11 @@
             </objects>
             <point key="canvasLocation" x="1278" y="777"/>
         </scene>
-        <!--Crowds-->
+        <!--Groups-->
         <scene sceneID="Ysd-DR-yCV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yDa-ZK-hJj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Crowds" image="crowd" id="aEi-FP-p0o"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="crowd" id="aEi-FP-p0o"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fdt-oK-cwZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1042,7 +1056,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="767" y="1833"/>
+            <point key="canvasLocation" x="767" y="2249"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nVm-am-U7a">
