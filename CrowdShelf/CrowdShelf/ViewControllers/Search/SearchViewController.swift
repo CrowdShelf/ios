@@ -15,8 +15,10 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearc
     }
     
     @IBOutlet weak var tableView: UITableView?
-
+    @IBOutlet weak var noResultsLabel: UILabel?
+    
     let searchController: UISearchController = UISearchController(searchResultsController: nil)
+
     let tableViewDataSource: TableViewArrayDataSource
     var tableViewDelegate: TableViewSelectionDelegate?
     
@@ -76,26 +78,28 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearc
             if self.filter != .All {
                 
                 if self.ISBNsInCrowds == nil {
-                    DataHandler.getBooksInCrowdsForUser(User.localUser!._id, withCompletionHandler: { (books) -> Void in
+                    return DataHandler.getBooksInCrowdsForUser(User.localUser!._id, withCompletionHandler: { (books) -> Void in
                         self.ISBNsInCrowds = Set(books.map {$0.isbn})
                         self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.tableView?.reloadData()
-                        })
+                        self.updateView()
                     })
-                   
-                    return
                 } else {
                     self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
                 }
                 
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView?.reloadData()
-            })
+            self.updateView()
         }
     }
+    
+    func updateView() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.noResultsLabel?.hidden = !self.tableViewDataSource.items.isEmpty
+            self.tableView?.reloadData()
+        })
+    }
+    
     
     @IBAction func filterChanged(sender: UISegmentedControl) {
         Analytics.addEvent("SwitchedFilter")

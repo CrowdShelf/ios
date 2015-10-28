@@ -94,7 +94,30 @@ extension DataHandler {
         }
     }
     
-    public class func getBooksWithInformationWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
+    public class func getTitleInformationForBooksWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([BookInformation])->Void)) {
+        var titleInformationSet = Set<BookInformation>()
+        
+        DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
+            
+            var booksRetrieved = 0
+            books.forEach({ (book) -> () in
+                
+                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (titleInformation) -> Void in
+                    if titleInformation.first != nil {
+                        titleInformationSet.insert(titleInformation.first!)
+                    }
+                    
+                    booksRetrieved++
+                    if booksRetrieved == books.count {
+                        completionHandler(titleInformationSet.map {$0})
+                    }
+                })
+                
+            })
+        }
+    }
+    
+    public class func getBooksWithInformationWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Book])->Void)) {
         
         DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
             if books.isEmpty {

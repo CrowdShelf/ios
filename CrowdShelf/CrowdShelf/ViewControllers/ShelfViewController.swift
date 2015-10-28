@@ -55,6 +55,7 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
     private func loadShelf(shelfIndex: Int) {
         let shelf = self.tableViewDataSource!.items[shelfIndex] as! Shelf
         
+        
         DataHandler.getBooksWithInformationWithParameters(shelf.parameters) { (books) -> Void in
             shelf.books = books.filter(shelf.filter)
             self.refreshControl.endRefreshing()
