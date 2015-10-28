@@ -29,12 +29,13 @@ class CrowdBookCollectionViewController: CollectionViewController {
         
         self.collectionData = []
         
-        var memberBooks: [String: [Book]] = [:]
-        
+        var memberBooks: [String: [BookInformation]] = [:]
+
         for wrappedMemberID in self.crowd!.members {
-            DataHandler.getBooksWithInformationWithParameters(["owner":wrappedMemberID.content], andCompletionHandler: { (books) -> Void in
-                memberBooks[wrappedMemberID.stringValue!] = books
-                self.collectionData = memberBooks.values.flatMap {$0}
+            
+            DataHandler.getTitleInformationForBooksWithParameters(["owner":wrappedMemberID.content], andCompletionHandler: { (titleInformation) -> Void in
+                memberBooks[wrappedMemberID.stringValue!] = titleInformation
+                self.collectionData = Set(memberBooks.values.flatMap {$0}).map {$0}
                 self.collectionView?.reloadData()
                 self.refreshControl.endRefreshing()
             })

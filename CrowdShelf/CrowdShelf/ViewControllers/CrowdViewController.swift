@@ -38,6 +38,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         self.dataSource = self
         self.delegate = self
         
+        if self.crowd == nil {
+            self.crowd = newCrowd()
+        }
+        
         self.updateView()
         self.updateItemsWithListables([])
         
@@ -46,20 +50,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     
     func newCrowd() -> Crowd {
         let crowd = Crowd()
-        crowd.members.append(RLMWrapper(User.localUser!._id))
         crowd.name = "New Group"
         crowd.owner = User.localUser!._id
-        Analytics.addEvent("CreateCrowd")
-        return crowd
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
-        if self.crowd == nil {
-            self.crowd = newCrowd()
-            
-        }
+        return crowd
     }
     
     internal func retrieveUsers() {
@@ -67,11 +61,15 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
             self.updateItemsWithListables(users)
         }
     }
+    
     /// Creates a new crowd with name and members defined by the user
     func createCrowd(){
+        Analytics.addEvent("CreateCrowd")
+        
         DataHandler.createCrowd(self.crowd!, withCompletionHandler: { (crowd) -> Void in
             if crowd != nil {
                 self.crowd = crowd
+                self.updateView()
             }
         })
     }
@@ -84,10 +82,11 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     }
     
     internal func addMember() {
+        Analytics.addEvent("AddMember")
+        
         let alertView = UIAlertView(title: "Add member", message: "Please provide a valid user name", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
         alertView.alertViewStyle = .PlainTextInput
         alertView.show()
-        Analytics.addEvent("AddMember")
     }
     
     internal func leaveCrowd() {
@@ -118,30 +117,28 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
             title:      "Shelf",
             image:      UIImage(named: "shelf")
         )
-        // If it is a new group; Let the user create a group
-        // Else the button lets you leave the group
-        let leaveButton:Button
-        if self.crowd?._id == ""{
-            leaveButton = Button(
-                title:      "Create group",
-                image:      UIImage(named: "add")
-            )
-        }else {
-            leaveButton = Button(
-                title:      "Leave group",
-                image:      UIImage(named: "remove"),
-                buttonStyle: .Danger
-            )
-        }
         
         let newMemberButton = Button(
             title:     "Add member",
             image:     UIImage(named: "add")
         )
         
-        let lastSection: [AnyObject] = [newMemberButton]+listables
+        let membersSection: [AnyObject] = [newMemberButton]+listables
         
-        tableViewDataSource.items = [[shelfButton], lastSection, [leaveButton]]
+        
+        let leaveButton:Button = Button(
+            title:      "Leave group",
+            image:      UIImage(named: "remove"),
+            buttonStyle: .Danger
+        )
+        
+        let createButton = Button(
+            title:      "Create group",
+            image:      UIImage(named: "add")
+        )
+        
+        
+        tableViewDataSource.items = crowd?._id != "" ? [[shelfButton], membersSection, [leaveButton]] : [createButton]
         tableView?.reloadData()
     }
     
@@ -180,19 +177,6 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
             crowdShelfVC.crowd = self.crowd
         }
     }
- 
-    @IBAction func done(sender: AnyObject) {
-        DataHandler.deleteCrowd(self.crowd!._id) { (isSuccess) -> Void in
-            if isSuccess {
-                self.navigationController?.popViewControllerAnimated(true)
-                Analytics.addEvent("DeleteCrowd")
-            } else {
-                MessagePopupView(message: "Failed to delete crowd", messageStyle: .Error).showInView(self.view)
-            }
-        }
-    }
-    
-    
     
 //    MARK: List View Data Source
     
@@ -212,18 +196,23 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     
     func listViewController(listViewController: ListViewController, performActionForIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
+            if crowd?._id == "" {
+                createCrowd()
+                return
+            }
+            
             if indexPath.row == 0 {
-                self.performSegueWithIdentifier("ShowCrowdShelf", sender: self)
+                performSegueWithIdentifier("ShowCrowdShelf", sender: self)
             }
         }
         else if indexPath.section == 1 {
             if indexPath.row == 0 {
-                self.addMember()
+                addMember()
             }
         }
         else if indexPath.section == 2 {
             if indexPath.row == 0 {
-                self.leaveCrowd()
+                leaveCrowd()
             }
         }
     }

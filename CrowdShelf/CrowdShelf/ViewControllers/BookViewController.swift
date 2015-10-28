@@ -130,20 +130,22 @@ class BookViewController: ListViewController {
         DataHandler.ownersOfBooksWithParameters(["isbn": self.bookInformation!.isbn, "availableForRent": true]) { (owners) -> Void in
             activityIndicatorView.stop()
             
+            let otherUsers = owners.filter {$0._id != User.localUser!._id}
+            
             /* Abort is no users are in possession of the book */
-            if owners.count == 0 {
+            if otherUsers.count == 0 {
                 MessagePopupView(message: "You cant borrow this book", messageStyle: .Error).showInView(self.view)
                 return
             }
             
             /* Borrow book if only one user is in possession of the book */
-            if owners.count == 1 {
+            if otherUsers.count == 1 {
                 self.borrowBookFromUser(owners.first!._id)
                 return
             }
             
             /* Present a list of all users in possession of the book */
-            self.showListWithItems(owners, andCompletionHandler: { (selectedOwners) -> Void in
+            self.showListWithItems(otherUsers, andCompletionHandler: { (selectedOwners) -> Void in
                 self.dismissViewControllerAnimated(true, completion: nil)
                 
                 if selectedOwners.isEmpty {

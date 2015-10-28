@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -26,6 +26,11 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="showBorder" value="NO"/>
                         </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Upy-d3-2E4"/>
+                            </mask>
+                        </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.89999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="vjh-Sr-s5a">
                         <rect key="frame" x="0.0" y="93" width="90" height="27"/>
@@ -45,11 +50,19 @@
             <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="bUq-t9-jO7" firstAttribute="centerX" secondItem="iir-eS-d7d" secondAttribute="centerX" id="0Gm-87-ZV7"/>
+                <constraint firstAttribute="bottom" secondItem="vjh-Sr-s5a" secondAttribute="bottom" constant="2" id="2zS-A7-1SV"/>
                 <constraint firstItem="vjh-Sr-s5a" firstAttribute="leading" secondItem="iir-eS-d7d" secondAttribute="leadingMargin" constant="-8" id="FiB-3d-Imi"/>
+                <constraint firstItem="bUq-t9-jO7" firstAttribute="top" secondItem="iir-eS-d7d" secondAttribute="top" id="Mg2-2f-BhM"/>
                 <constraint firstItem="vjh-Sr-s5a" firstAttribute="top" secondItem="bUq-t9-jO7" secondAttribute="bottom" constant="8" id="P7U-CU-Zpd"/>
                 <constraint firstItem="vjh-Sr-s5a" firstAttribute="trailing" secondItem="iir-eS-d7d" secondAttribute="trailingMargin" constant="8" id="TJz-pw-NKX"/>
                 <constraint firstItem="bUq-t9-jO7" firstAttribute="top" secondItem="iir-eS-d7d" secondAttribute="topMargin" constant="-8" id="cvj-B8-Jtm"/>
+                <constraint firstItem="vjh-Sr-s5a" firstAttribute="top" secondItem="bUq-t9-jO7" secondAttribute="bottom" constant="8" id="okO-Yw-gAL"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="P7U-CU-Zpd"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="imageView" destination="bUq-t9-jO7" id="tgC-Wp-vJ5"/>
                 <outlet property="titleLabel" destination="vjh-Sr-s5a" id="ij8-8U-4Eb"/>
