@@ -11,6 +11,31 @@ import RealmSwift
 
 extension DataHandler {
     
+    public class func getBooksInCrowdsForUser(userID: String, withCompletionHandler completionHandler: (([Book]) -> Void)) {
+        
+        /* Retrieve all the users crowds */
+        DataHandler.getCrowdsWithParameters(["member": userID]) { (crowds) -> Void in
+            
+            var allBooks: [Book] = []
+            
+            var crowdsRetrieved = 0
+            
+            for crowd in crowds {
+                
+                DataHandler.getBooksInCrowd(crowd, withCompletionHandler: { (crowdBooks) -> Void in
+                    allBooks = allBooks + crowdBooks
+                    
+                    crowdsRetrieved++
+                    if crowdsRetrieved == crowds.count {
+                        completionHandler(allBooks)
+                    }
+                })
+                
+            }
+            
+        }
+    }
+    
     public class func removeBookForUser(userID: String, withISBN ISBN: String, completionHandler: ((Bool)->Void)?) {
         DataHandler.getBooksWithParameters(["owner": userID, "isbn":ISBN]) { (books) -> Void in
             if let book = books.first {
@@ -48,6 +73,22 @@ extension DataHandler {
                 
                 if results == crowd.members.count {
                     completionHandler(users)
+                }
+            })
+        }
+    }
+    
+    public class func getBooksInCrowd(crowd: Crowd, withCompletionHandler completionHandler: (([Book]->Void))) {
+        
+        var books: [Book] = []
+        
+        var usersRetrieved = 0
+        for wrappedMemberID in crowd.members {
+            DataHandler.getBooksWithParameters(["owner": wrappedMemberID.stringValue!], andCompletionHandler: { (memberBooks) -> Void in
+                books = books + memberBooks
+                usersRetrieved++
+                if usersRetrieved == crowd.members.count {
+                    completionHandler(books)
                 }
             })
         }

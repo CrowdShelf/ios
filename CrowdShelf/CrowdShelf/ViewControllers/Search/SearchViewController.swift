@@ -10,12 +10,18 @@ import UIKit
 
 class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
+    enum SearchFilter: Int {
+        case All, Crowds
+    }
+    
     @IBOutlet weak var tableView: UITableView?
 
     let searchController: UISearchController = UISearchController(searchResultsController: nil)
     let tableViewDataSource: TableViewArrayDataSource
     var tableViewDelegate: TableViewSelectionDelegate?
     
+    var ISBNsInCrowds: Set<String>?
+    var filter: SearchFilter = .All
     var debouncedSearchRequest: (()->())?
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +55,6 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearc
         self.navigationItem.titleView = searchController.searchBar
         
         tableView?.registerCellForClass(ListTableViewCell)
-//        tableView?.tableHeaderView = searchController.searchBar
         tableView?.dataSource = tableViewDataSource
         tableView?.delegate = tableViewDelegate
     }
@@ -63,11 +68,33 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearc
     }
     
     func sendRequest() {
+        
         DataHandler.resultsForQuery(searchController.searchBar.text!) { (bookInformation) -> Void in
             self.tableViewDataSource.items = bookInformation.filter {$0.isbn != ""}
+            
+            if self.filter != .All {
+                if self.ISBNsInCrowds == nil {
+                    DataHandler.getBooksInCrowdsForUser(User.localUser!._id, withCompletionHandler: { (books) -> Void in
+                        self.ISBNsInCrowds = Set(books.map {$0.isbn})
+                        self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.tableView?.reloadData()
+                        })
+                    })
+                    return
+                } else {
+                    self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
+                }
+            }
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView?.reloadData()
             })
         }
+    }
+    
+    @IBAction func filterChanged(sender: UISegmentedControl) {
+        filter = SearchFilter(rawValue: sender.selectedSegmentIndex)!
+        debouncedSearchRequest?()
     }
 }

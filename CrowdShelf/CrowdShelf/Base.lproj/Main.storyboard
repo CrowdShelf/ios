@@ -825,6 +825,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="H2r-wN-3UQ">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Y7v-E6-4R1">
+                                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                                            <animations/>
+                                            <segments>
+                                                <segment title="All"/>
+                                                <segment title="In my crowds"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="filterChanged:" destination="eJR-EY-DrN" eventType="valueChanged" id="SOD-H3-ilL"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Y7v-E6-4R1" secondAttribute="bottom" constant="8" id="3ZM-M2-sPq"/>
+                                        <constraint firstItem="Y7v-E6-4R1" firstAttribute="top" secondItem="H2r-wN-3UQ" secondAttribute="top" constant="8" id="GhI-04-yBG"/>
+                                        <constraint firstItem="Y7v-E6-4R1" firstAttribute="leading" secondItem="H2r-wN-3UQ" secondAttribute="leading" constant="8" id="IeI-vU-IBG"/>
+                                        <constraint firstAttribute="trailing" secondItem="Y7v-E6-4R1" secondAttribute="trailing" constant="8" id="m5M-J8-BWd"/>
+                                    </constraints>
+                                </view>
                             </tableView>
                         </subviews>
                         <animations/>
@@ -1071,7 +1096,7 @@
         <image name="shelf" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E8c-Wd-HfK"/>
         <segue reference="zYk-KH-Iu8"/>
+        <segue reference="CED-GD-45v"/>
     </inferredMetricsTieBreakers>
 </document>
