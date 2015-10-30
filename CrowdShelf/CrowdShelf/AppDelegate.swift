@@ -8,11 +8,11 @@
 
 import UIKit
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Analytics.initialize()
@@ -21,10 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(userValue)
             User.localUser = User(value: userValue)
             Analytics.initializeUser(User.localUser!._id)
+
         }
         
-        Analytics.addEvent("AppLaunched")
         
+        UINavigationBar.appearance().tintColor = ColorPalette.primaryColor
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : ColorPalette.primaryTextColor]
+        self.window?.tintColor = ColorPalette.primaryColor
+        UILabel.appearance().textColor = ColorPalette.primaryTextColor
+        UIView.appearance().tintColor = ColorPalette.primaryColor
+        Analytics.addEvent("AppLaunched")
         
         return true
     }
