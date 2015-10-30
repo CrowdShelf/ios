@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948259A1BBAAFAB00662F32 /* Analytics.swift */; };
+
 		09852CCB1BE3A06A008E4B0A /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09852CC91BE39DC2008E4B0A /* ColorPalette.swift */; };
+
+		390B92FF1BE382CE006CF3EB /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */; };
+        c21d3b021a543228b9e3b8c5d33ca8c29f45b530
 		390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
 		390F2C061BBE7B18003E21E7 /* DataHandler+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */; };
 		3912CCDC1BE0D29000E9B785 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3912CCDB1BE0D29000E9B785 /* Button.swift */; };
@@ -85,6 +89,7 @@
 		09852CC91BE39DC2008E4B0A /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorPalette.swift; path = CrowdShelfTests/ColorPalette.swift; sourceTree = SOURCE_ROOT; };
 		0BDAE150A5E39A8004D0A2E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
+		390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterUserViewController.swift; path = ViewControllers/Login/RegisterUserViewController.swift; sourceTree = "<group>"; };
 		390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+GoogleBooks.swift"; path = "Handlers/DataHandler+GoogleBooks.swift"; sourceTree = "<group>"; };
 		390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+Convenience.swift"; path = "Handlers/DataHandler+Convenience.swift"; sourceTree = "<group>"; };
 		3912CCDB1BE0D29000E9B785 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Models/Button.swift; sourceTree = "<group>"; };
@@ -171,6 +176,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		390B92FD1BE3828E006CF3EB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */,
+				390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		39152D801BD5A372004EC737 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,7 +336,7 @@
 				39A655F11BD1199D0075CB81 /* ListViewController.swift */,
 				39A0CAFD1B958B0D00321225 /* SelectionViewController.swift */,
 				392E42D21BBAF9DA0080CCBD /* CollectionViewController.swift */,
-				399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */,
+				390B92FD1BE3828E006CF3EB /* Login */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -653,6 +667,7 @@
 				39BFDEFB1BAD4D5E0058C2CF /* Debug.swift in Sources */,
 				39C2F5881B8FA0CE00529AA9 /* User.swift in Sources */,
 				39737EBD1BB56ED4001AA6C6 /* Utilities.swift in Sources */,
+				390B92FF1BE382CE006CF3EB /* RegisterUserViewController.swift in Sources */,
 				0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */,
 				39152D711BD51D7D004EC737 /* MinimalTextField.swift in Sources */,
 				39152D6B1BD508D8004EC737 /* TableViewSelectionDelegate.swift in Sources */,

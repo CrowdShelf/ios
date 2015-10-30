@@ -11,50 +11,23 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
-    @IBAction func segmentChanged(sender: UISegmentedControl) {
-        self.emailField.hidden = sender.selectedSegmentIndex == 0
-        self.nameField.hidden = sender.selectedSegmentIndex == 0
-    }
+    @IBOutlet weak var usernameField: UITextField?
+    @IBOutlet weak var passwordField: UITextField?
     
     @IBAction func login(sender: AnyObject) {
-        let value = [
-            "username": self.usernameField.text!,
-            "email": self.emailField.text!,
-            "name": self.nameField.text!,
-        ]
-        let user = User(value: value)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Logging in..", inView: self.view)
-        if self.segmentedControl.selectedSegmentIndex == 1 {
-            DataHandler.createUser(user, withCompletionHandler: { (user) -> Void in
-                activityIndicatorView.stop()
-                
-                if user != nil {
-                    LocalDataHandler.setObject(user!.serialize() , forKey: "user", inFile: LocalDataFile.User)
-                    User.localUser = user
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            })
-        } else {
-            DataHandler.loginWithUsername(self.usernameField.text!) { user -> Void in
-                activityIndicatorView.stop()
-                
-                if user == nil {
-                    self.segmentedControl.selectedSegmentIndex = 1
-                    self.segmentChanged(self.segmentedControl)
-                    return
-                }
-                
-                LocalDataHandler.setObject(user!.serialize() , forKey: "user", inFile: LocalDataFile.User)
-                User.localUser = user
+        
+
+        DataHandler.loginWithUsername(self.usernameField!.text!, andPassword: self.passwordField!.text!) { user -> Void in
+            activityIndicatorView.stop()
+            
+            self.passwordField?.text = ""
+            
+            if user != nil {
+                User.loginUser(user!)
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
-            
         }
     }
 }
