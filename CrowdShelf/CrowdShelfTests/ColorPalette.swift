@@ -33,5 +33,5 @@ class ColorPalette: UIColor{
     static let primaryTextColor = UIColor(netHex:0x212121)
     static let dangerColor = UIColor(netHex:0xC7262C)
     
-    static let groupColors = [UIColor(netHex: 0xC767B9), UIColor(netHex: 0x0F9933), UIColor(netHex: 0xF4EE31), UIColor(netHex: 0xC7A17A), UIColor(netHex: 0x9982C7)]
+    static let groupColors = [UIColor(netHex: 0xf16364), UIColor(netHex: 0xf58559), UIColor(netHex: 0xf9a43e), UIColor(netHex: 0xe4c62e), UIColor(netHex: 0x67bf74),UIColor(netHex: 0x59a2be),UIColor(netHex: 0x2093cd),UIColor(netHex: 0xad62a7)]
 }
