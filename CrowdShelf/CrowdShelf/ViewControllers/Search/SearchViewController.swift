@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearchBarDelegate {
+class SearchViewController: BaseViewController, UISearchResultsUpdating {
     
     enum SearchFilter: Int {
         case All, Crowds
@@ -50,7 +50,6 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearc
         definesPresentationContext = true
         
         searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         
