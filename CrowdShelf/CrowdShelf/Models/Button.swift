@@ -15,29 +15,29 @@ class Button: Listable {
         var titleColor: UIColor {
             switch self {
             case .Danger:
-                return UIColor.redColor()
+                return ColorPalette.dangerColor
             case .None, .Normal:
-                return UIColor.blackColor()
+                return ColorPalette.primaryTextColor
             }
         }
         
         var subtitleColor: UIColor {
             switch self {
             case .Danger:
-                return UIColor.redColor()
+                return ColorPalette.dangerColor
             case .None, .Normal:
-                return UIColor.blackColor()
+                return ColorPalette.primaryTextColor
             }
         }
         
         var imageTintColor: UIColor {
             switch self {
             case .Danger:
-                return UIColor.redColor()
+                return ColorPalette.dangerColor
             case .Normal:
-                return UIView().tintColor
+                return UIView.appearance().tintColor
             case .None:
-                return UIColor.blackColor()
+                return ColorPalette.primaryTextColor
             }
         }
         
@@ -46,7 +46,7 @@ class Button: Listable {
             case .Danger, .Normal:
                 return UIColor.clearColor()
             case .None:
-                return UIColor.lightGrayColor()
+                return ColorPalette.dividerColor
             }
         }
     }

@@ -24,12 +24,14 @@ class CrowdsViewController: CollectionViewController {
         super.viewDidLoad()
         
         
-        self.collectionViewDataSource.configurationHandler = {
-            let cell = $0 as! CollectableCell
+        self.collectionViewDataSource.configurationHandler = { cell, item -> Void in
+            let cell = cell as! CollectableCell
             cell.imageViewStyle = .Round
             cell.imageView?.showBorder = true
-            cell.imageView?.borderColor
-            cell.collectable = $1 as? Collectable
+            cell.collectable = item as? Collectable
+            
+            let crowd = item as? Crowd
+            cell.imageView?.tintColor = ColorPalette.groupColors[abs(crowd!._id.hashValue%ColorPalette.groupColors.count)]
         }
     }
     

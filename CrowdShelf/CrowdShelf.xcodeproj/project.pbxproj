@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948259A1BBAAFAB00662F32 /* Analytics.swift */; };
+
+		09852CCB1BE3A06A008E4B0A /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09852CC91BE39DC2008E4B0A /* ColorPalette.swift */; };
+
 		390B92FF1BE382CE006CF3EB /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */; };
 		390B93011BE3956E006CF3EB /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390B93001BE3956E006CF3EB /* TextFieldDelegate.swift */; };
 		390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
@@ -83,6 +86,7 @@
 /* Begin PBXFileReference section */
 		040035D2D8DB30B6C01FB456 /* Pods_CrowdShelfTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrowdShelfTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0948259A1BBAAFAB00662F32 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		09852CC91BE39DC2008E4B0A /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorPalette.swift; path = CrowdShelfTests/ColorPalette.swift; sourceTree = SOURCE_ROOT; };
 		0BDAE150A5E39A8004D0A2E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
 		390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterUserViewController.swift; path = ViewControllers/Login/RegisterUserViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 		3953BF871B8DC29B00E39CC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				09852CC91BE39DC2008E4B0A /* ColorPalette.swift */,
 				3953BF881B8DC29B00E39CC9 /* Info.plist */,
 				39BFDEF31BACBA310058C2CF /* Environment.swift */,
 				39BFDEFA1BAD4D5E0058C2CF /* Debug.swift */,
@@ -489,7 +494,6 @@
 				TargetAttributes = {
 					3953BF831B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = FXWNTJ4XVX;
 					};
 					3953BF981B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
@@ -647,6 +651,7 @@
 				392E42D31BBAF9DA0080CCBD /* CollectionViewController.swift in Sources */,
 				39A655F21BD1199D0075CB81 /* ListViewController.swift in Sources */,
 				39231D631BCE66C5007E02D7 /* CrowdBookCollectionViewController.swift in Sources */,
+				09852CCB1BE3A06A008E4B0A /* ColorPalette.swift in Sources */,
 				39CB7B9E1BB3501000718345 /* BaseViewController.swift in Sources */,
 				395AE16F1BCD21380090B74C /* CollectionViewArrayDataSource.swift in Sources */,
 				392E42DA1BBBE0AC0080CCBD /* ShelfTableViewCell.swift in Sources */,
