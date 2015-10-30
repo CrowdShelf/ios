@@ -107,7 +107,7 @@ class ScannerViewController: BaseViewController {
                     book.details = information.first
                     self.performSegueWithIdentifier("ShowBook", sender: book)
                 } else {
-                    MessagePopupView(message: "Could not find the book", messageStyle: .Error).showInView(self.view)
+                    MessagePopupView(message: "Could not find the book", messageStyle: .Error).show()
                 }
             
             })

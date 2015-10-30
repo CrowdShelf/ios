@@ -28,6 +28,7 @@ class CrowdsViewController: CollectionViewController {
             let cell = $0 as! CollectableCell
             cell.imageViewStyle = .Round
             cell.imageView?.showBorder = true
+            cell.imageView?.borderColor
             cell.collectable = $1 as? Collectable
         }
     }

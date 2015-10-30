@@ -43,6 +43,17 @@ class AlternativeInfoImageView: UIImageView {
         }
     }
     
+    override var tintColor: UIColor! {
+        set {
+            super.tintColor = newValue
+            self.borderColor = newValue
+            self.alternativeInfoLabel?.textColor = newValue
+        }
+        get {
+            return super.tintColor
+        }
+    }
+    
     var viewStyle: ViewStyle = .Square {
         didSet {
             viewStyle.styleView(self)

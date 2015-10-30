@@ -16,8 +16,23 @@ class RegisterUserViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField?
     @IBOutlet weak var nameField: UITextField?
     
+    var textFieldDelegate: TextFieldDelegate?
+    
+    override func viewDidLoad() {
+        textFieldDelegate = TextFieldDelegate(onReturn: { (textField) -> Bool in
+            textField.resignFirstResponder()
+            return true
+        })
+        
+        self.usernameField?.delegate = textFieldDelegate
+        self.passwordField?.delegate = textFieldDelegate
+        self.confirmPasswordField?.delegate = textFieldDelegate
+        self.emailField?.delegate = textFieldDelegate
+        self.nameField?.delegate = textFieldDelegate
+    }
+    
     @IBAction func register() {
-        if passwordField?.text != confirmPasswordField?.text {
+        if !isValidInput() {
             return
         }
         
@@ -42,24 +57,27 @@ class RegisterUserViewController: UIViewController {
         })
     }
     
+    
+    
+    
     func isValidInput() -> Bool {
         return isValidUsername() && isValidPassword() && isValidEmail()
     }
     
-    func isValidEmail() -> Bool {
+    private func isValidEmail() -> Bool {
         return emailField?.text != nil &&
                emailField!.text!.containsString("@")
                emailField!.text!.characters.count >= 5
     }
     
-    func isValidPassword() -> Bool {
+    private func isValidPassword() -> Bool {
         return  passwordField?.text != nil &&
                 confirmPasswordField?.text != nil &&
                 passwordField!.text!.characters.count >= 6 &&
                 passwordField!.text! == confirmPasswordField!.text!
     }
     
-    func isValidUsername() -> Bool {
+    private func isValidUsername() -> Bool {
         return usernameField?.text?.characters.count >= 6
     }
 }

@@ -163,7 +163,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
                     })
                 } else {
                     activityIndicatorView.stop()
-                    MessagePopupView(message: "Failed add member", messageStyle: .Error).showInView(self.view)
+                    MessagePopupView(message: "Failed add member", messageStyle: .Error).show()
                 }
             })
         }

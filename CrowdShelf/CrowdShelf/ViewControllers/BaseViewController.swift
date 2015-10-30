@@ -29,7 +29,7 @@ class BaseViewController: UIViewController {
     
     func showLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
         
         self.presentViewController(loginVC, animated: true, completion: nil)
     }

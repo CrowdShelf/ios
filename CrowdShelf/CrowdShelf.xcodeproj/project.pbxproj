@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948259A1BBAAFAB00662F32 /* Analytics.swift */; };
 		390B92FF1BE382CE006CF3EB /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */; };
+		390B93011BE3956E006CF3EB /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390B93001BE3956E006CF3EB /* TextFieldDelegate.swift */; };
 		390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
 		390F2C061BBE7B18003E21E7 /* DataHandler+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */; };
 		3912CCDC1BE0D29000E9B785 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3912CCDB1BE0D29000E9B785 /* Button.swift */; };
@@ -85,6 +86,7 @@
 		0BDAE150A5E39A8004D0A2E5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2EA5EDF65AC65EB80D5647A1 /* Pods-CrowdShelfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdShelfTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrowdShelfTests/Pods-CrowdShelfTests.debug.xcconfig"; sourceTree = "<group>"; };
 		390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterUserViewController.swift; path = ViewControllers/Login/RegisterUserViewController.swift; sourceTree = "<group>"; };
+		390B93001BE3956E006CF3EB /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldDelegate.swift; path = Helpers/TextFieldDelegate.swift; sourceTree = "<group>"; };
 		390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+GoogleBooks.swift"; path = "Handlers/DataHandler+GoogleBooks.swift"; sourceTree = "<group>"; };
 		390F2C051BBE7B18003E21E7 /* DataHandler+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DataHandler+Convenience.swift"; path = "Handlers/DataHandler+Convenience.swift"; sourceTree = "<group>"; };
 		3912CCDB1BE0D29000E9B785 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Models/Button.swift; sourceTree = "<group>"; };
@@ -326,11 +328,11 @@
 				39231D661BCE6CB8007E02D7 /* Book */,
 				39231D671BCE6CDE007E02D7 /* Shelf */,
 				39231D681BCE6CEF007E02D7 /* Scanner */,
+				390B92FD1BE3828E006CF3EB /* Login */,
 				39CB7B9D1BB3501000718345 /* BaseViewController.swift */,
 				39A655F11BD1199D0075CB81 /* ListViewController.swift */,
 				39A0CAFD1B958B0D00321225 /* SelectionViewController.swift */,
 				392E42D21BBAF9DA0080CCBD /* CollectionViewController.swift */,
-				390B92FD1BE3828E006CF3EB /* Login */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -354,6 +356,7 @@
 				391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */,
 				39152D6A1BD508D8004EC737 /* TableViewSelectionDelegate.swift */,
 				39152D721BD51E68004EC737 /* ReturnTextFieldDelegate.swift */,
+				390B93001BE3956E006CF3EB /* TextFieldDelegate.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				391B92471BCD8FCD0051A24B /* TableViewArrayDataSource.swift in Sources */,
 				39152D7F1BD574DD004EC737 /* UITableView+ReuseCell.swift in Sources */,
 				39C2F5931B90527200529AA9 /* DataHandler.swift in Sources */,
+				390B93011BE3956E006CF3EB /* TextFieldDelegate.swift in Sources */,
 				395AE1721BCD25D50090B74C /* Shelf.swift in Sources */,
 				3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */,
 				39152D7B1BD5342A004EC737 /* String+Initials.swift in Sources */,

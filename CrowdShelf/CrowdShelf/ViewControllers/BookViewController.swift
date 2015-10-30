@@ -88,7 +88,7 @@ class BookViewController: ListViewController {
             activityIndicatorView.stop()
             
             let message = book != nil ? "Successfully added book" : "Failed to add book"
-            MessagePopupView(message: message, messageStyle: book != nil ? .Success : .Error).showInView(self.view)
+            MessagePopupView(message: message, messageStyle: book != nil ? .Success : .Error).show()
             csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation)
             
             self.updateView()
@@ -108,7 +108,7 @@ class BookViewController: ListViewController {
             
             let message = isSuccess ? "Successfully removed book" : "Failed to remove book"
             csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation?.isbn)
-            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).showInView(self.view)
+            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).show()
             
             if isSuccess {
                 self.dismissViewControllerAnimated(true, completion: nil)
@@ -134,7 +134,7 @@ class BookViewController: ListViewController {
             
             /* Abort is no users are in possession of the book */
             if otherUsers.count == 0 {
-                MessagePopupView(message: "You cant borrow this book", messageStyle: .Error).showInView(self.view)
+                MessagePopupView(message: "You cant borrow this book", messageStyle: .Error).show()
                 return
             }
             
@@ -168,7 +168,7 @@ class BookViewController: ListViewController {
             
             let message = isSuccess ? "Sucessfully borrowed book" : "Failed to borrow book"
             csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation)
-            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).showInView(self.view)
+            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).show()
         })
     }
     
@@ -182,7 +182,7 @@ class BookViewController: ListViewController {
             
             /* Abort is no users are in possession of the book */
             if owners.count == 0 {
-                MessagePopupView(message: "You are not borrowing this book", messageStyle: .Error).showInView(self.view)
+                MessagePopupView(message: "You are not borrowing this book", messageStyle: .Error).show()
                 return
             }
             
@@ -216,7 +216,7 @@ class BookViewController: ListViewController {
             
             let message = isSuccess ? "Sucessfully returned book" : "Failed to return book"
             csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation)
-            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).showInView(self.view)
+            MessagePopupView(message: message, messageStyle: isSuccess ? .Success : .Error).show()
         }
     }
     

@@ -14,10 +14,12 @@ enum MessagePopupStyle: Int {
     case Error
     case Warning
     
-    func color() -> UIColor {
+    func textColor() -> UIColor {
+        return UIColor.blackColor()
+        
         switch self {
         case .Normal:
-            return UIColor.grayColor()
+            return UIColor.blackColor()
         case .Success:
             return UIColor.greenColor()
         case .Error:
@@ -28,66 +30,107 @@ enum MessagePopupStyle: Int {
     }
 }
 
-class MessagePopupView: UILabel {
+class MessagePopupView: UIVisualEffectView {
     
-    var style: MessagePopupStyle = .Normal
+    let message: String
+    let style: MessagePopupStyle
+    
+    private var topSpaceConstraint: NSLayoutConstraint?
+    
     
     init(message: String, messageStyle: MessagePopupStyle = .Normal) {
-        super.init(frame: CGRectZero)
-        
-        self.text = message
-        
+        self.message = message
         self.style = messageStyle
         
-        self.initializeView()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(effect: UIBlurEffect(style: .ExtraLight))
+        
         self.initializeView()
     }
     
     required init?(coder aDecoder: NSCoder) {
+        self.message = ""
+        self.style = .Normal
+        
         super.init(coder: aDecoder)
         self.initializeView()
     }
     
     private func initializeView() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.textAlignment = .Center
-        self.textColor = UIColor.whiteColor()
         
-        self.layer.cornerRadius = 5
-        self.layer.masksToBounds = true
+        addLabel()
+        addSeparator()
     }
     
-    private func fadeViewIn(fadeIn: Bool, completionHandler: ((Bool)->Void)?) {
-        self.alpha = fadeIn ? 0 : 1
+    private func addSeparator() {
+        let separator = UIView()
+        separator.backgroundColor = UIColor.lightGrayColor()
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addSubview(separator)
+        
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[separator]|", options: .AlignAllBaseline, metrics: nil, views: ["separator": separator]))
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[separator(1)]|", options: .AlignAllBaseline, metrics: nil, views: ["separator": separator]))
+    }
+    
+    private func addLabel() {
+        let label = UILabel()
+        label.text = message
+        label.textColor = self.style.textColor()
+        label.textAlignment = .Center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addSubview(label)
+        
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: .AlignAllBaseline, metrics: nil, views: ["label": label]))
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[label]|", options: .AlignAllBaseline, metrics: nil, views: ["label": label]))
+    }
+    
+    
+    private func slideIn(completionHandler: ((Bool)->Void)?) {
         self.hidden = false
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.alpha = fadeIn ? 1 : 0
+        
+        self.superview?.layoutIfNeeded()
+        UIView.animateWithDuration(0.8, animations: { () -> Void in
+            self.topSpaceConstraint?.constant = 0
+            self.superview?.layoutIfNeeded()
+          }) { (finished) -> Void in
+            completionHandler?(finished)
+        }
+    }
+    
+    private func slideOut(completionHandler: ((Bool)->Void)?) {
+        self.hidden = false
+        
+        self.superview?.layoutIfNeeded()
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.topSpaceConstraint?.constant = -64
+            self.superview?.layoutIfNeeded()
             }) { (finished) -> Void in
-                self.hidden = !fadeIn
                 completionHandler?(finished)
         }
     }
     
-    func showInView(view: UIView) {
+
+    
+    func show() {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.backgroundColor = self.style.color().colorWithAlphaComponent(0.85)
+            
+            let view = UIApplication.sharedApplication().keyWindow!.subviews.first!
             
             view.addSubview(self)
             
             /* Add constraints */
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[label]-|", options: .AlignAllBaseline, metrics: nil, views: ["label":self]))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[label(44)]-(16)-|", options: .AlignAllCenterY, metrics: nil, views: ["label":self]))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[messageView]|", options: .AlignAllBaseline, metrics: nil, views: ["messageView":self]))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[messageView(64)]", options: .AlignAllCenterY, metrics: nil, views: ["messageView":self]))
             
-            /* Fade in and out */
-            self.fadeViewIn(true, completionHandler: { (_) -> Void in
-                Utilities.delayDispatchInQueue(dispatch_get_main_queue(), delay: 0.8, block: { () -> Void in
-                    self.fadeViewIn(false, completionHandler: { (_) -> Void in
-                        self.removeFromSuperview()
-                    })
+            self.topSpaceConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(-64)-[messageView]", options: .AlignAllCenterY, metrics: nil, views: ["messageView":self]).first!
+            view.addConstraint(self.topSpaceConstraint!)
+            
+            /* Slide in and out */
+            self.slideIn({ (finished) -> Void in
+                Utilities.delayDispatchInQueue(dispatch_get_main_queue(), delay: 1.0, block: { () -> Void in
+                    self.slideOut(nil)
                 })
             })
         }
