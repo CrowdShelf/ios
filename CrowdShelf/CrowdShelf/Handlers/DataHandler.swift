@@ -230,16 +230,52 @@ public class DataHandler {
     
     */
     
-    public class func loginWithUsername(username: String, withCompletionHandler completionHandler: ((User?)->Void)) {
-        self.usersWithCompletionHandler { (users) -> Void in
-            for user in users {
-                if user.username == username {
-                    return completionHandler(user)
-                }
+    public class func loginWithUsername(username: String, andPassword password: String, withCompletionHandler completionHandler: ((User?)->Void)) {
+        
+        self.sendRequestWithSubRoute("login", usingMethod: .POST, andParameters: ["username": username, "password": password], parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+            
+            var user: User?
+            if let userValue = result as? [String: AnyObject] {
+                user = User(value: userValue)
             }
             
-            completionHandler(nil)
+            completionHandler(user)
         }
+    }
+    
+    public class func userForUserID(userID: String, withCompletionHandler completionHandler: ((User?)->Void
+        )) {
+            
+        self.sendRequestWithSubRoute("users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
+            
+            var user: User?
+            if let userValue = result as? [String: AnyObject] {
+                user = User(value: userValue)
+            }
+            
+            completionHandler(user)
+            
+        }
+    }
+    
+    public class func userForUsername(username: String, withCompletionHandler completionHandler: ((User?)->Void
+        )) {
+            
+            self.sendRequestWithSubRoute("users", usingMethod: .GET, andParameters: ["username":username], parameterEncoding: .URL) { (result, isSuccess) -> Void in
+                
+                
+                var user: User?
+                if result != nil {
+                    if let userDictionaries = result!["users"] as? [AnyObject] {
+                        if let userValue = userDictionaries.first as? [String: AnyObject] {
+                            user = User(value: userValue)
+                        }
+                    }
+                }
+                
+                completionHandler(user)
+                
+            }
     }
     
     /**

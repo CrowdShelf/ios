@@ -46,9 +46,10 @@ extension DataHandler {
         }
     }
     
+    
     public class func addUserWithUsername(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((String?, Bool)->Void)?) {
         
-        self.loginWithUsername(username) { (user) -> Void in
+        self.userForUsername(username) { (user) -> Void in
             if user == nil {
                 completionHandler?(nil, false)
                 return

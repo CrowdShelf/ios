@@ -17,6 +17,7 @@ public class User: BaseModel, Listable {
     dynamic var name        = ""
     dynamic var email       = ""
     dynamic var username    = ""
+    dynamic var token       = ""
     
     var image: UIImage?
     
@@ -45,7 +46,14 @@ public class User: BaseModel, Listable {
     }
     
     override public class func primaryKey() -> String {
-        return "username"
+        return "_id"
     }
+}
 
+
+extension User {
+    class func loginUser(user: User) {
+        LocalDataHandler.setObject(user.serialize() , forKey: "user", inFile: LocalDataFile.User)
+        self.localUser = user
+    }
 }
