@@ -69,11 +69,13 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
     }
     
     func sendRequest() {
+        Analytics.addEventWithSearchProperties("BookSearch", search: self.searchController.searchBar.text!)
         
         DataHandler.resultsForQuery(searchController.searchBar.text!) { (bookInformation) -> Void in
             self.tableViewDataSource.items = bookInformation.filter {$0.isbn != ""}
             
             if self.filter != .All {
+                
                 if self.ISBNsInCrowds == nil {
                     return DataHandler.getBooksInCrowdsForUser(User.localUser!._id, withCompletionHandler: { (books) -> Void in
                         self.ISBNsInCrowds = Set(books.map {$0.isbn})
@@ -83,6 +85,7 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
                 } else {
                     self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
                 }
+                
             }
             
             self.updateView()
@@ -98,6 +101,7 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
     
     
     @IBAction func filterChanged(sender: UISegmentedControl) {
+        Analytics.addEvent("SwitchedFilter")
         filter = SearchFilter(rawValue: sender.selectedSegmentIndex)!
         debouncedSearchRequest?()
     }
