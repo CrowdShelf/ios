@@ -21,19 +21,21 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     @IBOutlet weak var nameField: UITextField?
     @IBOutlet weak var membersLabel: UILabel?
     
-    lazy var nameFieldDelegate: ReturnTextFieldDelegate = {
-        return ReturnTextFieldDelegate { (textField) -> Void in
+    var nameFieldDelegate: TextFieldDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.nameFieldDelegate = TextFieldDelegate { (textField) -> Bool in
             self.crowd?.name = textField.text!
             
             DataHandler.updateCrowd(self.crowd!, withCompletionHandler: nil)
             
             textField.resignFirstResponder()
             self.updateView()
+            
+            return true
         }
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         self.dataSource = self
         self.delegate = self

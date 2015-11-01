@@ -18,19 +18,19 @@ extension DataHandler {
             
             var allBooks: [Book] = []
             
-            var crowdsRetrieved = 0
-            
-            for crowd in crowds {
+            var membersRetrieved = 0
+            let memberIDs = Set(crowds.flatMap { $0.members.map{$0.stringValue!}})
+
+            for memberID in memberIDs {
                 
-                DataHandler.getBooksInCrowd(crowd, withCompletionHandler: { (crowdBooks) -> Void in
-                    allBooks = allBooks + crowdBooks
+                DataHandler.getBooksWithParameters(["owner":memberID], andCompletionHandler: { (userBooks) -> Void in
+                    allBooks = allBooks + userBooks
                     
-                    crowdsRetrieved++
-                    if crowdsRetrieved == crowds.count {
+                    membersRetrieved++
+                    if membersRetrieved == memberIDs.count {
                         completionHandler(allBooks)
                     }
                 })
-                
             }
             
         }

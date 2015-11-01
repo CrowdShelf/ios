@@ -18,17 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Analytics.initialize()
 //        Get stored user object if possible
         if let userValue = LocalDataHandler.getObjectForKey("user", fromFile: LocalDataFile.User) {
-            print(userValue)
             User.localUser = User(value: userValue)
             Analytics.initializeUser(User.localUser!._id)
-
         }
         
         
         UINavigationBar.appearance().tintColor = ColorPalette.primaryColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : ColorPalette.primaryTextColor]
         self.window?.tintColor = ColorPalette.primaryColor
-        UILabel.appearance().textColor = ColorPalette.primaryTextColor
         UIView.appearance().tintColor = ColorPalette.primaryColor
         Analytics.addEvent("AppLaunched")
         

@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0948259B1BBAAFAB00662F32 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948259A1BBAAFAB00662F32 /* Analytics.swift */; };
-
 		09852CCB1BE3A06A008E4B0A /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09852CC91BE39DC2008E4B0A /* ColorPalette.swift */; };
-
 		390B92FF1BE382CE006CF3EB /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */; };
 		390B93011BE3956E006CF3EB /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390B93001BE3956E006CF3EB /* TextFieldDelegate.swift */; };
 		390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */; };
@@ -20,7 +18,7 @@
 		39152D6D1BD512FB004EC737 /* CrowdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D6C1BD512FB004EC737 /* CrowdViewController.swift */; };
 		39152D6F1BD51A24004EC737 /* AlternativeInfoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D6E1BD51A24004EC737 /* AlternativeInfoImageView.swift */; };
 		39152D711BD51D7D004EC737 /* MinimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D701BD51D7D004EC737 /* MinimalTextField.swift */; };
-		39152D731BD51E68004EC737 /* ReturnTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D721BD51E68004EC737 /* ReturnTextFieldDelegate.swift */; };
+		39152D731BD51E68004EC737 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D721BD51E68004EC737 /* SearchBarDelegate.swift */; };
 		39152D7B1BD5342A004EC737 /* String+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D7A1BD5342A004EC737 /* String+Initials.swift */; };
 		39152D7D1BD571E1004EC737 /* CollectableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39152D7C1BD571E1004EC737 /* CollectableCell.xib */; };
 		39152D7F1BD574DD004EC737 /* UITableView+ReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D7E1BD574DD004EC737 /* UITableView+ReuseCell.swift */; };
@@ -98,7 +96,7 @@
 		39152D6C1BD512FB004EC737 /* CrowdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdViewController.swift; path = ViewControllers/CrowdViewController.swift; sourceTree = "<group>"; };
 		39152D6E1BD51A24004EC737 /* AlternativeInfoImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlternativeInfoImageView.swift; path = Views/AlternativeInfoImageView.swift; sourceTree = "<group>"; };
 		39152D701BD51D7D004EC737 /* MinimalTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinimalTextField.swift; path = Views/MinimalTextField.swift; sourceTree = "<group>"; };
-		39152D721BD51E68004EC737 /* ReturnTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReturnTextFieldDelegate.swift; path = Helpers/ReturnTextFieldDelegate.swift; sourceTree = "<group>"; };
+		39152D721BD51E68004EC737 /* SearchBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarDelegate.swift; path = Helpers/SearchBarDelegate.swift; sourceTree = "<group>"; };
 		39152D761BD52442004EC737 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		39152D781BD5273E004EC737 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		39152D7A1BD5342A004EC737 /* String+Initials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Initials.swift"; path = "Helpers/String+Initials.swift"; sourceTree = "<group>"; };
@@ -360,7 +358,7 @@
 				395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */,
 				391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */,
 				39152D6A1BD508D8004EC737 /* TableViewSelectionDelegate.swift */,
-				39152D721BD51E68004EC737 /* ReturnTextFieldDelegate.swift */,
+				39152D721BD51E68004EC737 /* SearchBarDelegate.swift */,
 				390B93001BE3956E006CF3EB /* TextFieldDelegate.swift */,
 			);
 			name = Helpers;
@@ -655,7 +653,7 @@
 				39CB7B9E1BB3501000718345 /* BaseViewController.swift in Sources */,
 				395AE16F1BCD21380090B74C /* CollectionViewArrayDataSource.swift in Sources */,
 				392E42DA1BBBE0AC0080CCBD /* ShelfTableViewCell.swift in Sources */,
-				39152D731BD51E68004EC737 /* ReturnTextFieldDelegate.swift in Sources */,
+				39152D731BD51E68004EC737 /* SearchBarDelegate.swift in Sources */,
 				3912CCDC1BE0D29000E9B785 /* Button.swift in Sources */,
 				39C2F58A1B8FA40D00529AA9 /* BookInformation.swift in Sources */,
 				3978FE211BB32BF100DF742A /* BookInformationViewController.swift in Sources */,

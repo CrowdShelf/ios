@@ -58,6 +58,16 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
         tableView?.registerCellForClass(ListTableViewCell)
         tableView?.dataSource = tableViewDataSource
         tableView?.delegate = tableViewDelegate
+        
+        DataHandler.getBooksInCrowdsForUser(User.localUser!._id, withCompletionHandler: { (books) -> Void in
+            self.ISBNsInCrowds = Set(books.map {$0.isbn})
+            
+            if self.filter == .Crowds {
+                self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
+            }
+            
+            self.updateView()
+        })
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -75,17 +85,7 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
             self.tableViewDataSource.items = bookInformation.filter {$0.isbn != ""}
             
             if self.filter != .All {
-                
-                if self.ISBNsInCrowds == nil {
-                    return DataHandler.getBooksInCrowdsForUser(User.localUser!._id, withCompletionHandler: { (books) -> Void in
-                        self.ISBNsInCrowds = Set(books.map {$0.isbn})
-                        self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
-                        self.updateView()
-                    })
-                } else {
-                    self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
-                }
-                
+                self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!) }
             }
             
             self.updateView()

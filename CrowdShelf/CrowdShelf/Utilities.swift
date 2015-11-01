@@ -44,6 +44,7 @@ class Utilities {
         
         return {
             lastFireTime = dispatch_time(DISPATCH_TIME_NOW,0)
+            
             dispatch_after(
                 dispatch_time(
                     DISPATCH_TIME_NOW,
