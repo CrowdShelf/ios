@@ -51,6 +51,7 @@
 		39737EBD1BB56ED4001AA6C6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39737EBC1BB56ED4001AA6C6 /* Utilities.swift */; };
 		3978FE211BB32BF100DF742A /* BookInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978FE201BB32BF100DF742A /* BookInformationViewController.swift */; };
 		39986DA41BDE574A00616DFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39986DA31BDE574A00616DFB /* SearchViewController.swift */; };
+		399DABF91BE6B62D0080F4E5 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399DABF81BE6B62D0080F4E5 /* AlertView.swift */; };
 		399EFDF61BB2E0C900FC0664 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */; };
 		39A0CAFE1B958B0D00321225 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* SelectionViewController.swift */; };
 		39A655F21BD1199D0075CB81 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A655F11BD1199D0075CB81 /* ListViewController.swift */; };
@@ -135,6 +136,7 @@
 		39737EBC1BB56ED4001AA6C6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3978FE201BB32BF100DF742A /* BookInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookInformationViewController.swift; path = ViewControllers/BookInformationViewController.swift; sourceTree = "<group>"; };
 		39986DA31BDE574A00616DFB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ViewControllers/Search/SearchViewController.swift; sourceTree = "<group>"; };
+		399DABF81BE6B62D0080F4E5 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = Views/AlertView.swift; sourceTree = "<group>"; };
 		399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		39A0CAFD1B958B0D00321225 /* SelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionViewController.swift; path = ViewControllers/SelectionViewController.swift; sourceTree = "<group>"; };
 		39A655F11BD1199D0075CB81 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = ViewControllers/ListViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				392E42CF1BBAE8D20080CCBD /* MessagePopupView.swift */,
 				39152D6E1BD51A24004EC737 /* AlternativeInfoImageView.swift */,
 				39152D701BD51D7D004EC737 /* MinimalTextField.swift */,
+				399DABF81BE6B62D0080F4E5 /* AlertView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				395EDD231B8F55AE0012A465 /* Book.swift in Sources */,
 				392E42D61BBB2DCB0080CCBD /* BookCollectionViewController.swift in Sources */,
 				395EDD201B8F09C00012A465 /* ScannerViewController.swift in Sources */,
+				399DABF91BE6B62D0080F4E5 /* AlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

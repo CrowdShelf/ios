@@ -81,36 +81,59 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         membersLabel?.text = "\((crowd?.members.count ?? 0)) members"
         iconImageView?.image = crowd?.image
         iconImageView?.alternativeInfo = crowd?.name.initials
+        iconImageView?.tintColor = ColorPalette.colorForString(self.crowd!._id)
     }
     
     internal func addMember() {
         Analytics.addEvent("AddMember")
         
-        let alertView = UIAlertView(title: "Add member", message: "Please provide a valid user name", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
-        alertView.alertViewStyle = .PlainTextInput
-        alertView.show()
+        AlertView(style: .PlainTextInput,
+                  title: "Add member",
+                message: "Please provide a valid user name",
+      cancelButtonTitle: "Cancel",
+      otherButtonTitles: "OK") { (alertView, buttonIndex) -> Void in
+            
+            switch buttonIndex {
+            case alertView.cancelButtonIndex:
+                break
+            default:
+                let username = alertView.textFieldAtIndex(0)!.text!
+                
+                let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Adding \"\(username)\"", inView: self.view)
+                DataHandler.addUserWithUsername(username, toCrowd: self.crowd!._id, withCompletionHandler: { (userID, isSuccess) -> Void in
+                    
+                    if isSuccess {
+                        DataHandler.getCrowd(self.crowd!._id) { (crowd) -> Void in
+                            activityIndicatorView.stop()
+                            self.crowd = crowd
+                        }
+                    } else {
+                        activityIndicatorView.stop()
+                        MessagePopupView(message: "Failed add member", messageStyle: .Error).show()
+                    }
+                })
+            }
+        }.show()
     }
     
     internal func leaveCrowd() {
-        let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Removing user", inView: self.view)
-        DataHandler.removeUser(User.localUser!._id, fromCrowd: crowd!) { (isSuccess) -> Void in
-            activityIndicatorView.stop()
-            if isSuccess {
-                self.navigationController?.popViewControllerAnimated(true)
-                Analytics.addEvent("LeaveCrowd")
+        AlertView(title: "Leave crowd",
+                message: "Are you sure?",
+      cancelButtonTitle: "No",
+      otherButtonTitles: "Leave") { (alertView, buttonIndex) -> Void in
+            if buttonIndex == alertView.cancelButtonIndex {
+                return
             }
-        }
-    }
-    
-    func indexOfUser(userID: String) -> Int? {
-        let index = (tableViewDataSource.items[1] as! [Listable]).indexOf({ (item) -> Bool in
-            if let user = item as? User {
-                return user._id == userID
+            
+            let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Leaving crowd", inView: self.view)
+            DataHandler.removeUser(User.localUser!._id, fromCrowd: self.crowd!) { (isSuccess) -> Void in
+                activityIndicatorView.stop()
+                if isSuccess {
+                    self.navigationController?.popViewControllerAnimated(true)
+                    Analytics.addEvent("LeaveCrowd")
+                }
             }
-            return false
-        })
-        
-        return index != nil ? Int(index!) : nil
+        }.show()
     }
     
     internal func updateItemsWithListables(listables: [Listable]) {
@@ -143,34 +166,6 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         tableViewDataSource.items = crowd?._id != "" ? [[shelfButton], membersSection, [leaveButton]] : [createButton]
         tableView?.reloadData()
     }
-    
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        switch buttonIndex {
-        case alertView.cancelButtonIndex:
-            break
-        default:
-            let username = alertView.textFieldAtIndex(0)?.text
-            
-            let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Adding member", inView: self.view)
-            DataHandler.addUserWithUsername(username!, toCrowd: crowd!._id, withCompletionHandler: { (userID, isSuccess) -> Void in
-                
-                if isSuccess {
-                    self.crowd?.members.insert(RLMWrapper(userID!), atIndex: 0)
-                    
-                    DataHandler.getUser(userID!, withCompletionHandler: { (user) -> Void in
-                        activityIndicatorView.stop()
-                        
-                        self.tableViewDataSource.addItem(user!, forIndexPath: NSIndexPath(forRow: 1, inSection: 1))
-                        self.tableView?.reloadData()
-                    })
-                } else {
-                    activityIndicatorView.stop()
-                    MessagePopupView(message: "Failed add member", messageStyle: .Error).show()
-                }
-            })
-        }
-    }
-    
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

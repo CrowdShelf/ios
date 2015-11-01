@@ -24,14 +24,42 @@ extension UIColor {
 }
 
 class ColorPalette: UIColor{
-    static let primaryColor = UIColor(netHex:0x03A9F4)
-    static let darkPrimaryColor = UIColor(netHex:0x0288D1)
-    static let lightPrimaryColor = UIColor(netHex:0xB3E5FC)
-    static let textColor = UIColor(netHex:0xFFFFFF)
-    static let secondTextColor = UIColor(netHex:0x727272)
-    static let dividerColor = UIColor(netHex:0xB6B6B6)
-    static let primaryTextColor = UIColor(netHex:0x212121)
-    static let dangerColor = UIColor(netHex:0xC7262C)
+    static let primaryColor         = UIColor(netHex:0x03A9F4)
+    static let darkPrimaryColor     = UIColor(netHex:0x0288D1)
+    static let lightPrimaryColor    = UIColor(netHex:0xB3E5FC)
+    static let textColor            = UIColor(netHex:0xFFFFFF)
+    static let secondTextColor      = UIColor(netHex:0x727272)
+    static let dividerColor         = UIColor(netHex:0xB6B6B6)
+    static let primaryTextColor     = UIColor(netHex:0x212121)
+    static let dangerColor          = UIColor(netHex:0xC7262C)
     
-    static let groupColors = [UIColor(netHex: 0xC767B9), UIColor(netHex: 0x0F9933), UIColor(netHex: 0xF4EE31), UIColor(netHex: 0xC7A17A), UIColor(netHex: 0x9982C7)]
+    static let randomColors = [
+        UIColor(netHex: 0xf16364),
+        UIColor(netHex: 0xf58559),
+        UIColor(netHex: 0xe4c62e),
+        UIColor(netHex: 0x67bf74),
+        UIColor(netHex: 0x59a2be),
+        UIColor(netHex: 0x2093cd),
+        UIColor(netHex: 0xad62a7)
+    ]
+    
+    
+    class func colorForString(string: String) -> UIColor {
+        let hashValue = string.hashValue
+        let index = abs( hashValue % self.randomColors.count )
+        return randomColors[index]
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

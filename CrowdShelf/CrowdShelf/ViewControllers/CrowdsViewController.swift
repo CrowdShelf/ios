@@ -28,10 +28,11 @@ class CrowdsViewController: CollectionViewController {
             let cell = cell as! CollectableCell
             cell.imageViewStyle = .Round
             cell.imageView?.showBorder = true
-            cell.collectable = item as? Collectable
             
-            let crowd = item as? Crowd
-            cell.imageView?.tintColor = ColorPalette.groupColors[abs(crowd!._id.hashValue%ColorPalette.groupColors.count)]
+            if let crowd = item as? Crowd {
+                cell.collectable = crowd
+                cell.imageView?.tintColor = ColorPalette.colorForString(crowd._id)
+            }
         }
     }
     

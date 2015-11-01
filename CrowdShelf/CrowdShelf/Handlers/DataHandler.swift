@@ -393,6 +393,16 @@ public class DataHandler {
         }
     }
     
+    public class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((Crowd?)->Void)) {
+        self.sendRequestWithSubRoute("crowds/\(crowdID)", usingMethod: .GET) { (result, isSuccess) -> Void in
+            var crowd: Crowd?
+            if let crowdValue = result as? [String: AnyObject] {
+                crowd = Crowd(value: crowdValue)
+            }
+            completionHandler(crowd)
+        }
+    }
+    
     public class func createCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Crowd?)-> Void)) {
         self.sendRequestWithSubRoute("crowds", usingMethod: .POST, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             if isSuccess {
