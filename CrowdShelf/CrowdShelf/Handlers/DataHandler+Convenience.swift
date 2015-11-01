@@ -46,6 +46,27 @@ extension DataHandler {
         }
     }
     
+    public class func getUserWithImage(userID: String, withCompletionHandler completionHandler: ((User?)->Void)) {
+        self.getUser(userID) { (user) -> Void in
+            if user == nil {
+                return completionHandler(nil)
+            }
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                let hash = user!.email
+                    .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    .lowercaseString
+                    .md5()
+                
+                if let imageData = NSData(contentsOfURL: NSURL(string: "http://www.gravatar.com/avatar/\(hash)?d=retro")!) {
+                    user?.image = UIImage(data: imageData)
+                }
+                
+                completionHandler(user)
+            })
+        }
+    }
+    
     
     public class func addUserWithUsername(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((String?, Bool)->Void)?) {
         
@@ -66,7 +87,7 @@ extension DataHandler {
         var results = 0
         
         crowd.members.forEach {
-            DataHandler.getUser($0.content as! String, withCompletionHandler: { (user) -> Void in
+            DataHandler.getUserWithImage($0.content as! String, withCompletionHandler: { (user) -> Void in
                 results++
                 if user != nil {
                     users.append(user!)

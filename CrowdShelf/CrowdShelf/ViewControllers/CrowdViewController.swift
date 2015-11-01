@@ -164,7 +164,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         
         
         tableViewDataSource.items = crowd?._id != "" ? [[shelfButton], membersSection, [leaveButton]] : [createButton]
-        tableView?.reloadData()
+        tableView?.performSelectorOnMainThread("reloadData", withObject: nil, waitUntilDone: false)
     }
     
     
@@ -186,7 +186,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     }
     
     func listViewController(listViewController: ListViewController, shouldShowSubtitleForCellAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
+        return indexPath.section == 1 && indexPath.row > 0
     }
     
 //    MARK: List View Delegate

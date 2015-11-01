@@ -26,7 +26,7 @@ class Button: Listable {
             case .Danger:
                 return ColorPalette.dangerColor
             case .None, .Normal:
-                return ColorPalette.primaryTextColor
+                return ColorPalette.lightGrayColor()
             }
         }
         

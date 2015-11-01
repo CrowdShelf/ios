@@ -522,10 +522,7 @@ public class DataHandler {
 
                     if !JSONResponseHandlerFailed {
                         completionHandler?(result.value, result.isSuccess)
-                    } else {
-                        csprint(CS_DEBUG_NETWORK, "Response JSON failed for request:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result.debugDescription)
                     }
-                    
             }.responseData { (request, response, result) -> Void in
                 
                 if result.isSuccess {

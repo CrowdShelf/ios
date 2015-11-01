@@ -29,9 +29,8 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet var titleLabelAlignCenterYConstraint: NSLayoutConstraint?
     @IBOutlet var titleLabelTopSpaceConstrant: NSLayoutConstraint?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    override func layoutSubviews() {
+        super.layoutSubviews()
         iconImageView!.viewStyle = .Round
     }
     
