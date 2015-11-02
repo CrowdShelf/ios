@@ -34,7 +34,7 @@ class Analytics{
     
     /// Adds an event with properties
     class func addBookProperties(bookInformation: BookInformation){
-        let categories = bookInformation.categories.map {$0.content as! String}
+        let categories = bookInformation.categories.map {$0}
         let list:NSArray = categories
          Mixpanel.sharedInstance().people.append(["Categories":  list])
     }

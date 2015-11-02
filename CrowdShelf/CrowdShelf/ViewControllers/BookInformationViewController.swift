@@ -36,7 +36,7 @@ class BookInformationViewController: BaseViewController {
     
     func updateView() {
         self.title = self.bookInformation?.title
-        self.authorsLabel?.text = self.bookInformation?.authors.map({$0.content as! String}).joinWithSeparator(", ")
+        self.authorsLabel?.text = self.bookInformation?.authors.joinWithSeparator(", ")
         self.publisherLabel?.text = self.bookInformation?.publisher
         self.isbnLabel?.text = self.bookInformation?.isbn
         self.pageCountLabel?.text = "\(self.bookInformation?.numberOfPages ?? 0)"

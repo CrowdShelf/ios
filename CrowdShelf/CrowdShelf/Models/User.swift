@@ -11,20 +11,11 @@ import RealmSwift
 // FIXME: Ugly, temporary mimic of apples local user
 private var _localUser : User?
 
-public class User: BaseModel, Listable {
+public class User: BaseModel, Listable, Storeable {
 
-    dynamic var _id         = ""
-    dynamic var name        = ""
-    dynamic var email       = ""
-    dynamic var username    = ""
-    dynamic var token       = ""
-    
-    var image: UIImage?
-    
-    /// The user that is currently authenticated
     class var localUser : User? {
         get {
-            return _localUser
+        return _localUser
         }
         set {
             _localUser = newValue
@@ -32,21 +23,25 @@ public class User: BaseModel, Listable {
         }
     }
     
+    
+    dynamic var _id         = ""
+    dynamic var name        = ""
+    dynamic var email       = ""
+    dynamic var username    = ""
+    dynamic var token       = ""
+    dynamic var password: String?
+    
+    var image: UIImage?
+    
     var title: String { return username }
     var subtitle: String? { return email }
+    var asDictionary: [String: AnyObject] {
+        return self.serialize(.SQLite)
+    }
     
-//    MARK: Realm Object
-    
+        
     public override func ignoreProperties() -> Set<String> {
         return ["image", "token"]
-    }
-    
-    override public static func ignoredProperties() -> [String] {
-        return ["image"]
-    }
-    
-    override public class func primaryKey() -> String {
-        return "_id"
     }
 }
 
@@ -55,5 +50,19 @@ extension User {
     class func loginUser(user: User) {
         LocalDataHandler.setObject(user.serialize() , forKey: "user", inFile: LocalDataFile.User)
         self.localUser = user
+    }
+}
+
+extension User {
+    
+    class var columnDefinitions: [String: [String]] {
+        return [
+            "_id"       : ["TEXT", "PRIMARY KEY"],
+            "name"      : ["TEXT", "NOT NULL"],
+            "email"     : ["TEXT", "NOT NULL"],
+            "username"  : ["TEXT", "NOT NULL"],
+            "password"  : ["TEXT"]
+//            "token"     : ["TEXT"]
+        ]
     }
 }

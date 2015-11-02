@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class BookCollectionViewController: CollectionViewController {
     
@@ -34,10 +33,9 @@ class BookCollectionViewController: CollectionViewController {
             self.updateView()
             
             for book in self.collectionData as! [Book] {
-                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
-                    Realm.write { realm -> Void in
-                        book.details = information.first
-                    }
+                DataHandler.informationAboutBook(book.isbn!, withCompletionHandler: { (information) -> Void in
+                                        
+                    book.details = information.first
                     
                     self.updateView()
                 })

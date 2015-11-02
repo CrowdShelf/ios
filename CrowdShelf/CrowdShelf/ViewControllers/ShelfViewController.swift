@@ -59,14 +59,14 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         DataHandler.getBooksWithInformationWithParameters(shelf.parameters) { (books) -> Void in
             shelf.books = books.filter(shelf.filter)
             self.refreshControl.endRefreshing()
-            self.updateView()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.updateView()
+            })
         }
     }
     
     func updateView() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.tableView?.reloadData()
-        })
+        self.tableView?.reloadData()
     }
     
 //    MARK: - Shelf Table View Cell Delegate

@@ -33,8 +33,8 @@ class CrowdBookCollectionViewController: CollectionViewController {
 
         for wrappedMemberID in self.crowd!.members {
             
-            DataHandler.getTitleInformationForBooksWithParameters(["owner":wrappedMemberID.content], andCompletionHandler: { (titleInformation) -> Void in
-                memberBooks[wrappedMemberID.stringValue!] = titleInformation
+            DataHandler.getTitleInformationForBooksWithParameters(["owner":wrappedMemberID], andCompletionHandler: { (titleInformation) -> Void in
+                memberBooks[wrappedMemberID] = titleInformation
                 self.collectionData = Set(memberBooks.values.flatMap {$0}).map {$0}
                 self.collectionView?.reloadData()
                 self.refreshControl.endRefreshing()

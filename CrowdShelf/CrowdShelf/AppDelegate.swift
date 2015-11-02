@@ -15,14 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        LocalDatabaseHandler.sharedInstance
         Analytics.initialize()
+        
 //        Get stored user object if possible
-        if let userValue = LocalDataHandler.getObjectForKey("user", fromFile: LocalDataFile.User) {
+        if let userValue = LocalDataHandler.getObjectForKey("user", fromFile: LocalDataFile.User) as? [String : AnyObject] {
             User.localUser = User(value: userValue)
             Analytics.initializeUser(User.localUser!._id)
         }
-        
-        
+                
         UINavigationBar.appearance().tintColor = ColorPalette.primaryColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : ColorPalette.primaryTextColor]
         self.window?.tintColor = ColorPalette.primaryColor

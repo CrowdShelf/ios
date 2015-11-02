@@ -14,25 +14,7 @@ protocol ShelfTableViewCellDelegate {
 }
 
 class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
-//    struct ViewData {
-//        let title: String
-//        let books: [Book]
-//        
-//        init(shelf: Shelf) {
-//            self.init(title: shelf.name, books: shelf.books)
-//        }
-//        
-//        init(title: String, books: [Book]) {
-//            self.books = books
-//            self.title = title
-//        }
-//    }
-//    var viewData: ViewData? {
-//        didSet {
-//            self.updateView()
-//        }
-//    }
-    
+
     var shelf: Shelf? {
         didSet {
             self.updateView()

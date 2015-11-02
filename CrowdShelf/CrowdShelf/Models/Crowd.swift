@@ -6,41 +6,33 @@
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
 //
 
-import RealmSwift
+import UIKit
 
 /// A class representing a crowd
-public class Crowd: BaseModel, Listable, Collectable {
+public class Crowd: BaseModel, Listable, Collectable, Storeable {
     
     dynamic var _id     = ""
     dynamic var name    = ""
     dynamic var owner   = ""
-    var members         = List<RLMWrapper>()
+    var members         = [String]()
     
     @objc var title : String { return name }
     @objc var subtitle : String? { return owner }
     var image: UIImage?
     
-//    MARK: Realm Object
-    
-    override public static func ignoredProperties() -> [String] {
-        return ["image"]
+    var asDictionary: [String: AnyObject] {
+        return self.serialize(.SQLite)
     }
-    
-    override public class func primaryKey() -> String {
-        return "_id"
-    }
-    
-    
-    
-    override func serializedValueForProperty(property: String) -> AnyObject? {
-        if property == "members" {
-            return self.members.map {$0.stringValue!}
-        }
-        
-        return nil
-    }
-    
-    public override func ignoreProperties() -> Set<String> {
-        return ["image"]
+
+}
+
+extension Crowd {
+    class var columnDefinitions: [String: [String]] {
+        return [
+            "_id"       : ["TEXT", "PRIMARY KEY"],
+            "name"      : ["TEXT", "NOT NULL"],
+            "owner"     : ["TEXT", "NOT NULL"],
+            "members"   : ["TEXT", "NOT NULL"]
+        ]
     }
 }

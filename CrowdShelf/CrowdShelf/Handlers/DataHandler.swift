@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 import Alamofire
 import CryptoSwift
 
@@ -39,11 +38,7 @@ public class DataHandler {
                 if let URL = NSURL(string: bookInformation.thumbnailURLString) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                         if let thumbnailData = NSData(contentsOfURL: URL) {
-                            
-                            Realm.write { realm -> Void in
-                                bookInformation.thumbnailData = thumbnailData
-                            }
-                            
+                            bookInformation.thumbnailData = thumbnailData
                             completionHandler(bookInformationArray)
                         }
                     })
@@ -72,41 +67,34 @@ public class DataHandler {
             return completionHandler([])
         }
         
+        let cachedData = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["isbn": isbn], forType: BookInformation.self)
         
-        let cachedData = Realm.read {
-            $0.objectForPrimaryKey(BookInformation.self, key: isbn)
-        }
-
-        if let cachedInformation = cachedData as? BookInformation {
-            completionHandler([cachedInformation])
-            return
+        if !cachedData.isEmpty {
+            return completionHandler(cachedData)
         }
         
         
         self.informationFromGoogleAboutBook(isbn) { (bookInformationArray: [BookInformation]) -> Void in
             for bookInformation in bookInformationArray {
+                
+                
                 if let URL = NSURL(string: bookInformation.thumbnailURLString) {
-                    if let thumbnailData = NSData(contentsOfURL: URL) {
-                        
-                        Realm.write { realm -> Void in
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                        if let thumbnailData = NSData(contentsOfURL: URL) {
                             bookInformation.thumbnailData = thumbnailData
+                            LocalDatabaseHandler.sharedInstance.addObject(bookInformation)
+                            
+                            completionHandler(bookInformationArray)
                         }
-                        
-                    }
+                    })
                 }
             }
             
-            if !self.cacheObjects(bookInformationArray) {
-                csprint(CS_DEBUG_REALM, "Failed to add book information for isbn: \(isbn)")
+            bookInformationArray.forEach {
+                LocalDatabaseHandler.sharedInstance.addObject($0)
             }
             
             completionHandler(bookInformationArray)
-        }
-    }
-    
-    private class func cacheObjects(objects: [Object]) -> Bool {
-        return Realm.write { (realm) -> Void in
-             realm.add(objects, update: true)
         }
     }
     
@@ -131,9 +119,7 @@ public class DataHandler {
             
             let book = Book(value: result as! [String: AnyObject])
             
-            Realm.write {
-                $0.add(book, update: true)
-            }
+            LocalDatabaseHandler.sharedInstance.addObject(book)
 
             completionHandler?(book)
         }
@@ -153,10 +139,11 @@ public class DataHandler {
             completionHandler?(isSuccess)
             
             if isSuccess {
-                Realm.write {
-                    let book = $0.objectForPrimaryKey(Book.self, key: bookID)
-                    $0.delete(book!)
-                }
+                
+//                Realm.write {
+//                    let book = $0.objectForPrimaryKey(Book.self, key: bookID)
+//                    $0.delete(book!)
+//                }
             }
         }
     }
@@ -198,8 +185,8 @@ public class DataHandler {
                 if let valueArray = resultDictionary["books"] as? [[String: AnyObject]] {
                     let books = valueArray.map {Book(value: $0)}
                     
-                    Realm.write {
-                        $0.add(books, update: true)
+                    books.forEach {
+                        LocalDatabaseHandler.sharedInstance.addObject($0)
                     }
                     
                     return completionHandler(books)
@@ -208,9 +195,9 @@ public class DataHandler {
 //                FIXME: Added to prevent error caused by incorrect format received from server
                 else if let value = resultDictionary["books"] as? [String:AnyObject] {
                     let book = Book(value: value)
-                    Realm.write {
-                        $0.add(book, update: true)
-                    }
+                    
+                    LocalDatabaseHandler.sharedInstance.addObject(book)
+                    
                     completionHandler([book])
                     
                 }
@@ -232,11 +219,14 @@ public class DataHandler {
     
     public class func loginWithUsername(username: String, andPassword password: String, withCompletionHandler completionHandler: ((User?)->Void)) {
         
-        self.sendRequestWithSubRoute("login", usingMethod: .POST, andParameters: ["username": username, "password": password], parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("login", usingMethod: .POST, andParameters: ["username": username, "password": password.sha512()], parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             
             var user: User?
-            if let userValue = result as? [String: AnyObject] {
-                user = User(value: userValue)
+            
+            if isSuccess {
+                if let userValue = result as? [String: AnyObject] {
+                    user = User(value: userValue)
+                }
             }
             
             completionHandler(user)
@@ -334,8 +324,10 @@ public class DataHandler {
 //        TODO: Fix on server and remove
         var parameters = user.serialize()
         parameters.removeValueForKey("_id")
+        parameters["password"] = (parameters["password"] as! String).sha512()
         
         self.sendRequestWithSubRoute("users", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+            
             if let value = result as? [String: AnyObject] {
                 completionHandler(User(value: value))
             }
@@ -434,9 +426,9 @@ public class DataHandler {
     public class func removeUser(userID: String, fromCrowd crowd: Crowd, withCompletionHandler completionHandler: ((Bool)->Void)?) {
         self.sendRequestWithSubRoute("crowds/\(crowd._id)/members/\(userID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
             if isSuccess {
-                Realm.write { realm -> Void in
-                    crowd.realm?.delete(crowd.members.filter {$0.stringValue! == userID}.first!)
-                }
+//                Realm.write { realm -> Void in
+//                    crowd.realm?.delete(crowd.members.filter {$0.stringValue! == userID}.first!)
+//                }
             }
             completionHandler?(isSuccess)
         }

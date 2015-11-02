@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
 //
 import UIKit
-import RealmSwift
-
 
 class BookViewController: ListViewController {
     
