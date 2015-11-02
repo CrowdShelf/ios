@@ -9,16 +9,16 @@
 import UIKit
 
 /// A class representing a crowd
-public class Crowd: BaseModel, Listable, Collectable, Storeable {
+public class Crowd: BaseModel, Listable, Storeable {
     
-    dynamic var _id     = ""
-    dynamic var name    = ""
-    dynamic var owner   = ""
-    var members         = [String]()
+    dynamic var _id     : String?
+    dynamic var name    : String?
+    dynamic var owner   : String?
+    dynamic var members : [String] = []
     
-    @objc var title : String { return name }
-    @objc var subtitle : String? { return owner }
-    var image: UIImage?
+    var title       : String? { return name }
+    var subtitle    : String? { return owner }
+    var image       : UIImage?
     
     var asDictionary: [String: AnyObject] {
         return self.serialize(.SQLite)

@@ -80,8 +80,8 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         nameField?.text = crowd?.name
         membersLabel?.text = "\((crowd?.members.count ?? 0)) members"
         iconImageView?.image = crowd?.image
-        iconImageView?.alternativeInfo = crowd?.name.initials
-        iconImageView?.tintColor = ColorPalette.colorForString(self.crowd!._id)
+        iconImageView?.alternativeInfo = crowd?.name?.initials
+        iconImageView?.tintColor = ColorPalette.colorForString(self.crowd!._id!)
     }
     
     internal func addMember() {
@@ -100,10 +100,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
                 let username = alertView.textFieldAtIndex(0)!.text!
                 
                 let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Adding \"\(username)\"", inView: self.view)
-                DataHandler.addUserWithUsername(username, toCrowd: self.crowd!._id, withCompletionHandler: { (userID, isSuccess) -> Void in
+                DataHandler.addUserWithUsername(username, toCrowd: self.crowd!._id!, withCompletionHandler: { (userID, isSuccess) -> Void in
                     
                     if isSuccess {
-                        DataHandler.getCrowd(self.crowd!._id) { (crowd) -> Void in
+                        DataHandler.getCrowd(self.crowd!._id!) { (crowd) -> Void in
                             activityIndicatorView.stop()
                             self.crowd = crowd
                         }
@@ -126,7 +126,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
             }
             
             let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Leaving crowd", inView: self.view)
-            DataHandler.removeUser(User.localUser!._id, fromCrowd: self.crowd!) { (isSuccess) -> Void in
+            DataHandler.removeUser(User.localUser!._id!, fromCrowd: self.crowd!) { (isSuccess) -> Void in
                 activityIndicatorView.stop()
                 if isSuccess {
                     self.navigationController?.popViewControllerAnimated(true)

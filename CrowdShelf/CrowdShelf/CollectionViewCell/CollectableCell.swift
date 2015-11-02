@@ -24,7 +24,7 @@ class CollectableCell: UICollectionViewCell {
         }
     }
     
-    var collectable : Collectable? {
+    var collectable : Listable? {
         didSet {
             self.updateView()
         }
@@ -38,7 +38,7 @@ class CollectableCell: UICollectionViewCell {
         self.imageView?.image = self.collectable?.image
         self.titleLabel?.text = self.collectable?.title
                 
-        self.imageView?.alternativeInfo = self.collectable?.title.initials
+        self.imageView?.alternativeInfo = self.collectable?.title?.initials
     }
     
     func configureImageView() {

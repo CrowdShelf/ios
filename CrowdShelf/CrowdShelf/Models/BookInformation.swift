@@ -13,21 +13,21 @@ public func ==(lhs: BookInformation, rhs: BookInformation) -> Bool {
 }
 
 /// A class representing detail about a book
-public class BookInformation: BaseModel, Listable, Collectable, Storeable {
+public class BookInformation: BaseModel, Listable, Storeable {
     
-    dynamic var providerID                  = ""
-    dynamic var provider                    = ""
+    dynamic var providerID          : String?
+    dynamic var provider            : String?
     
-    dynamic var isbn                        = ""
-    dynamic var summary                     = ""
-    dynamic var publisher                   = ""
-    dynamic var title                       = ""
-    dynamic var thumbnailURLString          = ""
-    dynamic var numberOfPages: Int          = 0
-    dynamic var numberOfRatings: Int        = 0
-    dynamic var averageRating: Double        = 0.0
-    dynamic var thumbnailData: NSData?
-    dynamic var publishedDate: NSDate       = NSDate(timeIntervalSince1970: 100)
+    dynamic var isbn                : String?
+    dynamic var summary             : String?
+    dynamic var publisher           : String?
+    dynamic var title               : String?
+    dynamic var thumbnailURLString  : String?
+    dynamic var numberOfPages       : NSNumber?
+    dynamic var numberOfRatings     : NSNumber?
+    dynamic var averageRating       : NSNumber?
+    dynamic var thumbnailData       : NSData?
+    dynamic var publishedDate       : NSDate?
     
     var categories  : [String] = []
     var authors     : [String] = []

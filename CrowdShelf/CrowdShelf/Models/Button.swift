@@ -51,12 +51,13 @@ class Button: Listable {
         }
     }
     
-    @objc var title: String
+    @objc var title: String?
     @objc var subtitle: String?
     @objc var image: UIImage?
+    
     var buttonStyle: ButtonStyle
     
-    init(title: String, subtitle: String? = nil, image: UIImage? = nil, buttonStyle: ButtonStyle = .Normal) {
+    init(title: String?, subtitle: String? = nil, image: UIImage? = nil, buttonStyle: ButtonStyle = .Normal) {
         self.title = title
         self.subtitle = subtitle
         self.image = image

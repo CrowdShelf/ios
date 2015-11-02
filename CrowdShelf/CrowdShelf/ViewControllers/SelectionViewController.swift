@@ -9,9 +9,9 @@
 import UIKit
 
 @objc protocol Listable {
-    var title : String {get}
+    var title   : String? {get}
     var subtitle: String? {get}
-    optional var image : UIImage? {get}
+    var image   : UIImage? {get}
 }
 
 class SelectionViewController: BaseViewController, UITableViewDelegate {

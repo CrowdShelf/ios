@@ -52,7 +52,7 @@ extension DataHandler {
             }
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                let hash = user!.email
+                let hash = user!.email!
                     .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     .lowercaseString
                     .md5()
@@ -168,7 +168,7 @@ extension DataHandler {
     
     public class func ownersOfBooksWithParameters(parameters: [String: AnyObject]?, withCompletionHandler completionHandler: (([User]) -> Void) ) {
         
-        DataHandler.getCrowdsWithParameters(["member": User.localUser!._id]) { (userCrowds) -> Void in
+        DataHandler.getCrowdsWithParameters(["member": User.localUser!._id!]) { (userCrowds) -> Void in
             
             var memberIDs = Set<String>()
             userCrowds.forEach { crowd in
@@ -183,7 +183,7 @@ extension DataHandler {
                 let ownerIDs: Set<String> = Set(books.map {$0.owner!})
                 
                 DataHandler.usersWithCompletionHandler { users -> Void in
-                    let owners = users.filter {ownerIDs.contains($0._id) && memberIDs.contains($0._id)}
+                    let owners = users.filter {ownerIDs.contains($0._id!) && memberIDs.contains($0._id!)}
                     
                     completionHandler(owners)
                 }

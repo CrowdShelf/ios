@@ -59,7 +59,7 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
         tableView?.dataSource = tableViewDataSource
         tableView?.delegate = tableViewDelegate
         
-        DataHandler.getBooksInCrowdsForUser(User.localUser!._id, withCompletionHandler: { (books) -> Void in
+        DataHandler.getBooksInCrowdsForUser(User.localUser!._id!, withCompletionHandler: { (books) -> Void in
             self.ISBNsInCrowds = Set(books.map {$0.isbn!})
             
             if self.filter == .Crowds {

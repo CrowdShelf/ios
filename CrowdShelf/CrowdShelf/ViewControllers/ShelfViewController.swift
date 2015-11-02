@@ -38,9 +38,9 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         var shelves: [Shelf] = []
         
         if User.localUser != nil {
-            let ownedShelf = Shelf(name: "Owned books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.owner == User.localUser!._id}
-            let borrowedShelf = Shelf(name: "Borrowed books", parameters: ["rentedTo": User.localUser!._id]) {User.localUser != nil && $0.rentedTo == User.localUser!._id}
-            let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.rentedTo != "" && $0.owner == User.localUser!._id}
+            let ownedShelf = Shelf(name: "Owned books", parameters: ["owner": User.localUser!._id!]) {User.localUser != nil && $0.owner! == User.localUser!._id!}
+            let borrowedShelf = Shelf(name: "Borrowed books", parameters: ["rentedTo": User.localUser!._id!]) {User.localUser != nil && $0.rentedTo! == User.localUser!._id!}
+            let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id!]) {User.localUser != nil && $0.rentedTo != "" && $0.owner! == User.localUser!._id!}
             
             
             shelves = [ownedShelf, borrowedShelf, lentShelf]

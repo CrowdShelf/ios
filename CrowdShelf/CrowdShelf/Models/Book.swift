@@ -10,7 +10,7 @@ import UIKit
 
 
 /// A class representing a book
-public class Book: BaseModel, Collectable, Storeable {
+public class Book: BaseModel, Listable, Storeable {
 
     dynamic var _id                 : String?
     dynamic var isbn                : String?
@@ -20,17 +20,15 @@ public class Book: BaseModel, Collectable, Storeable {
     
     dynamic var details : BookInformation?
     
-    var title: String { return self.details?.title ?? "<no data>" }
-    var image: UIImage? { return self.details?.thumbnail }
+    var title   : String? { return self.details?.title ?? "<no data>" }
+    var image   : UIImage? { return self.details?.thumbnail }
+    var subtitle: String?
+    
     var asDictionary: [String: AnyObject] {
         return self.serialize(.SQLite)
     }
     
-    public override var description: String {
-        return self.serialize().description
-    }
-    
-//    Serializable Object
+
     public override func ignoreProperties() -> Set<String> {
         return ["details"]
     }

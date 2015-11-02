@@ -30,7 +30,7 @@ class CrowdsViewController: CollectionViewController {
             
             if let crowd = item as? Crowd {
                 cell.collectable = crowd
-                cell.imageView?.tintColor = ColorPalette.colorForString(crowd._id)
+                cell.imageView?.tintColor = ColorPalette.colorForString(crowd._id!)
             }
         }
     }
@@ -44,7 +44,7 @@ class CrowdsViewController: CollectionViewController {
     }
     
     override func updateContent() {
-        DataHandler.getCrowdsWithParameters(["member":User.localUser!._id]) { (crowds) -> Void in
+        DataHandler.getCrowdsWithParameters(["member":User.localUser!._id!]) { (crowds) -> Void in
             self.crowds = crowds
             self.collectionView?.reloadData()
             self.refreshControl.endRefreshing()

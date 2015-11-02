@@ -39,7 +39,7 @@ class ListTableViewCell: UITableViewCell {
     func updateView() {
         titleLabel?.text = listable?.title
         subtitleLabel?.text = (listable?.subtitle) ?? nil
-        iconImageView?.alternativeInfo = listable?.title.initials
+        iconImageView?.alternativeInfo = listable?.title?.initials
         iconImageView?.image = listable?.image ?? nil
         
         subtitleLabel?.hidden = !showSubtitle

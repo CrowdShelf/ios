@@ -35,7 +35,7 @@ public class DataHandler {
         self.resultsFromGoogleForQuery(query) { (bookInformationArray) -> Void in
             
             for bookInformation in bookInformationArray {
-                if let URL = NSURL(string: bookInformation.thumbnailURLString) {
+                if let URL = NSURL(string: bookInformation.thumbnailURLString!) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                         if let thumbnailData = NSData(contentsOfURL: URL) {
                             bookInformation.thumbnailData = thumbnailData
@@ -78,7 +78,7 @@ public class DataHandler {
             for bookInformation in bookInformationArray {
                 
                 
-                if let URL = NSURL(string: bookInformation.thumbnailURLString) {
+                if let URL = NSURL(string: bookInformation.thumbnailURLString!) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                         if let thumbnailData = NSData(contentsOfURL: URL) {
                             bookInformation.thumbnailData = thumbnailData

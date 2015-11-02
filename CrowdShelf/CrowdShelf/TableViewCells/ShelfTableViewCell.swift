@@ -34,7 +34,7 @@ class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
         collectionView?.registerCellForClass(CollectableCell)
         
         self.collectionViewDataSource = CollectionViewArrayDataSource(cellReuseIdentifier: CollectableCell.cellReuseIdentifier) {
-            ($0 as! CollectableCell).collectable = $1 as? Collectable
+            ($0 as! CollectableCell).collectable = $1 as? Listable
         }
         
         self.collectionView!.dataSource = self.collectionViewDataSource

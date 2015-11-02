@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        Get stored user object if possible
         if let userValue = LocalDataHandler.getObjectForKey("user", fromFile: LocalDataFile.User) as? [String : AnyObject] {
             User.localUser = User(value: userValue)
-            Analytics.initializeUser(User.localUser!._id)
+            Analytics.initializeUser(User.localUser!._id!)
         }
                 
         UINavigationBar.appearance().tintColor = ColorPalette.primaryColor

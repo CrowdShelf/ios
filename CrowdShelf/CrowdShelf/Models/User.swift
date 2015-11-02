@@ -24,17 +24,17 @@ public class User: BaseModel, Listable, Storeable {
     }
     
     
-    dynamic var _id         = ""
-    dynamic var name        = ""
-    dynamic var email       = ""
-    dynamic var username    = ""
-    dynamic var token       = ""
-    dynamic var password: String?
+    dynamic var _id         : String?
+    dynamic var name        : String?
+    dynamic var email       : String?
+    dynamic var username    : String?
+    dynamic var token       : String?
+    dynamic var password    : String?
     
-    var image: UIImage?
-    
-    var title: String { return username }
+    var image   : UIImage?
+    var title   : String? { return username! }
     var subtitle: String? { return email }
+    
     var asDictionary: [String: AnyObject] {
         return self.serialize(.SQLite)
     }
