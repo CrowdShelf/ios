@@ -7,10 +7,10 @@
     "F1A818387ABC21568264C784A4B6D841D9767973" : 0,
     "357A6A6CF21D753E6C1C1042B0B033D5E874607A" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8B61A466-243A-4271-AB23-6F320EF2ABD9",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "45D2E9CE-1FA2-41C2-8590-535B45748156",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "F1A818387ABC21568264C784A4B6D841D9767973" : "ios",
-    "357A6A6CF21D753E6C1C1042B0B033D5E874607A" : ""
+    "F1A818387ABC21568264C784A4B6D841D9767973" : "ios\/",
+    "357A6A6CF21D753E6C1C1042B0B033D5E874607A" : "..\/.."
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "CrowdShelf",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,

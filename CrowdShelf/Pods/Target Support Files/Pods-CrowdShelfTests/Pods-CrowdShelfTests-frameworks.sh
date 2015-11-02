@@ -84,15 +84,11 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-CrowdShelfTests/Realm.framework"
-  install_framework "Pods-CrowdShelfTests/RealmSwift.framework"
   install_framework "Pods-CrowdShelfTests/Alamofire.framework"
   install_framework "Pods-CrowdShelfTests/MTBBarcodeScanner.framework"
   install_framework "Pods-CrowdShelfTests/Mixpanel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-CrowdShelfTests/Realm.framework"
-  install_framework "Pods-CrowdShelfTests/RealmSwift.framework"
   install_framework "Pods-CrowdShelfTests/Alamofire.framework"
   install_framework "Pods-CrowdShelfTests/MTBBarcodeScanner.framework"
   install_framework "Pods-CrowdShelfTests/Mixpanel.framework"
