@@ -28,13 +28,7 @@ class ListTableViewCell: UITableViewCell {
     
     @IBOutlet var titleLabelAlignCenterYConstraint: NSLayoutConstraint?
     @IBOutlet var titleLabelTopSpaceConstrant: NSLayoutConstraint?
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        iconImageView!.viewStyle = .Round
-    }
-    
-    
+
     
     func updateView() {
         titleLabel?.text = listable?.title

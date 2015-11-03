@@ -29,7 +29,9 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         self.nameFieldDelegate = TextFieldDelegate { (textField) -> Bool in
             self.crowd?.name = textField.text!
             
-            DataHandler.updateCrowd(self.crowd!, withCompletionHandler: nil)
+            if self.crowd?._id != nil {
+                DataHandler.updateCrowd(self.crowd!, withCompletionHandler: nil)
+            }
             
             textField.resignFirstResponder()
             self.updateView()

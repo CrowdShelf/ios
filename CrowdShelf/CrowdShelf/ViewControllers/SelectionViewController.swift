@@ -27,7 +27,8 @@ class SelectionViewController: BaseViewController, UITableViewDelegate {
     
     lazy var tableViewDataSource: TableViewArrayDataSource = { [unowned self] in
         return TableViewArrayDataSource(cellReuseIdentifier: ListTableViewCell.cellReuseIdentifier) { (cell, item, _) -> Void in
-            (cell as! ListTableViewCell).listable = item as? Listable
+            let listableCell = cell as! ListTableViewCell
+            listableCell.listable = item as? Listable
         }
     }()
     
