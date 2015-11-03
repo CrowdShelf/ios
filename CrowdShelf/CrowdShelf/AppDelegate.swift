@@ -15,12 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        LocalDatabaseHandler.sharedInstance
+        DatabaseHandler.sharedInstance
         Analytics.initialize()
         
 //        Get stored user object if possible
-        if let userValue = LocalDataHandler.getObjectForKey("user", fromFile: LocalDataFile.User) as? [String : AnyObject] {
-            User.localUser = User(value: userValue)
+        if let userValue = KeyValueHandler.getObjectForKey("user", fromFile: LocalDataFile.User) as? [String : AnyObject] {
+            User.localUser = User(dictionary: userValue)
             Analytics.initializeUser(User.localUser!._id!)
         }
                 

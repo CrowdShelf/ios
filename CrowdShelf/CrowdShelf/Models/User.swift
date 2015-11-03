@@ -15,7 +15,7 @@ public class User: BaseModel, Listable, Storeable {
 
     class var localUser : User? {
         get {
-        return _localUser
+            return _localUser
         }
         set {
             _localUser = newValue
@@ -35,27 +35,27 @@ public class User: BaseModel, Listable, Storeable {
     var title   : String? { return username! }
     var subtitle: String? { return email }
     
-    var asDictionary: [String: AnyObject] {
+    public var asDictionary: [String: AnyObject] {
         return self.serialize(.SQLite)
     }
     
         
     public override func ignoreProperties() -> Set<String> {
-        return ["image", "token"]
+        return ["image", "token", "title", "image", "subtitle"]
     }
 }
 
 
 extension User {
     class func loginUser(user: User) {
-        LocalDataHandler.setObject(user.serialize() , forKey: "user", inFile: LocalDataFile.User)
+        KeyValueHandler.setObject(user.serialize() , forKey: "user", inFile: LocalDataFile.User)
         self.localUser = user
     }
 }
 
 extension User {
     
-    class var columnDefinitions: [String: [String]] {
+    public class var columnDefinitions: [String: [String]] {
         return [
             "_id"       : ["TEXT", "PRIMARY KEY"],
             "name"      : ["TEXT", "NOT NULL"],

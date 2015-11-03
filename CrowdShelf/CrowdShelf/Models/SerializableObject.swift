@@ -6,6 +6,12 @@
 //  Copyright © 2015 Øyvind Grimnes. All rights reserved.
 //
 
+
+/** 
+ JSON:      a hierarchical dictionary containing valid JSON data types.
+
+ SQLite:    a flat dictionary containing Cocoa classes
+*/
 public enum SerializationMode {
     case JSON, SQLite
 }

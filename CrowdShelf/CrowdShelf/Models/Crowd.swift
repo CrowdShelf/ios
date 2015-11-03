@@ -20,14 +20,17 @@ public class Crowd: BaseModel, Listable, Storeable {
     var subtitle    : String? { return owner }
     var image       : UIImage?
     
-    var asDictionary: [String: AnyObject] {
+    public var asDictionary: [String: AnyObject] {
         return self.serialize(.SQLite)
     }
-
+    
+    public override func ignoreProperties() -> Set<String> {
+        return ["image", "title", "image", "subtitle"]
+    }
 }
 
 extension Crowd {
-    class var columnDefinitions: [String: [String]] {
+    public class var columnDefinitions: [String: [String]] {
         return [
             "_id"       : ["TEXT", "PRIMARY KEY"],
             "name"      : ["TEXT", "NOT NULL"],

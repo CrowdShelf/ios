@@ -67,7 +67,7 @@ public class DataHandler {
             return completionHandler([])
         }
         
-        let cachedData = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["isbn": isbn], forType: BookInformation.self)
+        let cachedData = DatabaseHandler.sharedInstance.getObjectWithParameters(["isbn": isbn], forType: BookInformation.self)
         
         if !cachedData.isEmpty {
             return completionHandler(cachedData)
@@ -82,7 +82,8 @@ public class DataHandler {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                         if let thumbnailData = NSData(contentsOfURL: URL) {
                             bookInformation.thumbnailData = thumbnailData
-                            LocalDatabaseHandler.sharedInstance.addObject(bookInformation)
+                            
+                            DatabaseHandler.sharedInstance.addObject(bookInformation)
                             
                             completionHandler(bookInformationArray)
                         }
@@ -91,7 +92,7 @@ public class DataHandler {
             }
             
             bookInformationArray.forEach {
-                LocalDatabaseHandler.sharedInstance.addObject($0)
+                DatabaseHandler.sharedInstance.addObject($0)
             }
             
             completionHandler(bookInformationArray)
@@ -111,15 +112,18 @@ public class DataHandler {
     */
     
     public class func addBook(book: Book, withCompletionHandler completionHandler: ((Book?) -> Void)?) {
-        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: book.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        var data = book.serialize()
+        data.removeValueForKey("_id")
+        
+        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: data, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             if result == nil {
                 completionHandler?(nil)
                 return
             }
             
-            let book = Book(value: result as! [String: AnyObject])
+            let book = Book(dictionary: result as! [String: AnyObject])
             
-            LocalDatabaseHandler.sharedInstance.addObject(book)
+            DatabaseHandler.sharedInstance.addObject(book)
 
             completionHandler?(book)
         }
@@ -160,7 +164,7 @@ public class DataHandler {
     public class func getBook(bookID: String, withCompletionHandler completionHandler: ((Book?)->Void)) {
         self.sendRequestWithSubRoute("books/\(bookID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let value = result as? [String: AnyObject] {
-                let book = Book(value: value)
+                let book = Book(dictionary: value)
                 return completionHandler(book)
             }
             
@@ -183,10 +187,10 @@ public class DataHandler {
             
             if let resultDictionary = result as? [String: AnyObject] {
                 if let valueArray = resultDictionary["books"] as? [[String: AnyObject]] {
-                    let books = valueArray.map {Book(value: $0)}
+                    let books = valueArray.map {Book(dictionary: $0)}
                     
                     books.forEach {
-                        LocalDatabaseHandler.sharedInstance.addObject($0)
+                        DatabaseHandler.sharedInstance.addObject($0)
                     }
                     
                     return completionHandler(books)
@@ -194,9 +198,9 @@ public class DataHandler {
                 
 //                FIXME: Added to prevent error caused by incorrect format received from server
                 else if let value = resultDictionary["books"] as? [String:AnyObject] {
-                    let book = Book(value: value)
+                    let book = Book(dictionary: value)
                     
-                    LocalDatabaseHandler.sharedInstance.addObject(book)
+                    DatabaseHandler.sharedInstance.addObject(book)
                     
                     completionHandler([book])
                     
@@ -219,13 +223,13 @@ public class DataHandler {
     
     public class func loginWithUsername(username: String, andPassword password: String, withCompletionHandler completionHandler: ((User?)->Void)) {
         
-        self.sendRequestWithSubRoute("login", usingMethod: .POST, andParameters: ["username": username, "password": password.sha512()], parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("login", usingMethod: .POST, andParameters: ["username": username, "password": password], parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             
             var user: User?
             
             if isSuccess {
                 if let userValue = result as? [String: AnyObject] {
-                    user = User(value: userValue)
+                    user = User(dictionary: userValue)
                 }
             }
             
@@ -240,7 +244,7 @@ public class DataHandler {
             
             var user: User?
             if let userValue = result as? [String: AnyObject] {
-                user = User(value: userValue)
+                user = User(dictionary: userValue)
             }
             
             completionHandler(user)
@@ -258,7 +262,7 @@ public class DataHandler {
                 if result != nil {
                     if let userDictionaries = result!["users"] as? [AnyObject] {
                         if let userValue = userDictionaries.first as? [String: AnyObject] {
-                            user = User(value: userValue)
+                            user = User(dictionary: userValue)
                         }
                     }
                 }
@@ -280,7 +284,7 @@ public class DataHandler {
             if isSuccess {
                 if let resultDictionary = result as? [String: AnyObject] {
                     if let resultsArray = resultDictionary["users"] as? [[String: AnyObject]] {
-                        let usersArray = resultsArray.map {User(value: $0)}
+                        let usersArray = resultsArray.map {User(dictionary: $0)}
                         
                         return completionHandler(usersArray)
                     }
@@ -302,7 +306,7 @@ public class DataHandler {
     public class func getUser(userID: String, withCompletionHandler completionHandler: ((User?)->Void)) {
         self.sendRequestWithSubRoute("users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             if let resultDictionary = result as? [String: AnyObject] {
-                let user = User(value: resultDictionary)
+                let user = User(dictionary: resultDictionary)
                 
                 return completionHandler(user)
             }
@@ -324,12 +328,11 @@ public class DataHandler {
 //        TODO: Fix on server and remove
         var parameters = user.serialize()
         parameters.removeValueForKey("_id")
-        parameters["password"] = (parameters["password"] as! String).sha512()
         
         self.sendRequestWithSubRoute("users", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             
             if let value = result as? [String: AnyObject] {
-                completionHandler(User(value: value))
+                completionHandler(User(dictionary: value))
             }
             
             completionHandler(nil)
@@ -376,7 +379,7 @@ public class DataHandler {
             
             if let resultDictionary = result as? [String: AnyObject] {
                 if let resultsArray = resultDictionary["crowds"] as? [[String: AnyObject]] {
-                    return completionHandler(resultsArray.map {Crowd(value: $0)})
+                    return completionHandler(resultsArray.map {Crowd(dictionary: $0)})
                 }
             }
             
@@ -389,7 +392,7 @@ public class DataHandler {
         self.sendRequestWithSubRoute("crowds/\(crowdID)", usingMethod: .GET) { (result, isSuccess) -> Void in
             var crowd: Crowd?
             if let crowdValue = result as? [String: AnyObject] {
-                crowd = Crowd(value: crowdValue)
+                crowd = Crowd(dictionary: crowdValue)
             }
             completionHandler(crowd)
         }
@@ -398,14 +401,14 @@ public class DataHandler {
     public class func createCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Crowd?)-> Void)) {
         self.sendRequestWithSubRoute("crowds", usingMethod: .POST, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             if isSuccess {
-                return completionHandler(Crowd(value: result as! [String: AnyObject]))
+                return completionHandler(Crowd(dictionary: result as! [String: AnyObject]))
             }
             completionHandler(nil)
         }
     }
     
     public class func updateCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Bool)-> Void)?) {
-        self.sendRequestWithSubRoute("crowds/\(crowd._id)", usingMethod: .PUT, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("crowds/\(crowd._id!)", usingMethod: .PUT, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -514,6 +517,8 @@ public class DataHandler {
 
                     if !JSONResponseHandlerFailed {
                         completionHandler?(result.value, result.isSuccess)
+                    } else {
+                        csprint(CS_DEBUG_NETWORK, result.debugDescription)
                     }
             }.responseData { (request, response, result) -> Void in
                 

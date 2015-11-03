@@ -47,7 +47,7 @@
 		3953BF911B8DC29B00E39CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF901B8DC29B00E39CC9 /* Images.xcassets */; };
 		3953BF941B8DC29B00E39CC9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF921B8DC29B00E39CC9 /* LaunchScreen.xib */; };
 		3953BFA01B8DC29B00E39CC9 /* CrowdShelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */; };
-		3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */; };
+		3953BFAC1B8E230300E39CC9 /* KeyValueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BFAB1B8E230300E39CC9 /* KeyValueHandler.swift */; };
 		39548E721BD64B1B00C49E3A /* ListTableViewCell+Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39548E711BD64B1B00C49E3A /* ListTableViewCell+Button.swift */; };
 		395AE16F1BCD21380090B74C /* CollectionViewArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */; };
 		395AE1721BCD25D50090B74C /* Shelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395AE1711BCD25D50090B74C /* Shelf.swift */; };
@@ -60,7 +60,7 @@
 		3978FE211BB32BF100DF742A /* BookInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978FE201BB32BF100DF742A /* BookInformationViewController.swift */; };
 		39986DA41BDE574A00616DFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39986DA31BDE574A00616DFB /* SearchViewController.swift */; };
 		399DABF91BE6B62D0080F4E5 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399DABF81BE6B62D0080F4E5 /* AlertView.swift */; };
-		399DABFB1BE6D62B0080F4E5 /* LocalDatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399DABFA1BE6D62B0080F4E5 /* LocalDatabaseHandler.swift */; };
+		399DABFB1BE6D62B0080F4E5 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399DABFA1BE6D62B0080F4E5 /* DatabaseHandler.swift */; };
 		399EFDF61BB2E0C900FC0664 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */; };
 		39A0CAFE1B958B0D00321225 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A0CAFD1B958B0D00321225 /* SelectionViewController.swift */; };
 		39A655F21BD1199D0075CB81 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A655F11BD1199D0075CB81 /* ListViewController.swift */; };
@@ -143,7 +143,7 @@
 		3953BF991B8DC29B00E39CC9 /* CrowdShelfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdShelfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF9E1B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3953BF9F1B8DC29B00E39CC9 /* CrowdShelfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdShelfTests.swift; sourceTree = "<group>"; };
-		3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDataHandler.swift; path = Handlers/LocalDataHandler.swift; sourceTree = "<group>"; };
+		3953BFAB1B8E230300E39CC9 /* KeyValueHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyValueHandler.swift; path = Handlers/KeyValueHandler.swift; sourceTree = "<group>"; };
 		39548E711BD64B1B00C49E3A /* ListTableViewCell+Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ListTableViewCell+Button.swift"; path = "Extensions/ListTableViewCell+Button.swift"; sourceTree = "<group>"; };
 		395AE16E1BCD21380090B74C /* CollectionViewArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewArrayDataSource.swift; path = Helpers/CollectionViewArrayDataSource.swift; sourceTree = "<group>"; };
 		395AE1711BCD25D50090B74C /* Shelf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shelf.swift; path = Models/Shelf.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		3978FE201BB32BF100DF742A /* BookInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookInformationViewController.swift; path = ViewControllers/BookInformationViewController.swift; sourceTree = "<group>"; };
 		39986DA31BDE574A00616DFB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ViewControllers/Search/SearchViewController.swift; sourceTree = "<group>"; };
 		399DABF81BE6B62D0080F4E5 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = Views/AlertView.swift; sourceTree = "<group>"; };
-		399DABFA1BE6D62B0080F4E5 /* LocalDatabaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalDatabaseHandler.swift; path = Handlers/LocalDatabaseHandler.swift; sourceTree = "<group>"; };
+		399DABFA1BE6D62B0080F4E5 /* DatabaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseHandler.swift; path = Handlers/DatabaseHandler.swift; sourceTree = "<group>"; };
 		399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
 		39A0CAFD1B958B0D00321225 /* SelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionViewController.swift; path = ViewControllers/SelectionViewController.swift; sourceTree = "<group>"; };
 		39A655F11BD1199D0075CB81 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = ViewControllers/ListViewController.swift; sourceTree = "<group>"; };
@@ -416,11 +416,10 @@
 			isa = PBXGroup;
 			children = (
 				0948259A1BBAAFAB00662F32 /* Analytics.swift */,
-				3953BFAB1B8E230300E39CC9 /* LocalDataHandler.swift */,
+				3953BFAB1B8E230300E39CC9 /* KeyValueHandler.swift */,
 				39C2F5921B90527200529AA9 /* DataHandler.swift */,
 				390EAF251BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift */,
-				399DABFA1BE6D62B0080F4E5 /* LocalDatabaseHandler.swift */,
-				3918BB941BE826C5004C74FE /* ObjectDatabase.swift */,
+				399DABFA1BE6D62B0080F4E5 /* DatabaseHandler.swift */,
 			);
 			name = Handlers;
 			sourceTree = "<group>";
@@ -434,6 +433,7 @@
 				39152D6A1BD508D8004EC737 /* TableViewSelectionDelegate.swift */,
 				39152D721BD51E68004EC737 /* SearchBarDelegate.swift */,
 				390B93001BE3956E006CF3EB /* TextFieldDelegate.swift */,
+				3918BB941BE826C5004C74FE /* ObjectDatabase.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -740,7 +740,7 @@
 				39C2F5931B90527200529AA9 /* DataHandler.swift in Sources */,
 				390B93011BE3956E006CF3EB /* TextFieldDelegate.swift in Sources */,
 				395AE1721BCD25D50090B74C /* Shelf.swift in Sources */,
-				3953BFAC1B8E230300E39CC9 /* LocalDataHandler.swift in Sources */,
+				3953BFAC1B8E230300E39CC9 /* KeyValueHandler.swift in Sources */,
 				39152D7B1BD5342A004EC737 /* String+Initials.swift in Sources */,
 				390EAF261BAA0D5000D0DCEB /* DataHandler+GoogleBooks.swift in Sources */,
 				39BFDEFB1BAD4D5E0058C2CF /* Debug.swift in Sources */,
@@ -764,7 +764,7 @@
 				39237AE61BE6DD9700EF1D13 /* FMDatabaseQueue.m in Sources */,
 				39152D6D1BD512FB004EC737 /* CrowdViewController.swift in Sources */,
 				39BFDEF41BACBA310058C2CF /* Environment.swift in Sources */,
-				399DABFB1BE6D62B0080F4E5 /* LocalDatabaseHandler.swift in Sources */,
+				399DABFB1BE6D62B0080F4E5 /* DatabaseHandler.swift in Sources */,
 				395EDD231B8F55AE0012A465 /* Book.swift in Sources */,
 				392E42D61BBB2DCB0080CCBD /* BookCollectionViewController.swift in Sources */,
 				39237AE51BE6DD9700EF1D13 /* FMDatabasePool.m in Sources */,

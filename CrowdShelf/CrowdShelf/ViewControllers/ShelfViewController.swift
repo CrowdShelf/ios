@@ -40,13 +40,14 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         if User.localUser != nil {
             let ownedShelf = Shelf(name: "Owned books", parameters: ["owner": User.localUser!._id!]) {User.localUser != nil && $0.owner! == User.localUser!._id!}
             let borrowedShelf = Shelf(name: "Borrowed books", parameters: ["rentedTo": User.localUser!._id!]) {User.localUser != nil && $0.rentedTo! == User.localUser!._id!}
-            let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id!]) {User.localUser != nil && $0.rentedTo != "" && $0.owner! == User.localUser!._id!}
+            let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id!]) {User.localUser != nil && $0.rentedTo != nil && $0.owner! == User.localUser!._id!}
             
             
             shelves = [ownedShelf, borrowedShelf, lentShelf]
         }
         
         self.tableViewDataSource?.items = shelves
+        
         self.tableViewDataSource?.items.enumerate().forEach {
             loadShelf($0.index)
         }
@@ -84,7 +85,7 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
     
 //    TODO: Extract logout functionality
     @IBAction func logOut(sender: AnyObject) {
-        LocalDataHandler.setObject(nil, forKey: "user", inFile: LocalDataFile.User)
+        KeyValueHandler.setObject(nil, forKey: "user", inFile: LocalDataFile.User)
         User.localUser = nil
     }
     

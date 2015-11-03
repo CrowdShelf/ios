@@ -34,12 +34,16 @@ public class BookInformation: BaseModel, Listable, Storeable {
         
     var subtitle : String? { return self.authors.map({$0}).joinWithSeparator(", ") }
     var image : UIImage? { return self.thumbnail }
-    var asDictionary: [String: AnyObject] {
+    public var asDictionary: [String: AnyObject] {
         return self.serialize(.SQLite)
     }
     
     var thumbnail : UIImage? {
         return UIImage(data: thumbnailData ?? NSData() )
+    }
+    
+    public override func ignoreProperties() -> Set<String> {
+        return ["thumbnail", "title", "image", "subtitle"]
     }
 }
 
@@ -51,7 +55,7 @@ extension BookInformation {
 
 extension BookInformation {
     
-    class var columnDefinitions: [String: [String]] {
+    public class var columnDefinitions: [String: [String]] {
         return [
             "isbn"                  : ["TEXT", "PRIMARY KEY"],
             "providerID"            : ["TEXT", "NOT NULL"],

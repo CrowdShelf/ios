@@ -24,18 +24,18 @@ public class Book: BaseModel, Listable, Storeable {
     var image   : UIImage? { return self.details?.thumbnail }
     var subtitle: String?
     
-    var asDictionary: [String: AnyObject] {
+    public var asDictionary: [String: AnyObject] {
         return self.serialize(.SQLite)
     }
     
 
     public override func ignoreProperties() -> Set<String> {
-        return ["details"]
+        return ["details", "title", "image", "subtitle"]
     }
 }
 
 extension Book {
-    class var columnDefinitions: [String: [String]] {
+    public class var columnDefinitions: [String: [String]] {
         return [
             "_id"               : ["TEXT", "PRIMARY KEY"],
             "isbn"              : ["TEXT", "NOT NULL"],

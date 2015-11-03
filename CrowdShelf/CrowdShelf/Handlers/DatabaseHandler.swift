@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import UIKit
 
-private let _sharedInstance = LocalDatabaseHandler()
+private let _sharedInstance = DatabaseHandler()
 
 
-class LocalDatabaseHandler: ObjectDatabase {
+class DatabaseHandler: ObjectDatabase {
     
-    class var sharedInstance : LocalDatabaseHandler {
+    class var sharedInstance : DatabaseHandler {
         return _sharedInstance
     }
     

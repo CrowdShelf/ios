@@ -8,26 +8,21 @@
 
 
 import Foundation
-import UIKit
 
 
-protocol Storeable {
+public protocol Storeable {
     static var columnDefinitions: [String: [String]] {get}
     var asDictionary: [String: AnyObject] {get}
 }
 
-class ObjectDatabase {
+public class ObjectDatabase {
     
     private let databaseQueue : FMDatabaseQueue
 
     
-    init(databaseName: String) {
+    public init(databaseName: String) {
         let documentsDir : String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]
         let databasePath = documentsDir+"/\(databaseName).sqlite"
-        
-        /**/
-        try! NSFileManager.defaultManager().removeItemAtPath(databasePath)
-        /**/
         
         let shouldCreateDatabase = !NSFileManager.defaultManager().fileExistsAtPath(databasePath)
         
@@ -52,7 +47,7 @@ class ObjectDatabase {
      - returns:                     boolean indicating the success of the operation
      */
     
-    func createTableForType <T where T: NSObject, T: Storeable> (type: T.Type) -> Bool {
+    public func createTableForType <T where T: NSObject, T: Storeable> (type: T.Type) -> Bool {
         
         let columnStrings = T.columnDefinitions.map { (name, properties) -> String in
             return ([name] + properties).joinWithSeparator(" ")
@@ -78,14 +73,14 @@ class ObjectDatabase {
      - returns:              boolean indicating the success of the request
      */
     
-    func addObject <T where T: NSObject, T: Storeable> (object: T, update: Bool = true) -> Bool {
+    public func addObject <T where T: NSObject, T: Storeable> (object: T, update: Bool = true) -> Bool {
         let validObject     = storeableDataFromData(object.asDictionary, forType: T.self)
         
         let valuesString    = validObject.keys.sort().map {":\($0)"}.joinWithSeparator(", ")
         let keysString      = validObject.keys.sort().map {"\($0)"}.joinWithSeparator(", ")
         let tableName       = tableNameForType(T.self)
         
-        let method          = update ? "INSERT OR REPLACE" : "INSERT"
+        let method          = update ? "INSERT OR REPLACE " : "INSERT "
         let sql             = method + " INTO \(tableName) (\(keysString)) VALUES (\(valuesString))"
         
         return self.exequteStatement(sql, parameters: validObject)
@@ -101,7 +96,7 @@ class ObjectDatabase {
      - returns:              boolean indicating the success of the request
      */
     
-    func deleteObjectsWithParameters <T where T: NSObject, T: Storeable> (parameters: [String: AnyObject] = [:], forType type: T.Type) -> Bool {
+    public func deleteObjectsWithParameters <T where T: NSObject, T: Storeable> (parameters: [String: AnyObject] = [:], forType type: T.Type) -> Bool {
         let tableName       = tableNameForType(T)
         let sql             = "DELETE FROM \(tableName)" + whereClauseForParameters(parameters)
         
@@ -118,7 +113,7 @@ class ObjectDatabase {
      - returns:              array containing the retrieved objects
      */
     
-    func getObjectWithParameters <T where T: NSObject, T: Storeable> (parameters: [String: AnyObject]? = nil, forType type: T.Type) -> [T] {
+    public func getObjectWithParameters <T where T: NSObject, T: Storeable> (parameters: [String: AnyObject]? = nil, forType type: T.Type) -> [T] {
         
         let tableName       = tableNameForType(T)
         let sql             = "SELECT * FROM \(tableName)" + whereClauseForParameters(parameters)
@@ -152,6 +147,7 @@ class ObjectDatabase {
                 //                    }
                 //                }
                 //
+                
                 let validValues = self.validDataFromData(resultSet.resultDictionary() as! [String: AnyObject], forType: T.self)
                 for (key, value) in validValues {
                     object.setValue(value, forKey: key )

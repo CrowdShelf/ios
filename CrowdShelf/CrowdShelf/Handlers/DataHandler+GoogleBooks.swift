@@ -41,7 +41,7 @@ extension DataHandler {
                         value["provider"] = "google"
                         value["isbn"] = self.isbnFromItemInfoDictionary(itemInfo)
                         
-                        informationObjects.append(BookInformation(value: value))
+                        informationObjects.append(BookInformation(dictionary: value))
                         
                     }
                 }
@@ -64,7 +64,7 @@ extension DataHandler {
                         value["provider"] = "google"
                         value["isbn"] = self.isbnFromItemInfoDictionary(itemInfo)
                         
-                        informationObjects.append(BookInformation(value: value))
+                        informationObjects.append(BookInformation(dictionary: value))
                     })
                 }
             }

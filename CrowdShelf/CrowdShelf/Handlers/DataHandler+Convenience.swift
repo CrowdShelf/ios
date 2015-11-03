@@ -75,8 +75,8 @@ extension DataHandler {
                 return
             }
             
-            self.sendRequestWithSubRoute("crowds/\(crowdID)/members/\(user!._id)", usingMethod: .PUT) { (result, isSuccess) -> Void in
-                completionHandler?(user!._id, isSuccess)
+            self.sendRequestWithSubRoute("crowds/\(crowdID)/members/\(user!._id!)", usingMethod: .PUT) { (result, isSuccess) -> Void in
+                completionHandler?(user!._id!, isSuccess)
             }
         }
     }
@@ -148,8 +148,8 @@ extension DataHandler {
             for book in books {
                 DataHandler.informationAboutBook(book.isbn!, withCompletionHandler: { (information) -> Void in
                     
-                    information.forEach {
-                        LocalDatabaseHandler.sharedInstance.addObject($0)
+                    information.forEach { (bookInformation) -> Void in
+                        DatabaseHandler.sharedInstance.addObject(bookInformation)
                     }
                     book.details = information.first
                     

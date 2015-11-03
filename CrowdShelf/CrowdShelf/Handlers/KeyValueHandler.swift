@@ -35,7 +35,7 @@ A class reponsible for managing a local key-value storage.
 
 */
 
-public class LocalDataHandler {
+public class KeyValueHandler {
     
 //    MARK: - Setters
     

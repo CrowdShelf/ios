@@ -78,10 +78,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     
     func updateView() {
         nameField?.text = crowd?.name
-        membersLabel?.text = "\((crowd?.members.count ?? 0)) members"
+        membersLabel?.text = "\(crowd?.members.count ?? 0) members"
         iconImageView?.image = crowd?.image
         iconImageView?.alternativeInfo = crowd?.name?.initials
-        iconImageView?.tintColor = ColorPalette.colorForString(self.crowd!._id!)
+        iconImageView?.tintColor = ColorPalette.colorForString(self.crowd!._id ?? "")
     }
     
     internal func addMember() {
@@ -163,7 +163,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         )
         
         
-        tableViewDataSource.items = crowd?._id != "" ? [[shelfButton], membersSection, [leaveButton]] : [createButton]
+        tableViewDataSource.items = crowd?._id != nil ? [[shelfButton], membersSection, [leaveButton]] : [createButton]
         tableView?.performSelectorOnMainThread("reloadData", withObject: nil, waitUntilDone: false)
     }
     
@@ -178,7 +178,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
 //    MARK: List View Data Source
     
     func listViewController(listViewController: ListViewController, accessoryTypeForIndexPath indexPath: NSIndexPath) -> UITableViewCellAccessoryType {
-        if indexPath.section == 0 && crowd?._id != "" {
+        if indexPath.section == 0 && crowd?._id != nil {
             return .DisclosureIndicator
         }
         
@@ -193,7 +193,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     
     func listViewController(listViewController: ListViewController, performActionForIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            if crowd?._id == "" {
+            if crowd?._id == nil {
                 createCrowd()
                 return
             }

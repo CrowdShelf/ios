@@ -15,17 +15,15 @@ public class BaseModel: SerializableObject {
         super.init()
     }
     
-    convenience init(value: [String: AnyObject]) {
-        self.init()
+    public init(dictionary: [String: AnyObject]) {
+        super.init()
         
-        for (key, value) in value {
+        for (key, value) in dictionary {
             if value is NSNull {
                 continue
             }
             self.setValue(value, forKey: key)
         }
-        
-        print("ok")
     }
     
 
@@ -40,5 +38,7 @@ public class BaseModel: SerializableObject {
         
         return valueDictionary
     }
+    
+    
 }
 
