@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
 //
 
-import RealmSwift
+import UIKit
 
 // FIXME: Ugly, temporary mimic of apples local user
 private var _localUser : User?

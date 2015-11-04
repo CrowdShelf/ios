@@ -10,7 +10,7 @@ import Foundation
 
 private let _sharedInstance = LocalDatabaseHandler()
 
-class Test: NSObject, Storeable {
+class Test: SerializableObject, Storeable {
     var string: String = "s"
     var int: NSNumber = 1
     var date: NSDate = NSDate()
@@ -33,11 +33,6 @@ class LocalDatabaseHandler: ObjectDatabase {
     
     init() {
         super.init(databaseName: "database")
-        
-        let t = Test()
-        print(self.addObject(t))
-//        let d = self.getObjectWithParameters(["string": "s"], forType: Test.self)
-//        print(d)
     }
     
     /** Initialize the database with a table for each model */

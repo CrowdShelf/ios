@@ -49,33 +49,14 @@ public class BookInformation: BaseModel, Listable, Storeable {
     public override class func ignoreProperties() -> Set<String> {
         return ["thumbnail", "image", "subtitle"]
     }
+    
+    public static func primaryKey() -> String {
+        return "isbn"
+    }
 }
 
 extension BookInformation {
     var authorsString: String? {
         return self.authors.map {$0}.joinWithSeparator(", ")
     }
-}
-
-extension BookInformation {
-    
-    public class var columnDefinitions: [String: [String]] {
-        return [
-            "isbn"                  : ["TEXT", "PRIMARY KEY"],
-            "providerID"            : ["TEXT", "NOT NULL"],
-            "provider"              : ["TEXT", "NOT NULL"],
-            "title"                 : ["TEXT"],
-            "summary"               : ["TEXT"],
-            "publisher"             : ["TEXT"],
-            "thumbnailURLString"    : ["TEXT"],
-            "numberOfPages"         : ["INT"],
-            "numberOfRatings"       : ["INT"],
-            "averageRating"         : ["REAL"],
-            "thumbnailData"         : ["BLOB"],
-            "publishedDate"         : ["DATE"],
-            "authors"               : ["TEXT"],
-            "categories"            : ["TEXT"],
-        ]
-    }
-
 }
