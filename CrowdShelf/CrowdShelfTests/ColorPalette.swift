@@ -49,17 +49,4 @@ class ColorPalette: UIColor{
         let index = abs( hashValue % self.randomColors.count )
         return randomColors[index]
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
