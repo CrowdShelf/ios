@@ -7,61 +7,56 @@
 //
 
 import UIKit
-import RealmSwift
 
 public func ==(lhs: BookInformation, rhs: BookInformation) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    return lhs.isbn != nil && rhs.isbn != nil && lhs.isbn!.hashValue == rhs.isbn!.hashValue
 }
 
 /// A class representing detail about a book
-public class BookInformation: BaseModel, Listable, Collectable, Hashable {
+public class BookInformation: BaseModel, Listable, Storeable {
     
-    dynamic var providerID                  = ""
-    dynamic var provider                    = ""
+    var providerID          : String?
+    var provider            : String?
     
-    dynamic var isbn                        = ""
-    dynamic var summary                     = ""
-    dynamic var publisher                   = ""
-    dynamic var title                       = ""
-    dynamic var thumbnailURLString          = ""
-    dynamic var numberOfPages: Int          = 0
-    dynamic var numberOfRatings: Int        = 0
-    dynamic var averageRating: Float        = 0.0
-    dynamic var thumbnailData: NSData       = NSData()
-    dynamic var publishedDate: NSDate       = NSDate(timeIntervalSince1970: 0)
-    var categories                          = List<RLMWrapper>()
-    var authors                             = List<RLMWrapper>()
+    var isbn                : String?
+    var summary             : String?
+    var publisher           : String?
+    var title               : String?
+    var thumbnailURLString  : String?
+    var numberOfPages       : NSNumber?
+    var numberOfRatings     : NSNumber?
+    var averageRating       : NSNumber?
+    var thumbnailData       : NSData?
+    var publishedDate       : NSDate?
     
-//    Listable
-    var subtitle : String? { return self.authors.map({$0.content as! String}).joinWithSeparator(", ") }
+    var categories  : [String] = []
+    var authors     : [String] = []
+        
+    var subtitle : String? { return self.authors.map({$0}).joinWithSeparator(", ") }
     var image : UIImage? { return self.thumbnail }
+    public var asDictionary: [String: AnyObject] {
+        return self.serialize(.SQLite)
+    }
     
+    override public var hashValue: Int {
+        return isbn != nil ? isbn!.hashValue : -1
+    }
     
     var thumbnail : UIImage? {
-        return thumbnailData.length > 0 ? UIImage(data: thumbnailData) : nil
+        return UIImage(data: thumbnailData ?? NSData() )
     }
     
-//    MARK: Realm Object
-    override public static func ignoredProperties() -> [String] {
-        return ["thumbnail"]
+    public override class func ignoreProperties() -> Set<String> {
+        return ["thumbnail", "image", "subtitle"]
     }
     
-    override public static func primaryKey() -> String {
+    public static func primaryKey() -> String {
         return "isbn"
-    }
-    
-//    MARK: Serializable Object
-    override func serializedValueForProperty(property: String) -> AnyObject? {
-        if property == "authors" {
-            return self.authors.map {$0.content}
-        }
-        
-        return nil
     }
 }
 
 extension BookInformation {
     var authorsString: String? {
-        return self.authors.map {$0.stringValue!}.joinWithSeparator(", ")
+        return self.authors.map {$0}.joinWithSeparator(", ")
     }
 }

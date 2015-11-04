@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Øyvind Grimnes. All rights reserved.
 //
 import UIKit
-import RealmSwift
-
 
 class BookViewController: ListViewController {
     
@@ -66,7 +64,7 @@ class BookViewController: ListViewController {
         coverImageView?.image           = bookInformation?.thumbnail
         titleLabel?.text                = bookInformation?.title
         publisherLabel?.text            = bookInformation?.publisher
-        coverImageView?.alternativeInfo = bookInformation?.title.initials
+        coverImageView?.alternativeInfo = bookInformation?.title?.initials
         authorsLabel?.text              = bookInformation?.authorsString
     }
     
@@ -103,7 +101,7 @@ class BookViewController: ListViewController {
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Removing book", inView: self.view)
         
-        DataHandler.removeBookForUser(User.localUser!._id, withISBN: self.bookInformation!.isbn) { (isSuccess) -> Void in
+        DataHandler.removeBookForUser(User.localUser!._id!, withISBN: self.bookInformation!.isbn!) { (isSuccess) -> Void in
             activityIndicatorView.stop()
             
             let message = isSuccess ? "Successfully removed book" : "Failed to remove book"
@@ -127,7 +125,7 @@ class BookViewController: ListViewController {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         
         /* Retrieve users in possession of the book */
-        DataHandler.ownersOfBooksWithParameters(["isbn": self.bookInformation!.isbn, "availableForRent": true]) { (owners) -> Void in
+        DataHandler.ownersOfBooksWithParameters(["isbn": self.bookInformation!.isbn!, "availableForRent": true]) { (owners) -> Void in
             activityIndicatorView.stop()
             
             let otherUsers = owners.filter {$0._id != User.localUser!._id}
@@ -140,7 +138,7 @@ class BookViewController: ListViewController {
             
             /* Borrow book if only one user is in possession of the book */
             if otherUsers.count == 1 {
-                self.borrowBookFromUser(owners.first!._id)
+                self.borrowBookFromUser(owners.first!._id!)
                 return
             }
             
@@ -154,7 +152,7 @@ class BookViewController: ListViewController {
                 }
                 
                 let owner = selectedOwners.first as! User
-                self.borrowBookFromUser(owner._id)
+                self.borrowBookFromUser(owner._id!)
             })
         }
         Analytics.addEvent("BorrowBook")
@@ -163,7 +161,7 @@ class BookViewController: ListViewController {
     private func borrowBookFromUser(userID: String) {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Borrowing book..", inView: self.view)
         
-        DataHandler.addRenter(User.localUser!._id, toTitle: self.bookInformation!.isbn, withOwner: userID, withCompletionHandler: { (isSuccess) -> Void in
+        DataHandler.addRenter(User.localUser!._id!, toTitle: self.bookInformation!.isbn!, withOwner: userID, withCompletionHandler: { (isSuccess) -> Void in
             activityIndicatorView.stop()
             
             let message = isSuccess ? "Sucessfully borrowed book" : "Failed to borrow book"
@@ -177,7 +175,7 @@ class BookViewController: ListViewController {
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         
-        DataHandler.ownersOfBooksWithParameters(["isbn":self.bookInformation!.isbn, "rentedTo": User.localUser!._id]) { (owners) -> Void in
+        DataHandler.ownersOfBooksWithParameters(["isbn":self.bookInformation!.isbn!, "rentedTo": User.localUser!._id!]) { (owners) -> Void in
             activityIndicatorView.stop()
             
             /* Abort is no users are in possession of the book */
@@ -188,7 +186,7 @@ class BookViewController: ListViewController {
             
             /* Borrow book if only one user is in possession of the book */
             if owners.count == 1 {
-                self.returnBookToUser(owners.first!._id)
+                self.returnBookToUser(owners.first!._id!)
                 return
             }
             
@@ -202,7 +200,7 @@ class BookViewController: ListViewController {
                 }
                 
                 let owner = selectedOwners.first as! User
-                self.returnBookToUser(owner._id)
+                self.returnBookToUser(owner._id!)
             })
         }
         Analytics.addEvent("ReturnBook")
@@ -211,7 +209,7 @@ class BookViewController: ListViewController {
     private func returnBookToUser(userID: String) {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Returning book..", inView: self.view)
         
-        DataHandler.removeRenter(User.localUser!._id, fromTitle: self.bookInformation!.isbn, withOwner: userID) { (isSuccess) -> Void in
+        DataHandler.removeRenter(User.localUser!._id!, fromTitle: self.bookInformation!.isbn!, withOwner: userID) { (isSuccess) -> Void in
             activityIndicatorView.stop()
             
             let message = isSuccess ? "Sucessfully returned book" : "Failed to return book"

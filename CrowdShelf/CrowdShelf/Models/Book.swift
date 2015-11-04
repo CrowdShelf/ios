@@ -10,40 +10,30 @@ import UIKit
 
 
 /// A class representing a book
-public class Book: BaseModel, Collectable {
+public class Book: BaseModel, Listable, Storeable {
 
-    dynamic var _id              = "-1"
-    dynamic var isbn             = ""
-    dynamic var owner            = ""
-    dynamic var rentedTo         = ""
-    dynamic var availableForRent = true
+    dynamic var _id                 : String?
+    dynamic var isbn                : String?
+    dynamic var owner               : String?
+    dynamic var rentedTo            : String?
+    dynamic var availableForRent    : Bool      = true
     
     dynamic var details : BookInformation?
     
-    var title: String { return self.details?.title ?? "<no data>" }
-    var image: UIImage? { return self.details?.thumbnail }
+    var title   : String? { return self.details?.title ?? "<no data>" }
+    var image   : UIImage? { return self.details?.thumbnail }
+    var subtitle: String?
     
-    public override var description: String {
-        return self.serialize().description
+    public var asDictionary: [String: AnyObject] {
+        return self.serialize(.SQLite)
     }
+    
 
-//    Realm Object
+    public override class func ignoreProperties() -> Set<String> {
+        return ["details", "title", "image", "subtitle"]
+    }
     
-    override public class func primaryKey() -> String {
+    public class func primaryKey() -> String {
         return "_id"
-    }
-    
-//    Serializable Object
-    
-    public override func ignoreProperties() -> Set<String> {
-        return ["details"]
-    }
-    
-    override func serializedValueForProperty(property: String) -> AnyObject? {
-        if property == "rentedTo" {
-            return self.rentedTo == "" ? NSNull() : self.rentedTo
-        }
-        
-        return nil
     }
 }

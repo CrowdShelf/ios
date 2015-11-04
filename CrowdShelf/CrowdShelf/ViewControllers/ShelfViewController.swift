@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
 
@@ -38,15 +37,16 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         var shelves: [Shelf] = []
         
         if User.localUser != nil {
-            let ownedShelf = Shelf(name: "Owned books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.owner == User.localUser!._id}
-            let borrowedShelf = Shelf(name: "Borrowed books", parameters: ["rentedTo": User.localUser!._id]) {User.localUser != nil && $0.rentedTo == User.localUser!._id}
-            let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id]) {User.localUser != nil && $0.rentedTo != "" && $0.owner == User.localUser!._id}
+            let ownedShelf = Shelf(name: "Owned books", parameters: ["owner": User.localUser!._id!]) {User.localUser != nil && $0.owner! == User.localUser!._id!}
+            let borrowedShelf = Shelf(name: "Borrowed books", parameters: ["rentedTo": User.localUser!._id!]) {User.localUser != nil && $0.rentedTo! == User.localUser!._id!}
+            let lentShelf = Shelf(name: "Lent books", parameters: ["owner": User.localUser!._id!]) {User.localUser != nil && $0.rentedTo != nil && $0.owner! == User.localUser!._id!}
             
             
             shelves = [ownedShelf, borrowedShelf, lentShelf]
         }
         
         self.tableViewDataSource?.items = shelves
+        
         self.tableViewDataSource?.items.enumerate().forEach {
             loadShelf($0.index)
         }
@@ -59,19 +59,18 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         DataHandler.getBooksWithInformationWithParameters(shelf.parameters) { (books) -> Void in
             shelf.books = books.filter(shelf.filter)
             self.refreshControl.endRefreshing()
-            self.updateView()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.updateView()
+            })
         }
     }
     
     func updateView() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.tableView?.reloadData()
-        })
+        self.tableView?.reloadData()
     }
     
 //    MARK: - Shelf Table View Cell Delegate
     
-//    TODO: This shouldnt be here
     func showAllBooksForShelfTableViewCell(shelfTableViewCell: ShelfTableViewCell) {
         self.performSegueWithIdentifier("ShowAllBooks", sender: shelfTableViewCell)
     }
@@ -82,9 +81,8 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
     
 //    MARK: - Actions
     
-//    TODO: Extract logout functionality
     @IBAction func logOut(sender: AnyObject) {
-        LocalDataHandler.setObject(nil, forKey: "user", inFile: LocalDataFile.User)
+        KeyValueHandler.setObject(nil, forKey: "user", inFile: LocalDataFile.User)
         User.localUser = nil
     }
     

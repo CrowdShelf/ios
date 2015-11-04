@@ -4,9 +4,6 @@ use_frameworks!
 
 link_with 'CrowdShelf'
 
-pod 'Realm', :git => 'https://github.com/realm/realm-cocoa.git', :branch => 'swift-2.0'
-pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :branch => 'swift-2.0'
-
 target 'CrowdShelf' do
     pod 'MTBBarcodeScanner', '~> 1.6.1'
     pod 'Alamofire', '~> 2.0'

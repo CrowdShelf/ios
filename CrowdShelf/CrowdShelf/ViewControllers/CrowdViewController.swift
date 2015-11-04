@@ -29,7 +29,9 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         self.nameFieldDelegate = TextFieldDelegate { (textField) -> Bool in
             self.crowd?.name = textField.text!
             
-            DataHandler.updateCrowd(self.crowd!, withCompletionHandler: nil)
+            if self.crowd?._id != nil {
+                DataHandler.updateCrowd(self.crowd!, withCompletionHandler: nil)
+            }
             
             textField.resignFirstResponder()
             self.updateView()
@@ -41,21 +43,14 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         self.delegate = self
         
         if self.crowd == nil {
-            self.crowd = newCrowd()
+            self.crowd = Crowd()
+            crowd?.owner = User.localUser?._id
         }
         
         self.updateView()
         self.updateItemsWithListables([])
         
         self.nameField?.delegate = nameFieldDelegate
-    }
-    
-    func newCrowd() -> Crowd {
-        let crowd = Crowd()
-        crowd.name = "New Group"
-        crowd.owner = User.localUser!._id
-        
-        return crowd
     }
     
     internal func retrieveUsers() {
@@ -78,10 +73,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     
     func updateView() {
         nameField?.text = crowd?.name
-        membersLabel?.text = "\((crowd?.members.count ?? 0)) members"
+        membersLabel?.text = "\(crowd?.members.count ?? 0) members"
         iconImageView?.image = crowd?.image
-        iconImageView?.alternativeInfo = crowd?.name.initials
-        iconImageView?.tintColor = ColorPalette.colorForString(self.crowd!._id)
+        iconImageView?.alternativeInfo = crowd?.name?.initials
+        iconImageView?.tintColor = ColorPalette.colorForString(self.crowd!._id ?? "")
     }
     
     internal func addMember() {
@@ -100,10 +95,10 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
                 let username = alertView.textFieldAtIndex(0)!.text!
                 
                 let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Adding \"\(username)\"", inView: self.view)
-                DataHandler.addUserWithUsername(username, toCrowd: self.crowd!._id, withCompletionHandler: { (userID, isSuccess) -> Void in
+                DataHandler.addUserWithUsername(username, toCrowd: self.crowd!._id!, withCompletionHandler: { (userID, isSuccess) -> Void in
                     
                     if isSuccess {
-                        DataHandler.getCrowd(self.crowd!._id) { (crowd) -> Void in
+                        DataHandler.getCrowd(self.crowd!._id!) { (crowd) -> Void in
                             activityIndicatorView.stop()
                             self.crowd = crowd
                         }
@@ -121,12 +116,13 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
                 message: "Are you sure?",
       cancelButtonTitle: "No",
       otherButtonTitles: "Leave") { (alertView, buttonIndex) -> Void in
+        
             if buttonIndex == alertView.cancelButtonIndex {
                 return
             }
             
             let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Leaving crowd", inView: self.view)
-            DataHandler.removeUser(User.localUser!._id, fromCrowd: self.crowd!) { (isSuccess) -> Void in
+            DataHandler.removeUser(User.localUser!._id!, fromCrowd: self.crowd!._id!) { (isSuccess) -> Void in
                 activityIndicatorView.stop()
                 if isSuccess {
                     self.navigationController?.popViewControllerAnimated(true)
@@ -163,7 +159,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         )
         
         
-        tableViewDataSource.items = crowd?._id != "" ? [[shelfButton], membersSection, [leaveButton]] : [createButton]
+        tableViewDataSource.items = crowd?._id != nil ? [[shelfButton], membersSection, [leaveButton]] : [createButton]
         tableView?.performSelectorOnMainThread("reloadData", withObject: nil, waitUntilDone: false)
     }
     
@@ -178,7 +174,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
 //    MARK: List View Data Source
     
     func listViewController(listViewController: ListViewController, accessoryTypeForIndexPath indexPath: NSIndexPath) -> UITableViewCellAccessoryType {
-        if indexPath.section == 0 && crowd?._id != "" {
+        if indexPath.section == 0 && crowd?._id != nil {
             return .DisclosureIndicator
         }
         
@@ -193,7 +189,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
     
     func listViewController(listViewController: ListViewController, performActionForIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            if crowd?._id == "" {
+            if crowd?._id == nil {
                 createCrowd()
                 return
             }

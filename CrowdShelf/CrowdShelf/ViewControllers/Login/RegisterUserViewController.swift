@@ -43,7 +43,7 @@ class RegisterUserViewController: UIViewController {
             "name":     self.nameField!.text!
         ]
         
-        let user = User(value: value)
+        let user = User(dictionary: value)
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Logging in..", inView: self.view)
         

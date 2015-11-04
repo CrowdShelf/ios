@@ -8,12 +8,6 @@
 
 import UIKit
 
-@objc protocol Collectable {
-    var title : String {get}
-    var image : UIImage? {get}
-    optional var subtitle: String? {get}
-}
-
 class CollectionViewController: BaseViewController, UICollectionViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView?
@@ -22,21 +16,21 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
     var multipleSelection: Bool = false
     var refreshControl: UIRefreshControl = UIRefreshControl()
     
-    var completionHandler: (([Collectable])->Void)?
+    var completionHandler: (([Listable])->Void)?
     
     var collectionViewDataSource: CollectionViewArrayDataSource = {
         return CollectionViewArrayDataSource(cellReuseIdentifier: CollectableCell.cellReuseIdentifier) {
-            ($0 as! CollectableCell).collectable = $1 as? Collectable
+            ($0 as! CollectableCell).collectable = $1 as? Listable
         }
     }()
     
-    var collectionData : [Collectable] {
+    var collectionData : [Listable] {
         set {
             self.collectionViewDataSource.data = newValue
             self.collectionView?.reloadData()
         }
         get {
-            return self.collectionViewDataSource.data as? [Collectable] ?? []
+            return self.collectionViewDataSource.data as? [Listable] ?? []
         }
     }
     
@@ -70,7 +64,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if !self.multipleSelection {
-            self.completionHandler?([self.collectionViewDataSource.dataForIndexPath(indexPath) as! Collectable])
+            self.completionHandler?([self.collectionViewDataSource.dataForIndexPath(indexPath) as! Listable])
         }
     }
     

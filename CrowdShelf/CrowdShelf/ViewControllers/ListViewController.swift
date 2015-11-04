@@ -30,6 +30,7 @@ class ListViewController: BaseViewController {
             
             let listCell = cell as? ListTableViewCell
             listCell?.listable = item as? Listable
+            listCell?.iconImageView?.viewStyle = .Round
             
             listCell?.configureForButtonStyle((item as? Button)?.buttonStyle ?? .None)
             

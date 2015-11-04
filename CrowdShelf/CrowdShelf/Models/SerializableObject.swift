@@ -6,10 +6,17 @@
 //  Copyright © 2015 Øyvind Grimnes. All rights reserved.
 //
 
-import RealmSwift
-import Realm
 
-public class SerializableObject: Object {
+/** 
+ JSON:      a hierarchical dictionary containing valid JSON data types.
+
+ SQLite:    a flat dictionary containing Cocoa classes
+*/
+public enum SerializationMode {
+    case JSON, SQLite
+}
+
+public class SerializableObject: NSObject {
     
     /**
     Serialize the object
@@ -17,31 +24,33 @@ public class SerializableObject: Object {
     - returns:              A dictionary containing the data from the object
     */
     
-    public func serialize() -> [String: AnyObject] {
+    public func serialize(mode: SerializationMode = .JSON) -> [String: AnyObject] {
         var dictionary: [String: AnyObject] = [:]
         let mirror = Mirror(reflecting: self)
         
         for (key, child) in mirror.children {
-            if key == nil || self.ignoreProperties().contains(key!) {
+            if key == nil || SerializableObject.ignoreProperties().contains(key!) {
                 continue
             }
             
-            var propertyValue: AnyObject? = self.serializedValueForProperty(key!)
+            
+            var propertyValue: AnyObject? = SerializableObject.serializedValueForProperty(key!)
             
             if propertyValue == nil {
                 if let value = self.unwrap(child) as? AnyObject {
-                    if let serializableValue = value as? SerializableObject {
-                        propertyValue = serializableValue.serialize()
-                    } else if let arrayValue = value as? [SerializableObject] {
-                        propertyValue = arrayValue.map {$0.serialize()}
-                    }
-
-                    else if let dataValue = value as? NSData {
-                        propertyValue = dataValue.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-                    } else if let dateValue = value as? NSDate {
-                        propertyValue = dateValue.timeIntervalSince1970
-                    } else {
-                        propertyValue = value
+                    propertyValue = value
+                    
+                    /* Convert data to string and dates to timestamps for JSON */
+                    if mode == .JSON {
+                        if let serializableValue = value as? SerializableObject {
+                            propertyValue = serializableValue.serialize(mode)
+                        } else if let arrayValue = value as? [SerializableObject] {
+                            propertyValue = arrayValue.map {$0.serialize(mode)}
+                        } else if let dataValue = value as? NSData {
+                            propertyValue = dataValue.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+                        } else if let dateValue = value as? NSDate {
+                            propertyValue = dateValue.timeIntervalSince1970
+                        }
                     }
                 }
             }
@@ -84,11 +93,11 @@ public class SerializableObject: Object {
     - returns:              An optional custom serialized object
     */
     
-    func serializedValueForProperty(property: String) -> AnyObject? {
+    class func serializedValueForProperty(property: String) -> AnyObject? {
         return nil
     }
     
-    public func ignoreProperties() -> Set<String> {
+    class public func ignoreProperties() -> Set<String> {
         return []
     }
 }

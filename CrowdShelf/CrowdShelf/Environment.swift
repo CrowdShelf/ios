@@ -15,15 +15,13 @@ let CS_ENVIRONMENT : CSEnvironment = .Development
 
 
 enum CSEnvironment {
-    case Development
-    case Production
-    case Test
+    case Development, Production, Test
     
     func hostString() -> String {
         switch self {
-        case CSEnvironment.Development:
+        case .Development:
             return "https://crowdshelf-dev.herokuapp.com/api/"
-        case CSEnvironment.Test:
+        case .Test:
             return "https://crowdshelf.herokuapp.com/api/"
         default:
             fatalError("Host not set for environment")
@@ -32,9 +30,9 @@ enum CSEnvironment {
     
     func MixpanelTracking() -> String {
         switch self {
-        case CSEnvironment.Development:
+        case .Development:
             return "93ef1952b96d0faa696176aadc2fbed4"
-        case CSEnvironment.Test:
+        case .Test:
             return "9f321d1662e631f2995d9b8f050c4b44"
         default:
             fatalError("Tracking token not set for environment")

@@ -14,25 +14,7 @@ protocol ShelfTableViewCellDelegate {
 }
 
 class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
-//    struct ViewData {
-//        let title: String
-//        let books: [Book]
-//        
-//        init(shelf: Shelf) {
-//            self.init(title: shelf.name, books: shelf.books)
-//        }
-//        
-//        init(title: String, books: [Book]) {
-//            self.books = books
-//            self.title = title
-//        }
-//    }
-//    var viewData: ViewData? {
-//        didSet {
-//            self.updateView()
-//        }
-//    }
-    
+
     var shelf: Shelf? {
         didSet {
             self.updateView()
@@ -52,7 +34,7 @@ class ShelfTableViewCell: UITableViewCell, UICollectionViewDelegate {
         collectionView?.registerCellForClass(CollectableCell)
         
         self.collectionViewDataSource = CollectionViewArrayDataSource(cellReuseIdentifier: CollectableCell.cellReuseIdentifier) {
-            ($0 as! CollectableCell).collectable = $1 as? Collectable
+            ($0 as! CollectableCell).collectable = $1 as? Listable
         }
         
         self.collectionView!.dataSource = self.collectionViewDataSource

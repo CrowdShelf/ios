@@ -7,38 +7,26 @@
 //
 
 import Foundation
-import RealmSwift
-import Realm
 
 /// The base model which all other data models extends
 public class BaseModel: SerializableObject {
     
-// Override value initializers to make the values compatible with Realm
-    
-    required public init() {
+    override init() {
         super.init()
     }
     
-    override init(value: AnyObject) {
-        if let dictionary = value as? [String: AnyObject] {
-            super.init(value: BaseModel.dictionaryWithoutNSNull(dictionary))
-        } else {
-            super.init(value: value)
+    public init(dictionary: [String: AnyObject]) {
+        super.init()
+        
+        for (key, value) in dictionary {
+            if value is NSNull {
+                continue
+            }
+            self.setValue(value, forKey: key)
         }
     }
     
-    override init(value: AnyObject, schema: RLMSchema) {
-        if let dictionary = value as? [String: AnyObject] {
-            super.init(value: BaseModel.dictionaryWithoutNSNull(dictionary), schema: schema)
-        } else {
-            super.init(value: value, schema: schema)
-        }
-    }
-    
-    override init(realm: RLMRealm, schema: RLMObjectSchema) {
-        super.init(realm: realm, schema: schema)
-    }
-    
+
     private class func dictionaryWithoutNSNull(dictionary: [String: AnyObject]) -> [String: AnyObject] {
         var valueDictionary = dictionary
         
@@ -50,5 +38,7 @@ public class BaseModel: SerializableObject {
         
         return valueDictionary
     }
+    
+    
 }
 

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 
 /**
@@ -18,7 +17,7 @@ import RealmSwift
 
 */
 
-extension DataHandler {
+extension ExternalDatabaseHandler {
     
     /**
     Retrieve information about a book from Google based on its isbn
@@ -42,7 +41,7 @@ extension DataHandler {
                         value["provider"] = "google"
                         value["isbn"] = self.isbnFromItemInfoDictionary(itemInfo)
                         
-                        informationObjects.append(BookInformation(value: value))
+                        informationObjects.append(BookInformation(dictionary: value))
                         
                     }
                 }
@@ -65,7 +64,7 @@ extension DataHandler {
                         value["provider"] = "google"
                         value["isbn"] = self.isbnFromItemInfoDictionary(itemInfo)
                         
-                        informationObjects.append(BookInformation(value: value))
+                        informationObjects.append(BookInformation(dictionary: value))
                     })
                 }
             }

@@ -6,8 +6,7 @@
 //  Copyright © 2015 Øyvind Grimnes. All rights reserved.
 //
 
-import Foundation
-import RealmSwift
+import UIKit
 
 extension DataHandler {
     
@@ -19,7 +18,7 @@ extension DataHandler {
             var allBooks: [Book] = []
             
             var membersRetrieved = 0
-            let memberIDs = Set(crowds.flatMap { $0.members.map{$0.stringValue!}})
+            let memberIDs = Set(crowds.flatMap { $0.members })
 
             for memberID in memberIDs {
                 
@@ -39,7 +38,7 @@ extension DataHandler {
     public class func removeBookForUser(userID: String, withISBN ISBN: String, completionHandler: ((Bool)->Void)?) {
         DataHandler.getBooksWithParameters(["owner": userID, "isbn":ISBN]) { (books) -> Void in
             if let book = books.first {
-                DataHandler.removeBook(book._id, withCompletionHandler: { (isSuccess) -> Void in
+                DataHandler.removeBook(book._id!, withCompletionHandler: { (isSuccess) -> Void in
                     completionHandler?(isSuccess)
                 })
             }
@@ -53,7 +52,7 @@ extension DataHandler {
             }
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                let hash = user!.email
+                let hash = user!.email!
                     .stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     .lowercaseString
                     .md5()
@@ -76,9 +75,9 @@ extension DataHandler {
                 return
             }
             
-            self.sendRequestWithSubRoute("crowds/\(crowdID)/members/\(user!._id)", usingMethod: .PUT) { (result, isSuccess) -> Void in
-                completionHandler?(user!._id, isSuccess)
-            }
+            self.addUser(user!._id!, toCrowd: crowdID, withCompletionHandler: { (isSuccess) -> Void in
+                completionHandler?(user!._id!, isSuccess)
+            })
         }
     }
     
@@ -87,7 +86,7 @@ extension DataHandler {
         var results = 0
         
         crowd.members.forEach {
-            DataHandler.getUserWithImage($0.content as! String, withCompletionHandler: { (user) -> Void in
+            DataHandler.getUserWithImage($0, withCompletionHandler: { (user) -> Void in
                 results++
                 if user != nil {
                     users.append(user!)
@@ -106,7 +105,7 @@ extension DataHandler {
         
         var usersRetrieved = 0
         for wrappedMemberID in crowd.members {
-            DataHandler.getBooksWithParameters(["owner": wrappedMemberID.stringValue!], andCompletionHandler: { (memberBooks) -> Void in
+            DataHandler.getBooksWithParameters(["owner": wrappedMemberID], andCompletionHandler: { (memberBooks) -> Void in
                 books = books + memberBooks
                 usersRetrieved++
                 if usersRetrieved == crowd.members.count {
@@ -124,7 +123,7 @@ extension DataHandler {
             var booksRetrieved = 0
             books.forEach({ (book) -> () in
                 
-                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (titleInformation) -> Void in
+                DataHandler.informationAboutBook(book.isbn!, withCompletionHandler: { (titleInformation) -> Void in
                     if titleInformation.first != nil {
                         titleInformationSet.insert(titleInformation.first!)
                     }
@@ -147,10 +146,8 @@ extension DataHandler {
             }
             
             for book in books {
-                DataHandler.informationAboutBook(book.isbn, withCompletionHandler: { (information) -> Void in
-                    Realm.write { realm -> Void in
-                        book.details = information.first
-                    }
+                DataHandler.informationAboutBook(book.isbn!, withCompletionHandler: { (information) -> Void in
+                    book.details = information.first
                     
                     completionHandler(books)
                 })
@@ -167,11 +164,11 @@ extension DataHandler {
     
     public class func ownersOfBooksWithParameters(parameters: [String: AnyObject]?, withCompletionHandler completionHandler: (([User]) -> Void) ) {
         
-        DataHandler.getCrowdsWithParameters(["member": User.localUser!._id]) { (userCrowds) -> Void in
+        DataHandler.getCrowdsWithParameters(["member": User.localUser!._id!]) { (userCrowds) -> Void in
             
             var memberIDs = Set<String>()
             userCrowds.forEach { crowd in
-                memberIDs.unionInPlace(crowd.members.map{$0.stringValue!})
+                memberIDs.unionInPlace(crowd.members)
             }
             
             DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
@@ -179,10 +176,10 @@ extension DataHandler {
                     return completionHandler([])
                 }
                 
-                let ownerIDs: Set<String> = Set(books.map {$0.owner})
+                let ownerIDs: Set<String> = Set(books.map {$0.owner!})
                 
                 DataHandler.usersWithCompletionHandler { users -> Void in
-                    let owners = users.filter {ownerIDs.contains($0._id) && memberIDs.contains($0._id)}
+                    let owners = users.filter {ownerIDs.contains($0._id!) && memberIDs.contains($0._id!)}
                     
                     completionHandler(owners)
                 }
@@ -207,7 +204,7 @@ extension DataHandler {
             }
             
             let randomBook = books[ Int(arc4random()) % books.count ]
-            DataHandler.addRenter(renterID, toBook: randomBook._id, withCompletionHandler: { (isSuccess) -> Void in
+            DataHandler.addRenter(renterID, toBook: randomBook._id!, withCompletionHandler: { (isSuccess) -> Void in
                 completionHandler?(isSuccess)
             })
         }
@@ -222,7 +219,7 @@ extension DataHandler {
             }
             
             let randomBook = books[ Int(arc4random()) % books.count ]
-            DataHandler.removeRenter(renterID, fromBook: randomBook._id, withCompletionHandler: { (isSuccess) -> Void in
+            DataHandler.removeRenter(renterID, fromBook: randomBook._id!, withCompletionHandler: { (isSuccess) -> Void in
                 completionHandler?(isSuccess)
             })
         }

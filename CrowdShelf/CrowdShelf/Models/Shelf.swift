@@ -20,7 +20,7 @@ class Shelf {
     var titles: [BookInformation] {
         let titles = books.filter{$0.details != nil}.map {$0.details!}
         let uniqueTitles = Set(titles)
-        return Array(uniqueTitles)
+        return Array(uniqueTitles).sort {$0.title > $1.title}
     }
     
     init(name: String, parameters: [String: AnyObject]?, filter: ((Book)->Bool)) {
