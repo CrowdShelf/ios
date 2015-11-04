@@ -29,12 +29,12 @@ public class SerializableObject: NSObject {
         let mirror = Mirror(reflecting: self)
         
         for (key, child) in mirror.children {
-            if key == nil || self.ignoreProperties().contains(key!) {
+            if key == nil || SerializableObject.ignoreProperties().contains(key!) {
                 continue
             }
             
             
-            var propertyValue: AnyObject? = self.serializedValueForProperty(key!)
+            var propertyValue: AnyObject? = SerializableObject.serializedValueForProperty(key!)
             
             if propertyValue == nil {
                 if let value = self.unwrap(child) as? AnyObject {
@@ -93,11 +93,11 @@ public class SerializableObject: NSObject {
     - returns:              An optional custom serialized object
     */
     
-    func serializedValueForProperty(property: String) -> AnyObject? {
+    class func serializedValueForProperty(property: String) -> AnyObject? {
         return nil
     }
     
-    public func ignoreProperties() -> Set<String> {
+    class public func ignoreProperties() -> Set<String> {
         return []
     }
 }

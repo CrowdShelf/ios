@@ -43,21 +43,14 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
         self.delegate = self
         
         if self.crowd == nil {
-            self.crowd = newCrowd()
+            self.crowd = Crowd()
+            crowd?.owner = User.localUser?._id
         }
         
         self.updateView()
         self.updateItemsWithListables([])
         
         self.nameField?.delegate = nameFieldDelegate
-    }
-    
-    func newCrowd() -> Crowd {
-        let crowd = Crowd()
-        crowd.name = "New Group"
-        crowd.owner = User.localUser!._id
-        
-        return crowd
     }
     
     internal func retrieveUsers() {
@@ -123,12 +116,13 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
                 message: "Are you sure?",
       cancelButtonTitle: "No",
       otherButtonTitles: "Leave") { (alertView, buttonIndex) -> Void in
+        
             if buttonIndex == alertView.cancelButtonIndex {
                 return
             }
             
             let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Leaving crowd", inView: self.view)
-            DataHandler.removeUser(User.localUser!._id!, fromCrowd: self.crowd!) { (isSuccess) -> Void in
+            DataHandler.removeUser(User.localUser!._id!, fromCrowd: self.crowd!._id!) { (isSuccess) -> Void in
                 activityIndicatorView.stop()
                 if isSuccess {
                     self.navigationController?.popViewControllerAnimated(true)

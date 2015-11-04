@@ -27,9 +27,7 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel?
     
     @IBOutlet var titleLabelAlignCenterYConstraint: NSLayoutConstraint?
-    @IBOutlet var titleLabelTopSpaceConstrant: NSLayoutConstraint?
 
-    
     func updateView() {
         titleLabel?.text = listable?.title
         subtitleLabel?.text = (listable?.subtitle) ?? nil
@@ -37,9 +35,7 @@ class ListTableViewCell: UITableViewCell {
         iconImageView?.image = listable?.image ?? nil
         
         subtitleLabel?.hidden = !showSubtitle
-        
-        titleLabelAlignCenterYConstraint?.active = !showSubtitle || subtitleLabel?.text == nil
-        titleLabelTopSpaceConstrant?.active = showSubtitle && subtitleLabel?.text != nil
+        titleLabelAlignCenterYConstraint?.constant = !showSubtitle || subtitleLabel?.text == nil ? 0 : -10
         
         self.layoutIfNeeded()
     }

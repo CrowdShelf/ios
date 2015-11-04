@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        DatabaseHandler.sharedInstance
+        LocalDatabaseHandler.sharedInstance
         Analytics.initialize()
         
 //        Get stored user object if possible
@@ -26,8 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         UINavigationBar.appearance().tintColor = ColorPalette.primaryColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : ColorPalette.primaryTextColor]
+        UIWindow.appearance().tintColor = ColorPalette.primaryColor
+        
         self.window?.tintColor = ColorPalette.primaryColor
-        UIView.appearance().tintColor = ColorPalette.primaryColor
+        
+
         Analytics.addEvent("AppLaunched")
         
         return true

@@ -17,7 +17,7 @@ import Foundation
 
 */
 
-extension DataHandler {
+extension ExternalDatabaseHandler {
     
     /**
     Retrieve information about a book from Google based on its isbn

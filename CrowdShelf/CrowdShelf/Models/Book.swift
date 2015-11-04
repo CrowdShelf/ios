@@ -29,19 +29,11 @@ public class Book: BaseModel, Listable, Storeable {
     }
     
 
-    public override func ignoreProperties() -> Set<String> {
+    public override class func ignoreProperties() -> Set<String> {
         return ["details", "title", "image", "subtitle"]
     }
-}
-
-extension Book {
-    public class var columnDefinitions: [String: [String]] {
-        return [
-            "_id"               : ["TEXT", "PRIMARY KEY"],
-            "isbn"              : ["TEXT", "NOT NULL"],
-            "availableForRent"  : ["BOOL", "DEFAULT 1"],
-            "owner"             : ["TEXT", "NOT NULL"],
-            "rentedTo"          : ["TEXT"],
-        ]
+    
+    public class func primaryKey() -> String {
+        return "_id"
     }
 }

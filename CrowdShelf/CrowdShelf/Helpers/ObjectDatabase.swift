@@ -10,9 +10,9 @@
 import Foundation
 
 
-public protocol Storeable {
-    static var columnDefinitions: [String: [String]] {get}
-    var asDictionary: [String: AnyObject] {get}
+@objc public protocol Storeable {
+    optional static func primaryKey() -> String
+    optional static func ignoredProperties() -> Set<String>
 }
 
 public class ObjectDatabase {
@@ -23,6 +23,8 @@ public class ObjectDatabase {
     public init(databaseName: String) {
         let documentsDir : String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]
         let databasePath = documentsDir+"/\(databaseName).sqlite"
+        
+        try! NSFileManager.defaultManager().removeItemAtPath(databasePath)
         
         let shouldCreateDatabase = !NSFileManager.defaultManager().fileExistsAtPath(databasePath)
         
@@ -49,15 +51,69 @@ public class ObjectDatabase {
     
     public func createTableForType <T where T: NSObject, T: Storeable> (type: T.Type) -> Bool {
         
-        let columnStrings = T.columnDefinitions.map { (name, properties) -> String in
-            return ([name] + properties).joinWithSeparator(" ")
+        let object = type.init()
+        let mirror = Mirror(reflecting: object)
+        
+        /* Strings defining the columns of the table */
+        var columnStrings: [String] = []
+        
+        for (key, child) in mirror.children {
+            if key == nil || type.ignoredProperties?().contains(key!) ?? false {
+                continue
             }
-            .joinWithSeparator(", ")
-        
-        
+            
+            /* The name, data type and properties of the column */
+            var segments = [key!]
+            
+            let childMirror = Mirror(reflecting: child)
+            
+            let isOptional = childMirror.displayStyle == .Optional
+            let childType: Any.Type = childMirror.subjectType
+            
+            if isOptional {
+                switch childType {
+                case is (String?).Type, is (NSDate?).Type, is (Array<String>?).Type:
+                    segments.append("TEXT")
+                case is (Bool?).Type:
+                    segments.append("INT")
+                case is (NSNumber?).Type:
+                    segments.append("REAL")
+                case is (NSData?).Type:
+                    segments.append("BLOB")
+                default:
+                    continue
+                }
+            } else {
+                switch childType {
+                case is String.Type, is NSDate.Type, is Array<String>.Type:
+                    segments.append("TEXT")
+                case is Bool.Type:
+                    segments.append("INT")
+                case is NSNumber.Type:
+                    segments.append("REAL")
+                case is NSData.Type:
+                    segments.append("BLOB")
+                default:
+                    continue
+                }
+            }
+            
+            if !isOptional {
+                segments.append("NOT NULL")
+            }
+            
+            if key == type.primaryKey?() {
+                segments.append("PRIMARY KEY")
+            }
+            
+            
+            columnStrings.append(segments.joinWithSeparator(" "))
+        }
+
         let tableName =  tableNameForType(T.self)
-        let sql = "CREATE TABLE \(tableName) (\(columnStrings))"
-        
+        let sql = "CREATE TABLE \(tableName) (\(columnStrings.joinWithSeparator(", ")))"
+
+        print(sql)
         return self.exequteStatement(sql)
     }
     
@@ -74,16 +130,29 @@ public class ObjectDatabase {
      */
     
     public func addObject <T where T: NSObject, T: Storeable> (object: T, update: Bool = true) -> Bool {
-        let validObject     = storeableDataFromData(object.asDictionary, forType: T.self)
+        let validData     = storeableDataFromObject(object)
         
-        let valuesString    = validObject.keys.sort().map {":\($0)"}.joinWithSeparator(", ")
-        let keysString      = validObject.keys.sort().map {"\($0)"}.joinWithSeparator(", ")
+        let sql = insertObjectStatement(validData, type: T.self, update: update)
+        
+        return self.exequteStatement(sql, parameters: validData)
+    }
+    
+    public func addObjects <T where T: NSObject, T: Storeable> (objects: [T], update: Bool = true) {
+        for object in objects {
+            let validData   = storeableDataFromObject(object)
+            let sql         = insertObjectStatement(validData, type: T.self, update: update)
+            self.exequteStatement(sql, parameters: validData)
+        }
+    }
+    
+    private func insertObjectStatement <T where T: NSObject, T: Storeable> (data: [String: AnyObject], type: T.Type, update: Bool = true) -> String {
+        let valuesString    = data.keys.sort().map {":\($0)"}.joinWithSeparator(", ")
+        let keysString      = data.keys.sort().map {"\($0)"}.joinWithSeparator(", ")
         let tableName       = tableNameForType(T.self)
         
         let method          = update ? "INSERT OR REPLACE " : "INSERT "
-        let sql             = method + " INTO \(tableName) (\(keysString)) VALUES (\(valuesString))"
         
-        return self.exequteStatement(sql, parameters: validObject)
+        return method + " INTO \(tableName) (\(keysString)) VALUES (\(valuesString))"
     }
     
     
@@ -125,35 +194,29 @@ public class ObjectDatabase {
             let resultSet = database.executeQuery(sql, withParameterDictionary: parameters)
             
             while resultSet.next() {
-                let object = type.init()
-                
-                //                var dictionary: [String: AnyObject] = [:]
-                //
-                //                let columnDefintitions = (type as! Storeable.Type).columnDefinitions
-                //
-                //                for (column, properties) in columnDefintitions {
-                //                    if properties.contains("TEXT") {
-                //                        dictionary[column] = resultSet.stringForColumn(column)
-                //                    } else if properties.contains("INT") {
-                //                        dictionary[column] = Int(resultSet.intForColumn(column))
-                //                    } else if properties.contains("REAL") {
-                //                        dictionary[column] = Double(resultSet.doubleForColumn(column))
-                //                    } else if properties.contains("BOOL") {
-                //                        dictionary[column] = resultSet.boolForColumn(column)
-                //                    } else if properties.contains("BLOB") {
-                //                        dictionary[column] = resultSet.dataForColumn(column)
-                //                    } else if properties.contains("DATE") {
-                //                        dictionary[column] = resultSet.dateForColumn(column)
-                //                    }
-                //                }
-                //
-                
+//                var dictionary: [String: AnyObject] = [:]
+//                let columnDefintitions = ["":[""]]
+//
+//                for (column, properties) in columnDefintitions {
+//                    if properties.contains("TEXT") {
+//                        dictionary[column] = resultSet.stringForColumn(column)
+//                    } else if properties.contains("INT") {
+//                        dictionary[column] = Int(resultSet.intForColumn(column))
+//                    } else if properties.contains("REAL") {
+//                        dictionary[column] = Double(resultSet.doubleForColumn(column))
+//                    } else if properties.contains("BOOL") {
+//                        dictionary[column] = resultSet.boolForColumn(column)
+//                    } else if properties.contains("BLOB") {
+//                        dictionary[column] = resultSet.dataForColumn(column)
+//                    } else if properties.contains("DATE") {
+//                        dictionary[column] = resultSet.dateForColumn(column)
+//                    }
+//                }
+//
+//                
                 let validValues = self.validDataFromData(resultSet.resultDictionary() as! [String: AnyObject], forType: T.self)
-                for (key, value) in validValues {
-                    object.setValue(value, forKey: key )
-                }
                 
-                results.append(object)
+                results.append(self.objectWithData(validValues, forType: T.self))
             }
             
             resultSet.close()
@@ -173,11 +236,14 @@ public class ObjectDatabase {
      - returns:          a storeable dictionary
      */
     
-    private func storeableDataFromData(data: [String: AnyObject], forType type: NSObject.Type) -> [String: AnyObject] {
+    private func storeableDataFromObject <T where T: NSObject, T: Storeable> (object: T) -> [String: AnyObject] {
         var validData: [String: AnyObject] = [:]
         
         
-        for (key, value) in data {
+        for (key, value) in dataFromObject(object) {
+            if T.self.ignoredProperties?().contains(key) ?? false {
+                continue
+            }
             var validValue: AnyObject? = value
             
             if let arrayValue = value as? Array<String> {
@@ -202,32 +268,24 @@ public class ObjectDatabase {
      - returns:          a dictionary representing an object of the specified type
      */
     
-    private func validDataFromData(data: [String: AnyObject], forType type: NSObject.Type) -> [String: AnyObject] {
+    private func validDataFromData <T where T: NSObject, T: Storeable> (data: [String: AnyObject], forType type: T.Type) -> [String: AnyObject] {
         
         var validData: [String: AnyObject] = [:]
         
-        for (key, value) in data {
-            if value is NSNull {
+        let mirror = Mirror(reflecting: type.init())
+        for (key, child) in mirror.children {
+            if key == nil || data[key!] == nil {
                 continue
             }
             
-            var validValue: AnyObject   = value
+            let childMirror = Mirror(reflecting: child)
+            let childType: Any.Type = childMirror.subjectType
             
-            
-            // FIXME: Horrible way to get the property type
-            let property                = class_getProperty(type, key)
-            let propertyName            = String(CString: property_getAttributes(property), encoding: NSUTF8StringEncoding)
-            let propertyTypeComponents  = propertyName!.componentsSeparatedByString("\"")
-            
-            if propertyTypeComponents.count > 1 {
-                let propertyType: AnyClass? = NSClassFromString(propertyTypeComponents[1])
-                if propertyType is NSArray.Type {
-                    validValue = (value as! String).componentsSeparatedByString(";")
-                }
+            if childType is Array<String>.Type || childType is (Array<String>?).Type {
+                validData[key!] = (data[key!] as! String).componentsSeparatedByString(";")
+            } else {
+                validData[key!] = data[key!]
             }
-            ///////
-            
-            validData[key] = validValue
         }
         
         return validData
@@ -258,5 +316,102 @@ public class ObjectDatabase {
         }
         
         return isSuccess
+    }
+    
+    
+    
+    
+    
+    private func objectWithData <T where T: NSObject, T: Storeable> (data: [String: AnyObject], forType type: T.Type) -> T {
+        let object = type.init()
+        
+        for (key, value) in data {
+            if object.respondsToSelector(NSSelectorFromString(key)) {
+                object.setValue(value, forKey: key)
+            }
+        }
+        
+        return object
+    }
+    
+    /**
+     Serialize the object
+     
+     - returns:              A dictionary containing the data from the object
+     */
+    
+    private func dataFromObject <T where T: NSObject, T: Storeable> (object: T) -> [String: AnyObject] {
+        var dictionary: [String: AnyObject] = [:]
+        let mirror = Mirror(reflecting: object)
+        
+        
+        
+        for (key, child) in mirror.children {
+            if key == nil || T.self.ignoredProperties?().contains(key!) ?? false {
+                continue
+            }
+            
+            let childMirror = Mirror(reflecting: child)
+            
+            let isOptional = childMirror.displayStyle == .Optional
+            let childType: Any.Type = childMirror.subjectType
+            
+            if let value = self.unwrap(child) as? AnyObject {
+                if isOptional {
+                    switch childType {
+                    case is (String?).Type, is (NSDate?).Type, is (Array<String>?).Type:
+                        fallthrough
+                    case is (Bool?).Type:
+                        fallthrough
+                    case is (NSNumber?).Type:
+                        fallthrough
+                    case is (NSData?).Type:
+                        dictionary[key!] = value
+                    default:
+                        continue
+                    }
+                } else {
+                    switch childType {
+                    case is String.Type, is NSDate.Type, is Array<String>.Type:
+                        fallthrough
+                    case is Bool.Type:
+                        fallthrough
+                    case is NSNumber.Type:
+                        fallthrough
+                    case is NSData.Type:
+                        dictionary[key!] = value
+                    default:
+                        continue
+                    }
+                }
+            }
+            
+        }
+        
+        return dictionary
+    }
+    
+    /**
+     
+     Unwraps any optional values
+     
+     - parameter value:  The value to unwrap
+     
+     */
+    
+    private func unwrap(value: Any) -> Any? {
+        let mi = Mirror(reflecting: value)
+        
+        if mi.displayStyle != .Optional {
+            return value
+        }
+        
+        if mi.children.count == 0 {
+            return nil
+        }
+        
+        let (_, some) = mi.children.first!
+        
+        return some
     }
 }

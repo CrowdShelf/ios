@@ -35,7 +35,7 @@ class Button: Listable {
             case .Danger:
                 return ColorPalette.dangerColor
             case .Normal:
-                return UIView.appearance().tintColor
+                return UIWindow.appearance().tintColor
             case .None:
                 return ColorPalette.primaryTextColor
             }

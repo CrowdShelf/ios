@@ -40,8 +40,12 @@ public class User: BaseModel, Listable, Storeable {
     }
     
         
-    public override func ignoreProperties() -> Set<String> {
+    public override class func ignoreProperties() -> Set<String> {
         return ["image", "token", "title", "image", "subtitle"]
+    }
+    
+    public class func primaryKey() -> String {
+        return "_id"
     }
 }
 
@@ -50,19 +54,5 @@ extension User {
     class func loginUser(user: User) {
         KeyValueHandler.setObject(user.serialize() , forKey: "user", inFile: LocalDataFile.User)
         self.localUser = user
-    }
-}
-
-extension User {
-    
-    public class var columnDefinitions: [String: [String]] {
-        return [
-            "_id"       : ["TEXT", "PRIMARY KEY"],
-            "name"      : ["TEXT", "NOT NULL"],
-            "email"     : ["TEXT", "NOT NULL"],
-            "username"  : ["TEXT", "NOT NULL"],
-            "password"  : ["TEXT"]
-//            "token"     : ["TEXT"]
-        ]
     }
 }

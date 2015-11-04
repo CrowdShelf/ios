@@ -17,25 +17,18 @@ public class Crowd: BaseModel, Listable, Storeable {
     dynamic var members : [String] = []
     
     var title       : String? { return name }
-    var subtitle    : String? { return owner }
+    var subtitle    : String? { return "\(members.count) members" }
     var image       : UIImage?
     
     public var asDictionary: [String: AnyObject] {
         return self.serialize(.SQLite)
     }
     
-    public override func ignoreProperties() -> Set<String> {
+    public override class func ignoreProperties() -> Set<String> {
         return ["image", "title", "image", "subtitle"]
     }
-}
-
-extension Crowd {
-    public class var columnDefinitions: [String: [String]] {
-        return [
-            "_id"       : ["TEXT", "PRIMARY KEY"],
-            "name"      : ["TEXT", "NOT NULL"],
-            "owner"     : ["TEXT", "NOT NULL"],
-            "members"   : ["TEXT", "NOT NULL"]
-        ]
+    
+    public class func primaryKey() -> String {
+        return "_id"
     }
 }

@@ -28,24 +28,8 @@ public class DataHandler {
 //    MARK: - Book Information
     
     public class func resultsForQuery(query: String, withCompletionHandler completionHandler: (([BookInformation])->Void)) {
-        if query.characters.count < 2 {
-            return completionHandler([])
-        }
-        
-        self.resultsFromGoogleForQuery(query) { (bookInformationArray) -> Void in
-            
-            for bookInformation in bookInformationArray {
-                if let URL = NSURL(string: bookInformation.thumbnailURLString!) {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                        if let thumbnailData = NSData(contentsOfURL: URL) {
-                            bookInformation.thumbnailData = thumbnailData
-                            completionHandler(bookInformationArray)
-                        }
-                    })
-                }
-            }
-            
-            completionHandler(bookInformationArray)
+        ExternalDatabaseHandler.resultsForQuery(query) { (bookInformation) -> Void in
+            completionHandler(bookInformation)
         }
     }
     
@@ -63,39 +47,17 @@ public class DataHandler {
     */
     
     public class func informationAboutBook(isbn: String, withCompletionHandler completionHandler: (([BookInformation])->Void)) {
-        if isbn.characters.count != 10 && isbn.characters.count != 13 {
-            return completionHandler([])
-        }
-        
-        let cachedData = DatabaseHandler.sharedInstance.getObjectWithParameters(["isbn": isbn], forType: BookInformation.self)
+        let cachedData = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["isbn": isbn], forType: BookInformation.self)
         
         if !cachedData.isEmpty {
             return completionHandler(cachedData)
         }
         
-        
-        self.informationFromGoogleAboutBook(isbn) { (bookInformationArray: [BookInformation]) -> Void in
-            for bookInformation in bookInformationArray {
-                
-                
-                if let URL = NSURL(string: bookInformation.thumbnailURLString!) {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                        if let thumbnailData = NSData(contentsOfURL: URL) {
-                            bookInformation.thumbnailData = thumbnailData
-                            
-                            DatabaseHandler.sharedInstance.addObject(bookInformation)
-                            
-                            completionHandler(bookInformationArray)
-                        }
-                    })
-                }
+        ExternalDatabaseHandler.informationAboutBook(isbn) { (bookInformation) -> Void in            
+            completionHandler(bookInformation)
+            if !bookInformation.isEmpty {
+                LocalDatabaseHandler.sharedInstance.addObject(bookInformation.first!)
             }
-            
-            bookInformationArray.forEach {
-                DatabaseHandler.sharedInstance.addObject($0)
-            }
-            
-            completionHandler(bookInformationArray)
         }
     }
     
@@ -112,19 +74,11 @@ public class DataHandler {
     */
     
     public class func addBook(book: Book, withCompletionHandler completionHandler: ((Book?) -> Void)?) {
-        var data = book.serialize()
-        data.removeValueForKey("_id")
-        
-        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: data, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
-            if result == nil {
-                completionHandler?(nil)
-                return
+        ExternalDatabaseHandler.addBook(book) { (book) -> Void in
+            if book != nil {
+                LocalDatabaseHandler.sharedInstance.addObject(book!)
             }
             
-            let book = Book(dictionary: result as! [String: AnyObject])
-            
-            DatabaseHandler.sharedInstance.addObject(book)
-
             completionHandler?(book)
         }
     }
@@ -139,16 +93,9 @@ public class DataHandler {
     */
     
     public class func removeBook(bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        self.sendRequestWithSubRoute("books/\(bookID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
+        ExternalDatabaseHandler.removeBook(bookID) { (isSuccess) -> Void in
+            LocalDatabaseHandler.sharedInstance.deleteObjectsWithParameters(["_id":bookID], forType: Book.self)
             completionHandler?(isSuccess)
-            
-            if isSuccess {
-                
-//                Realm.write {
-//                    let book = $0.objectForPrimaryKey(Book.self, key: bookID)
-//                    $0.delete(book!)
-//                }
-            }
         }
     }
     
@@ -162,13 +109,14 @@ public class DataHandler {
     */
     
     public class func getBook(bookID: String, withCompletionHandler completionHandler: ((Book?)->Void)) {
-        self.sendRequestWithSubRoute("books/\(bookID)", usingMethod: .GET) { (result, isSuccess) -> Void in
-            if let value = result as? [String: AnyObject] {
-                let book = Book(dictionary: value)
-                return completionHandler(book)
-            }
-            
-            completionHandler(nil)
+        
+        let book = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": bookID], forType: Book.self).first
+        if book != nil {
+            completionHandler(book)
+        }
+        
+        ExternalDatabaseHandler.getBook(bookID) { (book) -> Void in
+            completionHandler(book)
         }
     }
     
@@ -183,31 +131,14 @@ public class DataHandler {
     
     public class func getBooksWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
         
-        self.sendRequestWithSubRoute("books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
-            
-            if let resultDictionary = result as? [String: AnyObject] {
-                if let valueArray = resultDictionary["books"] as? [[String: AnyObject]] {
-                    let books = valueArray.map {Book(dictionary: $0)}
-                    
-                    books.forEach {
-                        DatabaseHandler.sharedInstance.addObject($0)
-                    }
-                    
-                    return completionHandler(books)
-                }
-                
-//                FIXME: Added to prevent error caused by incorrect format received from server
-                else if let value = resultDictionary["books"] as? [String:AnyObject] {
-                    let book = Book(dictionary: value)
-                    
-                    DatabaseHandler.sharedInstance.addObject(book)
-                    
-                    completionHandler([book])
-                    
-                }
-            }
-            
-            completionHandler([])
+        let books = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(parameters, forType: Book.self)
+        if !books.isEmpty {
+            completionHandler(books)
+        }
+        
+        ExternalDatabaseHandler.getBooksWithParameters(parameters, useCache: cache) { (books) -> Void in
+            LocalDatabaseHandler.sharedInstance.addObjects(books)
+            completionHandler(books)
         }
     }
     
@@ -222,53 +153,30 @@ public class DataHandler {
     */
     
     public class func loginWithUsername(username: String, andPassword password: String, withCompletionHandler completionHandler: ((User?)->Void)) {
-        
-        self.sendRequestWithSubRoute("login", usingMethod: .POST, andParameters: ["username": username, "password": password], parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        ExternalDatabaseHandler.loginWithUsername(username, andPassword: password) { (user) -> Void in
             
-            var user: User?
-            
-            if isSuccess {
-                if let userValue = result as? [String: AnyObject] {
-                    user = User(dictionary: userValue)
-                }
+            if user != nil {
+                LocalDatabaseHandler.sharedInstance.addObject(user!)
             }
             
             completionHandler(user)
         }
     }
-    
-    public class func userForUserID(userID: String, withCompletionHandler completionHandler: ((User?)->Void
-        )) {
-            
-        self.sendRequestWithSubRoute("users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
-            
-            var user: User?
-            if let userValue = result as? [String: AnyObject] {
-                user = User(dictionary: userValue)
-            }
-            
-            completionHandler(user)
-            
-        }
-    }
+
     
     public class func userForUsername(username: String, withCompletionHandler completionHandler: ((User?)->Void
         )) {
             
-            self.sendRequestWithSubRoute("users", usingMethod: .GET, andParameters: ["username":username], parameterEncoding: .URL) { (result, isSuccess) -> Void in
-                
-                
-                var user: User?
-                if result != nil {
-                    if let userDictionaries = result!["users"] as? [AnyObject] {
-                        if let userValue = userDictionaries.first as? [String: AnyObject] {
-                            user = User(dictionary: userValue)
-                        }
-                    }
-                }
-                
+            let user = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["username": username], forType: User.self).first
+            if user != nil {
                 completionHandler(user)
-                
+            }
+            
+            ExternalDatabaseHandler.userForUsername(username) { (user) -> Void in
+                if user != nil {
+                    LocalDatabaseHandler.sharedInstance.addObject(user!)
+                }
+                completionHandler(user)
             }
     }
     
@@ -280,18 +188,12 @@ public class DataHandler {
     */
     
     public class func usersWithCompletionHandler(completionHandler: (([User])->Void)) {
-        self.sendRequestWithSubRoute("users", usingMethod: .GET) { (result, isSuccess) -> Void in
-            if isSuccess {
-                if let resultDictionary = result as? [String: AnyObject] {
-                    if let resultsArray = resultDictionary["users"] as? [[String: AnyObject]] {
-                        let usersArray = resultsArray.map {User(dictionary: $0)}
-                        
-                        return completionHandler(usersArray)
-                    }
-                }
-            }
-            
-            completionHandler([])
+        let users = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(forType: User.self)
+        completionHandler(users)
+        
+        ExternalDatabaseHandler.usersWithCompletionHandler { (users) -> Void in
+            LocalDatabaseHandler.sharedInstance.addObjects(users)
+            completionHandler(users)
         }
     }
     
@@ -304,16 +206,20 @@ public class DataHandler {
     */
     
     public class func getUser(userID: String, withCompletionHandler completionHandler: ((User?)->Void)) {
-        self.sendRequestWithSubRoute("users/\(userID)", usingMethod: .GET) { (result, isSuccess) -> Void in
-            if let resultDictionary = result as? [String: AnyObject] {
-                let user = User(dictionary: resultDictionary)
-                
-                return completionHandler(user)
+        
+        let user = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": userID], forType: User.self).first
+        if user != nil {
+            completionHandler(user)
+        }
+        
+        ExternalDatabaseHandler.userForUserID(userID) { (user) -> Void in
+            if user != nil {
+                LocalDatabaseHandler.sharedInstance.addObject(user!)
             }
-            
-            completionHandler(nil)
+            completionHandler(user)
         }
     }
+    
     
     /**
     Create a user in the database
@@ -325,17 +231,13 @@ public class DataHandler {
     
     public class func createUser(user: User, withCompletionHandler completionHandler: ((User?)->Void )) {
         
-//        TODO: Fix on server and remove
-        var parameters = user.serialize()
-        parameters.removeValueForKey("_id")
-        
-        self.sendRequestWithSubRoute("users", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        ExternalDatabaseHandler.createUser(user) { (user) -> Void in
             
-            if let value = result as? [String: AnyObject] {
-                completionHandler(User(dictionary: value))
+            if user != nil {
+                LocalDatabaseHandler.sharedInstance.addObject(user!)
             }
+            completionHandler(user)
             
-            completionHandler(nil)
         }
     }
     
@@ -351,9 +253,7 @@ public class DataHandler {
     
     public class func addRenter(renterID: String, toBook bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
         
-        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renterID)", usingMethod: .PUT, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
-            completionHandler?(isSuccess)
-        }
+        ExternalDatabaseHandler.addRenter(renterID, toBook: bookID, withCompletionHandler: completionHandler)
     }
     
     /**
@@ -366,172 +266,78 @@ public class DataHandler {
     */
     
     public class func removeRenter(renterID: String, fromBook bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renterID)", usingMethod: .DELETE, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
-            completionHandler?(isSuccess)
-        }
+        
+        ExternalDatabaseHandler.removeRenter(renterID, fromBook: bookID, withCompletionHandler: completionHandler)
     }
     
 //    MARK: - Crowds
     
     public class func getCrowdsWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Crowd]) -> Void)) {
         
-        self.sendRequestWithSubRoute("crowds", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        let crowds = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(forType: Crowd.self)
+        completionHandler(crowds)
+        
+        ExternalDatabaseHandler.getCrowdsWithParameters(parameters) { (crowds) -> Void in
             
-            if let resultDictionary = result as? [String: AnyObject] {
-                if let resultsArray = resultDictionary["crowds"] as? [[String: AnyObject]] {
-                    return completionHandler(resultsArray.map {Crowd(dictionary: $0)})
-                }
-            }
-            
-            
-            completionHandler([])
+            LocalDatabaseHandler.sharedInstance.addObjects(crowds)
+            completionHandler(crowds)
         }
     }
     
     public class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((Crowd?)->Void)) {
-        self.sendRequestWithSubRoute("crowds/\(crowdID)", usingMethod: .GET) { (result, isSuccess) -> Void in
-            var crowd: Crowd?
-            if let crowdValue = result as? [String: AnyObject] {
-                crowd = Crowd(dictionary: crowdValue)
+        
+        let crowd = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": crowdID], forType: Crowd.self).first
+        if crowd != nil {
+            completionHandler(crowd)
+        }
+        
+        ExternalDatabaseHandler.getCrowd(crowdID) { (crowd) -> Void in
+            if crowd != nil {
+                LocalDatabaseHandler.sharedInstance.addObject(crowd!)
             }
             completionHandler(crowd)
         }
     }
     
     public class func createCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Crowd?)-> Void)) {
-        self.sendRequestWithSubRoute("crowds", usingMethod: .POST, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
-            if isSuccess {
-                return completionHandler(Crowd(dictionary: result as! [String: AnyObject]))
+        
+        ExternalDatabaseHandler.createCrowd(crowd) { (crowd) -> Void in
+            if crowd != nil {
+                LocalDatabaseHandler.sharedInstance.addObject(crowd!)
             }
-            completionHandler(nil)
+            completionHandler(crowd)
         }
+        
     }
     
     public class func updateCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Bool)-> Void)?) {
-        self.sendRequestWithSubRoute("crowds/\(crowd._id!)", usingMethod: .PUT, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        
+        ExternalDatabaseHandler.updateCrowd(crowd) { (isSuccess) -> Void in
+            if isSuccess {
+                LocalDatabaseHandler.sharedInstance.addObject(crowd)
+            }
+            
             completionHandler?(isSuccess)
         }
+        
     }
     
     public class func deleteCrowd(crowdID: String, withCompletionHandler completionHandler: ((Bool)-> Void)?) {
-        self.sendRequestWithSubRoute("crowds/\(crowdID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
+        ExternalDatabaseHandler.deleteCrowd(crowdID) { (isSuccess) -> Void in
+            
+            if isSuccess {
+                LocalDatabaseHandler.sharedInstance.deleteObjectsWithParameters(["_id":crowdID], forType: Crowd.self)
+            }
             completionHandler?(isSuccess)
         }
     }
     
     
     public class func addUser(userID: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
-        self.sendRequestWithSubRoute("crowds/\(crowdID)/members/\(userID)", usingMethod: .PUT) { (result, isSuccess) -> Void in
-            completionHandler?(isSuccess)
-        }
+        ExternalDatabaseHandler.addUser(userID, toCrowd: crowdID, withCompletionHandler: completionHandler)
     }
     
-    public class func removeUser(userID: String, fromCrowd crowd: Crowd, withCompletionHandler completionHandler: ((Bool)->Void)?) {
-        self.sendRequestWithSubRoute("crowds/\(crowd._id)/members/\(userID)", usingMethod: .DELETE) { (result, isSuccess) -> Void in
-            if isSuccess {
-//                Realm.write { realm -> Void in
-//                    crowd.realm?.delete(crowd.members.filter {$0.stringValue! == userID}.first!)
-//                }
-            }
-            completionHandler?(isSuccess)
-        }
-    }
-    
-//    MARK: - General
-        
-    /**
-    
-    Extracts information from the results based on predefined, provider based key-value coded mapping. NSNull values are discarded
-    
-    - parameter results:    the dictionary retrieved form google's books API
-    
-    returns:    A dictionary containing values and keys based on the defined mapping
-    
-    */
-    
-    public class func dictionaryFromDictionary(originalDictionary: NSDictionary, usingMapping mapping: [String: String]) -> [String: AnyObject]{
-        
-        var dictionary: [String: AnyObject] = [:]
-        for (key, keyPath) in mapping {
-            if let value = originalDictionary.valueForKeyPath(keyPath) {
-                if !(value is NSNull) {
-                    dictionary[key] = value
-                }
-            }
-        }
-        
-        return dictionary
-    }
-    
-//    MARK: - Internal
-
-    /**
-    Sends a request to a sub path of the enviroments host root
-    
-    - parameter 	subRoute:            subpath for the request from the environments host root
-    - parameter     method:              HTTP method that should be used
-    - parameter     parameters:          a dictionary with key-value parameters
-    - parameter     parameterEncoding:   the Alamofire.ParameterEncoding to be used (e.g. URL or JSON)
-    - parameter     completionHandler:   closure which will be called with the result of the request
-    
-    */
-    
-    internal class func sendRequestWithSubRoute(subRoute: String,
-                                       usingMethod method: Alamofire.Method,
-                                       andParameters parameters: [String: AnyObject]? = nil,
-                                       parameterEncoding: ParameterEncoding = .URL,
-                                       withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
-                
-        let route = CS_ENVIRONMENT.hostString() + subRoute
-                           
-        self.sendRequestWithRoute(route, usingMethod: method, andParameters: parameters, parameterEncoding: parameterEncoding, withCompletionHandler: completionHandler)
-    }
-    
-    
-    /**
-    The endpoint in the client application responsible for sending an asynchronous request and handle the response
-    
-    - parameter 	route:              route for the request
-    - parameter     method:             HTTP method that should be used
-    - parameter     parameters:         a dictionary with key-value parameters
-    - parameter     parameterEncoding:  the Alamofire.ParameterEncoding to be used (e.g. URL or JSON)
-    - parameter     completionHandler:  closure which will be called with the result of the request
-    
-    */
-    
-    internal class func sendRequestWithRoute(route: String,
-                                    usingMethod method: Alamofire.Method,
-                                    andParameters parameters: [String: AnyObject]?,
-                                    parameterEncoding: ParameterEncoding,
-                                    withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
-            
-            csprint(CS_DEBUG_NETWORK, "Send request to URL:", route)
-            
-                                        
-            var JSONResponseHandlerFailed = true
-                                        
-            Alamofire.request(method, route, parameters: parameters, encoding: parameterEncoding, headers: ["Content-Type": "application/json"])
-                .responseJSON { (request, response, result) -> Void in
-                    
-                    JSONResponseHandlerFailed = result.isFailure || response!.statusCode != 200
-
-                    if !JSONResponseHandlerFailed {
-                        completionHandler?(result.value, result.isSuccess)
-                    } else {
-                        csprint(CS_DEBUG_NETWORK, result.debugDescription)
-                    }
-            }.responseData { (request, response, result) -> Void in
-                
-                if result.isSuccess {
-                    csprint(CS_DEBUG_NETWORK, "Request successful:", request!, "\nStatus code:", response?.statusCode ?? "none")
-                } else {
-                    csprint(CS_DEBUG_NETWORK, "Request failed:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result.debugDescription)
-                }
-                
-                if JSONResponseHandlerFailed {
-                    completionHandler?(nil, result.isSuccess && response!.statusCode == 200)
-                }
-                
-            }
+    public class func removeUser(userID: String, fromCrowd crowdID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
+        ExternalDatabaseHandler.removeUser(userID, fromCrowd: crowdID, withCompletionHandler: completionHandler)
     }
 }

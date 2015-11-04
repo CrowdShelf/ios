@@ -72,7 +72,6 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
     
 //    MARK: - Shelf Table View Cell Delegate
     
-//    TODO: This shouldnt be here
     func showAllBooksForShelfTableViewCell(shelfTableViewCell: ShelfTableViewCell) {
         self.performSegueWithIdentifier("ShowAllBooks", sender: shelfTableViewCell)
     }
@@ -83,7 +82,6 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
     
 //    MARK: - Actions
     
-//    TODO: Extract logout functionality
     @IBAction func logOut(sender: AnyObject) {
         KeyValueHandler.setObject(nil, forKey: "user", inFile: LocalDataFile.User)
         User.localUser = nil
