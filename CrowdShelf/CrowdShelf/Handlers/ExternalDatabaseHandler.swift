@@ -468,7 +468,12 @@ public class ExternalDatabaseHandler {
             
             var JSONResponseHandlerFailed = true
             
-            Alamofire.request(method, route, parameters: parameters, encoding: parameterEncoding, headers: ["Content-Type": "application/json"])
+            var parametersWithToken = parameters ?? [:]
+            if let token = User.localUser?.token {
+                parametersWithToken["token"] = token
+            }
+            
+            Alamofire.request(method, route, parameters: parametersWithToken, encoding: parameterEncoding, headers: ["Content-Type": "application/json"])
                 .responseJSON { (request, response, result) -> Void in
                     
                     JSONResponseHandlerFailed = result.isFailure || response!.statusCode != 200
@@ -489,8 +494,7 @@ public class ExternalDatabaseHandler {
                     if JSONResponseHandlerFailed {
                         completionHandler?(nil, result.isSuccess && response!.statusCode == 200)
                     }
-                    
-            }
+                }
     }
     
     

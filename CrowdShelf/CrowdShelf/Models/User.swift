@@ -35,13 +35,8 @@ public class User: BaseModel, Listable, Storeable {
     var title   : String? { return username! }
     var subtitle: String? { return email }
     
-    public var asDictionary: [String: AnyObject] {
-        return self.serialize(.SQLite)
-    }
-    
-        
     public override class func ignoreProperties() -> Set<String> {
-        return ["image", "token", "title", "image", "subtitle"]
+        return ["image", "token", "title", "subtitle"]
     }
     
     public class func primaryKey() -> String {

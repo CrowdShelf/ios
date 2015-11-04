@@ -20,10 +20,6 @@ public class Crowd: BaseModel, Listable, Storeable {
     var subtitle    : String? { return "\(members.count) members" }
     var image       : UIImage?
     
-    public var asDictionary: [String: AnyObject] {
-        return self.serialize(.SQLite)
-    }
-    
     public override class func ignoreProperties() -> Set<String> {
         return ["image", "title", "image", "subtitle"]
     }

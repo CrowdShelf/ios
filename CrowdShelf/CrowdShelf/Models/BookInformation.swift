@@ -34,10 +34,7 @@ public class BookInformation: BaseModel, Listable, Storeable {
         
     var subtitle : String? { return self.authors.map({$0}).joinWithSeparator(", ") }
     var image : UIImage? { return self.thumbnail }
-    public var asDictionary: [String: AnyObject] {
-        return self.serialize(.SQLite)
-    }
-    
+
     override public var hashValue: Int {
         return isbn != nil ? isbn!.hashValue : -1
     }

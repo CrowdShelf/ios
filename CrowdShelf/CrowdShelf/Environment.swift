@@ -22,7 +22,7 @@ enum CSEnvironment {
         case .Development:
             return "https://crowdshelf-dev.herokuapp.com/api/"
         case .Test:
-            return "https://crowdshelf.herokuapp.com/api/"
+            return "http://crowdshelf.xyz/api/"
         default:
             fatalError("Host not set for environment")
         }

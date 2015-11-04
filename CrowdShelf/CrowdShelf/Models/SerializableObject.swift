@@ -24,16 +24,15 @@ public class SerializableObject: NSObject {
     - returns:              A dictionary containing the data from the object
     */
     
-    public func serialize(mode: SerializationMode = .JSON) -> [String: AnyObject] {
+    public func serialize() -> [String: AnyObject] {
         var dictionary: [String: AnyObject] = [:]
         let mirror = Mirror(reflecting: self)
         
         for (key, child) in mirror.children {
-            if key == nil || SerializableObject.ignoreProperties().contains(key!) {
+            if key == nil || (mirror.subjectType as! SerializableObject.Type).ignoreProperties().contains(key!) {
                 continue
             }
-            
-            
+                        
             var propertyValue: AnyObject? = SerializableObject.serializedValueForProperty(key!)
             
             if propertyValue == nil {
@@ -41,16 +40,14 @@ public class SerializableObject: NSObject {
                     propertyValue = value
                     
                     /* Convert data to string and dates to timestamps for JSON */
-                    if mode == .JSON {
-                        if let serializableValue = value as? SerializableObject {
-                            propertyValue = serializableValue.serialize(mode)
-                        } else if let arrayValue = value as? [SerializableObject] {
-                            propertyValue = arrayValue.map {$0.serialize(mode)}
-                        } else if let dataValue = value as? NSData {
-                            propertyValue = dataValue.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-                        } else if let dateValue = value as? NSDate {
-                            propertyValue = dateValue.timeIntervalSince1970
-                        }
+                    if let serializableValue = value as? SerializableObject {
+                        propertyValue = serializableValue.serialize()
+                    } else if let arrayValue = value as? [SerializableObject] {
+                        propertyValue = arrayValue.map {$0.serialize()}
+                    } else if let dataValue = value as? NSData {
+                        propertyValue = dataValue.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+                    } else if let dateValue = value as? NSDate {
+                        propertyValue = dateValue.timeIntervalSince1970
                     }
                 }
             }

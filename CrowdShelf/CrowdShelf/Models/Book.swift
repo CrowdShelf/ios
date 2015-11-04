@@ -23,11 +23,6 @@ public class Book: BaseModel, Listable, Storeable {
     var title   : String? { return self.details?.title ?? "<no data>" }
     var image   : UIImage? { return self.details?.thumbnail }
     var subtitle: String?
-    
-    public var asDictionary: [String: AnyObject] {
-        return self.serialize(.SQLite)
-    }
-    
 
     public override class func ignoreProperties() -> Set<String> {
         return ["details", "title", "image", "subtitle"]
