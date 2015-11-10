@@ -191,44 +191,44 @@ public class ObjectDatabase {
         databaseQueue.inDatabase { (database) -> Void in
             let resultSet = database.executeQuery(sql, withParameterDictionary: parameters)
             
-            
-            while resultSet.next() {
-                
-                let object = type.init()
-                let mirror = Mirror(reflecting: object)
-                
-                var dictionary: [String: AnyObject] = [:]
-                for (key, child) in mirror.children {
-                    if key == nil || type.ignoredProperties?().contains(key!) ?? false {
-                        continue
+            if resultSet != nil {
+                while resultSet.next() {
+                    
+                    let object = type.init()
+                    let mirror = Mirror(reflecting: object)
+                    
+                    var dictionary: [String: AnyObject] = [:]
+                    for (key, child) in mirror.children {
+                        if key == nil || type.ignoredProperties?().contains(key!) ?? false {
+                            continue
+                        }
+                        
+                        let childMirror = Mirror(reflecting: child)
+                        
+                        let childType: Any.Type = childMirror.subjectType
+                        
+                        switch childType {
+                        case is String.Type, is (String?).Type, is Array<String>.Type, is (Array<String>?).Type:
+                            dictionary[key!] = resultSet.stringForColumn(key!)
+                        case is Bool.Type, is (Bool?).Type:
+                            dictionary[key!] = resultSet.boolForColumn(key!)
+                        case is NSNumber.Type, is (NSNumber?).Type:
+                            dictionary[key!] = NSNumber(double: resultSet.doubleForColumn(key!))
+                        case is NSData.Type, is (NSData?).Type:
+                            dictionary[key!] = resultSet.dataForColumn(key!)
+                        case is NSDate.Type, is (NSDate?).Type:
+                            dictionary[key!] = resultSet.dateForColumn(key!)
+                        default:
+                            continue
+                        }
                     }
-                    
-                    let childMirror = Mirror(reflecting: child)
-                    
-                    let childType: Any.Type = childMirror.subjectType
-                    
-                    switch childType {
-                    case is String.Type, is (String?).Type, is Array<String>.Type, is (Array<String>?).Type:
-                        dictionary[key!] = resultSet.stringForColumn(key!)
-                    case is Bool.Type, is (Bool?).Type:
-                        dictionary[key!] = resultSet.boolForColumn(key!)
-                    case is NSNumber.Type, is (NSNumber?).Type:
-                        dictionary[key!] = NSNumber(double: resultSet.doubleForColumn(key!))
-                    case is NSData.Type, is (NSData?).Type:
-                        dictionary[key!] = resultSet.dataForColumn(key!)
-                    case is NSDate.Type, is (NSDate?).Type:
-                        dictionary[key!] = resultSet.dateForColumn(key!)
-                    default:
-                        continue
-                    }
-                }
 
-                let validValues = self.validDataFromData(dictionary, forType: T.self)
-                let objectWithData = self.objectWithData(validValues, forType: T.self)
-                results.append(objectWithData)
+                    let objectWithData = self.objectWithData(dictionary, forType: T.self)
+                    results.append(objectWithData)
+                }
+                
+                resultSet.close()
             }
-            
-            resultSet.close()
         }
         
         return results
@@ -258,40 +258,7 @@ public class ObjectDatabase {
         
         return validData
     }
-    
-    
-    /**
-     Removes NSNull objects and splits strings representing arrays
-     
-     - parameter data:   dictionary containing data a table
-     - parameter type:   type of object the table represents
-     
-     - returns:          a dictionary representing an object of the specified type
-     */
-    
-    private func validDataFromData <T where T: NSObject, T: Storeable> (data: [String: AnyObject], forType type: T.Type) -> [String: AnyObject] {
-        
-        var validData: [String: AnyObject] = [:]
-        
-        let mirror = Mirror(reflecting: type.init())
-        for (key, child) in mirror.children {
-            if key == nil || data[key!] == nil {
-                continue
-            }
-            
-            let childMirror = Mirror(reflecting: child)
-            let childType: Any.Type = childMirror.subjectType
-            
-            if childType is Array<String>.Type || childType is (Array<String>?).Type {
-                validData[key!] = (data[key!] as! String).componentsSeparatedByString(";")
-            } else {
-                validData[key!] = data[key!]
-            }
-        }
-        
-        return validData
-    }
-    
+
     
     
     private func tableNameForType(type: NSObject.Type) -> String {
@@ -326,11 +293,21 @@ public class ObjectDatabase {
     private func objectWithData <T where T: NSObject, T: Storeable> (data: [String: AnyObject], forType type: T.Type) -> T {
         let object = type.init()
         
-        for (key, value) in data {
-            if value is NSNull {
+        let mirror = Mirror(reflecting: object)
+        for (key, child) in mirror.children {
+            if key == nil || data[key!] == nil {
                 continue
             }
-            object.setValue(value, forKey: key)
+            
+            let childMirror = Mirror(reflecting: child)
+            let childType: Any.Type = childMirror.subjectType
+            
+            if childType is Array<String>.Type || childType is (Array<String>?).Type {
+                let array = (data[key!] as! String).componentsSeparatedByString(";")
+                object.setValue(array, forKey: key!)
+            } else {
+                object.setValue(data[key!], forKey: key!)
+            }
         }
         
         return object

@@ -274,7 +274,7 @@ public class DataHandler {
     
     public class func getCrowdsWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Crowd]) -> Void)) {
         
-        let crowds = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(forType: Crowd.self)
+        let crowds = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(parameters, forType: Crowd.self)
         completionHandler(crowds)
         
         ExternalDatabaseHandler.getCrowdsWithParameters(parameters) { (crowds) -> Void in

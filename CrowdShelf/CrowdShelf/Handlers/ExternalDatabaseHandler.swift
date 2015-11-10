@@ -19,6 +19,10 @@ public class ExternalDatabaseHandler {
         self.resultsFromGoogleForQuery(query) { (bookInformationArray) -> Void in
             
             for bookInformation in bookInformationArray {
+                if bookInformation.thumbnailURLString == nil {
+                    continue
+                }
+                
                 if let URL = NSURL(string: bookInformation.thumbnailURLString!) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                         if let thumbnailData = NSData(contentsOfURL: URL) {
@@ -53,7 +57,9 @@ public class ExternalDatabaseHandler {
         
         self.informationFromGoogleAboutBook(isbn) { (bookInformationArray: [BookInformation]) -> Void in
             for bookInformation in bookInformationArray {
-                
+                if bookInformation.thumbnailURLString == nil {
+                    continue
+                }
                 
                 if let URL = NSURL(string: bookInformation.thumbnailURLString!) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
