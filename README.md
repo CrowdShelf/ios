@@ -2,4 +2,4 @@
 
 ### Licence
 
-MIT-licence. See the LICENCE-file.
+MIT-licence. See the `LICENCE`-file.
