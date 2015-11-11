@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F1A818387ABC21568264C784A4B6D841D9767973",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F1A818387ABC21568264C784A4B6D841D9767973" : 0,
+    "357A6A6CF21D753E6C1C1042B0B033D5E874607A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DD180080-9F5A-4AF0-929A-6844692E7A24",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F1A818387ABC21568264C784A4B6D841D9767973" : "ios\/",
+    "357A6A6CF21D753E6C1C1042B0B033D5E874607A" : "..\/.."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CrowdShelf",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CrowdShelf\/CrowdShelf.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Oyvindkg\/Skole.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "357A6A6CF21D753E6C1C1042B0B033D5E874607A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/CrowdShelf\/ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F1A818387ABC21568264C784A4B6D841D9767973"
+    }
+  ]
+}
