@@ -53,12 +53,15 @@ public class DataHandler {
             return completionHandler(cachedData)
         }
         
-        ExternalDatabaseHandler.informationAboutBook(isbn) { (bookInformation) -> Void in            
-            completionHandler(bookInformation)
-            if !bookInformation.isEmpty {
-                LocalDatabaseHandler.sharedInstance.addObject(bookInformation.first!)
-            }
-        }
+        print("ENABLE BOOK INFORMATION FROM GOOGLE FOR ISBN: \(isbn). In cache: \(LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["isbn": isbn], forType: BookInformation.self))")
+        return
+        
+//        ExternalDatabaseHandler.informationAboutBook(isbn) { (bookInformation) -> Void in            
+//            completionHandler(bookInformation)
+//            if !bookInformation.isEmpty {
+//                LocalDatabaseHandler.sharedInstance.addObject(bookInformation.first!)
+//            }
+//        }
     }
     
     

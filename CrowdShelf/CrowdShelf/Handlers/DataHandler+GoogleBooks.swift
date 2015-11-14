@@ -29,7 +29,7 @@ extension ExternalDatabaseHandler {
     
     internal class func informationFromGoogleAboutBook(isbn: String, withCompletionHandler completionHandler: (([BookInformation]) -> Void)) {
         
-        self.sendRequestWithRoute("https://www.googleapis.com/books/v1/volumes", usingMethod: .GET, andParameters: ["q": "isbn:\(isbn)"], parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithRoute("https://www.googleapis.com/books/v1/volumes", usingMethod: .GET, andParameters: ["q": "isbn:\(isbn)"]) { (result, isSuccess) -> Void in
             
             var informationObjects: [BookInformation] = []
             
@@ -53,7 +53,7 @@ extension ExternalDatabaseHandler {
     
     internal class func resultsFromGoogleForQuery(query: String, withCompletionHandler completionHandler: (([BookInformation]) -> Void)) {
         
-        self.sendRequestWithRoute("https://www.googleapis.com/books/v1/volumes", usingMethod: .GET, andParameters: ["q": "\(query)", "maxResults": 20], parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithRoute("https://www.googleapis.com/books/v1/volumes", usingMethod: .GET, andParameters: ["q": "\(query)", "maxResults": 20]) { (result, isSuccess) -> Void in
             
             var informationObjects: [BookInformation] = []
             

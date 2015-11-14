@@ -85,7 +85,7 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
             self.tableViewDataSource.items = bookInformation.filter {$0.isbn != ""}
             
             if self.filter != .All {
-                self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn!!) }
+                self.tableViewDataSource.items = self.tableViewDataSource.items.filter { self.ISBNsInCrowds!.contains($0.isbn ?? "not isbn") }
             }
             
             self.updateView()

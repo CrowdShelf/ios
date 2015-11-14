@@ -22,8 +22,8 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
             let shelfCell = cell as! ShelfTableViewCell
             shelfCell.shelf = item as? Shelf
             shelfCell.delegate = self           // FIXME: Bad way to detect book selection in cell
-
         }
+        
         self.tableView?.dataSource = self.tableViewDataSource
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadShelves", name: Notification.LocalUserUpdated, object: nil)
@@ -58,7 +58,7 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         
         DataHandler.getBooksWithInformationWithParameters(shelf.parameters) { (books) -> Void in
             shelf.books = books.filter(shelf.filter)
-            self.refreshControl.endRefreshing()
+//            self.refreshControl.endRefreshing()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.updateView()
             })

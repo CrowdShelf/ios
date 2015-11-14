@@ -31,6 +31,11 @@ class RegisterUserViewController: UIViewController {
         self.nameField?.delegate = textFieldDelegate
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     @IBAction func register() {
         if !isValidInput() {
             return

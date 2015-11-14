@@ -91,7 +91,7 @@ public class ExternalDatabaseHandler {
         var data = book.serialize()
         data.removeValueForKey("_id")
         
-        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: data, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books", usingMethod: .POST, andParameters: data) { (result, isSuccess) -> Void in
 
             var book: Book?
             if let resultDictionary = result as? [String: AnyObject] {
@@ -149,7 +149,7 @@ public class ExternalDatabaseHandler {
     
     public class func getBooksWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
         
-        self.sendRequestWithSubRoute("books", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books", usingMethod: .GET, andParameters: parameters) { (result, isSuccess) -> Void in
             
             var books: [Book] = []
             if let resultDictionary = result as? [String: AnyObject] {
@@ -174,7 +174,7 @@ public class ExternalDatabaseHandler {
     
     public class func loginWithUsername(username: String, andPassword password: String, withCompletionHandler completionHandler: ((User?)->Void)) {
         
-        self.sendRequestWithSubRoute("login", usingMethod: .POST, andParameters: ["username": username, "password": password], parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("login", usingMethod: .POST, andParameters: ["username": username, "password": password]) { (result, isSuccess) -> Void in
             
             var user: User?
             
@@ -209,7 +209,7 @@ public class ExternalDatabaseHandler {
     public class func userForUsername(username: String, withCompletionHandler completionHandler: ((User?)->Void
         )) {
             
-            self.sendRequestWithSubRoute("users", usingMethod: .GET, andParameters: ["username":username], parameterEncoding: .URL) { (result, isSuccess) -> Void in
+            self.sendRequestWithSubRoute("users", usingMethod: .GET, andParameters: ["username":username]) { (result, isSuccess) -> Void in
                 
                 
                 var user: User?
@@ -286,7 +286,7 @@ public class ExternalDatabaseHandler {
         var parameters = user.serialize()
         parameters.removeValueForKey("_id")
         
-        self.sendRequestWithSubRoute("users", usingMethod: .POST, andParameters: parameters, parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("users", usingMethod: .POST, andParameters: parameters) { (result, isSuccess) -> Void in
             
             var user: User?
             
@@ -312,7 +312,7 @@ public class ExternalDatabaseHandler {
     
     public class func addRenter(renterID: String, toBook bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
         
-        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renterID)", usingMethod: .PUT, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renterID)", usingMethod: .PUT) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -327,7 +327,7 @@ public class ExternalDatabaseHandler {
      */
     
     public class func removeRenter(renterID: String, fromBook bookID: String, withCompletionHandler completionHandler: ((Bool) -> Void)?) {
-        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renterID)", usingMethod: .DELETE, andParameters: nil, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("books/\(bookID)/renter/\(renterID)", usingMethod: .DELETE, andParameters: nil) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -336,7 +336,7 @@ public class ExternalDatabaseHandler {
     
     public class func getCrowdsWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Crowd]) -> Void)) {
         
-        self.sendRequestWithSubRoute("crowds", usingMethod: .GET, andParameters: parameters, parameterEncoding: .URL) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("crowds", usingMethod: .GET, andParameters: parameters) { (result, isSuccess) -> Void in
             
             var crowds: [Crowd] = []
             
@@ -363,7 +363,7 @@ public class ExternalDatabaseHandler {
     }
     
     public class func createCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Crowd?)-> Void)) {
-        self.sendRequestWithSubRoute("crowds", usingMethod: .POST, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("crowds", usingMethod: .POST, andParameters: crowd.serialize()) { (result, isSuccess) -> Void in
             var crowd: Crowd?
             
             if isSuccess {
@@ -377,7 +377,7 @@ public class ExternalDatabaseHandler {
     }
     
     public class func updateCrowd(crowd: Crowd, withCompletionHandler completionHandler: ((Bool)-> Void)?) {
-        self.sendRequestWithSubRoute("crowds/\(crowd._id!)", usingMethod: .PUT, andParameters: crowd.serialize(), parameterEncoding: .JSON) { (result, isSuccess) -> Void in
+        self.sendRequestWithSubRoute("crowds/\(crowd._id!)", usingMethod: .PUT, andParameters: crowd.serialize()) { (result, isSuccess) -> Void in
             completionHandler?(isSuccess)
         }
     }
@@ -443,12 +443,11 @@ public class ExternalDatabaseHandler {
     internal class func sendRequestWithSubRoute(subRoute: String,
         usingMethod method: Alamofire.Method,
         andParameters parameters: [String: AnyObject]? = nil,
-        parameterEncoding: ParameterEncoding = .URL,
         withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
             
             let route = CS_ENVIRONMENT.hostString() + subRoute
             
-            self.sendRequestWithRoute(route, usingMethod: method, andParameters: parameters, parameterEncoding: parameterEncoding, withCompletionHandler: completionHandler)
+            self.sendRequestWithRoute(route, usingMethod: method, andParameters: parameters, withCompletionHandler: completionHandler)
     }
     
     
@@ -466,11 +465,17 @@ public class ExternalDatabaseHandler {
     internal class func sendRequestWithRoute(route: String,
         usingMethod method: Alamofire.Method,
         andParameters parameters: [String: AnyObject]?,
-        parameterEncoding: ParameterEncoding,
         withCompletionHandler completionHandler: ((AnyObject?, Bool)->Void)?) {
             
             csprint(CS_DEBUG_NETWORK, "Send request to URL:", route)
             
+            let encoding: ParameterEncoding
+            switch method {
+            case .GET, .DELETE:
+                encoding = .URL
+            default:
+                encoding = .JSON
+            }
             
             var JSONResponseHandlerFailed = true
             
@@ -479,7 +484,7 @@ public class ExternalDatabaseHandler {
                 parametersWithToken["token"] = token
             }
             
-            Alamofire.request(method, route, parameters: parametersWithToken, encoding: parameterEncoding, headers: ["Content-Type": "application/json"])
+            Alamofire.request(method, route, parameters: parametersWithToken, encoding: encoding, headers: ["Content-Type": "application/json"])
                 .responseJSON { (request, response, result) -> Void in
                     
                     JSONResponseHandlerFailed = result.isFailure || response!.statusCode != 200
@@ -487,14 +492,14 @@ public class ExternalDatabaseHandler {
                     if !JSONResponseHandlerFailed {
                         completionHandler?(result.value, result.isSuccess)
                     } else {
-                        csprint(CS_DEBUG_NETWORK, result.debugDescription)
+                        csprint(CS_DEBUG_NETWORK, result.debugDescription   )
                     }
                 }.responseData { (request, response, result) -> Void in
-                    
+
                     if result.isSuccess {
                         csprint(CS_DEBUG_NETWORK, "Request successful:", request!, "\nStatus code:", response?.statusCode ?? "none")
                     } else {
-                        csprint(CS_DEBUG_NETWORK, "Request failed:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result.debugDescription)
+                        csprint(CS_DEBUG_NETWORK, "Request failed:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result)
                     }
                     
                     if JSONResponseHandlerFailed {

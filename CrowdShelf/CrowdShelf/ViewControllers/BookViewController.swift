@@ -89,6 +89,10 @@ class BookViewController: ListViewController {
             MessagePopupView(message: message, messageStyle: book != nil ? .Success : .Error).show()
             csprint(CS_DEBUG_BOOK_VIEW, message, self.bookInformation)
             
+            if book != nil {
+                LocalDatabaseHandler.sharedInstance.addObject(self.bookInformation!)
+            }
+            
             self.updateView()
         }
        

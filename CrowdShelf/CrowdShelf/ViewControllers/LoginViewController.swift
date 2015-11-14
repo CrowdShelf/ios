@@ -14,6 +14,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField?
     @IBOutlet weak var passwordField: UITextField?
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     @IBAction func login(sender: AnyObject) {
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Logging in..", inView: self.view)

@@ -34,9 +34,9 @@ public class BookInformation: BaseModel, Listable, Storeable {
         
     var subtitle : String? { return self.authors.map({$0}).joinWithSeparator(", ") }
     var image : UIImage? { return self.thumbnail }
-
+    
     override public var hashValue: Int {
-        return isbn != nil ? isbn!.hashValue : -1
+        return isbn?.hashValue ?? -1
     }
     
     var thumbnail : UIImage? {
@@ -49,6 +49,14 @@ public class BookInformation: BaseModel, Listable, Storeable {
     
     public static func primaryKey() -> String {
         return "isbn"
+    }
+    
+    public override func isEqual(object: AnyObject?) -> Bool {
+        if let object = object as? BookInformation {
+            return object.hashValue == self.hashValue
+        }
+        
+        return false
     }
 }
 
