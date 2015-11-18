@@ -129,7 +129,7 @@ class BookViewController: ListViewController {
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         
         /* Retrieve users in possession of the book */
-        DataHandler.ownersOfBooksWithParameters(["isbn": self.bookInformation!.isbn!, "availableForRent": true]) { (owners) -> Void in
+        DataHandler.ownersOfBooksWithParameters(["isbn": self.bookInformation!.isbn!, "availableForRent": true]) { (owners, dataSource) -> Void in
             activityIndicatorView.stop()
             
             let otherUsers = owners.filter {$0._id != User.localUser!._id}
@@ -179,7 +179,11 @@ class BookViewController: ListViewController {
         
         let activityIndicatorView = ActivityIndicatorView.showActivityIndicatorWithMessage("Collecting information", inView: self.view)
         
-        DataHandler.ownersOfBooksWithParameters(["isbn":self.bookInformation!.isbn!, "rentedTo": User.localUser!._id!]) { (owners) -> Void in
+        DataHandler.ownersOfBooksWithParameters(["isbn":self.bookInformation!.isbn!, "rentedTo": User.localUser!._id!]) { (owners, dataSource) -> Void in
+            if dataSource == .Cache {
+                return
+            }
+            
             activityIndicatorView.stop()
             
             /* Abort is no users are in possession of the book */

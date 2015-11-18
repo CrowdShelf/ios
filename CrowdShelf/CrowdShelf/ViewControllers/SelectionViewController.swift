@@ -25,10 +25,9 @@ class SelectionViewController: BaseViewController, UITableViewDelegate {
     
     var completionHandler: (([Listable])->Void)?
     
-    lazy var tableViewDataSource: TableViewArrayDataSource = { [unowned self] in
-        return TableViewArrayDataSource(cellReuseIdentifier: ListTableViewCell.cellReuseIdentifier) { (cell, item, _) -> Void in
-            let listableCell = cell as! ListTableViewCell
-            listableCell.listable = item as? Listable
+    lazy var tableViewDataSource: TableViewArrayDataSource<ListTableViewCell> = { [unowned self] in
+        return TableViewArrayDataSource { (cell, item, _) -> Void in
+            cell.listable = item as? Listable
         }
     }()
     

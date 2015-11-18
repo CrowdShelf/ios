@@ -19,7 +19,7 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
     
     let searchController: UISearchController = UISearchController(searchResultsController: nil)
 
-    let tableViewDataSource: TableViewArrayDataSource
+    let tableViewDataSource: TableViewArrayDataSource<ListTableViewCell>
     var tableViewDelegate: TableViewSelectionDelegate?
     
     var ISBNsInCrowds: Set<String>?
@@ -28,12 +28,11 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating {
     
     required init?(coder aDecoder: NSCoder) {
         
-        tableViewDataSource = TableViewArrayDataSource(cellReuseIdentifier: ListTableViewCell.cellReuseIdentifier, cellConfigurationHandler: { (cell, item, indexPath) -> Void in
-            let listCell = cell as! ListTableViewCell
-            listCell.listable = (item as! Listable)
-            listCell.iconImageView?.viewStyle = .Square
-            listCell.iconImageView?.contentMode = .ScaleAspectFit
-        })
+        tableViewDataSource = TableViewArrayDataSource { (cell, item, indexPath) -> Void in
+            cell.listable = (item as! Listable)
+            cell.iconImageView?.viewStyle = .Square
+            cell.iconImageView?.contentMode = .ScaleAspectFit
+        }
         
         super.init(coder: aDecoder)
         

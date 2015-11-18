@@ -25,17 +25,16 @@ class ListViewController: BaseViewController {
     var delegate: ListViewControllerDelegate?
     var dataSource: ListViewControllerDataSource?
     
-    lazy var tableViewDataSource: TableViewArrayDataSource = {
-        return TableViewArrayDataSource(cellReuseIdentifier: ListTableViewCell.cellReuseIdentifier) { (cell, item, indexPath) -> Void in
+    lazy var tableViewDataSource: TableViewArrayDataSource<ListTableViewCell> = {
+        return TableViewArrayDataSource { (cell, item, indexPath) -> Void in
             
-            let listCell = cell as? ListTableViewCell
-            listCell?.listable = item as? Listable
-            listCell?.iconImageView?.viewStyle = .Round
+            cell.listable = item as? Listable
+            cell.iconImageView?.viewStyle = .Round
             
-            listCell?.configureForButtonStyle((item as? Button)?.buttonStyle ?? .None)
+            cell.configureForButtonStyle((item as? Button)?.buttonStyle ?? .None)
             
-            listCell?.accessoryType = self.dataSource?.listViewController?(self, accessoryTypeForIndexPath: indexPath) ?? .None
-            listCell?.showSubtitle = self.dataSource?.listViewController?(self, shouldShowSubtitleForCellAtIndexPath: indexPath) ?? false
+            cell.accessoryType = self.dataSource?.listViewController?(self, accessoryTypeForIndexPath: indexPath) ?? .None
+            cell.showSubtitle = self.dataSource?.listViewController?(self, shouldShowSubtitleForCellAtIndexPath: indexPath) ?? false
         }
     }()
     

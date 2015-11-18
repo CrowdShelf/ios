@@ -13,15 +13,14 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
     @IBOutlet weak var tableView: UITableView?
     
     let refreshControl = UIRefreshControl()
-    var tableViewDataSource: TableViewArrayDataSource?
+    var tableViewDataSource: TableViewArrayDataSource<ShelfTableViewCell>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableViewDataSource = TableViewArrayDataSource(cellReuseIdentifier: "ShelfCell") { (cell, item, _) -> Void in
-            let shelfCell = cell as! ShelfTableViewCell
-            shelfCell.shelf = item as? Shelf
-            shelfCell.delegate = self           // FIXME: Bad way to detect book selection in cell
+        self.tableViewDataSource = TableViewArrayDataSource { (cell, item, _) -> Void in
+            cell.shelf = item as? Shelf
+            cell.delegate = self           // FIXME: Bad way to detect book selection in cell
         }
         
         self.tableView?.dataSource = self.tableViewDataSource
@@ -58,8 +57,9 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         
         DataHandler.getBooksWithInformationWithParameters(shelf.parameters) { (books) -> Void in
             shelf.books = books.filter(shelf.filter)
-//            self.refreshControl.endRefreshing()
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.refreshControl.endRefreshing()
                 self.updateView()
             })
         }
@@ -92,7 +92,7 @@ class ShelfViewController: BaseViewController, ShelfTableViewCellDelegate {
         super.prepareForSegue(segue, sender: sender)
         
         if segue.identifier == "ShowAllBooks" {
-            let booksVC = segue.destinationViewController as! BookCollectionViewController
+            let booksVC = segue.destinationViewController as! ShelfCollectionViewController
             booksVC.shelf = (sender as! ShelfTableViewCell).shelf
             
         }

@@ -65,8 +65,9 @@ public class ExternalDatabaseHandler {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                         if let thumbnailData = NSData(contentsOfURL: URL) {
                             bookInformation.thumbnailData = thumbnailData
-                            completionHandler(bookInformationArray)
                         }
+                        
+                        completionHandler(bookInformationArray)
                     })
                 }
             }
@@ -148,13 +149,15 @@ public class ExternalDatabaseHandler {
      */
     
     public class func getBooksWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
-        
+
         self.sendRequestWithSubRoute("books", usingMethod: .GET, andParameters: parameters) { (result, isSuccess) -> Void in
             
             var books: [Book] = []
             if let resultDictionary = result as? [String: AnyObject] {
                 if let valueArray = resultDictionary["books"] as? [[String: AnyObject]] {
                     books = valueArray.map {Book(dictionary: $0)}
+                } else if let valueDictionary = resultDictionary["books"] as? [String: AnyObject] {
+                    books = [Book(dictionary: valueDictionary)]
                 }
             }
             
@@ -332,6 +335,18 @@ public class ExternalDatabaseHandler {
         }
     }
     
+    public class func forgotPassword(username: String, withCompletionHandler completionHandler: ((Bool)->Void)) {
+        self.sendRequestWithSubRoute("users/forgotpassword", usingMethod: .POST, andParameters: ["username": username]) { (_, isSuccess) -> Void in
+            completionHandler(isSuccess)
+        }
+    }
+    
+    public class func resetPasswordForUser(username: String, password: String, key: String, withCompletionHandler completionHandler: ((Bool)->Void)) {
+        self.sendRequestWithSubRoute("users/resetpassword", usingMethod: .POST, andParameters: ["username": username, "key": key, "password": password]) { (_, isSuccess) -> Void in
+            completionHandler(isSuccess)
+        }
+    }
+    
     //    MARK: - Crowds
     
     public class func getCrowdsWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Crowd]) -> Void)) {
@@ -477,33 +492,47 @@ public class ExternalDatabaseHandler {
                 encoding = .JSON
             }
             
-            var JSONResponseHandlerFailed = true
-            
             var parametersWithToken = parameters ?? [:]
             if let token = User.localUser?.token {
                 parametersWithToken["token"] = token
             }
             
+            var secondAttempt = false
+            
             Alamofire.request(method, route, parameters: parametersWithToken, encoding: encoding, headers: ["Content-Type": "application/json"])
                 .responseJSON { (request, response, result) -> Void in
                     
-                    JSONResponseHandlerFailed = result.isFailure || response!.statusCode != 200
+                    let isSuccess = response!.statusCode == 200
                     
-                    if !JSONResponseHandlerFailed {
-                        completionHandler?(result.value, result.isSuccess)
-                    } else {
-                        csprint(CS_DEBUG_NETWORK, result.debugDescription   )
-                    }
-                }.responseData { (request, response, result) -> Void in
-
-                    if result.isSuccess {
+                    if isSuccess {
                         csprint(CS_DEBUG_NETWORK, "Request successful:", request!, "\nStatus code:", response?.statusCode ?? "none")
                     } else {
                         csprint(CS_DEBUG_NETWORK, "Request failed:", request!, "\nStatus code:", response?.statusCode ?? "none", "\nError:", result)
                     }
                     
-                    if JSONResponseHandlerFailed {
-                        completionHandler?(nil, result.isSuccess && response!.statusCode == 200)
+                    
+                    if response?.statusCode == 401 {
+                        if !secondAttempt {
+                            secondAttempt = true
+                            if let password = User.localUser?.password, username = User.localUser?.username {
+                                self.loginWithUsername(username, andPassword: password, withCompletionHandler: { (user) -> Void in
+                                    User.loginUser(user!)
+                                    
+                                    
+                                    sendRequestWithRoute(route, usingMethod: method, andParameters: parameters, withCompletionHandler: completionHandler)
+                                })
+                            }
+                            
+                            return
+                        }
+                    }
+
+                    
+                    if isSuccess {
+                        completionHandler?(result.value, isSuccess)
+                    } else {
+                        completionHandler?(nil, isSuccess)
+                        csprint(CS_DEBUG_NETWORK, result.debugDescription)
                     }
                 }
     }

@@ -8,15 +8,20 @@
 
 import UIKit
 
-class ActivityIndicatorView: UIView {
+class ActivityIndicatorView: UIVisualEffectView {
     
     let activityIndicator   = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     let messageLabel        = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    convenience init() {
+        self.init(effect: UIBlurEffect(style: .Light))
+    }
+    
+    override init(effect: UIVisualEffect?) {
+        super.init(effect: effect)
         self.configureView()
     }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.configureView()
@@ -29,7 +34,6 @@ class ActivityIndicatorView: UIView {
         self.messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.messageLabel.textAlignment = NSTextAlignment.Center
-        backgroundColor = UIColor.whiteColor()
         
         self.addSubview(self.messageLabel)
         self.addSubview(self.activityIndicator)
@@ -67,9 +71,9 @@ class ActivityIndicatorView: UIView {
         }
     }
     
-    class func showActivityIndicatorWithMessage(message: String?, inView view: UIView) -> ActivityIndicatorView {
-        let activityIndicatorView = ActivityIndicatorView(frame: view.bounds)
-        
+    class func showActivityIndicatorWithMessage(message: String?, inView view: UIView = UIView()) -> ActivityIndicatorView {
+        let activityIndicatorView = ActivityIndicatorView()
+        let view = UIApplication.sharedApplication().keyWindow!.subviews.first!
         activityIndicatorView.startInView(view, withMessage: message)
         
         return activityIndicatorView

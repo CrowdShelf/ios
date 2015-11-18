@@ -32,7 +32,7 @@ public class User: BaseModel, Listable, Storeable {
     dynamic var password    : String?
     
     var image   : UIImage?
-    var title   : String? { return username! }
+    var title   : String? { return name! }
     var subtitle: String? { return email }
     
     public override class func ignoreProperties() -> Set<String> {
@@ -49,5 +49,10 @@ extension User {
     class func loginUser(user: User) {
         KeyValueHandler.setObject(user.serialize() , forKey: "user", inFile: LocalDataFile.User)
         self.localUser = user
+    }
+    
+    class func logout() {
+        KeyValueHandler.setObject(nil , forKey: "user", inFile: LocalDataFile.User)
+        self.localUser = nil
     }
 }

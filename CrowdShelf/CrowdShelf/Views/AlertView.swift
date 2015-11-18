@@ -29,6 +29,19 @@ class AlertView: UIAlertView, UIAlertViewDelegate {
         alertViewStyle = style
     }
     
+    convenience init(style: UIAlertViewStyle = .Default,
+        title: String,
+        message: String,
+        cancelButtonTitle: String,
+        onDismiss: ((UIAlertView, Int) -> Void)? = nil) {
+            
+            self.init(title: title, message: message, delegate: nil, cancelButtonTitle: cancelButtonTitle)
+                        
+            self.onDismiss = onDismiss
+            delegate = self
+            alertViewStyle = style
+    }
+    
     func alertView(alertView: UIAlertView, willDismissWithButtonIndex buttonIndex: Int) {
         onDismiss?(alertView, buttonIndex)
     }

@@ -10,10 +10,12 @@ import UIKit
 
 extension DataHandler {
     
+    
+    
     public class func getBooksInCrowdsForUser(userID: String, withCompletionHandler completionHandler: (([Book]) -> Void)) {
         
         /* Retrieve all the users crowds */
-        DataHandler.getCrowdsWithParameters(["member": userID]) { (crowds) -> Void in
+        DataHandler.getCrowdsWithParameters(["member": userID]) { (crowds, dataSource) -> Void in
             
             var allBooks: [Book] = []
             
@@ -22,7 +24,7 @@ extension DataHandler {
 
             for memberID in memberIDs {
                 
-                DataHandler.getBooksWithParameters(["owner":memberID], andCompletionHandler: { (userBooks) -> Void in
+                DataHandler.getBooksWithParameters(["owner":memberID], andCompletionHandler: { (userBooks, dataSource) -> Void in
                     allBooks = allBooks + userBooks
                     
                     membersRetrieved++
@@ -36,7 +38,7 @@ extension DataHandler {
     }
     
     public class func removeBookForUser(userID: String, withISBN ISBN: String, completionHandler: ((Bool)->Void)?) {
-        DataHandler.getBooksWithParameters(["owner": userID, "isbn":ISBN]) { (books) -> Void in
+        DataHandler.getBooksWithParameters(["owner": userID, "isbn":ISBN]) { (books, dataSource) -> Void in
             if let book = books.first {
                 DataHandler.removeBook(book._id!, withCompletionHandler: { (isSuccess) -> Void in
                     completionHandler?(isSuccess)
@@ -46,7 +48,7 @@ extension DataHandler {
     }
     
     public class func getUserWithImage(userID: String, withCompletionHandler completionHandler: ((User?)->Void)) {
-        self.getUser(userID) { (user) -> Void in
+        self.getUser(userID) { (user, dataSource) -> Void in
             if user == nil {
                 return completionHandler(nil)
             }
@@ -69,7 +71,7 @@ extension DataHandler {
     
     public class func addUserWithUsername(username: String, toCrowd crowdID: String, withCompletionHandler completionHandler: ((String?, Bool)->Void)?) {
         
-        self.userForUsername(username) { (user) -> Void in
+        self.userForUsername(username) { (user, dataSource) -> Void in
             if user == nil {
                 completionHandler?(nil, false)
                 return
@@ -105,7 +107,7 @@ extension DataHandler {
         
         var usersRetrieved = 0
         for wrappedMemberID in crowd.members {
-            DataHandler.getBooksWithParameters(["owner": wrappedMemberID], andCompletionHandler: { (memberBooks) -> Void in
+            DataHandler.getBooksWithParameters(["owner": wrappedMemberID], andCompletionHandler: { (memberBooks, dataSource) -> Void in
                 books = books + memberBooks
                 usersRetrieved++
                 if usersRetrieved == crowd.members.count {
@@ -118,7 +120,7 @@ extension DataHandler {
     public class func getTitleInformationForBooksWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([BookInformation])->Void)) {
         var titleInformationSet = Set<BookInformation>()
         
-        DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
+        DataHandler.getBooksWithParameters(parameters) { (books, dataSource) -> Void in
             
             var booksRetrieved = 0
             books.forEach({ (book) -> () in
@@ -140,7 +142,7 @@ extension DataHandler {
     
     public class func getBooksWithInformationWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Book])->Void)) {
         
-        DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
+        DataHandler.getBooksWithParameters(parameters) { (books, dataSource) -> Void in
             if books.isEmpty {
                 return completionHandler([])
             }
@@ -162,26 +164,33 @@ extension DataHandler {
     - parameter completionHandler:  a closure to be called with the results of the request
     */
     
-    public class func ownersOfBooksWithParameters(parameters: [String: AnyObject]?, withCompletionHandler completionHandler: (([User]) -> Void) ) {
+    public class func ownersOfBooksWithParameters(parameters: [String: AnyObject]?, withCompletionHandler completionHandler: (([User], DataSource) -> Void) ) {
         
-        DataHandler.getCrowdsWithParameters(["member": User.localUser!._id!]) { (userCrowds) -> Void in
+        DataHandler.getCrowdsWithParameters(["member": User.localUser!._id!]) { (userCrowds, dataSource) -> Void in
+            if dataSource == .Cache {
+                return
+            }
             
             var memberIDs = Set<String>()
             userCrowds.forEach { crowd in
                 memberIDs.unionInPlace(crowd.members)
             }
             
-            DataHandler.getBooksWithParameters(parameters) { (books) -> Void in
+            DataHandler.getBooksWithParameters(parameters) { (books, dataSource) -> Void in
+                if dataSource == .Cache {
+                    return
+                }
+                
                 if books.isEmpty {
-                    return completionHandler([])
+                    return completionHandler([], dataSource)
                 }
                 
                 let ownerIDs: Set<String> = Set(books.map {$0.owner!})
                 
-                DataHandler.usersWithCompletionHandler { users -> Void in
+                DataHandler.usersWithCompletionHandler { (users, dataSource) -> Void in
                     let owners = users.filter {ownerIDs.contains($0._id!) && memberIDs.contains($0._id!)}
                     
-                    completionHandler(owners)
+                    completionHandler(owners, dataSource)
                 }
             }
         }
@@ -196,7 +205,7 @@ extension DataHandler {
     - parameter completionHandler:  a closure to be called with the results of the request
     */
     public class func addRenter(renterID: String, toTitle isbn: String, withOwner ownerID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
-        DataHandler.getBooksWithParameters(["isbn": isbn, "owner":ownerID, "availableForRent": true]) { (books) -> Void in
+        DataHandler.getBooksWithParameters(["isbn": isbn, "owner":ownerID, "availableForRent": true]) { (books, dataSource) -> Void in
             
             if books.isEmpty {
                 completionHandler?(false)
@@ -211,7 +220,10 @@ extension DataHandler {
     }
     
     public class func removeRenter(renterID: String, fromTitle isbn: String, withOwner ownerID: String, withCompletionHandler completionHandler: ((Bool)->Void)?) {
-        DataHandler.getBooksWithParameters(["isbn": isbn, "owner":ownerID, "rentedTo": renterID]) { (books) -> Void in
+        DataHandler.getBooksWithParameters(["isbn": isbn, "owner":ownerID, "rentedTo": renterID]) { (books, dataSource) -> Void in
+            if dataSource == .Cache {
+                return
+            }
             
             if books.isEmpty {
                 completionHandler?(false)

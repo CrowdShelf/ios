@@ -64,7 +64,9 @@ extension ExternalDatabaseHandler {
                         value["provider"] = "google"
                         value["isbn"] = self.isbnFromItemInfoDictionary(itemInfo)
                         
-                        informationObjects.append(BookInformation(dictionary: value))
+                        if value["isbn"] != nil {
+                            informationObjects.append(BookInformation(dictionary: value))
+                        }
                     })
                 }
             }
@@ -74,19 +76,23 @@ extension ExternalDatabaseHandler {
     }
     
     private class func isbnFromItemInfoDictionary(dictionary: [String: AnyObject]) -> String? {
+        var isbn: String?
+        
         if let volumeInfo = dictionary["volumeInfo"] as? [String: AnyObject] {
             if let industryIdentifiers = volumeInfo["industryIdentifiers"] as? [[String: String]] {
                
                 for identifier in industryIdentifiers {
-                    if identifier["type"] == "ISBN_10" || identifier["type"] == "ISBN_13" {
-                        return identifier["identifier"]
+                    if identifier["type"] == "ISBN_13" {
+                        isbn = identifier["identifier"]
+                    } else if identifier["type"] == "ISBN_10" {
+                        isbn = identifier["identifier"]
                     }
                 }
             
             }
         }
         
-        return nil
+        return isbn
     }
     
     internal class func mapping() -> [String: String] {

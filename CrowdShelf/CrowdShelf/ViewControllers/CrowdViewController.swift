@@ -98,7 +98,7 @@ class CrowdViewController: ListViewController, UIAlertViewDelegate, ListViewCont
                 DataHandler.addUserWithUsername(username, toCrowd: self.crowd!._id!, withCompletionHandler: { (userID, isSuccess) -> Void in
                     
                     if isSuccess {
-                        DataHandler.getCrowd(self.crowd!._id!) { (crowd) -> Void in
+                        DataHandler.getCrowd(self.crowd!._id!) { (crowd, dataSource) -> Void in
                             activityIndicatorView.stop()
                             self.crowd = crowd
                         }

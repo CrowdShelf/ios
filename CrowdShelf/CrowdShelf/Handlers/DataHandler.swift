@@ -10,6 +10,10 @@ import Foundation
 import Alamofire
 import CryptoSwift
 
+public enum DataSource: Int {
+    case Cache, Server
+}
+
 /**
 Notifications posted for important events
 
@@ -30,6 +34,9 @@ public class DataHandler {
     public class func resultsForQuery(query: String, withCompletionHandler completionHandler: (([BookInformation])->Void)) {
         ExternalDatabaseHandler.resultsForQuery(query) { (bookInformation) -> Void in
             completionHandler(bookInformation)
+            if !bookInformation.isEmpty {
+                LocalDatabaseHandler.sharedInstance.addObject(bookInformation.first!)
+            }
         }
     }
     
@@ -53,15 +60,12 @@ public class DataHandler {
             return completionHandler(cachedData)
         }
         
-        print("ENABLE BOOK INFORMATION FROM GOOGLE FOR ISBN: \(isbn). In cache: \(LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["isbn": isbn], forType: BookInformation.self))")
-        return
-        
-//        ExternalDatabaseHandler.informationAboutBook(isbn) { (bookInformation) -> Void in            
-//            completionHandler(bookInformation)
-//            if !bookInformation.isEmpty {
-//                LocalDatabaseHandler.sharedInstance.addObject(bookInformation.first!)
-//            }
-//        }
+        ExternalDatabaseHandler.informationAboutBook(isbn) { (bookInformation) -> Void in            
+            completionHandler(bookInformation)
+            if !bookInformation.isEmpty {
+                LocalDatabaseHandler.sharedInstance.addObject(bookInformation.first!)
+            }
+        }
     }
     
     
@@ -112,11 +116,11 @@ public class DataHandler {
     */
     
     public class func getBook(bookID: String, withCompletionHandler completionHandler: ((Book?)->Void)) {
-        
-        let book = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": bookID], forType: Book.self).first
-        if book != nil {
-            completionHandler(book)
-        }
+//        
+//        let book = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": bookID], forType: Book.self).first
+//        if book != nil {
+//            completionHandler(book)
+//        }
         
         ExternalDatabaseHandler.getBook(bookID) { (book) -> Void in
             completionHandler(book)
@@ -132,16 +136,16 @@ public class DataHandler {
     
     */
     
-    public class func getBooksWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book])->Void)) {
+    public class func getBooksWithParameters(parameters: [String: AnyObject]?, useCache cache: Bool = true, andCompletionHandler completionHandler: (([Book], DataSource)->Void)) {
         
-        let books = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(parameters, forType: Book.self)
-        if !books.isEmpty {
-            completionHandler(books)
-        }
+//        let books = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(parameters, forType: Book.self)
+//        if !books.isEmpty {
+//            completionHandler(books, .Cache)
+//        }
         
         ExternalDatabaseHandler.getBooksWithParameters(parameters, useCache: cache) { (books) -> Void in
             LocalDatabaseHandler.sharedInstance.addObjects(books)
-            completionHandler(books)
+            completionHandler(books, .Server)
         }
     }
     
@@ -167,19 +171,19 @@ public class DataHandler {
     }
 
     
-    public class func userForUsername(username: String, withCompletionHandler completionHandler: ((User?)->Void
+    public class func userForUsername(username: String, withCompletionHandler completionHandler: ((User?, DataSource)->Void
         )) {
             
             let user = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["username": username], forType: User.self).first
             if user != nil {
-                completionHandler(user)
+                completionHandler(user, .Cache)
             }
             
             ExternalDatabaseHandler.userForUsername(username) { (user) -> Void in
                 if user != nil {
                     LocalDatabaseHandler.sharedInstance.addObject(user!)
                 }
-                completionHandler(user)
+                completionHandler(user, .Server)
             }
     }
     
@@ -190,13 +194,13 @@ public class DataHandler {
     
     */
     
-    public class func usersWithCompletionHandler(completionHandler: (([User])->Void)) {
-        let users = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(forType: User.self)
-        completionHandler(users)
+    public class func usersWithCompletionHandler(completionHandler: (([User], DataSource)->Void)) {
+//        let users = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(forType: User.self)
+//        completionHandler(users, .Cache)
         
         ExternalDatabaseHandler.usersWithCompletionHandler { (users) -> Void in
             LocalDatabaseHandler.sharedInstance.addObjects(users)
-            completionHandler(users)
+            completionHandler(users, .Server)
         }
     }
     
@@ -208,18 +212,18 @@ public class DataHandler {
     
     */
     
-    public class func getUser(userID: String, withCompletionHandler completionHandler: ((User?)->Void)) {
+    public class func getUser(userID: String, withCompletionHandler completionHandler: ((User?, DataSource)->Void)) {
         
-        let user = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": userID], forType: User.self).first
-        if user != nil {
-            completionHandler(user)
-        }
+//        let user = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": userID], forType: User.self).first
+//        if user != nil {
+//            completionHandler(user, .Cache)
+//        }
         
         ExternalDatabaseHandler.userForUserID(userID) { (user) -> Void in
             if user != nil {
                 LocalDatabaseHandler.sharedInstance.addObject(user!)
             }
-            completionHandler(user)
+            completionHandler(user, .Server)
         }
     }
     
@@ -273,32 +277,41 @@ public class DataHandler {
         ExternalDatabaseHandler.removeRenter(renterID, fromBook: bookID, withCompletionHandler: completionHandler)
     }
     
+    public class func forgotPassword(username: String, withCompletionHandler completionHandler: ((Bool)->Void)) {
+        ExternalDatabaseHandler.forgotPassword(username, withCompletionHandler: completionHandler)
+    }
+    
+    public class func resetPasswordForUser(username: String, password: String, key: String, withCompletionHandler completionHandler: ((Bool)->Void)) {
+        ExternalDatabaseHandler.forgotPassword(username, withCompletionHandler: completionHandler)
+    }
+    
 //    MARK: - Crowds
     
-    public class func getCrowdsWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Crowd]) -> Void)) {
+    public class func getCrowdsWithParameters(parameters: [String: AnyObject]?, andCompletionHandler completionHandler: (([Crowd], DataSource) -> Void)) {
         
-        let crowds = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(parameters, forType: Crowd.self)
-        completionHandler(crowds)
+//        let crowds = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(parameters, forType: Crowd.self)
+//        completionHandler(crowds, .Cache)
         
         ExternalDatabaseHandler.getCrowdsWithParameters(parameters) { (crowds) -> Void in
             
             LocalDatabaseHandler.sharedInstance.addObjects(crowds)
-            completionHandler(crowds)
+            completionHandler(crowds, .Server)
         }
     }
     
-    public class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((Crowd?)->Void)) {
+    public class func getCrowd(crowdID: String, withCompletionHandler completionHandler: ((Crowd?, DataSource)->Void)) {
         
-        let crowd = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": crowdID], forType: Crowd.self).first
-        if crowd != nil {
-            completionHandler(crowd)
-        }
+//        let crowd = LocalDatabaseHandler.sharedInstance.getObjectWithParameters(["_id": crowdID], forType: Crowd.self).first
+//        if crowd != nil {
+//            completionHandler(crowd, .Cache)
+//        }
         
         ExternalDatabaseHandler.getCrowd(crowdID) { (crowd) -> Void in
             if crowd != nil {
                 LocalDatabaseHandler.sharedInstance.addObject(crowd!)
             }
-            completionHandler(crowd)
+            
+            completionHandler(crowd, .Server)
         }
     }
     

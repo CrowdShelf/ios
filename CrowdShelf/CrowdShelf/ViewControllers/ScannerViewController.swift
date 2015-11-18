@@ -62,23 +62,23 @@ class ScannerViewController: BaseViewController {
     private func updateLight() {
         let avDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
-//        if avDevice.hasTorch {
-//            
-//            do {
-//                try avDevice.lockForConfiguration()
-//                
-//                if lightOn {
-//                    try avDevice.setTorchModeOnWithLevel(1.0)
-//                } else {
-//                    avDevice.torchMode = AVCaptureTorchMode.Off
-//                }
-//                
-//                avDevice.unlockForConfiguration()
-//            }
-//            catch let error as NSError {
-//                print(error.debugDescription)
-//            }
-//        }
+        if avDevice.hasTorch {
+            
+            do {
+                try avDevice.lockForConfiguration()
+                
+                if lightOn {
+                    try avDevice.setTorchModeOnWithLevel(1.0)
+                } else {
+                    avDevice.torchMode = AVCaptureTorchMode.Off
+                }
+                
+                avDevice.unlockForConfiguration()
+            }
+            catch let error as NSError {
+                csprint(false, error.debugDescription)
+            }
+        }
     }
     
     /// Get retrieve information about the ISBN. If there are multiple results, let the user choose the correct alternative. 

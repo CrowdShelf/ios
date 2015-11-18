@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : ColorPalette.primaryTextColor]
         UIWindow.appearance().tintColor = ColorPalette.primaryColor
         
+        UIButton.appearance().showsTouchWhenHighlighted = true
+        
         self.window?.tintColor = ColorPalette.primaryColor
         
 

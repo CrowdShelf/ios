@@ -10,7 +10,7 @@ import Foundation
 
 
 
-let CS_ENVIRONMENT : CSEnvironment = .Development
+let CS_ENVIRONMENT : CSEnvironment = .Test
 
 
 

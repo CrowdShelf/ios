@@ -24,11 +24,16 @@ class RegisterUserViewController: UIViewController {
             return true
         })
         
+        
         self.usernameField?.delegate = textFieldDelegate
         self.passwordField?.delegate = textFieldDelegate
         self.confirmPasswordField?.delegate = textFieldDelegate
         self.emailField?.delegate = textFieldDelegate
         self.nameField?.delegate = textFieldDelegate
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     override func viewWillAppear(animated: Bool) {

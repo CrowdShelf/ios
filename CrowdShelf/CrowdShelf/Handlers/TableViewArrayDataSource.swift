@@ -8,18 +8,16 @@
 
 import UIKit
 
-class TableViewArrayDataSource: NSObject, UITableViewDataSource {
+class TableViewArrayDataSource<CellType where CellType: UITableViewCell>: NSObject, UITableViewDataSource {
     
-    typealias CellConfigurationHandler = ((cell: UITableViewCell, item: AnyObject, indexPath: NSIndexPath) -> Void)
+    typealias CellConfigurationHandler = ((cell: CellType, item: AnyObject, indexPath: NSIndexPath) -> Void)
     
     var items: [AnyObject]
-    var cellReuseIdentifier: String
     var cellConfigurationHandler: CellConfigurationHandler
     var sectionTitles: [String?] = []
     
-    init(items: [AnyObject] = [], cellReuseIdentifier: String, cellConfigurationHandler: CellConfigurationHandler) {
+    init(items: [AnyObject] = [], cellConfigurationHandler: CellConfigurationHandler) {
         self.items = items
-        self.cellReuseIdentifier = cellReuseIdentifier
         self.cellConfigurationHandler = cellConfigurationHandler
     }
     
@@ -68,11 +66,11 @@ class TableViewArrayDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier)
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellType.cellReuseIdentifier)
+
+        assert(cell != nil, "No cell was registered with the reuse identifier: \(CellType.cellReuseIdentifier)")
         
-        assert(cell != nil, "No cell was registered with the reuse identifier: \(cellReuseIdentifier)")
-        
-        self.cellConfigurationHandler(cell: cell!, item: self.itemForIndexPath(indexPath)!, indexPath: indexPath)
+        self.cellConfigurationHandler(cell: cell as! CellType, item: self.itemForIndexPath(indexPath)!, indexPath: indexPath)
         
         return cell!
     }

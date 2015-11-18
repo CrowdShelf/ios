@@ -8,11 +8,11 @@
 
 import UIKit
 
-class BookCollectionViewController: CollectionViewController {
+class ShelfCollectionViewController: CollectionViewController {
     
     var shelf: Shelf? {
         didSet {
-            self.collectionData = shelf?.books ?? []
+            self.collectionData = shelf?.titles ?? []
             self.updateView()
         }
     }
@@ -28,20 +28,22 @@ class BookCollectionViewController: CollectionViewController {
     override func updateContent() {
         super.updateContent()
         
-        DataHandler.getBooksWithParameters(self.shelf?.parameters) { (books) -> Void in
+        DataHandler.getBooksWithParameters(self.shelf?.parameters) { (books, dataSource) -> Void in
             self.shelf?.books = books.filter(self.shelf!.filter)
-            self.updateView()
             
-            for book in self.collectionData as! [Book] {
-                DataHandler.informationAboutBook(book.isbn!, withCompletionHandler: { (information) -> Void in
+            for bookInformation in self.collectionData as! [BookInformation] {
+                DataHandler.informationAboutBook(bookInformation.isbn!, withCompletionHandler: { (information) -> Void in
                                         
-                    book.details = information.first
-                    
-                    self.updateView()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.updateView()
+                    })
                 })
             }
             
-            self.refreshControl.endRefreshing()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.updateView()
+                self.refreshControl.endRefreshing()
+            })
         }
     }
 
@@ -51,8 +53,8 @@ class BookCollectionViewController: CollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let book = self.collectionData[indexPath.row] as? Book
-        self.performSegueWithIdentifier("ShowBook", sender: book?.details)
+        let bookInformation = self.collectionData[indexPath.row] as? BookInformation
+        self.performSegueWithIdentifier("ShowBook", sender: bookInformation)
     }
     
     override func done(sender: AnyObject) {

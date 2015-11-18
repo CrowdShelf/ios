@@ -23,6 +23,8 @@
 		39152D7D1BD571E1004EC737 /* CollectableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39152D7C1BD571E1004EC737 /* CollectableCell.xib */; };
 		39152D7F1BD574DD004EC737 /* UITableView+ReuseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39152D7E1BD574DD004EC737 /* UITableView+ReuseCell.swift */; };
 		39152D821BD5A3B2004EC737 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39152D811BD5A3B2004EC737 /* ListTableViewCell.xib */; };
+		3917B2EE1BFB516100186A74 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917B2ED1BFB516100186A74 /* ForgotPasswordViewController.swift */; };
+		3917B2F01BFB53DB00186A74 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3917B2EF1BFB53DB00186A74 /* UpdatePasswordViewController.swift */; };
 		3918BB951BE826C5004C74FE /* ObjectDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3918BB941BE826C5004C74FE /* ObjectDatabase.swift */; };
 		391B92471BCD8FCD0051A24B /* TableViewArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */; };
 		392169181BB083E70029A6C8 /* SerializableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392169171BB083E70029A6C8 /* SerializableObject.swift */; };
@@ -39,7 +41,7 @@
 		392E42CD1BBADBAA0080CCBD /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42CC1BBADBAA0080CCBD /* ActivityIndicatorView.swift */; };
 		392E42D01BBAE8D20080CCBD /* MessagePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42CF1BBAE8D20080CCBD /* MessagePopupView.swift */; };
 		392E42D31BBAF9DA0080CCBD /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42D21BBAF9DA0080CCBD /* CollectionViewController.swift */; };
-		392E42D61BBB2DCB0080CCBD /* BookCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42D51BBB2DCB0080CCBD /* BookCollectionViewController.swift */; };
+		392E42D61BBB2DCB0080CCBD /* ShelfCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42D51BBB2DCB0080CCBD /* ShelfCollectionViewController.swift */; };
 		392E42DA1BBBE0AC0080CCBD /* ShelfTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E42D91BBBE0AC0080CCBD /* ShelfTableViewCell.swift */; };
 		3953BF8A1B8DC29B00E39CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3953BF891B8DC29B00E39CC9 /* AppDelegate.swift */; };
 		3953BF8F1B8DC29B00E39CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3953BF8D1B8DC29B00E39CC9 /* Main.storyboard */; };
@@ -111,6 +113,8 @@
 		39152D7C1BD571E1004EC737 /* CollectableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CollectableCell.xib; path = CollectionViewCell/CollectableCell.xib; sourceTree = "<group>"; };
 		39152D7E1BD574DD004EC737 /* UITableView+ReuseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+ReuseCell.swift"; path = "Helpers/UITableView+ReuseCell.swift"; sourceTree = "<group>"; };
 		39152D811BD5A3B2004EC737 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListTableViewCell.xib; path = TableViewCells/ListTableViewCell.xib; sourceTree = "<group>"; };
+		3917B2ED1BFB516100186A74 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForgotPasswordViewController.swift; path = ViewControllers/Login/ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		3917B2EF1BFB53DB00186A74 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdatePasswordViewController.swift; path = ViewControllers/Login/UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		3918BB941BE826C5004C74FE /* ObjectDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ObjectDatabase.swift; path = Helpers/ObjectDatabase.swift; sourceTree = "<group>"; };
 		391B92461BCD8FCD0051A24B /* TableViewArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewArrayDataSource.swift; path = Handlers/TableViewArrayDataSource.swift; sourceTree = "<group>"; };
 		392169171BB083E70029A6C8 /* SerializableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SerializableObject.swift; path = Models/SerializableObject.swift; sourceTree = "<group>"; };
@@ -134,7 +138,7 @@
 		392E42CC1BBADBAA0080CCBD /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorView.swift; path = Views/ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		392E42CF1BBAE8D20080CCBD /* MessagePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagePopupView.swift; path = Views/MessagePopupView.swift; sourceTree = "<group>"; };
 		392E42D21BBAF9DA0080CCBD /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = ViewControllers/CollectionViewController.swift; sourceTree = "<group>"; };
-		392E42D51BBB2DCB0080CCBD /* BookCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookCollectionViewController.swift; path = ViewControllers/BookCollectionViewController.swift; sourceTree = "<group>"; };
+		392E42D51BBB2DCB0080CCBD /* ShelfCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShelfCollectionViewController.swift; path = ViewControllers/ShelfCollectionViewController.swift; sourceTree = "<group>"; };
 		392E42D91BBBE0AC0080CCBD /* ShelfTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShelfTableViewCell.swift; path = TableViewCells/ShelfTableViewCell.swift; sourceTree = "<group>"; };
 		3953BF841B8DC29B00E39CC9 /* CrowdShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3953BF881B8DC29B00E39CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 			children = (
 				399EFDF51BB2E0C900FC0664 /* LoginViewController.swift */,
 				390B92FE1BE382CE006CF3EB /* RegisterUserViewController.swift */,
+				3917B2ED1BFB516100186A74 /* ForgotPasswordViewController.swift */,
+				3917B2EF1BFB53DB00186A74 /* UpdatePasswordViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -235,6 +241,13 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		3917B2EC1BFA285200186A74 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		39231D651BCE6CA4007E02D7 /* Crowd */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,7 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				39C2F5B41B90A40A00529AA9 /* ShelfViewController.swift */,
-				392E42D51BBB2DCB0080CCBD /* BookCollectionViewController.swift */,
+				392E42D51BBB2DCB0080CCBD /* ShelfCollectionViewController.swift */,
 			);
 			name = Shelf;
 			sourceTree = "<group>";
@@ -398,6 +411,7 @@
 		3953BFA91B8E223300E39CC9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3917B2EC1BFA285200186A74 /* New Group */,
 				39986DA21BDE571600616DFB /* Search */,
 				39231D651BCE6CA4007E02D7 /* Crowd */,
 				39231D661BCE6CB8007E02D7 /* Book */,
@@ -567,6 +581,7 @@
 				TargetAttributes = {
 					3953BF831B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = FXWNTJ4XVX;
 					};
 					3953BF981B8DC29B00E39CC9 = {
 						CreatedOnToolsVersion = 6.4;
@@ -716,6 +731,7 @@
 			files = (
 				399EFDF61BB2E0C900FC0664 /* LoginViewController.swift in Sources */,
 				39C2F5861B8F9AB800529AA9 /* BaseModel.swift in Sources */,
+				3917B2F01BFB53DB00186A74 /* UpdatePasswordViewController.swift in Sources */,
 				39152D6F1BD51A24004EC737 /* AlternativeInfoImageView.swift in Sources */,
 				39231D6A1BCE6E11007E02D7 /* ListTableViewCell.swift in Sources */,
 				395AE1761BCD2C670090B74C /* CrowdsViewController.swift in Sources */,
@@ -731,6 +747,7 @@
 				3918BB951BE826C5004C74FE /* ObjectDatabase.swift in Sources */,
 				395AE16F1BCD21380090B74C /* CollectionViewArrayDataSource.swift in Sources */,
 				392E42DA1BBBE0AC0080CCBD /* ShelfTableViewCell.swift in Sources */,
+				3917B2EE1BFB516100186A74 /* ForgotPasswordViewController.swift in Sources */,
 				39152D731BD51E68004EC737 /* SearchBarDelegate.swift in Sources */,
 				3912CCDC1BE0D29000E9B785 /* Button.swift in Sources */,
 				39237AE71BE6DD9700EF1D13 /* FMResultSet.m in Sources */,
@@ -768,7 +785,7 @@
 				39BFDEF41BACBA310058C2CF /* Environment.swift in Sources */,
 				399DABFB1BE6D62B0080F4E5 /* LocalDatabaseHandler.swift in Sources */,
 				395EDD231B8F55AE0012A465 /* Book.swift in Sources */,
-				392E42D61BBB2DCB0080CCBD /* BookCollectionViewController.swift in Sources */,
+				392E42D61BBB2DCB0080CCBD /* ShelfCollectionViewController.swift in Sources */,
 				39237AE51BE6DD9700EF1D13 /* FMDatabasePool.m in Sources */,
 				395EDD201B8F09C00012A465 /* ScannerViewController.swift in Sources */,
 				399DABF91BE6B62D0080F4E5 /* AlertView.swift in Sources */,
